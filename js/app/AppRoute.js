@@ -1,9 +1,14 @@
+function run() {
+    load();
+    main();
+    clearTimeout(initializer);
+}
 /**
  * Main app routing function
  * @param component
  */
 function route(component = '') {
-    if(component === ''){
+    if(component === '') {
         if(sessionStorage.getItem('component') !== null) component = sessionStorage.getItem('component');
         else component = 'Home';
     }
@@ -11,6 +16,6 @@ function route(component = '') {
         sessionStorage.setItem('component', component);
     }
     current_component = component;
-    load();
-    window[current_component + 'Main']();
+    loadMeta();
+    initializer = setTimeout(run, 100);
 }
