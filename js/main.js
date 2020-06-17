@@ -612,7 +612,7 @@ let item_size;
 let auto_slider;
 /*--------------------------------------------------------------------------------------------------------------------*/
 function autoBoxLoader() {
-    let items = document.getElementsByClassName('autoBox-item');
+    let items = $('.autoBox-item');
     if(items.length > 0) {
         let random = Math.floor(Math.random() * items.length);
         items[random].style.display = 'block';
@@ -626,7 +626,7 @@ function autoBoxLoader() {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function showABI(index) {
-    let items = document.getElementsByClassName('autoBox-item');
+    let items = $('.autoBox-item');
     if(item_size > 0) {
         for(let item of items) item.style.display = 'none';
     }
@@ -653,10 +653,12 @@ function previousABI() {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function pauseABI() {
+    console.log('pausing');
     clearInterval(auto_slider);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function resumeABI() {
+    console.log('resuming');
     function handler() {
         showABI(Math.floor(Math.random() * item_size));
     }
