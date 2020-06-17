@@ -612,26 +612,31 @@ let item_size;
 let auto_slider;
 /*--------------------------------------------------------------------------------------------------------------------*/
 function autoBoxLoader() {
-    let items = $('.autoBox-item');
-    if(items.length > 0) {
-        let random = Math.floor(Math.random() * items.length);
-        items[random].style.display = 'block';
-        current_autobox_item = random;
-        item_size = items.length;
+    try {
+        let items = $('.autoBox-item');
+        if(items.length > 0) {
+            let random = Math.floor(Math.random() * items.length);
+            items[random].style.display = 'block';
+            current_autobox_item = random;
+            item_size = items.length;
+        }
+        function handler() {
+            showABI(Math.floor(Math.random() * items.length));
+        }
+        auto_slider = setInterval(handler, 10000);
+    } catch (e) {
     }
-    function handler() {
-        showABI(Math.floor(Math.random() * items.length));
-    }
-    auto_slider = setInterval(handler, 10000);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function showABI(index) {
-    let items = $('.autoBox-item');
-    if(item_size > 0) {
-        for(let item of items) item.style.display = 'none';
+    if(current_component === 'News') {
+        let items = $('.autoBox-item');
+        if(item_size > 0) {
+            for(let item of items) item.style.display = 'none';
+        }
+        items[index].style.display = 'block';
+        current_autobox_item = index;
     }
-    items[index].style.display = 'block';
-    current_autobox_item = index;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function nextABI() {
