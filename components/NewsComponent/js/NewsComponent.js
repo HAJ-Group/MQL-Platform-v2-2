@@ -172,6 +172,15 @@ NewsComponent.prototype.navigate = function(page_number=1, top=false) {
     if(top) window.location.href = '#main';
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
+NewsComponent.prototype.trigger = function () {
+	try {
+		let anchor = window.location.href.split('#')[1];
+		if(anchor !== undefined && anchor !== 'header') {
+			$('#nav' + anchor).click();
+		}
+	} catch (e) {
+	}
+};
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * Filtering function works with search box
@@ -280,6 +289,7 @@ function NewsMain() {
 	autoBoxLoader();
 	addTitleIcon('resources/pictures/News/News-logo.png', true);
 	detect_subContent_trigger_left_bar();
+	view.trigger();
 	setKeysAction('.form-content',view.triggerSubmit.bind(view));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
