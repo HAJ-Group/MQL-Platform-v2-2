@@ -14,15 +14,17 @@ function route(component = '') {
     }
     current_component = component;
     load();
-    initializer = setTimeout(run, 50);
+    initializer = setInterval(run, 10);
 }
 
 /**
  * RUN COMPONENT ACTION FUNCTION
  */
 function run() {
-    window[current_component + 'Main']();
-    clearTimeout(initializer);
+    try {
+        window[current_component + 'Main']();
+        clearTimeout(initializer);
+    } catch (e) {}
 }
 
 

@@ -62,6 +62,7 @@ HomeComponent.prototype.setNewsRoutes = function () {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
 function HomeMain() {
+	clearInterval(initializer);
 	service = new HomeComponentService();
 	service.load(dbHomeProgram);
 	view = new HomeComponent(service);
