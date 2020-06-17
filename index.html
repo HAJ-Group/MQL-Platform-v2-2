@@ -18,6 +18,7 @@
 		<script src="components/PartnerComponent/js/data/PartnerComponentDataSource.js"></script>
 		<script src="components/LaureateComponent/js/data/LaureateComponentDataSource.js"></script>
 		<script src="components/AreaComponent/js/data/AreaComponentDataSource.js"></script>
+		<script src="components/HomeComponent/js/data/HomeComponentDataSource.js"></script>
 		<!-- MODEL -->
 		<script src="components/NewsComponent/js/model/News.js"></script>
 		<script src="components/EventComponent/js/model/Event.js"></script>
@@ -25,6 +26,7 @@
 		<script src="components/PartnerComponent/js/model/Partner.js"></script>
 		<script src="components/LaureateComponent/js/model/Laureate.js"></script>
 		<script src="components/AreaComponent/js/model/Area.js"></script>
+		<script src="components/HomeComponent/js/model/Home.js"></script>
 		<!-- SERVICE -->
 		<script src="components/NewsComponent/js/service/NewsComponentService.js"></script>
 		<script src="components/EventComponent/js/service/EventComponentService.js"></script>
@@ -32,6 +34,7 @@
 		<script src="components/PartnerComponent/js/service/PartnerComponentService.js"></script>
 		<script src="components/LaureateComponent/js/service/LaureateComponentService.js"></script>
 		<script src="components/AreaComponent/js/service/AreaComponentService.js"></script>
+		<script src="components/HomeComponent/js/service/HomeComponentService.js"></script>
 		<!-- VIEW -->
 		<script src="components/NewsComponent/js/NewsComponent.js"></script>
 		<script src="components/EventComponent/js/EventComponent.js"></script>
@@ -39,17 +42,18 @@
 		<script src="components/PartnerComponent/js/PartnerComponent.js"></script>
 		<script src="components/LaureateComponent/js/LaureateComponent.js"></script>
 		<script src="components/AreaComponent/js/AreaComponent.js"></script>
+		<script src="components/HomeComponent/js/HomeComponent.js"></script>
 		<!-- APP ROUTING -->
 		<script src="js/app/AppRoute.js"></script>
 	</head>
-	<body onload="route('News')">
+	<body onload="route()">
 		<div class="content">
 			<!-- HEADER -->
 			<header class="div-center">
 				<img id="title-image" src="resources/pictures/App/Header/Event.jpg" alt="title" class="def-img">
 				<div class="phone-header" id="phone-header">
 					<div class="move-left">
-						<img id="mini-logo" onclick="route('../Home')" width="150" height="90" src="resources/pictures/App/logoMQL.png" alt="lm">
+						<img id="mini-logo" onclick="route('Home')" width="150" height="90" src="resources/pictures/App/logoMQL.png" alt="lm">
 					</div>
 					<div class="move-right">
 						<img id="menu-button" onclick="showMenu()" width="60" height="60" src="resources/pictures/App/Header/menu-phone.png" alt="mp">

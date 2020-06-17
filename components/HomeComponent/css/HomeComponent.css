@@ -5,7 +5,7 @@ body {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .container {
-	background-image: url('../../../resources/pictures/pattern.png');
+	background-image: url('../../../resources/pictures/App/pattern.png');
 	background-repeat: repeat-y;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -173,11 +173,11 @@ a:hover {
 @keyframes slideShow {
 	0% {
 		font-size: 1px;
-		background-image: url("../../../resources/pictures/presentationimage.png");
+		background-image: url("../../../resources/pictures/Home/presentationimage.png");
 	}
 	100% {
 		font-size: 2px;
-		background-image: url("../../../resources/pictures/mqlfam.JPG");
+		background-image: url("../../../resources/pictures/App/mqlfam.JPG");
 	}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

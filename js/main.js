@@ -622,7 +622,7 @@ function autoBoxLoader() {
     function handler() {
         showABI(Math.floor(Math.random() * items.length));
     }
-    auto_slider = setInterval(handler, 5000);
+    auto_slider = setInterval(handler, 10000);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function showABI(index) {
@@ -674,6 +674,10 @@ function showPartner(id) {
         $('#menu-' + id).click();
     }
 
+}
+function showNews(id) {
+    route('News');
+    location.href = '#' + id;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

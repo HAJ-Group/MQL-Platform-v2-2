@@ -55,7 +55,7 @@ HomeComponent.prototype.setNewsRoutes = function () {
 	for(let i=0; i<rows.length; i++) {
 		let cells = rows[i].cells;
 		for(let j=1; j<cells.length; j++) {
-			cells[j].innerHTML = '<a onclick="route(\'../News\',' + (i+1) + ')">' + cells[j].innerHTML + '</a>';
+			cells[j].innerHTML = '<a onclick="showNews(' + (i+1) + ')">' + cells[j].innerHTML + '</a>';
 		}
 	}
 };

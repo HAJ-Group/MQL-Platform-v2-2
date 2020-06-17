@@ -19,6 +19,6 @@ let dbHomeProgram = [
 ];
 
 let dbHomeImages = [
-    '../../resources/pictures/presentationimage.png',
-    '../../resources/pictures/mqlfam.jpg',
+    'resources/pictures/Home/presentationimage.png',
+    'resources/pictures/App/mqlfam.jpg',
 ];
