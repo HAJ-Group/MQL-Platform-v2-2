@@ -26,13 +26,13 @@ function loadComponentStyle() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------MAIN LOADING FUNCTIONS-----------------------------------------------*/
 function loadHeader() {
-    let headerElement = $('#header');
+    let headerElement = $('.topnav')[0];
     headerElement.innerHTML = '';
     headerElement.appendChild(getHeaderContent());
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function loadFooter() {
-    let footerElement = $('#footer');
+    let footerElement = $('.partenaire')[0];
     footerElement.innerHTML = '';
     footerElement.appendChild(getFooterContent());
 }
@@ -662,7 +662,7 @@ function resumeABI() {
     function handler() {
         showABI(Math.floor(Math.random() * item_size));
     }
-    auto_slider = setInterval(handler, 5000);
+    auto_slider = setInterval(handler, 10000);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function showPartner(id) {

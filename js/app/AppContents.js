@@ -3,25 +3,6 @@
 /*---------------------------------------------LOADING HEADER CONTENT-------------------------------------------------*/
 function getHeaderContent() {
     /* HEADER --------------------------------------------------------------------------------------------------------*/
-    let headerElement = buildElement('header',[
-        buildIMG('', 'title', id('title-image')),
-        buildDIV([
-            buildDIV([
-                buildIMG('resources/pictures/App/logoMQL.png', 'lm', id('mini-logo', [
-                    {name:'onclick', value:'route(\'../Home\')'},
-                    {name:'width', value:'150'},
-                    {name:'height', value:'90'},
-                ]))
-            ], cls('move-left')),
-            buildDIV([
-                buildIMG('resources/pictures/App/Header/menu-phone.png', 'mp', id('menu-button', [
-                    {name:'onclick', value:'showMenu()'},
-                    {name:'width', value:'60'},
-                    {name:'height', value:'60'},
-                ]))
-            ], cls('move-right'))
-        ], wrapCI('phone-header', 'phone-header'))
-    ], cls('div-center'));
     let navElement = buildDIV(null, cls('topnav'));
     // DYNAMIC NAVS
     for(let nav of navs) {
@@ -36,31 +17,12 @@ function getHeaderContent() {
     navElement.appendChild(buildLINK('#footer', [
         buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img'))
     ], cls('right')));
-    headerElement.appendChild(navElement);
-    return headerElement;
+    return navElement;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------LOADING FOOTER CONTENT-------------------------------------------------*/
 function getFooterContent() {
-    let footerElement = buildElement('footer', [
-        buildDIV([
-            buildSPAN('S\'inscrire à notre NewsLetter', wrap([
-                {name:'style', value:'font-size: 17px;color: white;'},
-            ]))
-        ], wrapCI('text-news-letter', 'newsBlocks', [
-            {name:'onclick', value:'$(\'#news-modal-id\').style.display = \'block\''}
-        ])),
-        buildHR(),
-        buildDIV([
-            buildIMG('resources/pictures/App/icons/partners.png', 'partners', cls('right-space', [
-                {name:'width', value:'80'},
-                {name:'height', value:'46'},
-            ])),
-            buildSPAN('Partenaires')
-        ], cls('text-partenaire')),
-        buildHR()
-    ]);
     let partnersDiv = buildDIV(null, cls('partenaire'));
     for(let partner of footerData.partners) {
         partnersDiv.appendChild(buildSPAN([
@@ -69,65 +31,7 @@ function getFooterContent() {
             ]))
         ]));
     }
-    footerElement.appendChild(partnersDiv);
-    footerElement.appendChild(buildDIV(null, cls('background-space')));
-    let footerDiv = buildDIV(null, cls('flex-container'));
-    for(let foot of footerData.foots) {
-        let container = buildDIV(buildElement('h5', foot.title));
-        let list = buildElement('ul', null, cls('remove-space'));
-        for(let c of foot.content) {
-            if(c.type === 'link') {
-                list.appendChild(buildElement('li', [
-                    buildLINK(c.link_address, c.link_name, cls('links'))
-                ]));
-            }
-            if(c.type === 'list') {
-                list.appendChild(buildElement('li', [
-                    buildElement('strong', c.list_title),
-                    c.list_content
-                ], id('direct-contact-element')));
-            }
-            if(c.type === 'direct-contact'){
-                list.appendChild(buildElement('li', [
-                    buildElement('button', 'Contactez-nous directement !', cls('button-contact', [
-                        {name:'onclick', value:'$(\'#form-contact-id\').style.display=\'block\''},
-                        {name:'style', value:'width:auto;'},
-                    ]))
-                ]));
-            }
-            if(c.type === 'geo') {
-                list.appendChild(buildDIV([
-                    buildDIV([
-                        buildElement('iframe', null, cls('map-size', [
-                            {name:'src', value:c.source},
-                            {name:'frameborder', value:'0'},
-                            {name:'style', value:'border:0;'},
-                            {name:'allowfullscreen', value:'true'},
-                            {name:'aria-hidden', value:'false'},
-                            {name:'tabindex', value:'0'},
-                        ]))
-                    ], cls('over-flow'))
-                ], cls('map')));
-            }
-        }
-        container.appendChild(list);
-        footerDiv.appendChild(container);
-    }
-    footerElement.appendChild(footerDiv);
-    // Copy-right
-    footerElement.appendChild(buildDIV([
-        buildSPAN([
-            'Master Qualité du Logiciel,',
-            buildLINK('#', 'Faculté des sciences'),
-        ]),
-        buildSPAN('&copy; 2020 All rights reserved'),
-    ], cls('copy-right')));
-    // Elements for form-contact
-    footerElement.appendChild(buildDIV(null, id('form-contact')));
-    //  // Elements for newsLetter
-    footerElement.appendChild(buildLINK('#', null, wrapCI('button-news', 'news-button')));
-    footerElement.appendChild(buildDIV(null, id('news-cont')));
-    return footerElement;
+    return partnersDiv;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

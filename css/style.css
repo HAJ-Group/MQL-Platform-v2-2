@@ -20,7 +20,6 @@ body {
     -webkit-box-shadow: 0 -20px 20px 0 rgba(0,0,0,0.4);
     -moz-box-shadow: 0 -20px 20px 0 rgba(0,0,0,0.4);
     box-shadow: 0 -20px 20px 0 rgba(0,0,0,0.4);
-
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .content {
@@ -80,7 +79,7 @@ hr {
 /*--------------------------------------------------------------------------------------------------------------------*/
 header {
     /* This section calls the slideInFromLeft animation we defined above */
-    animation: 1s ease-out 0s 1 slideInFromTop;
+    /*animation: 1s ease-out 0s 1 slideInFromTop;*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Hide the phone header */
@@ -106,7 +105,7 @@ header {
     text-decoration: none;
     font-size: 20px;
     /* This section calls the slideInFromLeft animation we defined above */
-    animation: 1s ease-out 0s 1 slideInFromLeft;
+    /*animation: 1s ease-out 0s 1 slideInFromLeft;*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Change the color of links on hover */

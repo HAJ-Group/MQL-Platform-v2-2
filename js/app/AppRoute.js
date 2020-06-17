@@ -14,7 +14,7 @@ function route(component = '') {
     }
     current_component = component;
     load();
-    initializer = setTimeout(run, 500);
+    initializer = setTimeout(run, 50);
 }
 
 /**
