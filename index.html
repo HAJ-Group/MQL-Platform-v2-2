@@ -17,35 +17,39 @@
 		<script src="components/ActivityComponent/js/data/ActivityComponentDataSource.js"></script>
 		<script src="components/PartnerComponent/js/data/PartnerComponentDataSource.js"></script>
 		<script src="components/LaureateComponent/js/data/LaureateComponentDataSource.js"></script>
+		<script src="components/AreaComponent/js/data/AreaComponentDataSource.js"></script>
 		<!-- MODEL -->
 		<script src="components/NewsComponent/js/model/News.js"></script>
 		<script src="components/EventComponent/js/model/Event.js"></script>
 		<script src="components/ActivityComponent/js/model/Activity.js"></script>
 		<script src="components/PartnerComponent/js/model/Partner.js"></script>
 		<script src="components/LaureateComponent/js/model/Laureate.js"></script>
+		<script src="components/AreaComponent/js/model/Area.js"></script>
 		<!-- SERVICE -->
 		<script src="components/NewsComponent/js/service/NewsComponentService.js"></script>
 		<script src="components/EventComponent/js/service/EventComponentService.js"></script>
 		<script src="components/ActivityComponent/js/service/ActivityComponentService.js"></script>
 		<script src="components/PartnerComponent/js/service/PartnerComponentService.js"></script>
 		<script src="components/LaureateComponent/js/service/LaureateComponentService.js"></script>
+		<script src="components/AreaComponent/js/service/AreaComponentService.js"></script>
 		<!-- VIEW -->
 		<script src="components/NewsComponent/js/NewsComponent.js"></script>
 		<script src="components/EventComponent/js/EventComponent.js"></script>
 		<script src="components/ActivityComponent/js/ActivityComponent.js"></script>
 		<script src="components/PartnerComponent/js/PartnerComponent.js"></script>
 		<script src="components/LaureateComponent/js/LaureateComponent.js"></script>
+		<script src="components/AreaComponent/js/AreaComponent.js"></script>
 		<!-- APP ROUTING -->
 		<script src="js/app/AppRoute.js"></script>
 	</head>
-	<body onload="route()">
+	<body onload="route('News')">
 		<div class="content">
 			<!-- HEADER -->
 			<div id="header"></div>
 			<!-- BODY -->
 			<div id="body"></div>
 			<!-- FOOTER -->
-			<div id="footer"></div> 
+			<div id="footer"></div>
 		</div>
 		<span>
 			<button onclick="topFunction()" id="scroll-top" title="Top"></button>

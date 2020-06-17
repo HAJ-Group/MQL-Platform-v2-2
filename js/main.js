@@ -10,6 +10,7 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*Global Variables*/
 let current_component;
+let initializer;
 let phone_menu_toggled = false;
 let info = null;
 let view;
@@ -42,16 +43,18 @@ function loadFooter() {
 function loadComponent() {
     let container = $('#body');
     container.innerHTML = '';
-    container.appendChild(window['get' + current_component + 'Content']());
+    // container.appendChild(window['get' + current_component + 'Content']());
+    container.setAttribute('include', 'components/' + current_component + 'Component/' + current_component + 'Component.html');
+    inject();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-function loadSearchBar() {
+/*function loadSearchBar() {
     if($('#search') !== null) {
         let searchElement = $('#search');
         searchElement.innerHTML = '';
         searchElement.appendChild(getSearchBarContent());
     }
-}
+}*/
 /**
  * Load target component
  */
@@ -63,8 +66,6 @@ function load() {
     loadFooter();
     // Loading Component Content
     loadComponent();
-    // Load search bar if necessary
-    loadSearchBar();
     // Primary initialization
     let current_element = $('+' + current_component)[0];
     if(current_component === 'Home') $('#home-logo').
@@ -671,6 +672,36 @@ function showPartner(id) {
         $('#menu-' + id).click();
     }
 
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+function inject() {
+    let z, i, elmnt, file, xhttp;
+    /* Loop through a collection of all HTML elements: */
+    z = document.getElementsByTagName("*");
+    for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("include");
+        if (file) {
+            /* Make an HTTP request using the attribute value as the file name: */
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                    if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                    /* Remove the attribute, and call this function once more: */
+                    elmnt.removeAttribute("include");
+                    inject();
+                }
+            };
+            xhttp.open("GET", file, true);
+            xhttp.send();
+            /* Exit the function: */
+            return;
+        }
+    }
 }
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/

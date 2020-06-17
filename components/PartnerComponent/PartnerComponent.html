@@ -1,0 +1,33 @@
+<div class="sub-content"></div>
+	<div class="container">
+		<div id="partnersMenu" class="partners-menu">
+			<img src="resources/pictures/Partner/menu-bg.jpg" alt="" class="menu-img">
+			<h2>Companies</h2>
+			<div class="sep"></div>
+		</div>
+		<div id="partnersContainer" class="partners-container">
+		</div>
+	</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+	<span onclick="closeIMG()" class="close">&times;</span>
+	<img class="modal-content" id="modal_img" alt="" src="">
+	<div id="caption"></div>
+</div>
+<!-- FORM MODAL -->
+<div id="form" class="modal">
+	<span onclick="closeFORM()" class="close">&times;</span>
+	<div class="form-content" id="formContent">
+		<img src="resources/pictures/App/icons/partner-icon.png" alt="">
+		<p class="form-title">PARTNER COMPONENT</p>
+		<input id="partnerID" type="hidden" class="form-text">
+		<input id="partnerName" type="text" class="form-text" placeholder="Partner Name ...">
+		<input id="partnerColor" type="text" class="form-text" placeholder="Partner Color ...">
+		<input id="partnerCa" type="text" class="form-text" placeholder="Partner Sales ...">
+		<textarea id="partnerDescription" class="form-text" placeholder="Partner Description" rows="5"></textarea>
+		<input id="partnerCo" type="text" class="form-text" placeholder="MQL Partner Collaborators ...">
+		<input id="partnerWebSite" type="text" class="form-text" placeholder="Partner WebSite ...">
+		<p id="partnerSubmit" onclick="view.submitData()" class="form-submit">Valider</p>
+	</div>
+</div>
+
