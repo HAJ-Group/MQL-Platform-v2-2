@@ -1,14 +1,44 @@
 <!DOCTYPE html> 
 <html lang="en"> 
 	<head id="meta">
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width" />
-		<title>MQL Platform</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" />
+        <title>MQL Platform</title>
 		<script src="js/ElementFactory.js"></script>
-		<script src="js/main.js"></script>
+        <script src="js/app/AppData.js"></script>
+        <script src="js/app/AppContents.js"></script>
+        <script src="js/main.js"></script>
+		<!-- STYLES -->
+		<link rel="stylesheet" href="css/style.css">
+		<link id="component-style" rel="stylesheet" href="components/HomeComponent/css/HomeComponent.css">
+		<!-- DATA SOURCE -->
+		<script src="components/NewsComponent/js/data/NewsComponentDataSource.js"></script>
+		<script src="components/EventComponent/js/data/EventComponentDataSource.js"></script>
+		<script src="components/ActivityComponent/js/data/ActivityComponentDataSource.js"></script>
+		<script src="components/PartnerComponent/js/data/PartnerComponentDataSource.js"></script>
+		<script src="components/LaureateComponent/js/data/LaureateComponentDataSource.js"></script>
+		<!-- MODEL -->
+		<script src="components/NewsComponent/js/model/News.js"></script>
+		<script src="components/EventComponent/js/model/Event.js"></script>
+		<script src="components/ActivityComponent/js/model/Activity.js"></script>
+		<script src="components/PartnerComponent/js/model/Partner.js"></script>
+		<script src="components/LaureateComponent/js/model/Laureate.js"></script>
+		<!-- SERVICE -->
+		<script src="components/NewsComponent/js/service/NewsComponentService.js"></script>
+		<script src="components/EventComponent/js/service/EventComponentService.js"></script>
+		<script src="components/ActivityComponent/js/service/ActivityComponentService.js"></script>
+		<script src="components/PartnerComponent/js/service/PartnerComponentService.js"></script>
+		<script src="components/LaureateComponent/js/service/LaureateComponentService.js"></script>
+		<!-- VIEW -->
+		<script src="components/NewsComponent/js/NewsComponent.js"></script>
+		<script src="components/EventComponent/js/EventComponent.js"></script>
+		<script src="components/ActivityComponent/js/ActivityComponent.js"></script>
+		<script src="components/PartnerComponent/js/PartnerComponent.js"></script>
+		<script src="components/LaureateComponent/js/LaureateComponent.js"></script>
+		<!-- APP ROUTING -->
 		<script src="js/app/AppRoute.js"></script>
 	</head>
-	<body onload="route('News')">
+	<body onload="route()">
 		<div class="content">
 			<!-- HEADER -->
 			<div id="header"></div>

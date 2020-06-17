@@ -64,11 +64,9 @@ function getFooterContent() {
     let partnersDiv = buildDIV(null, cls('partenaire'));
     for(let partner of footerData.partners) {
         partnersDiv.appendChild(buildSPAN([
-            buildLINK('', [
-                buildIMG(partner.image, '', wrapIC('partner-' + partner.id, 'img-partenaire', [
-                    {name:'onclick', value:'route(\'../Partner\',\'' + partner.id + '\')'},
-                ]))
-            ])
+            buildIMG(partner.image, '', wrapIC('partner-' + partner.id, 'img-partenaire', [
+                {name:'onclick', value:'showPartner(\'partner-' + partner.id + '\')'},
+            ]))
         ]));
     }
     footerElement.appendChild(partnersDiv);
@@ -225,13 +223,14 @@ function getNewsLetterContent() {
     ], wrapIC('news-modal-id', 'news-modal'));
 }
 
-function getContainerContent() {
+function getContainerContent(containerClass = 'container') {
     return buildDIV([
         buildDIV(
             buildDIV('Navigation', cls(['menuitem', 'wrap-blue']))
             , wrapIC('navigation', 'left-menu')),
-        buildDIV(null, wrapIC('main', 'sub-content'))
-    ], cls('container'));
+        buildDIV(null, wrapIC('main', 'sub-content')),
+        buildDIV(null, wrapIC('switcher', 'page_numbers'))
+    ], cls(containerClass));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -241,60 +240,136 @@ function getHomeContent() {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getNewsContent() {
-    /*
-    * <div id="autoBox"></div>
-            <div id="search"></div>
-			<div class="container">
-				<div id="navigation" class="left-menu">
-					<div class="menuitem wrap-blue">Navigation</div>
-				</div>
-				<div id="main" class="sub-content"></div>
-				<!-- The Modal -->
-				<div id="myModal" class="modal">
-					<span onclick="closeIMG()" class="close">&times;</span>
-					<img class="modal-content" id="modal_img" alt="" src="">
-					<div id="caption"></div>
-				</div>
-				<!-- FORM MODAL -->
-				<div id="form" class="modal">
-					<span onclick="closeFORM()" class="close">&times;</span>
-					<div class="form-content" id="formContent">
-						<img src="../../resources/pictures/News-logo.png" alt="">
-						<p class="form-title">NEWS COMPONENT</p>
-						<input id="newsTitle" type="text" class="form-text" placeholder="News Title...">
-						<textarea id="newsDescription" class="form-text" placeholder="News Description" rows="5"></textarea>
-						<p id="newsSubmit" onclick="view.submitData()" class="form-submit">Valider</p>
-					</div>
-				</div>
-				<div id="switcher" class="page_numbers"></div>
-			</div>
-    * */
     return buildDIV([
         buildDIV(null, id('autoBox')),
         buildDIV(null, id('search')),
         getContainerContent(),
-        buildDIV(null, wrapIC('switcher', 'page_numbers'))
     ]);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getEventContent() {
-    return buildSPAN('Event Works');
+    return buildDIV([
+        buildDIV([
+            buildIMG('resources/pictures/Event/timeline.png', '', cls('timeline-icon')),
+            buildElement('ol', null, wrapCI('timeline-list', 'timeline'))
+        ], cls('timeline')),
+        buildDIV(null, id('search')),
+        getContainerContent(),
+    ]);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getActivityContent() {
-    return buildSPAN('Activity Works');
+    let textDescription = 'La formation MQL se déroule en deux ans, répartit en quatres semestres,\n' +
+        'dont les trois premiers se déroulent généralement en six de modules reliant entre la théorie et la pratique.\n' +
+        'Le dernier semestre est la dernière étape de cette formation, c\'est un projet de fin d\'études effectué au sein d\'une multinationale parmis nos partenaires,\n' +
+        'ce qui offre aux étudiants un terrain concret de mise en situation pour son évolution vers un savoir-être et un savoir-faire d’ingénieur d\'études et developpement,\n' +
+        'ainsi que valider les acquis sur des problématiques  regroupant les différents centres d’intérêts de la formation.\n' +
+        'La formation implique aussi :';
+    return buildDIV([
+        buildDIV([
+            buildDIV([
+                buildDIV('Déroulement de cours', cls('title')),
+                buildDIV([
+                    buildIMG('resources/pictures/Activity/deroulement-cours2.png', '', cls('el-center')),
+                    buildElement('p', [
+                        textDescription,
+                        buildElement('ul', [
+                            buildElement('li', 'Learning by doing (Apprentissage par la pratique) : Les étudiants sont amenés à réaliser un ensemble de projets ( JAVA , JAVAEE , WEB , Design Patterns ...)'),
+                            buildElement('li', 'Learning by teaching: Les étudiants sont amenés à présenter ( expliquer ) un ensemble de technologies, sujets durant les deux années de formation'),
+                        ])
+                    ])
+                ], cls('details'))
+            ], cls('activities-image')),
+            buildDIV([
+                buildDIV('Semesters', cls('title')),
+                buildDIV([
+                    buildDIV(null, id('zone')),
+                ], cls('details'))
+            ], cls('semesters')),
+            buildDIV([
+                buildDIV('Modèle de Formation', cls('title')),
+                buildDIV([
+                    buildElement('video', [
+                        buildElement('source', null, wrap([{name:'src', value:'resources/videos/formation.mp4'}, {name:'type', value:'video/mp4'}]))
+                    ], cls('formation-video', [{name:'autoplay', value:''}, {name:'muted', value:''}, {name:'loop', value:''}]))
+                ], cls('details'))
+            ], cls('mf'))
+        ], cls('container')),
+        buildBR(),
+    ]);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getPartnerContent() {
-    return buildSPAN('Partner Works');
+    return buildDIV([
+        buildDIV(null, cls('sub-content')),
+        buildDIV([
+            buildDIV([
+                buildIMG('resources/pictures/Partner/menu-bg.jpg', '', cls('menu-img')),
+                buildElement('h2', 'Companies'),
+                buildDIV(null, cls('sep'))
+            ], wrapIC('partnersMenu', 'partners-menu')),
+            buildDIV(null, wrapIC('partnersContainer', 'partners-container'))
+        ], cls('container'))
+    ]);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getLaureateContent() {
-    return buildSPAN('Laureate Works');
+    return buildDIV([
+        buildHR(),
+        buildDIV([
+            buildIMG('resources/pictures/App/icons/reload.png', '', cls('top-img', [{name:'onclick', value:'view.random()'}]))
+        ], cls('titles-laureates')),
+        buildDIV(null, wrapIC('list-recommendation', 'list-recommendations')),
+        buildBR(),
+        buildDIV([
+            buildElement('h3', 'Promotions')
+        ], cls('titles-laureates')),
+        buildDIV(null, cls('search')),
+        getContainerContent('promotions-style'),
+    ], cls('container'));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getAreaContent() {
-    return buildSPAN('Area Works');
+    return buildDIV([
+        buildDIV([
+            buildDIV([
+                buildIMG('resources/pictures/Area/profile.gif', ''),
+                buildElement('h1', null, cls('user')),
+                buildElement('button', 'Quitter', cls('logout-button', [{name:'onclick', value:'view.logout()'}]))
+            ], cls('profile'))
+        ], cls('left-menu')),
+        buildDIV([
+            buildDIV([
+                buildIMG('resources/pictures/Area/profile.gif', ''),
+                buildDIV([
+                    buildElement('h2', null, wrapIC('phone-user', 'user-block')),
+                    buildElement('button', 'Quitter', cls('logout-button',  [{name:'onclick', value:'view.logout()'}])),
+                ])
+            ], cls('phone-profile')),
+            buildDIV([
+                buildElement('h1', [
+                    buildIMG('resources/pictures/Area/manage.png', ''),
+                    'Zone de Gestion'
+                ], cls('manage-title')),
+                buildDIV([
+                    buildDIV([
+                        buildIMG('resources/pictures/Area/news.jpg', '', [{name:'onclick', value:'route(\'News\')'}])
+                    ], cls('manage-card')),
+                    buildDIV([
+                        buildIMG('resources/pictures/Area/event.jpg', '', [{name:'onclick', value:'route(\'Event\')'}])
+                    ], cls('manage-card')),
+                ], cls('manage-cards')),
+                buildDIV([
+                    buildDIV([
+                        buildIMG('resources/pictures/Area/laureate.jpg', '', [{name:'onclick', value:'route(\'Laureate\')'}])
+                    ], cls('manage-card')),
+                    buildDIV([
+                        buildIMG('resources/pictures/Area/partner.jpg', '', [{name:'onclick', value:'route(\'Partner\')'}])
+                    ], cls('manage-card')),
+                ], cls('manage-cards')),
+            ], cls('manage-block'))
+        ], cls('sub-content'))
+    ], wrapIC('restricted', 'container'));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

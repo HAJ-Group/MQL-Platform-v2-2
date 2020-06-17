@@ -1,7 +1,4 @@
-/*Global Variables*/ 
-let view; 
-let service;
-let current_page_number = 1;
+/*Global Variables*/
 const MAX_NEWS_PER_PAGE = 5;
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*Default class*/ 
@@ -269,7 +266,7 @@ NewsComponent.prototype.triggerSubmit = function () {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**-------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */ 
-function main() { 
+function NewsMain() {
 	service = new NewsComponentService();
 	service.load(dbNews);
 	view = new NewsComponent(service);
@@ -282,7 +279,7 @@ function main() {
 		if(confirm('None News is found! Add new one ?')) {
 			view.addData();
 		} else {
-			route('../Home');
+			route('Home');
 		}
 	}
 	// stays last

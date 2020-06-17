@@ -1,11 +1,6 @@
-/*Global Variables*/ 
-let view; 
-let service;
-/*Default class*/ 
+/*Default class*/
 function AreaComponent(service) { 
-	//TODO: Intitialize controller for AreaComponent 
-	current_component = 'Area'; 
-	loadResources(); 
+	//TODO: Intitialize controller for AreaComponent
 	this.service = service; 
 	//this.table = this.get('table-AreaID'); Uncomment for apply dynamic data loading to a declared html tag by id (Add other tables if needed with associated methods) 
 } 
@@ -45,7 +40,7 @@ AreaComponent.prototype.logout = function() {
 	// DENY ACCESS
 	sessionStorage.removeItem('ACCESS');
 	console.log(sessionStorage.getItem('ACCESS'));
-	route('../Home');
+	route('Home');
 };
 
 AreaComponent.prototype.loadData = function() {
@@ -58,11 +53,11 @@ AreaComponent.prototype.loadData = function() {
 };
 
 AreaComponent.prototype.cancel = function () {
-	route('../Home');
+	route('Home');
 };
 /**-------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */ 
-function main() { 
+function AreaMain() {
 	service = new AreaComponentService(); 
 	service.load(dbArea);
 	view = new AreaComponent(service); 

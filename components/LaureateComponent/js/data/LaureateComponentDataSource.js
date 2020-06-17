@@ -1,5 +1,5 @@
 /* Global data source table for LaureateComponent */
-let path = '../../resources/pictures/Laureates/Laureates/';
+let path = 'resources/pictures/Laureate/';
 let dbLaureat11=[
 	{
 		id:1,

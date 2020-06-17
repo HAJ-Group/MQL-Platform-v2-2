@@ -1,14 +1,9 @@
-/*Global Variables*/ 
-let view; 
-let service;
-let current_page_number = 1;
+/*Global Variables*/
 const MAX_EVENT_PER_PAGE = 5;
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*Default class*/ 
 function EventComponent(service) { 
-	//TODO: Intitialize controller for EventComponent 
-	current_component = 'Event'; 
-	loadResources(); 
+	//TODO: Intitialize controller for EventComponent
 	this.service = service; 
 	//this.table = this.get('table-EventID'); Uncomment for apply dynamic data loading to a declared html tag by id (Add other tables if needed with associated methods)
 	this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
@@ -74,14 +69,6 @@ EventComponent.prototype.timelineNavigate = function(id) {
 /**
  * Create navigation menu dynamically
  */
-/*EventComponent.prototype.fillNavigation = function () {
-	let htmlContent = this.htmlSaver.nav;
-	for(let event of this.page_blocks[current_page_number - 1]) {
-		htmlContent += '<hr>\n' +
-			'<div><a class="menuitem" href="#' + event.id + '">' + event.title + '</a></div>\n';
-	}
-	this.block_nav.innerHTML = htmlContent;
-};*/
 EventComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	for(let event of this.page_blocks[current_page_number - 1]) {
@@ -95,61 +82,6 @@ EventComponent.prototype.fillNavigation = function () {
 /**
  * Filling main block
  */
-/*EventComponent.prototype.fillMain = function() {
-	let htmlContent = this.htmlSaver.main;
-	let shows = [];
-	let shows_counter = 0;
-	for(let event of this.page_blocks[current_page_number - 1]) {
-		htmlContent += '<div id="' + event.id + '" >' +
-			'<div class="title">\n' + event.title + '</div>\n' +
-			'<div class="details">';
-		if(event.date!=='')
-			htmlContent+='<p class="date">' + event.date + '</p>';
-		htmlContent+='<div id="gallery" class="gallery-view' + event.id + '"></div>' +
-			'<p>' + event.description + '</p>\n';
-		// Contents
-		if(event.content !== []) {
-			htmlContent += '<div class="sub-title">';
-			for(let content of event.content) {
-				if(content.type === 'card') {
-					htmlContent += '<div class="card-event">\n' +
-						'<img src="../../resources/pictures/' + content.image + '" alt="">\n' +
-						'<div class="description">\n' +
-						'<div class="element">' + content.title + '</div>\n' +
-						'<p>' + content.description + '</p>' +
-						'</div>\n' +
-						'</div>';
-				}
-				if(content.type === 'image-show') {
-					htmlContent += '<div class="card-event">\n' +
-						'<div class="full-width">\n' +
-						'<div class="element">' + content.title + '</div>\n' +
-						'<div id="book' + shows_counter + '" class="book-images"></div>\n' +
-						'</div>\n' +
-						'</div>';
-						shows.push({
-							book_name: 'book' + shows_counter++,
-							book_pics: content.images,
-						});
-				}
-				if(content.type === 'image-grid') {
-					htmlContent += '<p>' + content.description + '</p>' +
-						'<div class="row"><span class="column">';
-					for(let image of content.images) {
-						htmlContent += '<img onclick="popIMG(this.id)" id="id_' + image + '" src="' + image + '" alt="MQL PLATFORM">\n';
-					}
-					htmlContent += '</span></div>';
-				}
-			}
-			htmlContent += '</div>';
-		}
-		htmlContent += '</span></div>\n</div>\n' +	'</div>';
-	}
-	this.block_main.innerHTML = htmlContent;
-	for(let show of shows) {
-		createBook(show.book_pics, show.book_name);
-	}
-};*/
 EventComponent.prototype.fillMain = function() {
 	this.block_main.innerHTML = this.htmlSaver.main;
 	let shows = [];
@@ -168,7 +100,7 @@ EventComponent.prototype.fillMain = function() {
 			for(let content of event.content) {
 				if(content.type === 'card') {
 					contentdiv.appendChild(buildDIV([
-						buildIMG('../../resources/pictures/' + content.image),
+						buildIMG(content.image),
 						buildDIV([
 							buildDIV(content.title, cls('element')),
 							buildElement('p', content.description)
@@ -211,15 +143,6 @@ EventComponent.prototype.fillMain = function() {
 /**
  * Create page switcher dynamically
  */
-/*EventComponent.prototype.fillSwitcher = function () {
-	let htmlContent = this.htmlSaver.switcher;
-	let pages = this.page_blocks.length;
-	for(let i = 1; i<=pages; i++) {
-		if(current_page_number === i) htmlContent += '<span onclick="view.navigate(' + i + ', true)" class="active-page">' + i + '</span>';
-		else htmlContent += '<span onclick="view.navigate(' + i + ', true)">' + i + '</span>';
-	}
-	this.block_switch.innerHTML = htmlContent;
-};*/
 EventComponent.prototype.fillSwitcher = function () {
 	this.block_switch.innerHTML = this.htmlSaver.switcher;
 	let pages = this.page_blocks.length;
@@ -244,7 +167,7 @@ EventComponent.prototype.navigate = function(page_number=1, top=false) {
 	this.fillNavigation();
 	this.fillMain();
 	this.fillSwitcher();
-	addTitleIcon('../../resources/pictures/Event-logo.png', true);
+	addTitleIcon('resources/pictures/Event/Event-logo.png', true);
 	detect_subContent_trigger_left_bar();
 	if(top) window.location.href = '#main';
 };
@@ -334,7 +257,7 @@ EventComponent.prototype.triggerSubmit = function () {
 };
 /**-------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */ 
-function main() { 
+function EventMain() {
 	service = new EventComponentService(); 
 	service.load(dbEvent);
 	view = new EventComponent(service); 
@@ -347,11 +270,11 @@ function main() {
 		if(confirm('None Event is found! Add new one ?')) {
 			view.addData();
 		} else {
-			route('../Home');
+			route('Home');
 		}
 	}
 	// Stays last
-	addTitleIcon('../../resources/pictures/Event-logo.png', true);
+	addTitleIcon('resources/pictures/Event/Event-logo.png', true);
 	detect_subContent_trigger_left_bar();
 	setKeysAction('.form-content',view.triggerSubmit.bind(view));
 

@@ -10,38 +10,16 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*Global Variables*/
 let current_component;
-let initializer;
 let phone_menu_toggled = false;
-function loadMeta() {
-    let meta = $('#meta');
-    meta.innerHTML = '';
-    meta.appendChild(buildElement('meta', null, wrap([{name:'charset', value:'UTF-8'}])));
-    meta.appendChild(buildElement('meta', null, wrap([
-        {name:'name', value:'viewport'},
-        {name:'content', value:'width=device-width'},
-    ])));
-    // GLOBAL STYLES
-    meta.appendChild(buildElement('link', null, wrap([
-        {name:'rel', value:'stylesheet'},
-        {name:'href', value:'css/style.css'},
-    ])));
-    // COMPONENT STYLE
-    meta.appendChild(buildElement('link', null, wrap([
-        {name:'rel', value:'stylesheet'},
-        {name:'href', value:'components/' + current_component + 'Component/css/' + current_component + 'Component.css'},
-    ])));
-    // GLOBAL JS
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'js/ElementFactory.js'}])));
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'js/app/AppData.js'}])));
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'js/app/AppContents.js'}])));
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'js/main.js'}])));
-    // COMPONENT JS
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'components/' + current_component + 'Component/js/data/' + current_component + 'ComponentDataSource.js'}])));
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'components/' + current_component + 'Component/js/model/' + current_component + '.js'}])));
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'components/' + current_component + 'Component/js/service/' + current_component + 'ComponentService.js'}])));
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'components/' + current_component + 'Component/js/' + current_component + 'Component.js'}])));
-    // Routing
-    meta.appendChild(buildElement('script', null, wrap([{name:'src', value:'js/app/AppRoute.js'}])));
+let info = null;
+let view;
+let service;
+let current_page_number = 1;
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------DEPENDENCIES LOADING FUNCTIONS-----------------------------------------------*/
+function loadComponentStyle() {
+    $('#component-style').setAttribute('href', 'components/' + current_component + 'Component/css/' + current_component + 'Component.css');
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -78,6 +56,7 @@ function loadSearchBar() {
  * Load target component
  */
 function load() {
+    loadComponentStyle();
     // Loading Header Content
     loadHeader();
     // Loading Footer Content
@@ -88,7 +67,6 @@ function load() {
     loadSearchBar();
     // Primary initialization
     let current_element = $('+' + current_component)[0];
-    console.log(current_element);
     if(current_component === 'Home') $('#home-logo').
     setAttribute('src', 'resources/pictures/App/Header/homeactive.png');
     else $('#home-logo').
@@ -97,6 +75,10 @@ function load() {
     current_element.setAttribute('onclick', '');
     current_element.setAttribute('onmouseover', '');
     changePicture(current_component);
+    scrollToTop();
+    loadContactForm();
+    loadNewsLetter();
+    closeModal();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -418,7 +400,7 @@ function createBook(images=[], default_element_id = 'book') {
         {name:'onclick', value:'target(\''+ default_element_id + '\',--current_img)'},
     ])));
     for(let i = 1; i<=images.length; i++) {
-        element.appendChild(buildIMG('../../resources/pictures/' + images[i-1], 'MQL PLATFORM',
+        element.appendChild(buildIMG(images[i-1], 'MQL PLATFORM',
             wrapIC(default_element_id + '-img' + i, default_element_id + '-img', [
                 {name:'onclick', value:'popIMG(this.id)'}
             ])));
@@ -678,6 +660,17 @@ function resumeABI() {
         showABI(Math.floor(Math.random() * item_size));
     }
     auto_slider = setInterval(handler, 5000);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+function showPartner(id) {
+    console.log(current_component);
+    if(current_component !== 'Partner') {
+        info = id;
+        route('Partner');
+    } else {
+        $('#menu-' + id).click();
+    }
+
 }
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/

@@ -5,7 +5,7 @@ body {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .container {
-	background-image: url('../../../resources/pictures/pattern.png');
+	background-image: url('../../../resources/pictures/App/pattern.png');
 	background-repeat: repeat-y;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -242,74 +242,74 @@ body {
 @keyframes slideShow1 {
 	0% {
 		font-size: 1px;
-		background-image: url("../../../resources/pictures/Events/CAP.JPG");
+		background-image: url("../../../resources/pictures/Event/CAP.JPG");
 	}
 	10% {
 		font-size: 2px;
-		background-image: url("../../../resources/pictures/Events/cap1.JPG");
+		background-image: url("../../../resources/pictures/Event/cap1.JPG");
 	}
 	20% {
 		font-size: 3px;
-		background-image: url("../../../resources/pictures/Events/cap2.JPG");
+		background-image: url("../../../resources/pictures/Event/cap2.JPG");
 	}
 	30% {
 		font-size: 4px;
-		background-image: url("../../../resources/pictures/Events/CGI.JPG");
+		background-image: url("../../../resources/pictures/Event/CGI.JPG");
 	}
 	40% {
 		font-size: 5px;
-		background-image: url("../../../resources/pictures/Events/CGI2.JPG");
+		background-image: url("../../../resources/pictures/Event/CGI2.JPG");
 	}
 	50% {
 		font-size: 6px;
-		background-image: url("../../../resources/pictures/Events/CGI1.JPG");
+		background-image: url("../../../resources/pictures/Event/CGI1.JPG");
 	}
 	60% {
 		font-size: 7px;
-		background-image: url("../../../resources/pictures/Events/CGI3.JPG");
+		background-image: url("../../../resources/pictures/Event/CGI3.JPG");
 	}
 	70% {
 		font-size: 8px;
-		background-image: url("../../../resources/pictures/Events/UMANIS2.JPG");
+		background-image: url("../../../resources/pictures/Event/UMANIS2.JPG");
 	}
 	80% {
 		font-size: 9px;
-		background-image: url("../../../resources/pictures/Events/UMANIS4.JPG");
+		background-image: url("../../../resources/pictures/Event/UMANIS4.JPG");
 	}
 	90% {
 		font-size: 9px;
-		background-image: url("../../../resources/pictures/Events/CGI.JPG");
+		background-image: url("../../../resources/pictures/Event/CGI.JPG");
 	}
 	100% {
 		font-size: 9px;
-		background-image: url("../../../resources/pictures/Events/CGI3.JPG");
+		background-image: url("../../../resources/pictures/Event/CGI3.JPG");
 	}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 @keyframes slideShow2 {
 	0% {
 		font-size: 1px;
-		background-image: url("../../../resources/pictures/Events/JE1.JPG");
+		background-image: url("../../../resources/pictures/Event/JE1.JPG");
 	}
 	20% {
 		font-size: 2px;
-		background-image: url("../../../resources/pictures/Events/JE2.JPG");
+		background-image: url("../../../resources/pictures/Event/JE2.JPG");
 	}
 	40% {
 		font-size: 3px;
-		background-image: url("../../../resources/pictures/Events/JE3.JPG");
+		background-image: url("../../../resources/pictures/Event/JE3.JPG");
 	}
 	60% {
 		font-size: 4px;
-		background-image: url("../../../resources/pictures/Events/JE4.JPG");
+		background-image: url("../../../resources/pictures/Event/JE4.JPG");
 	}
 	80% {
 		font-size: 5px;
-		background-image: url("../../../resources/pictures/Events/JE5.JPG");
+		background-image: url("../../../resources/pictures/Event/JE5.JPG");
 	}
 	100% {
 		font-size: 6px;
-		background-image: url("../../../resources/pictures/Events/JE6.JPG");
+		background-image: url("../../../resources/pictures/Event/JE6.JPG");
 	}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

@@ -1,12 +1,7 @@
-/*Global Variables*/
-let view;
-let service;
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*Default class*/
 function ActivityComponent(service) {
 	//TODO: Intitialize controller for ActivityComponent
-	current_component = 'Activity';
-	loadResources();
 	this.service = service;
 	//this.table = this.get('table-ActivityID'); Uncomment for apply dynamic data loading to a declared html tag by id (Add other tables if needed with associated methods)
 }
@@ -66,7 +61,7 @@ ActivityComponent.prototype.printSemesters = function(){
 							'<div class="subject">' + modules + '</div>' +
 						'</div>' +
 						'<div class="card-footer">' +
-								'<img class="logo-mql" src="../../resources/pictures/logo-mql2.png" alt="">' +
+								'<img class="logo-mql" src="resources/pictures/App/logo-mql2.png" alt="">' +
 						'</div>' +
 					'</div>';
 			}
@@ -78,7 +73,7 @@ ActivityComponent.prototype.printSemesters = function(){
 							'<div class="subject">' + activities + ' </div>' +
 						'</div>' +
 						'<div class="card-footer">' +
-								'<img class="logo-mql" src="../../resources/pictures/logo-mql2.png" alt="">' +
+								'<img class="logo-mql" src="resources/pictures/App/logo-mql2.png" alt="">' +
 						'</div>' +
 					'</div>';
 			}
@@ -118,13 +113,13 @@ function collapse(){
 	}
 }
 /**-------------------------------------------------------------------------------------------------------------------*/
-function main() {
+function ActivityMain() {
 	service = new ActivityComponentService();
 	service.load(dbActivity);
 	view = new ActivityComponent(service);
 	view.printSemesters();
 	collapse();
-	addTitleIcon('../../resources/pictures/Activity-logo.png');
+	addTitleIcon('resources/pictures/Activity/Activity-logo.png');
 	//view.printActivityList(); Uncomment to print data in table member
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

@@ -9,7 +9,7 @@ body {
 	display: flex;
 	border: 1px solid lightgray;
 	margin-bottom: 10px;
-	background-image: url('../../../resources/pictures/Laureates/bg-card.jpg');
+	background-image: url('../../../resources/pictures/Laureate/bg-card.jpg');
 	background-repeat: no-repeat;
 	opacity: 0.7;
 }
@@ -86,7 +86,7 @@ body {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .linkedin {
-	background-image: url('../../../resources/pictures/linkedin.png');
+	background-image: url('../../../resources/pictures/Laureate/linkedin.png');
 	background-repeat: no-repeat;
 	width: 65px;
 	height: 45px;
@@ -118,7 +118,7 @@ body {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .quotes {
 	float: left;
-	background-image: url('../../../resources/pictures/quote.png');
+	background-image: url('../../../resources/pictures/App/icons/quote.png');
 	background-repeat: no-repeat;
 	width: 33px;
 	height: 32px;
@@ -257,7 +257,7 @@ q:after{
 	margin: 10px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
-	background-image: url('../../../resources/pictures/pattern.png');
+	background-image: url('../../../resources/pictures/App/pattern.png');
 	background-repeat: repeat-y;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

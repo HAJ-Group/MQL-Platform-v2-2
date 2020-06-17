@@ -1,16 +1,13 @@
-/*Global Variables*/ 
-let view; 
-let service;
-const DEFAULT_PARTNER_BG = '../../resources/pictures/Partners/new-autoboxBG.jpg';
+/*Global Variables*/
+const DEFAULT_PARTNER_BG = 'resources/pictures/Partner/new-bg.jpg';
 /*Default class*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-function PartnerComponent(service) { 
-	//TODO: Intitialize controller for PartnerComponent 
-	current_component = 'Partner'; 
-	loadResources(); 
-	this.service = service; 
+function PartnerComponent(service) {
+	//TODO: Intitialize controller for PartnerComponent
+	this.service = service;
 	//this.table = $('#table-PartnerID'); Uncomment for apply dynamic data loading to a declared html tag by id (Add other tables if needed with associated methods)
-	this.currentblock = this.service.get(0).id;
+	this.currentblock = 'partner-' + this.service.get(0).id;
+	if(info !== null) this.currentblock = info;
 	this.block_menu = $('#partnersMenu');
 	this.block_container = $('#partnersContainer');
 	this.htmlSaver = {
@@ -19,74 +16,83 @@ function PartnerComponent(service) {
 	};
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-// Adding a row in the table member 
-PartnerComponent.prototype.addPartnerRow = function (onePartner) { 
-	let row = this.table.insertRow(); 
-	//row.insertCell().innerHTML = news.id; 
-	//TODO:INSERT DATA IN CELLS 
+// Adding a row in the table member
+PartnerComponent.prototype.addPartnerRow = function (onePartner) {
+	let row = this.table.insertRow();
+	//row.insertCell().innerHTML = news.id;
+	//TODO:INSERT DATA IN CELLS
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-// Printing all service data into the table member 
-PartnerComponent.prototype.printPartnerList = function () { 
-	for (let i = 0; i < this.service.size(); i++) { 
-		this.addPartnerRow(this.service.get(i)); 
-	} 
+// Printing all service data into the table member
+PartnerComponent.prototype.printPartnerList = function () {
+	for (let i = 0; i < this.service.size(); i++) {
+		this.addPartnerRow(this.service.get(i));
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.fillPartnersMenu = function() {
-	let htmlContent = this.htmlSaver.menu;
+	let htmlContent = this.block_menu;
+	htmlContent.innerHTML = this.htmlSaver.menu;
 	for(let partner of this.service.db) {
-		htmlContent += '<div id="menu-' + partner.id + '" class="partner active" ' +
-			'onclick=view.show("'+partner.id+'")>'+partner.name+'</div>';
+		let divMenu = buildDIV(partner.name,wrapIC('menu-partner-'+partner.id,
+			['partner','active'],[{name:'onclick',value:'view.show(\'partner-'+partner.id+'\')'}]));
+		htmlContent.appendChild(divMenu);
 	}
 	// ADD NEW BLOCK
 	if(sessionStorage.getItem('ACCESS') !== null) {
-		htmlContent += '<div class="new-block"><img onclick="view.addData()" src="../../resources/pictures/icons/new-icon.png" alt="" class="new-icon"></div>';
+		let newBlock = buildDIV(
+			buildIMG('resources/pictures/App/icons/new-icon.png','',cls(['new-icon'],[{name:'onclick',value:'view.addData()'}])),
+			cls('new-block')
+		);
+		htmlContent.appendChild(newBlock);
 	}
-	htmlContent += '<img class="end-img" src="../../resources/pictures/Partners/menu-bottom2.jpg">';
-	this.block_menu.innerHTML = htmlContent;
+	let endImg = buildIMG("resources/pictures/Partner/menu-bottom2.jpg",'',cls('end-img'));
+	htmlContent.appendChild(endImg);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.fillPartners = function() {
-	let htmlContent = this.htmlSaver.container;
+	let htmlContent = this.block_container;
+	htmlContent.innerHTML = this.htmlSaver.container;
 	let i = 0;
 	for(let partner of this.service.db) {
-		htmlContent += '<div class="card" id="'+partner.id+'">' +
-			'<div class="card-image">' +
-			'<img src="'+partner.bg+'" alt="">' +
-			'</div>';
+		let card = buildDIV(buildDIV(buildIMG(partner.bg),cls('card-image')),wrapIC('partner-' + partner.id,'card'));
+		htmlContent.appendChild(card);
 		if(sessionStorage.getItem('ACCESS') !== null) {
-			htmlContent += '<div class="partner-icons"><img name="edit-icon" src="../../resources/pictures/icons/edit.png" alt=""  ' +
-				'class="sh-icon" onclick="view.editData(' + i + ')">' +
-				'<img name="delete-icon" src="../../resources/pictures/icons/delete.png" alt=""  ' +
-				'class="sh-icon" onclick="view.deleteData(' + i + ')"></div>';
+			let partnernsIcons = buildDIV([
+					buildIMG('resources/pictures/App/icons/edit.png','',wrapICN('','sh-icon','edit-icon',[{name:'onclick',value:'view.editData(' + i + ')'}])),
+					buildIMG('resources/pictures/App/icons/delete.png','',wrapICN('','sh-icon','delete-icon',[{name:'onclick',value:'view.deleteData(' + i + ')'}]))
+				]
+				,cls('partner-icons'));
+			card.appendChild(partnernsIcons);
 		}
-		htmlContent +='<div class="card-body">' +
-			'<div class="title" style="color: ' + partner.color + '">'+partner.name+'</div>' +
-			'<div class="ca">Chiffre d\'affaire :'+partner.ca+'</div><hr>'+
-			'<p class="description">'+partner.description+'</p>'+
-			'<p class="description">Sur : '+partner.zone+'.</p>'+
-			'<p class="colabs">Nombre de collobaroteurs de MQL chez '+partner.name+' est :'+partner.nbr_colla+'</p>'+
-			'<img src="' + partner.image + '" class="micro-logo" alt="">' +
-			'<p class="website">Site web officiel : <a href="https://'+partner.website+'" target="_blank">'+partner.website+'</a></p>'+
-			'</div></div>';
+		let bodyCard = buildDIV([
+				buildDIV(partner.name,cls('title',[{name : 'style' , value : 'color:' + partner.color}])),
+				buildDIV('Chiffre d\'affaire :'+partner.ca,cls('ca')),
+				buildHR(),
+				buildParagraph(partner.description,cls('description')),
+				buildParagraph('Sur : '+partner.zone,cls('desciption')),
+				buildParagraph('Nombre de collobaroteurs de MQL chez '+partner.name+' est :'+partner.nbr_colla,cls('colabs')),
+				buildIMG(partner.image,'',cls('micro-logo')),
+				buildParagraph(['Site web officiel : ',buildLINK('https://'+partner.website,partner.website,[{name:'target',value:'_blank'}])],cls('website'))
+			]
+			,cls('card-body'));
+		card.appendChild(bodyCard);
 		i++;
 	}
-	this.block_container.innerHTML = htmlContent;
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 // SHOW AND HIDE METHODS
 PartnerComponent.prototype.show = function (id, top = false) {
 	// block to hide is the current block
-    let hide_block = $('#' + this.currentblock);
+	let hide_block = $('#' + this.currentblock);
 	$('#menu-' + this.currentblock).classList.remove('active');
 	// block to show is the clicked block
 	let show_block = $('#' + id);
 	this.currentblock = id;
-    hide_block.style['display'] = 'none';
-    show_block.style['display'] = 'block';
-    $('#menu-' + id).classList.add('active');
-    if(top) location.href = '#' + id;
+	hide_block.style['display'] = 'none';
+	show_block.style['display'] = 'block';
+	$('#menu-' + id).classList.add('active');
+	if(top) location.href = '#' + id;
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.hideAll = function () {
@@ -103,13 +109,6 @@ PartnerComponent.prototype.ajustLinks = function () {
 	let links = $('.img-partenaire');
 	for(let link of links) {
 		link.setAttribute('onclick', 'view.show(' + link.id.split('-')[1]+ ', true)');
-	}
-};
-/*--------------------------------------------------------------------------------------------------------------------*/
-PartnerComponent.prototype.trigger = function () {
-	let anchor = window.location.href.split('#')[1];
-	if(anchor !== undefined) {
-		$('#menu-' + anchor).click();
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -199,22 +198,20 @@ PartnerComponent.prototype.navigate = function() {
 	view.hideAll();
 };
 /**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */ 
-function main() {
-	service = new PartnerComponentService(); 
+/* Main Function */
+function PartnerMain() {
+	service = new PartnerComponentService();
 	service.load(dbPartner);
 	view = new PartnerComponent(service);
 	try {
 		view.fillPartnersMenu();
 		view.fillPartners();
 		view.hideAll();
-		view.trigger();
-		view.ajustLinks();
 	} catch (e) {
 		if(confirm('None Partner is found! Add new one ?')) {
 			view.addData();
 		} else {
-			route('../Home');
+			route('Home');
 		}
 	}
 	// Stays Last

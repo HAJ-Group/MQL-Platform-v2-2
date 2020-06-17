@@ -1,11 +1,6 @@
-/*Global Variables*/ 
-let view; 
-let service;
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*Default class*/ 
-function HomeComponent(service) { 
-	current_component = 'Home';
-	loadResources();
+function HomeComponent(service) {
 	this.service = service;
 	this.table= $("#table-program");
 	this.table_news= $("#table-news");
@@ -66,7 +61,7 @@ HomeComponent.prototype.setNewsRoutes = function () {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
-function main() {
+function HomeMain() {
 	service = new HomeComponentService();
 	service.load(dbHomeProgram);
 	view = new HomeComponent(service);
@@ -74,7 +69,7 @@ function main() {
 	view.printNews();
 	view.setNewsRoutes();
 	// stays last
-	addTitleIcon('../../resources/pictures/title-logo.png');
+	addTitleIcon('resources/pictures/Home/title-logo.png');
 	detect_subContent_trigger_left_bar();
 	createBook(dbHomeImages);
 }
