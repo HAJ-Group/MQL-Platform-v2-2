@@ -15,6 +15,7 @@ function route(component = '') {
     current_component = component;
     load();
     initializer = setInterval(run, 10);
+    $('#loader').style.display = 'block';
 }
 
 /**
@@ -24,6 +25,7 @@ function run() {
     try {
         window[current_component + 'Main']();
         clearInterval(initializer);
+        $('#loader').style.display = 'none';
     } catch (e) {}
 }
 

@@ -43,18 +43,10 @@ function loadFooter() {
 function loadComponent() {
     let container = $('#body');
     container.innerHTML = '';
-    // container.appendChild(window['get' + current_component + 'Content']());
     container.setAttribute('include', 'components/' + current_component + 'Component/' + current_component + 'Component.html');
     inject();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*function loadSearchBar() {
-    if($('#search') !== null) {
-        let searchElement = $('#search');
-        searchElement.innerHTML = '';
-        searchElement.appendChild(getSearchBarContent());
-    }
-}*/
 /**
  * Load target component
  */
