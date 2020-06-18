@@ -23,7 +23,7 @@ function route(component = '') {
 function run() {
     try {
         window[current_component + 'Main']();
-        clearTimeout(initializer);
+        clearInterval(initializer);
     } catch (e) {}
 }
 
