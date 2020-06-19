@@ -3,26 +3,20 @@
  * @param component
  */
 function route(component = '') {
-    if(component === '') {
-        if(sessionStorage.getItem('component') !== null) {
-            component = sessionStorage.getItem('component');
-        } else {
-            component = 'Home';
-        }
-    } else {
-        sessionStorage.setItem('component', component);
-    }
-    current_component = component;
+    initComponent(component);
     load();
-    initializer = setTimeout(run, 50);
+    initializer = setInterval(run, 10);
 }
 
 /**
  * RUN COMPONENT ACTION FUNCTION
  */
 function run() {
-    window[current_component + 'Main']();
-    clearTimeout(initializer);
+    try {
+        window[current_component + 'Main']();
+        clearInterval(initializer);
+        $('#loader').style.display = 'none';
+    } catch (e) {}
 }
 
 

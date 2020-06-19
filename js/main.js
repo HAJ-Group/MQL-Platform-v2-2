@@ -18,6 +18,21 @@ let service;
 let current_page_number = 1;
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------INIT COMPONENT FUNCTION-----------------------------------------------*/
+function initComponent(component) {
+    if(component === '') {
+        if(sessionStorage.getItem('component') !== null) {
+            component = sessionStorage.getItem('component');
+        } else {
+            component = 'Home';
+        }
+    } else {
+        sessionStorage.setItem('component', component);
+    }
+    current_component = component;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------DEPENDENCIES LOADING FUNCTIONS-----------------------------------------------*/
 function loadComponentStyle() {
     $('#component-style').setAttribute('href', 'components/' + current_component + 'Component/css/' + current_component + 'Component.css');
@@ -43,22 +58,16 @@ function loadFooter() {
 function loadComponent() {
     let container = $('#body');
     container.innerHTML = '';
-    // container.appendChild(window['get' + current_component + 'Content']());
     container.setAttribute('include', 'components/' + current_component + 'Component/' + current_component + 'Component.html');
     inject();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*function loadSearchBar() {
-    if($('#search') !== null) {
-        let searchElement = $('#search');
-        searchElement.innerHTML = '';
-        searchElement.appendChild(getSearchBarContent());
-    }
-}*/
 /**
  * Load target component
  */
 function load() {
+    $('#loader').style.display = 'block';
+    // Loading component style
     loadComponentStyle();
     // Loading Header Content
     loadHeader();

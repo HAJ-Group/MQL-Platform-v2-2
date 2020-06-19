@@ -3,7 +3,7 @@
 /*---------------------------------------------LOADING HEADER CONTENT-------------------------------------------------*/
 function getHeaderContent() {
     /* HEADER --------------------------------------------------------------------------------------------------------*/
-    let navElement = buildDIV(null, cls('topnav'));
+    let navElement = buildDIV();
     // DYNAMIC NAVS
     for(let nav of navs) {
         navElement.appendChild(buildLINK('#' + nav.name, nav.content, cls('left', [
