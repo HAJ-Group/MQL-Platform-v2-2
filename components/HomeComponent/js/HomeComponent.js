@@ -64,10 +64,10 @@ HomeComponent.prototype.setNewsRoutes = function () {
 function HomeMain() {
 	service = new HomeComponentService();
 	service.load(dbHomeProgram);
-	view = new HomeComponent(service);
-//	view.printSemesters();
-	view.printNews();
-	view.setNewsRoutes();
+	views['home'] = new HomeComponent(service);
+//	views.home.printSemesters();
+	views.home.printNews();
+	views.home.setNewsRoutes();
 	// stays last
 	addTitleIcon('resources/pictures/Home/title-logo.png');
 	detect_subContent_trigger_left_bar();

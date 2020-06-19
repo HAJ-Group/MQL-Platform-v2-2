@@ -10,9 +10,9 @@ function LaureateComponent(service) {
 	this.service = service;
 	//this.table = this.get('table-LaureateID'); Uncomment for apply dynamic data loading to a declared html tag by id (Add other tables if needed with associated methods)
 	this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
-	this.block_nav = $('#navigation');
-	this.block_main = $('#main');
-	this.block_switch = $('#switcher');
+	this.block_nav = $('#LaureateNavigation');
+	this.block_main = $('#LaureateMain');
+	this.block_switch = $('#LaureateSwitcher');
 	this.block_recommendation = $('#list-recommendation');
 	this.htmlSaver = {
 		nav: this.block_nav.innerHTML,
@@ -58,7 +58,7 @@ LaureateComponent.prototype.fillMain = function () {
 			//details
 			details.appendChild(
 				buildDIV(
-					buildIMG("resources/pictures/App/icons/new-icon.png",'',cls('new-icon',[{name:'onclick',value:'view.addData("' + promotion.id + ',laureate")'}])),
+					buildIMG("resources/pictures/App/icons/new-icon.png",'',cls('new-icon',[{name:'onclick',value:'views.laureate.addData("' + promotion.id + ',laureate")'}])),
 					cls(['new-block','new-laureate'])
 				)
 			);
@@ -72,15 +72,15 @@ LaureateComponent.prototype.fillMain = function () {
 				//    console.log(promo)
 				details.appendChild(
 					buildDIV([
-						buildIMG("resources/pictures/App/icons/edit.png",'',wrapICN('','sh-icon','edit-icon',[{name:'onclick',value:'view.editData("' + promotion.id + ',' +  laureate.id + ',laureate")'}])),
-						buildIMG("resources/pictures/App/icons/delete.png",'',wrapICN('','sh-icon','delete-icon',[{name:'onclick',value:'view.deleteData("' + promotion.id + ',' +  laureate.id + 'laureate")'}]))
+						buildIMG("resources/pictures/App/icons/edit.png",'',wrapICN('','sh-icon','edit-icon',[{name:'onclick',value:'views.laureate.editData("' + promotion.id + ',' +  laureate.id + ',laureate")'}])),
+						buildIMG("resources/pictures/App/icons/delete.png",'',wrapICN('','sh-icon','delete-icon',[{name:'onclick',value:'views.laureate.deleteData("' + promotion.id + ',' +  laureate.id + 'laureate")'}]))
 					],cls('laureate-icons'))
 				);
 			}
 			// LIST ITEM
 			let item = buildDIV([
 				buildDIV([
-					buildDIV(laureate.name +' ('+laureate.job+')', cls('item-element',[{name:'onclick',value:'view.showInfos("' + promotion.id + '-' + laureate.id +'")'}])),
+					buildDIV(laureate.name +' ('+laureate.job+')', cls('item-element',[{name:'onclick',value:'views.laureate.showInfos("' + promotion.id + '-' + laureate.id +'")'}])),
 					buildSPAN(null,cls('linkedin',[{name:'onclick',value:'window.location.href="'+ laureate.linked_in+'"'}]))
 				],cls('item-description')),
 			],wrapIC('item-'+promotion.id+'-'+laureate.id,'card-laureate'));
@@ -103,7 +103,7 @@ LaureateComponent.prototype.fillMain = function () {
 				buildDIV([
 					laureate.name ,
 					buildSPAN(null,cls('linkedin',[{name:'onclick',value:'"window.location.href='+ laureate.linked_in}])),
-				],cls('element',[{name:'onclick',value:'view.hideInfos("'+promotion.id+'-'+laureate.id+'")'}])),
+				],cls('element',[{name:'onclick',value:'views.laureate.hideInfos("'+promotion.id+'-'+laureate.id+'")'}])),
 				cardDescription
 			],cls('description'));
 			// ENTERPRISE && CITY
@@ -199,8 +199,8 @@ LaureateComponent.prototype.fillSwitcher = function () {
 	let htmlContent = this.htmlSaver.switcher;
 	let pages = this.page_blocks.length;
 	for(let i = 1; i<=pages; i++) {
-		if(current_page_number === i) htmlContent += '<span onclick="view.navigate(' + i + ', true)" class="active-page">' + i + '</span>';
-		else htmlContent += '<span onclick="view.navigate(' + i + ', true)">' + i + '</span>';
+		if(current_page_number === i) htmlContent += '<span onclick="views.laureate.navigate(' + i + ', true)" class="active-page">' + i + '</span>';
+		else htmlContent += '<span onclick="views.laureate.navigate(' + i + ', true)">' + i + '</span>';
 	}
 	this.block_switch.innerHTML = htmlContent;
 };
@@ -280,12 +280,12 @@ LaureateComponent.prototype.filterKey = function () {
 /* FORM SERVICES */
 LaureateComponent.prototype.addData = function(target_el = 'promotion') {
 	if(target_el === 'promotion') {
-		$('#promotionSubmit').setAttribute('onclick', 'view.submitData()');
+		$('#promotionSubmit').setAttribute('onclick', 'views.laureate.submitData()');
 		popFORM(target_el);
 	} else {
 		console.log('target added laureate index = ' + target_el);
 		let value = target_el.split(',');
-		$('#' + value[1] + 'Submit').setAttribute('onclick', 'view.submitData(\'add\', \'' + value[0] + '\', \'' + value[1] + '\')');
+		$('#' + value[1] + 'Submit').setAttribute('onclick', 'views.laureate.submitData(\'add\', \'' + value[0] + '\', \'' + value[1] + '\')');
 		popFORM(value[1]);
 	}
 };
@@ -323,7 +323,7 @@ LaureateComponent.prototype.editData = function(index, target_el = 'promotion') 
 		el_rating.value = target.rating;
 	}
 	//...
-	$('#' + target_el + 'Submit').setAttribute('onclick', 'view.submitData(\'edit\', \'' + index + '\', \'' + target_el + '\')');
+	$('#' + target_el + 'Submit').setAttribute('onclick', 'views.laureate.submitData(\'edit\', \'' + index + '\', \'' + target_el + '\')');
 	popFORM(target_el);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -426,22 +426,21 @@ function LaureateMain() {
 	service = new LaureateComponentService();
 	service.loadPromotion(dbPromotion);
 	service.loadspecial(dbPromotion);
-	view = new LaureateComponent(service);
+	views['laureate'] = new LaureateComponent(service);
 	try {
-		view.fillNavigation();
-		view.fillMain();
-		view.random();
-		view.fillSwitcher();
+		views.laureate.fillNavigation();
+		views.laureate.fillMain();
+		views.laureate.random();
+		views.laureate.fillSwitcher();
 	} catch (e) {
 		if(confirm('None Promotion is found! Add new one ?')) {
-			view.addData();
+			views.laureate.addData();
 		} else {
 			route('Home');
 		}
 	}
 	// stays last
-	addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true);
+	addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
 	detect_subContent_trigger_left_bar();
-	setKeysAction('.form-content',view.triggerSubmit.bind(view));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

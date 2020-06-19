@@ -8,9 +8,9 @@ function EventComponent(service) {
 	//this.table = this.get('table-EventID'); Uncomment for apply dynamic data loading to a declared html tag by id (Add other tables if needed with associated methods)
 	this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
 	this.block_timeline = $('#timeline');
-	this.block_nav = $('#navigation');
-	this.block_main = $('#main');
-	this.block_switch = $('#switcher');
+	this.block_nav = $('#EventNavigation');
+	this.block_main = $('#EventMain');
+	this.block_switch = $('#EventSwitcher');
 	this.htmlSaver = {
 		timeline: this.block_timeline.innerHTML,
 		nav: this.block_nav.innerHTML,
@@ -53,7 +53,7 @@ EventComponent.prototype.fillTimeline = function(max = 3) {
 						buildElement('h1', event.title),
 						textShortener(event.description, 100)
 					], cls('timeline-description'))
-				], cls('timeline-item', [{name:'onclick', value:'view.timelineNavigate(' + event.id +')'}])));
+				], cls('timeline-item', [{name:'onclick', value:'views.event.timelineNavigate(' + event.id +')'}])));
 			counter++;
 		}
 	}
@@ -92,7 +92,7 @@ EventComponent.prototype.fillMain = function() {
 		if(event.date!=='') {
 			detaildiv.appendChild(buildElement('p', event.date, cls('date')));
 		}
-		detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
+		detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-views.event' + event.id)));
 		detaildiv.appendChild(buildElement('p', event.description));
 		// Contents
 		if(event.content !== []) {
@@ -148,10 +148,10 @@ EventComponent.prototype.fillSwitcher = function () {
 	let pages = this.page_blocks.length;
 	for(let i = 1; i<=pages; i++) {
 		if(current_page_number === i){
-			this.block_switch.appendChild(buildSPAN(i, cls('active-page', [{name:'onclick', value:'view.navigate(' + i + ', true)'}])));
+			this.block_switch.appendChild(buildSPAN(i, cls('active-page', [{name:'onclick', value:'views.event.navigate(' + i + ', true)'}])));
 		}
 		else {
-			this.block_switch.appendChild(buildSPAN(i, wrap([{name:'onclick', value:'view.navigate(' + i + ', true)'}])));
+			this.block_switch.appendChild(buildSPAN(i, wrap([{name:'onclick', value:'views.event.navigate(' + i + ', true)'}])));
 		}
 	}
 };
@@ -199,7 +199,7 @@ EventComponent.prototype.filterKey = function () {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* FORM SERVICES */
 EventComponent.prototype.addData = function() {
-	$('#eventSubmit').setAttribute('onclick', 'view.submitData()');
+	$('#eventSubmit').setAttribute('onclick', 'views.event.submitData()');
 	popFORM();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -211,7 +211,7 @@ EventComponent.prototype.editData = function(index) {
 	el_title.value = target.title;
 	el_desc.value = target.description;
 	//...
-	$('#eventSubmit').setAttribute('onclick', 'view.submitData(\'edit\', ' + index + ')');
+	$('#eventSubmit').setAttribute('onclick', 'views.event.submitData(\'edit\', ' + index + ')');
 	popFORM();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -224,7 +224,7 @@ EventComponent.prototype.deleteData = function(index) {
 			this.navigate();
 		} catch (e) {
 			if(confirm('None Event is found! Add new one ?')) {
-				view.addData();
+				views.event.addData();
 			} else {
 				route('../Home');
 			}
@@ -245,7 +245,7 @@ EventComponent.prototype.submitData = function (action = 'add', index = '0') {
 		target.title = title;
 		target.description = desc;
 		//...
-		$('#eventSubmit').setAttribute('onclick', 'view.submitData()');
+		$('#eventSubmit').setAttribute('onclick', 'views.event.submitData()');
 	}
 	this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
 	closeFORM();
@@ -260,23 +260,22 @@ EventComponent.prototype.triggerSubmit = function () {
 function EventMain() {
 	service = new EventComponentService(); 
 	service.load(dbEvent);
-	view = new EventComponent(service); 
+	views['event'] = new EventComponent(service);
 	try {
-		view.fillTimeline();
-		view.fillNavigation();
-		view.fillMain();
-		view.fillSwitcher();
+		console.log('kldjfle');
+		views.event.fillTimeline();
+		views.event.fillNavigation();
+		views.event.fillMain();
+		views.event.fillSwitcher();
 	} catch (e) {
 		if(confirm('None Event is found! Add new one ?')) {
-			view.addData();
+			views.event.addData();
 		} else {
 			route('Home');
 		}
 	}
 	// Stays last
-	addTitleIcon('resources/pictures/Event/Event-logo.png', true);
+	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
 	detect_subContent_trigger_left_bar();
-	setKeysAction('.form-content',view.triggerSubmit.bind(view));
-
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

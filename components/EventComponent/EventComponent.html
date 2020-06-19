@@ -6,7 +6,7 @@
 <div id="search">
 	<div class="search-block">
 		<img class="search-logo" src="resources/pictures/App/icons/search.png" alt="search Logo">
-		<input id="key" class="search-input" onkeyup="view.filterKey()" placeholder="Search..." type="text">
+		<input id="key" class="search-input" onkeyup="views.event.filterKey()" placeholder="Search..." type="text">
 		<span class="error-message"></span></div>
 </div>
 <div class="container">
@@ -28,7 +28,7 @@
 			<p class="form-title">EVENT COMPONENT</p>
 			<input id="eventTitle" type="text" class="form-text" placeholder="Event Title...">
 			<textarea id="eventDescription" class="form-text" placeholder="Event Description" rows="5"></textarea>
-			<p id="eventSubmit" onclick="view.submitData()" class="form-submit">Valider</p>
+			<p id="eventSubmit" onclick="views.event.submitData()" class="form-submit">Valider</p>
 		</div>
 	</div>
 	<div id="switcher" class="page_numbers"></div>

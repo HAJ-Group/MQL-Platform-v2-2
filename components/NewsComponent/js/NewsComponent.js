@@ -7,9 +7,9 @@ function NewsComponent(service) {
 	// this.table = this.get('table-NewsID');
 	this.page_blocks = split(this.service.db, MAX_NEWS_PER_PAGE);
 	this.block_auto = $('#autoBox');
-	this.block_nav = $('#navigation');
-	this.block_main = $('#main');
-	this.block_switch = $('#switcher');
+	this.block_nav = $('#NewsNavigation');
+	this.block_main = $('#NewsMain');
+	this.block_switch = $('#NewsSwitcher');
 	this.htmlSaver = {
 		auto: this.block_auto.innerHTML,
 		nav: this.block_nav.innerHTML,
@@ -135,8 +135,8 @@ NewsComponent.prototype.fillMain = function () {
 	let htmlContent = this.htmlSaver.switcher;
 	let pages = this.page_blocks.length;
 	for(let i = 1; i<=pages; i++) {
-		if(current_page_number === i) htmlContent += '<span onclick="view.navigate(' + i + ', true)" class="active-page">' + i + '</span>';
-		else htmlContent += '<span onclick="view.navigate(' + i + ', true)">' + i + '</span>';
+		if(current_page_number === i) htmlContent += '<span onclick="views.news.navigate(' + i + ', true)" class="active-page">' + i + '</span>';
+		else htmlContent += '<span onclick="views.news.navigate(' + i + ', true)">' + i + '</span>';
 	}
 	this.block_switch.innerHTML = htmlContent;
 };*/
@@ -146,12 +146,12 @@ NewsComponent.prototype.fillSwitcher = function () {
 	for(let i = 1; i<=pages; i++) {
 		if(current_page_number === i){
 			this.block_switch.appendChild(buildSPAN(i, cls('active-page', [
-				{name:'onclick', value:'view.navigate(' + i + ', true)'},
+				{name:'onclick', value:'views.news.navigate(' + i + ', true)'},
 			])));
 		}
 		else {
 			this.block_switch.appendChild(buildSPAN(i, wrap([
-				{name:'onclick', value:'view.navigate(' + i + ', true)'},
+				{name:'onclick', value:'views.news.navigate(' + i + ', true)'},
 			])));
 		}
 	}
@@ -208,7 +208,7 @@ NewsComponent.prototype.filterKey = function () {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* FORM SERVICES */
 NewsComponent.prototype.addData = function() {
-	$('#newsSubmit').setAttribute('onclick', 'view.submitData()');
+	$('#newsSubmit').setAttribute('onclick', 'views.news.submitData()');
 	popFORM();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -220,7 +220,7 @@ NewsComponent.prototype.editData = function(index) {
 	el_title.value = target.title;
 	el_desc.value = target.description;
 	//...
-	$('#newsSubmit').setAttribute('onclick', 'view.submitData(\'edit\', ' + index + ')');
+	$('#newsSubmit').setAttribute('onclick', 'views.news.submitData(\'edit\', ' + index + ')');
 	popFORM();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -233,7 +233,7 @@ NewsComponent.prototype.deleteData = function(index) {
 			this.navigate();
 		} catch (e) {
 			if(confirm('None News is found! Add new one ?')) {
-				view.addData();
+				views.news.addData();
 			} else {
 				route('../Home');
 			}
@@ -254,7 +254,7 @@ NewsComponent.prototype.submitData = function (action = 'add', index = '0') {
 		target.title = title;
 		target.description = desc;
 		//...
-		$('#newsSubmit').setAttribute('onclick', 'view.submitData()');
+		$('#newsSubmit').setAttribute('onclick', 'views.news.submitData()');
 	}
 	this.service.sort();
 	this.page_blocks = split(this.service.db, MAX_NEWS_PER_PAGE);
@@ -272,24 +272,23 @@ NewsComponent.prototype.triggerSubmit = function () {
 function NewsMain() {
 	service = new NewsComponentService();
 	service.load(dbNews);
-	view = new NewsComponent(service);
+	views['news'] = new NewsComponent(service);
 	try {
-		view.fillAutoBox();
-		view.fillNavigation();
-		view.fillMain();
-		view.fillSwitcher();
+		views.news.fillAutoBox();
+		views.news.fillNavigation();
+		views.news.fillMain();
+		views.news.fillSwitcher();
 	} catch (e) {
 		if(confirm('None News is found! Add new one ?')) {
-			view.addData();
+			views.news.addData();
 		} else {
 			route('Home');
 		}
 	}
 	// stays last
 	autoBoxLoader();
-	addTitleIcon('resources/pictures/News/News-logo.png', true);
+	addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
 	detect_subContent_trigger_left_bar();
-	view.trigger();
-	setKeysAction('.form-content',view.triggerSubmit.bind(view));
+	views.news.trigger();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

@@ -116,10 +116,10 @@ function collapse(){
 function ActivityMain() {
 	service = new ActivityComponentService();
 	service.load(dbActivity);
-	view = new ActivityComponent(service);
-	view.printSemesters();
+	views['activity'] = new ActivityComponent(service);
+	views.activity.printSemesters();
 	collapse();
 	addTitleIcon('resources/pictures/Activity/Activity-logo.png');
-	//view.printActivityList(); Uncomment to print data in table member
+	//views.activity.printActivityList(); Uncomment to print data in table member
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------LOADING HEADER CONTENT-------------------------------------------------*/
-function getHeaderContent() {
+function getHeaderNavs() {
     /* HEADER --------------------------------------------------------------------------------------------------------*/
     let navElement = buildDIV();
     // DYNAMIC NAVS
@@ -22,14 +22,19 @@ function getHeaderContent() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------LOADING FOOTER CONTENT-------------------------------------------------*/
-function getFooterContent() {
+function getFooterPartners(max = 4) {
+    let service = new PartnerComponentService();
+    service.load(dbPartner);
+    let counter = 0;
     let partnersDiv = buildDIV(null, cls('partenaire'));
-    for(let partner of footerData.partners) {
-        partnersDiv.appendChild(buildSPAN([
-            buildIMG(partner.image, '', wrapIC('partner-' + partner.id, 'img-partenaire', [
-                {name:'onclick', value:'showPartner(\'partner-' + partner.id + '\')'},
-            ]))
-        ]));
+    for(let partner of service.db) {
+        if(counter++ < max) {
+            partnersDiv.appendChild(buildSPAN([
+                buildIMG(partner.image, '', wrapIC('partner-' + partner.id, 'img-partenaire', [
+                    {name:'onclick', value:'showPartner(\'partner-' + partner.id + '\')'},
+                ]))
+            ]));
+        }
     }
     return partnersDiv;
 }

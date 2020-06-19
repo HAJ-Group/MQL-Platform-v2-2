@@ -9,13 +9,26 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*Global Variables*/
-let current_component;
-let initializer;
+let current_component = 'Home';
 let phone_menu_toggled = false;
 let info = null;
-let view;
+let views = {};
 let service;
 let current_page_number = 1;
+let navs = [
+    /*
+    * name : value of name attribute related with the title picture and the component
+    * content : value of the innerText of the nav
+    * */
+    {name: 'Home', content: buildIMG('resources/pictures/App/Header/home.png', 'home',
+            wrapIC('home-logo', 'home-logo'))},
+    {name: 'News', content:'Actualités'},
+    {name: 'Event', content:'Evénements'},
+    {name: 'Activity', content:'Activités'},
+    {name: 'Partner', content:'Partenaires'},
+    {name: 'Laureate', content:'Lauréats'},
+    {name: 'Area', content:'Administration'},
+];
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*----------------------------------------------INIT COMPONENT FUNCTION-----------------------------------------------*/
@@ -29,70 +42,80 @@ function initComponent(component) {
     } else {
         sessionStorage.setItem('component', component);
     }
+    console.log(component);
     current_component = component;
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------DEPENDENCIES LOADING FUNCTIONS-----------------------------------------------*/
-function loadComponentStyle() {
-    $('#component-style').setAttribute('href', 'components/' + current_component + 'Component/css/' + current_component + 'Component.css');
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------------------------------------------------*/
-/*-----------------------------------------------MAIN LOADING FUNCTIONS-----------------------------------------------*/
-function loadHeader() {
-    let headerElement = $('.topnav')[0];
-    headerElement.innerHTML = '';
-    headerElement.appendChild(getHeaderContent());
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-function loadFooter() {
-    let footerElement = $('.partenaire')[0];
-    footerElement.innerHTML = '';
-    footerElement.appendChild(getFooterContent());
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-/**
- * Load current target component
- */
-function loadComponent() {
-    let container = $('#body');
-    container.innerHTML = '';
-    container.setAttribute('include', 'components/' + current_component + 'Component/' + current_component + 'Component.html');
-    inject();
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-/**
- * Load target component
- */
-function load() {
-    $('#loader').style.display = 'block';
-    // Loading component style
-    loadComponentStyle();
-    // Loading Header Content
-    loadHeader();
-    // Loading Footer Content
-    loadFooter();
-    // Loading Component Content
-    loadComponent();
     // Primary initialization
     let current_element = $('+' + current_component)[0];
     if(current_component === 'Home') $('#home-logo').
     setAttribute('src', 'resources/pictures/App/Header/homeactive.png');
     else $('#home-logo').
     setAttribute('src', 'resources/pictures/App/Header/home.png');
+    for(let c of navs) {
+        let element = $('+' + c.name)[0];
+        element.classList.remove('active');
+        element.setAttribute('onclick', 'route(\'' + c.name + '\')');
+        element.setAttribute('onmouseover', 'changePicture(\'' + c.name + '\')');
+        element.setAttribute('onmouseleave', 'changePicture(this.name)');
+    }
     current_element.classList.add('active');
     current_element.setAttribute('onclick', '');
     current_element.setAttribute('onmouseover', '');
     changePicture(current_component);
     scrollToTop();
-    loadContactForm();
-    loadNewsLetter();
-    closeModal();
+    loadComponentStyle();
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------MAIN LOADING FUNCTIONS-----------------------------------------------*/
+function loadComponentStyle() {
+    $('#component-style').setAttribute('href', 'components/' + current_component + 'Component/css/' + current_component + 'Component.css');
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+function loadHeaderNavs() {
+    let headerElement = $('.topnav')[0];
+    headerElement.innerHTML = '';
+    headerElement.appendChild(getHeaderNavs());
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+function loadFooterPartners() {
+    let footerElement = $('.partenaire')[0];
+    footerElement.innerHTML = '';
+    footerElement.appendChild(getFooterPartners());
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+/**
+ * Load target component
+ */
+function load() {
+    // Loading Header Content
+    loadHeaderNavs();
+    // Loading Footer Content
+    loadFooterPartners();
+    // Launch
+    route();
+    HomeMain();
+    NewsMain();
+    EventMain();
+    ActivityMain();
+    PartnerMain();
+    LaureateMain();
+    AreaMain();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+/**
+ * Load current target component
+ */
+function switchComponent() {
+    for(let c of navs) {
+        $('#' + c.name + 'Component').style.display = 'none';
+        $('.' + c.name)[0].style.display = 'none';
+    }
+    $('#' + current_component + 'Component').style.display = 'block';
+    $('.' + current_component)[0].style.display = 'block';
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Action Functions */
 /**
@@ -144,7 +167,7 @@ function showEmptyErrorResult() {
  * @param source
  * @param editable
  */
-function addTitleIcon(source, editable=false) {
+function addTitleIcon(source, editable=false, component) {
     let titles = $('.title');
     let i=0;
     for (let title of titles) {
@@ -161,10 +184,10 @@ function addTitleIcon(source, editable=false) {
         if(editable && sessionStorage.getItem('ACCESS') !== null) {
             // ADD EDIT AND DELETE ICONS
             title.appendChild(buildIMG('resources/pictures/App/icons/edit.png', '', wrapICN('', 'sh-icon', 'edit-icon', [
-                {name:'onclick', value:'view.editData(' + i + ')'}
+                {name:'onclick', value:'view.' + component + '.editData(' + i + ')'}
             ])));
             title.appendChild(buildIMG('resources/pictures/App/icons/delete.png', '', wrapICN('', 'sh-icon', 'delete-icon', [
-                {name:'onclick', value:'view.deleteData(' + i + ')'}
+                {name:'onclick', value:'view.' + component + '.deleteData(' + i + ')'}
             ])));
         }
         i++;
@@ -176,7 +199,7 @@ function addTitleIcon(source, editable=false) {
         saver.innerHTML = '';
         saver.appendChild(buildDIV([
             buildIMG('resources/pictures/App/icons/new-icon.png', '', cls('new-icon', [
-                {name:'onclick', value:'view.addData()'}
+                {name:'onclick', value:'view.' + component + '.addData()'}
             ]))
         ], cls('new-block')));
         saver.innerHTML += content;

@@ -60,10 +60,9 @@ AreaComponent.prototype.cancel = function () {
 function AreaMain() {
 	service = new AreaComponentService(); 
 	service.load(dbArea);
-	view = new AreaComponent(service); 
-	//view.printAreaList(); Uncomment to print data in table member
+	views['area'] = new AreaComponent(service);
+	//views.area.printAreaList(); Uncomment to print data in table member
 	if(sessionStorage.getItem('ACCESS') !== null){
-		view.loadData();
-	} else view.promptLogin();
-	setKeysAction('.access-content',view.authenticate.bind(view));
+		views.area.loadData();
+	} else views.area.promptLogin();
 }

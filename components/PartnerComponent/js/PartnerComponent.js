@@ -35,13 +35,13 @@ PartnerComponent.prototype.fillPartnersMenu = function() {
 	htmlContent.innerHTML = this.htmlSaver.menu;
 	for(let partner of this.service.db) {
 		let divMenu = buildDIV(partner.name,wrapIC('menu-partner-'+partner.id,
-			['partner','active'],[{name:'onclick',value:'view.show(\'partner-'+partner.id+'\')'}]));
+			['partner','active'],[{name:'onclick',value:'views.partner.showPartner(\'partner-'+partner.id+'\')'}]));
 		htmlContent.appendChild(divMenu);
 	}
 	// ADD NEW BLOCK
 	if(sessionStorage.getItem('ACCESS') !== null) {
 		let newBlock = buildDIV(
-			buildIMG('resources/pictures/App/icons/new-icon.png','',cls(['new-icon'],[{name:'onclick',value:'view.addData()'}])),
+			buildIMG('resources/pictures/App/icons/new-icon.png','',cls(['new-icon'],[{name:'onclick',value:'views.partner.addData()'}])),
 			cls('new-block')
 		);
 		htmlContent.appendChild(newBlock);
@@ -55,12 +55,12 @@ PartnerComponent.prototype.fillPartners = function() {
 	htmlContent.innerHTML = this.htmlSaver.container;
 	let i = 0;
 	for(let partner of this.service.db) {
-		let card = buildDIV(buildDIV(buildIMG(partner.bg),cls('card-image')),wrapIC('partner-' + partner.id,'card'));
+		let card = buildDIV(buildDIV(buildIMG(partner.bg),cls('card-image')),wrapIC('partner-' + partner.id,'partnerCard'));
 		htmlContent.appendChild(card);
 		if(sessionStorage.getItem('ACCESS') !== null) {
 			let partnernsIcons = buildDIV([
-					buildIMG('resources/pictures/App/icons/edit.png','',wrapICN('','sh-icon','edit-icon',[{name:'onclick',value:'view.editData(' + i + ')'}])),
-					buildIMG('resources/pictures/App/icons/delete.png','',wrapICN('','sh-icon','delete-icon',[{name:'onclick',value:'view.deleteData(' + i + ')'}]))
+					buildIMG('resources/pictures/App/icons/edit.png','',wrapICN('','sh-icon','edit-icon',[{name:'onclick',value:'views.partner.editData(' + i + ')'}])),
+					buildIMG('resources/pictures/App/icons/delete.png','',wrapICN('','sh-icon','delete-icon',[{name:'onclick',value:'views.partner.deleteData(' + i + ')'}]))
 				]
 				,cls('partner-icons'));
 			card.appendChild(partnernsIcons);
@@ -82,7 +82,7 @@ PartnerComponent.prototype.fillPartners = function() {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 // SHOW AND HIDE METHODS
-PartnerComponent.prototype.show = function (id, top = false) {
+PartnerComponent.prototype.showPartner = function (id, top = false) {
 	// block to hide is the current block
 	let hide_block = $('#' + this.currentblock);
 	$('#menu-' + this.currentblock).classList.remove('active');
@@ -97,24 +97,24 @@ PartnerComponent.prototype.show = function (id, top = false) {
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.hideAll = function () {
 	for (let i = 0; i < this.service.size(); i++) {
-		let partner = $('.card')[i];
+		let partner = $('.partnerCard')[i];
 		partner.style['display'] = 'none';
 		$('.partner')[i].classList.remove('active');
 	}
-	this.show(this.currentblock);
+	this.showPartner(this.currentblock);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 // LINKING FROM FOOTER METHODS
 PartnerComponent.prototype.ajustLinks = function () {
 	let links = $('.img-partenaire');
 	for(let link of links) {
-		link.setAttribute('onclick', 'view.show(' + link.id.split('-')[1]+ ', true)');
+		link.setAttribute('onclick', 'views.partner.showPartner(' + link.id.split('-')[1]+ ', true)');
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* FORM SERVICES */
 PartnerComponent.prototype.addData = function() {
-	$('#partnerSubmit').setAttribute('onclick', 'view.submitData()');
+	$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
 	popFORM();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -136,7 +136,7 @@ PartnerComponent.prototype.editData = function(index) {
 	el_co.value = target.nbr_colla;
 	el_website.value = target.website;
 	//...
-	$('#partnerSubmit').setAttribute('onclick', 'view.submitData(\'edit\', ' + index + ')');
+	$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData(\'edit\', ' + index + ')');
 	popFORM();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -149,7 +149,7 @@ PartnerComponent.prototype.deleteData = function(index) {
 			this.navigate();
 		} catch (e) {
 			if(confirm('None Partner is found! Add new one ?')) {
-				view.addData();
+				views.partner.addData();
 			} else {
 				route('../Home');
 			}
@@ -180,7 +180,7 @@ PartnerComponent.prototype.submitData = function (action = 'add', index = '0') {
 		target.nbr_colla = co;
 		target.website = website;
 		//...
-		$('#partnerSubmit').setAttribute('onclick', 'view.submitData()');
+		$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
 	}
 	closeFORM();
 	this.currentblock = id;
@@ -193,28 +193,27 @@ PartnerComponent.prototype.triggerSubmit = function () {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.navigate = function() {
-	view.fillPartnersMenu();
-	view.fillPartners();
-	view.hideAll();
+	views.partner.fillPartnersMenu();
+	views.partner.fillPartners();
+	views.partner.hideAll();
 };
 /**-------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
 function PartnerMain() {
 	service = new PartnerComponentService();
 	service.load(dbPartner);
-	view = new PartnerComponent(service);
+	views['partner'] = new PartnerComponent(service);
 	try {
-		view.fillPartnersMenu();
-		view.fillPartners();
-		view.hideAll();
+		views.partner.fillPartnersMenu();
+		views.partner.fillPartners();
+		views.partner.hideAll();
 	} catch (e) {
 		if(confirm('None Partner is found! Add new one ?')) {
-			view.addData();
+			views.partner.addData();
 		} else {
 			route('Home');
 		}
 	}
 	// Stays Last
-	setKeysAction('.form-content',view.triggerSubmit.bind(view));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
