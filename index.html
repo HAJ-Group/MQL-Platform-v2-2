@@ -1,51 +1,53 @@
 <!DOCTYPE html> 
 <html lang="en"> 
 	<head id="meta">
+		<!-- Meta Data -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width" />
         <title>MQL Platform</title>
-		<script src="js/ElementFactory.js"></script>
+		<script src="js/scripts/ElementFactory.js"></script>
         <script src="js/app/AppContents.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/scripts/main.js"></script>
 		<!-- STYLES -->
 		<link rel="stylesheet" href="css/style.css">
-		<link id="component-style" rel="stylesheet" href="components/HomeComponent/css/HomeComponent.css">
+		<link id="component-style" rel="stylesheet" href="css/HomeComponent.css">
 		<!-- DATA SOURCE -->
-		<script src="components/NewsComponent/js/data/NewsComponentDataSource.js"></script>
-		<script src="components/EventComponent/js/data/EventComponentDataSource.js"></script>
-		<script src="components/ActivityComponent/js/data/ActivityComponentDataSource.js"></script>
-		<script src="components/PartnerComponent/js/data/PartnerComponentDataSource.js"></script>
-		<script src="components/LaureateComponent/js/data/LaureateComponentDataSource.js"></script>
-		<script src="components/AreaComponent/js/data/AreaComponentDataSource.js"></script>
-		<script src="components/HomeComponent/js/data/HomeComponentDataSource.js"></script>
+		<script src="js/dataSources/NewsComponentDataSource.js"></script>
+		<script src="js/dataSources/EventComponentDataSource.js"></script>
+		<script src="js/dataSources/ActivityComponentDataSource.js"></script>
+		<script src="js/dataSources/PartnerComponentDataSource.js"></script>
+		<script src="js/dataSources/LaureateComponentDataSource.js"></script>
+		<script src="js/dataSources/AreaComponentDataSource.js"></script>
+		<script src="js/dataSources/HomeComponentDataSource.js"></script>
 		<!-- MODEL -->
-		<script src="components/NewsComponent/js/model/News.js"></script>
-		<script src="components/EventComponent/js/model/Event.js"></script>
-		<script src="components/ActivityComponent/js/model/Activity.js"></script>
-		<script src="components/PartnerComponent/js/model/Partner.js"></script>
-		<script src="components/LaureateComponent/js/model/Laureate.js"></script>
-		<script src="components/AreaComponent/js/model/Area.js"></script>
-		<script src="components/HomeComponent/js/model/Home.js"></script>
+		<script src="js/models/News.js"></script>
+		<script src="js/models/Event.js"></script>
+		<script src="js/models/Activity.js"></script>
+		<script src="js/models/Partner.js"></script>
+		<script src="js/models/Laureate.js"></script>
+		<script src="js/models/Area.js"></script>
+		<script src="js/models/Home.js"></script>
 		<!-- SERVICE -->
-		<script src="components/NewsComponent/js/service/NewsComponentService.js"></script>
-		<script src="components/EventComponent/js/service/EventComponentService.js"></script>
-		<script src="components/ActivityComponent/js/service/ActivityComponentService.js"></script>
-		<script src="components/PartnerComponent/js/service/PartnerComponentService.js"></script>
-		<script src="components/LaureateComponent/js/service/LaureateComponentService.js"></script>
-		<script src="components/AreaComponent/js/service/AreaComponentService.js"></script>
-		<script src="components/HomeComponent/js/service/HomeComponentService.js"></script>
+		<script src="js/services/NewsComponentService.js"></script>
+		<script src="js/services/EventComponentService.js"></script>
+		<script src="js/services/ActivityComponentService.js"></script>
+		<script src="js/services/PartnerComponentService.js"></script>
+		<script src="js/services/LaureateComponentService.js"></script>
+		<script src="js/services/AreaComponentService.js"></script>
+		<script src="js/services/HomeComponentService.js"></script>
 		<!-- VIEW -->
-		<script src="components/NewsComponent/js/NewsComponent.js"></script>
-		<script src="components/EventComponent/js/EventComponent.js"></script>
-		<script src="components/ActivityComponent/js/ActivityComponent.js"></script>
-		<script src="components/PartnerComponent/js/PartnerComponent.js"></script>
-		<script src="components/LaureateComponent/js/LaureateComponent.js"></script>
-		<script src="components/AreaComponent/js/AreaComponent.js"></script>
-		<script src="components/HomeComponent/js/HomeComponent.js"></script>
+		<script src="js/views/NewsComponent.js"></script>
+		<script src="js/views/EventComponent.js"></script>
+		<script src="js/views/ActivityComponent.js"></script>
+		<script src="js/views/PartnerComponent.js"></script>
+		<script src="js/views/LaureateComponent.js"></script>
+		<script src="js/views/AreaComponent.js"></script>
+		<script src="js/views/HomeComponent.js"></script>
 		<!-- APP ROUTING -->
 		<script src="js/app/App.js"></script>
 	</head>
 	<body onload="init()">
+		<!-- App Component -->
 		<div class="content">
 			<!-- HEADER -->
 			<header class="div-center">
@@ -58,19 +60,18 @@
 						<img id="menu-button" onclick="showMenu()" width="60" height="60" src="resources/pictures/App/Header/menu-phone.png" alt="mp">
 					</div>
 				</div>
-				<!-- Search Bar -->
-				<div id="search">
-					<div class="search-block">
-						<img class="search-logo" src="resources/pictures/App/icons/search.png" alt="search Logo">
-						<input id="key" class="search-input" onkeyup="view.filterKey()" placeholder="Search..." type="text">
-						<span class="error-message"></span></div>
-				</div>
 				<div class="topnav"></div>
 			</header>
 			<!-- BODY -->
 			<div id="body">
-				<!-- Components Upper Areas -->
-				<div style="display: none" class="Home">
+				<!-- App Loader -->
+				<div id="loader" class="splash-content">
+					<img src="resources/pictures/App/logoMQL.png" alt="">
+					<div class="loader"><img src="resources/pictures/App/loading.gif" alt="" width="200" height="200"></div>
+				</div>
+				<!-- Components Upper Areas-->
+				<div id="HomeUpperArea">
+					<!-- Home Upper Area -->
 					<div class="main-box">
 						<div id="slide-show" onclick="window.location.href='#book'" class="slide-show image"></div>
 						<div class="news">
@@ -79,22 +80,24 @@
 						</div>
 					</div>
 				</div>
-				<div style="display: none" class="News">
+				<div id="NewsUpperArea">
+					<!-- News Upper Area -->
 					<div id="autoBox"></div>
 				</div>
-				<div style="display: none" class="Event">
+				<div id="EventUpperArea">
+					<!-- Event Upper Area -->
 					<div class="timeline">
-						<img src="resources/pictures/Event/timeline.png" class="timeline-icon">
+						<img src="resources/pictures/Event/timeline.png" class="timeline-icon" alt="">
 						<ol class="timeline-list" id="timeline">
 						</ol>
 					</div>
 				</div>
-				<div style="display: none" class="Activity"></div>
-				<div style="display: none" class="Partner"></div>
-				<div style="display: none" class="Laureate">
-					<hr>
+				<div id="ActivityUpperArea"></div>
+				<div id="PartnerUpperArea"></div>
+				<div id="LaureateUpperArea">
+					<!-- Laureate Upper Area -->
 					<div class="titles-laureates">
-						<img src="resources/pictures/App/icons/reload.png" onclick="view.random()" class="top-img" alt="">
+						<img src="resources/pictures/App/icons/reload.png" onclick="views.laureate.random()" class="top-img" alt="">
 					</div>
 					<div id="list-recommendation" class="list-recommendations">
 					</div>
@@ -104,11 +107,19 @@
 						<h3>Promotions</h3>
 					</div>
 				</div>
-				<div style="display: none" class="Area"></div>
+				<div id="AreaUpperArea"></div>
+				<!-- Search Bar -->
+				<div id="search">
+					<div class="search-block">
+						<img class="search-logo" src="resources/pictures/App/icons/search.png" alt="search Logo">
+						<input id="key" class="search-input" onkeyup="search()" placeholder="Search..." type="text">
+						<span class="error-message"></span></div>
+				</div>
 				<!-- Components Main Areas-->
-				<div id="HomeComponent">
+				<div style="display: none" id="HomeComponent" >
+					<!-- Home Main Body -->
 					<div class="container">
-						<div class="left-menu">
+						<div id="HomeNavigation" class="left-menu">
 							<div class="menuitem wrap-blue">Navigation</div>
 							<hr>
 							<div><a class="menuitem" href="#presentation">Master Qualité du logiciel </a> </div>
@@ -123,10 +134,10 @@
 							<hr>
 							<div><a class="menuitem" href="#mqlfamily">Galerie</a> </div>
 						</div>
-						<div class="sub-content">
+						<div id="HomeMain" class="sub-content">
 							<div id="presentation" class="presentation">
-								<div class="title"> Master Qualité du Logiciel </div>
-								<div class="details">
+								<div class="title home-title"> Master Qualité du Logiciel </div>
+								<div class="details home-details">
 									<div>
 										<img class="mini-logo" src="resources/pictures/App/logoMQL2.png">
 									</div>
@@ -145,8 +156,8 @@
 								</div>
 							</div>
 							<div id="prof" class="prof">
-								<div class="title">Coordonateur : N.Chenfour</div>
-								<div  class="details">
+								<div class="title home-title">Coordonateur : N.Chenfour</div>
+								<div  class="details home-details">
 									<div class="Chenfour">
 										<img class ="img" src="resources/pictures/Home/M.Chenfour.jpg" alt="">
 										<div> <span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.
@@ -156,8 +167,8 @@
 								</div>
 							</div>
 							<div id="mqliste" class="mqliste">
-								<div class="title"> Accéder à MQL </div>
-								<div  class="details">
+								<div class="title home-title"> Accéder à MQL </div>
+								<div  class="details home-details">
 									<div>
 										<img class="full-width" src="resources/pictures/Home/access.jpg"  alt="access to master">
 									</div>
@@ -205,8 +216,8 @@
 								</div>
 							</div>
 							<div id="program" class="program">
-								<div class="title"> Programme </div>
-								<div  class="details">
+								<div class="title home-title"> Programme </div>
+								<div  class="details home-details">
 									<p>Les modules constituent pour les apprenants un pré  requis scientifique important et pertinent pour une intégration réussie dans le monde professionnel, la formation permet aux étudiants d’acquérir une ouverture culturelle et une confiance en eux même (réalisations de mini projets et des projets de fin d’études, stages dans des entreprises, préparations des exposés………).</p>
 									<p>La formation MQL s'intersse principalement aux besoins des entreprises, cette formation est déroulée en 4 semestres, 2 par an, dont chacun avec 6 modules , le 4<sup>ème</sup> semestre est déstiné pour un stage pré-embauche dans des <strong>multinationales</strong> actives en développement offshore.
 										<span class="vp" onclick="route('Activity')">Voir plus...</span>
@@ -215,8 +226,8 @@
 								</div>
 							</div>
 							<div id="stats">
-								<div class="title"> Statistiques  </div>
-								<div  class="details">
+								<div class="title home-title"> Statistiques  </div>
+								<div  class="details home-details">
 									<p>La formation MQL : </p>
 									<ul>
 										<li>Label de l'excellence par l'OMJ (Office Méditerranéen de la Jeunesse)</li>
@@ -235,15 +246,16 @@
 								</div>
 							</div>
 							<div id="mqlfamily" class="mqlfamily">
-								<div class="title"> Galerie  </div>
-								<div  class="details">
+								<div class="title home-title"> Galerie  </div>
+								<div  class="details home-details">
 									<div class="book-images" id="book"></div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div id="NewsComponent">
+				<div style="display: none" id="NewsComponent">
+					<!-- News Main Body -->
 					<div class="container">
 						<div id="NewsNavigation" class="left-menu">
 							<div class="menuitem wrap-blue">Navigation</div>
@@ -252,7 +264,8 @@
 						<div id="NewsSwitcher" class="page_numbers"></div>
 					</div>
 				</div>
-				<div id="EventComponent">
+				<div style="display: none" id="EventComponent">
+					<!-- Event Main Body -->
 					<div class="container">
 						<div id="EventNavigation" class="left-menu">
 							<div class="menuitem wrap-blue">Navigation</div>
@@ -261,11 +274,12 @@
 						<div id="EventSwitcher" class="page_numbers"></div>
 					</div>
 				</div>
-				<div id="ActivityComponent">
+				<div style="display: none" id="ActivityComponent">
+					<!-- Activity Main Body -->
 					<div class="container">
 						<div class="activities-image">
-							<div class="title">Déroulement de cours</div>
-							<div class="details">
+							<div class="title activity-title">Déroulement de cours</div>
+							<div class="details activity-details">
 								<img src="resources/pictures/Activity/deroulement-cours2.png" alt="" class="el-center">
 								<p>
 									La formation MQL se déroule en deux ans, répartit en quatres semestres,
@@ -282,28 +296,24 @@
 							</div>
 						</div>
 						<div class="semesters">
-							<div class="title">Semesters</div>
-							<div class="details">
-								<div id="zone">
-
-								</div>
+							<div class="title activity-title">Semesters</div>
+							<div class="details activity-details">
+								<div id="zone"></div>
 							</div>
 						</div>
 						<div class="mf">
-							<div class="title">
-								Modèle de Formation
-							</div>
-							<div class="details">
+							<div class="title activity-title">Modèle de Formation</div>
+							<div class="details activity-details">
 								<video class="formation-video" autoplay muted loop>
 									<source src="resources/videos/formation.mp4" type="video/mp4" >
 								</video>
 							</div>
-
 						</div>
 					</div>
 					<br>
 				</div>
-				<div id="PartnerComponent">
+				<div style="display: none" id="PartnerComponent">
+					<!-- Partner Main Body-->
 					<div class="sub-content"></div>
 					<div class="partnersBlock">
 						<div id="partnersMenu" class="partners-menu">
@@ -311,11 +321,11 @@
 							<h2>Companies</h2>
 							<div class="sep"></div>
 						</div>
-						<div id="partnersContainer" class="partners-container">
-						</div>
+						<div id="partnersContainer" class="partners-container"></div>
 					</div>
 				</div>
-				<div id="LaureateComponent">
+				<div style="display: none" id="LaureateComponent">
+					<!-- Laureate Main Body -->
 					<div class="container">
 						<div id="LaureateNavigation" class="left-menu">
 							<div class="menuitem wrap-blue">Navigation</div>
@@ -324,7 +334,8 @@
 						<div id="LaureateSwitcher" class="page_numbers"></div>
 					</div>
 				</div>
-				<div id="AreaComponent">
+				<div style="display: none" id="AreaComponent">
+					<!-- Area Main Body -->
 					<div id="restricted" class="container">
 						<div class="left-menu">
 							<div class="profile">
@@ -362,20 +373,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- The Modal -->
-					<div id="login-window" class="access">
-						<span onclick="views.area.cancel()" class="access-close">X</span>
-						<div class="access-content">
-							<h1 class="access-title">Administration</h1>
-							<span id="errorBlock" class="access-error"><img src="resources/pictures/Area/error.png" class="error-icon" alt=""><span id="errorMess">Error</span></span>
-							<div class="access-login">
-								<input id="username" type="text" class="access-username" placeholder="Nom d'utilisateur...">
-								<input id="password" type="password" class="access-password" placeholder="Mot de passe...">
-								<button onclick="views.area.authenticate()" class="access-button">Valider</button>
-							</div>
-						</div>
-					</div>
-
 				</div>
 			</div>
 			<!-- FOOTER -->
@@ -463,6 +460,7 @@
 				</footer>
 			</div>
 		</div>
+		<!-- Floating Icons -->
 		<span>
 			<button onclick="topFunction()" id="scroll-top" title="Top"></button>
 		</span>

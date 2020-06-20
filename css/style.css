@@ -248,7 +248,7 @@ header {
     top: 10px;
     position: sticky;
     /* annimation */
-    animation: 1.5s ease-out 0s 1 slideInFromLeft;
+    /*animation: 1.5s ease-out 0s 1 slideInFromLeft;*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .menuitem {
