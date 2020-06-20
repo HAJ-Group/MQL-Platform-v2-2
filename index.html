@@ -47,8 +47,13 @@
 		<script src="js/app/App.js"></script>
 	</head>
 	<body onload="init()">
+		<!-- App Loader -->
+		<div id="loader" class="splash-content">
+			<img src="resources/pictures/App/logoMQL.png" alt="">
+			<div class="loader"><img src="resources/pictures/App/loading.gif" alt="" width="200" height="200"></div>
+		</div>
 		<!-- App Component -->
-		<div class="content">
+		<div style="display: none" class="content">
 			<!-- HEADER -->
 			<header class="div-center">
 				<img id="title-image" src="resources/pictures/App/Header/Home.jpg" alt="title" class="def-img">
@@ -64,11 +69,7 @@
 			</header>
 			<!-- BODY -->
 			<div id="body">
-				<!-- App Loader -->
-				<div id="loader" class="splash-content">
-					<img src="resources/pictures/App/logoMQL.png" alt="">
-					<div class="loader"><img src="resources/pictures/App/loading.gif" alt="" width="200" height="200"></div>
-				</div>
+
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea">
 					<!-- Home Upper Area -->
@@ -116,7 +117,7 @@
 						<span class="error-message"></span></div>
 				</div>
 				<!-- Components Main Areas-->
-				<div style="display: none" id="HomeComponent" >
+				<div id="HomeComponent" >
 					<!-- Home Main Body -->
 					<div class="container">
 						<div id="HomeNavigation" class="left-menu">
@@ -254,7 +255,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="display: none" id="NewsComponent">
+				<div id="NewsComponent">
 					<!-- News Main Body -->
 					<div class="container">
 						<div id="NewsNavigation" class="left-menu">
@@ -264,7 +265,7 @@
 						<div id="NewsSwitcher" class="page_numbers"></div>
 					</div>
 				</div>
-				<div style="display: none" id="EventComponent">
+				<div id="EventComponent">
 					<!-- Event Main Body -->
 					<div class="container">
 						<div id="EventNavigation" class="left-menu">
@@ -274,7 +275,7 @@
 						<div id="EventSwitcher" class="page_numbers"></div>
 					</div>
 				</div>
-				<div style="display: none" id="ActivityComponent">
+				<div id="ActivityComponent">
 					<!-- Activity Main Body -->
 					<div class="container">
 						<div class="activities-image">
@@ -312,7 +313,7 @@
 					</div>
 					<br>
 				</div>
-				<div style="display: none" id="PartnerComponent">
+				<div id="PartnerComponent">
 					<!-- Partner Main Body-->
 					<div class="sub-content"></div>
 					<div class="partnersBlock">
@@ -324,7 +325,7 @@
 						<div id="partnersContainer" class="partners-container"></div>
 					</div>
 				</div>
-				<div style="display: none" id="LaureateComponent">
+				<div id="LaureateComponent">
 					<!-- Laureate Main Body -->
 					<div class="container">
 						<div id="LaureateNavigation" class="left-menu">
@@ -334,7 +335,7 @@
 						<div id="LaureateSwitcher" class="page_numbers"></div>
 					</div>
 				</div>
-				<div style="display: none" id="AreaComponent">
+				<div id="AreaComponent">
 					<!-- Area Main Body -->
 					<div id="restricted" class="container">
 						<div class="left-menu">
@@ -459,16 +460,16 @@
 					</div>
 				</footer>
 			</div>
-		</div>
-		<!-- Floating Icons -->
-		<span>
+			<!-- Floating Icons -->
+			<span>
 			<button onclick="topFunction()" id="scroll-top" title="Top"></button>
-		</span>
-		<!-- IMAGE MODAL -->
-		<div id="myModal" class="modal">
-			<span onclick="closeIMG()" class="close">&times;</span>
-			<img class="modal-content" id="modal_img" alt="" src="">
-			<div id="caption"></div>
+			</span>
+			<!-- IMAGE MODAL -->
+			<div id="myModal" class="modal">
+				<span onclick="closeIMG()" class="close">&times;</span>
+				<img class="modal-content" id="modal_img" alt="" src="">
+				<div id="caption"></div>
+			</div>
 		</div>
 	</body> 
 </html> 
