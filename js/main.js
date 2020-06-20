@@ -168,7 +168,7 @@ function showEmptyErrorResult() {
  * @param editable
  */
 function addTitleIcon(source, editable=false, component) {
-    let titles = $('.title');
+    let titles = $('.'+component+'-title');
     let i=0;
     for (let title of titles) {
         let text = title.textContent;
@@ -178,7 +178,7 @@ function addTitleIcon(source, editable=false, component) {
             text
         ], cls('title-content')));
         title.appendChild(buildIMG('resources/pictures/App/icons/minus-icon.png', '', wrapICN('', 'sh-icon', 'sh-icon', [
-            {name:'onclick', value:'hide('+i+')'}
+            {name:'onclick', value:'hide("'+i+','+component+'-details")'}
         ])));
         title.appendChild(buildSPAN(null, cls('sh-sep')));
         if(editable && sessionStorage.getItem('ACCESS') !== null) {

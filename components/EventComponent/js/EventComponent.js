@@ -87,7 +87,7 @@ EventComponent.prototype.fillMain = function() {
 	let shows = [];
 	let shows_counter = 0;
 	for(let event of this.page_blocks[current_page_number - 1]) {
-		let eventdiv = buildDIV(buildDIV(event.title, cls('title')), id(event.id));
+		let eventdiv = buildDIV(buildDIV(event.title, cls(['event-title','title'])), id(event.id));
 		let detaildiv = buildDIV(null, cls('details'));
 		if(event.date!=='') {
 			detaildiv.appendChild(buildElement('p', event.date, cls('date')));

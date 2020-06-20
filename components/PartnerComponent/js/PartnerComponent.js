@@ -66,7 +66,7 @@ PartnerComponent.prototype.fillPartners = function() {
 			card.appendChild(partnernsIcons);
 		}
 		let bodyCard = buildDIV([
-				buildDIV(partner.name,cls('title',[{name : 'style' , value : 'color:' + partner.color}])),
+				buildDIV(partner.name,cls(['partner-title','title'],[{name : 'style' , value : 'color:' + partner.color}])),
 				buildDIV('Chiffre d\'affaire :'+partner.ca,cls('ca')),
 				buildHR(),
 				buildParagraph(partner.description,cls('description')),

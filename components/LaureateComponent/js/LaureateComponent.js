@@ -50,7 +50,7 @@ LaureateComponent.prototype.fillMain = function () {
 	for(let promotion of this.page_blocks[current_page_number - 1]) {
 		let details = buildDIV(buildParagraph(promotion.date.getFullYear(),cls('date')),cls('details'));
 		let promo = buildDIV([
-			buildDIV(promotion.name,cls('title')),
+			buildDIV(promotion.name,cls(['partner-title','title'])),
 			details
 		],id(promotion.id));
 		this.block_main.appendChild(promo);
@@ -215,7 +215,7 @@ LaureateComponent.prototype.navigate = function(page_number=1, top=false) {
 	this.fillNavigation();
 	this.fillMain();
 	this.fillSwitcher();
-	addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true);
+	addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true,'laureate');
 	detect_subContent_trigger_left_bar();
 	if(top) window.location.href = '#header';
 };

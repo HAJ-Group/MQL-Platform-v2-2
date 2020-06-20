@@ -108,12 +108,12 @@ NewsComponent.prototype.fillMain = function () {
 	this.block_main.innerHTML = this.htmlSaver.main;
 	for(let news of this.page_blocks[current_page_number - 1]) {
 		let titleDiv = buildDIV([
-			buildDIV(news.title, cls('title')),
+			buildDIV(news.title, cls(['news-title','title'])),
 		], id(news.id));
 		let detailsDiv = buildDIV([
 			buildElement('p', formattedDate(news.date), cls('date')),
 			buildElement('p', news.description),
-		], cls('details'));
+		], cls(['news-details','details']));
 		let rowDiv = buildDIV(null, cls('row'));
 		let columnSpan = buildSPAN(null, cls('column'));
 		for(let image of news.images) {
@@ -167,7 +167,7 @@ NewsComponent.prototype.navigate = function(page_number=1, top=false) {
 	this.fillNavigation();
 	this.fillMain();
 	this.fillSwitcher();
-    addTitleIcon('resources/pictures/News/News-logo.png', true);
+    addTitleIcon('resources/pictures/News/News-logo.png', true,'news');
 	detect_subContent_trigger_left_bar();
     if(top) window.location.href = '#main';
 };
