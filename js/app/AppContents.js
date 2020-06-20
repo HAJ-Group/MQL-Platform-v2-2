@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------LOADING HEADER CONTENT-------------------------------------------------*/
-function getHeaderContent() {
+function getHeaderNavs() {
     /* HEADER --------------------------------------------------------------------------------------------------------*/
     let navElement = buildDIV();
     // DYNAMIC NAVS
@@ -22,30 +22,22 @@ function getHeaderContent() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------LOADING FOOTER CONTENT-------------------------------------------------*/
-function getFooterContent() {
+function getFooterPartners(max = 4) {
+    let service = new PartnerComponentService();
+    service.load(dbPartner);
+    if(max > service.size()) max = service.size();
+    let counter = 0;
     let partnersDiv = buildDIV(null, cls('partenaire'));
-    for(let partner of footerData.partners) {
-        partnersDiv.appendChild(buildSPAN([
-            buildIMG(partner.image, '', wrapIC('partner-' + partner.id, 'img-partenaire', [
-                {name:'onclick', value:'showPartner(\'partner-' + partner.id + '\')'},
-            ]))
-        ]));
+    for(let partner of service.db) {
+        if(counter++ < max) {
+            partnersDiv.appendChild(buildSPAN([
+                buildIMG(partner.image, '', wrapIC('partner-' + partner.id, 'img-partenaire', [
+                    {name:'onclick', value:'showPartner(\'partner-' + partner.id + '\')'},
+                ]))
+            ]));
+        }
     }
     return partnersDiv;
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------------------------------------------------*/
-/*-----------------------------------------------SEARCH BAR CONTENT---------------------------------------------------*/
-function getSearchBarContent() {
-    return buildDIV([
-        buildIMG('resources/pictures/App/icons/search.png', 'search Logo', cls('search-logo')),
-        buildElement('input', null, wrapIC('key', 'search-input', [
-            {name:'onkeyup', value:'view.filterKey()'},
-            {name:'placeholder', value:'Search...'},
-            {name:'type', value:'text'},
-        ])),
-        buildSPAN(null, cls('error-message'))
-    ], cls('search-block'));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -126,155 +118,198 @@ function getNewsLetterContent() {
         ], cls('news-modal-content'))
     ], wrapIC('news-modal-id', 'news-modal'));
 }
-
-function getContainerContent(containerClass = 'container') {
-    return buildDIV([
-        buildDIV(
-            buildDIV('Navigation', cls(['menuitem', 'wrap-blue']))
-            , wrapIC('navigation', 'left-menu')),
-        buildDIV(null, wrapIC('main', 'sub-content')),
-        buildDIV(null, wrapIC('switcher', 'page_numbers'))
-    ], cls(containerClass));
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+function getHomeFormContent() {
+    return buildDIV(null, id('HomeForm'));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*-----------------------------------------LOADING COMPONENTS CONTENT-------------------------------------------------*/
-function getHomeContent() {
-    return buildSPAN('Home Works');
-}
 /*--------------------------------------------------------------------------------------------------------------------*/
-function getNewsContent() {
+function getNewsFormContent() {
     return buildDIV([
-        buildDIV(null, id('autoBox')),
-        buildDIV(null, id('search')),
-        getContainerContent(),
-    ]);
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-function getEventContent() {
-    return buildDIV([
+        buildSPAN('&times;', cls('close', [{name:'onclick', value:'closeFORM(\'NewsForm\')'}])),
         buildDIV([
-            buildIMG('resources/pictures/Event/timeline.png', '', cls('timeline-icon')),
-            buildElement('ol', null, wrapCI('timeline-list', 'timeline'))
-        ], cls('timeline')),
-        buildDIV(null, id('search')),
-        getContainerContent(),
-    ]);
+            buildIMG('resources/pictures/News/News-logo.png', ''),
+            buildElement('p', 'NEWS COMPONENT',  cls('form-title')),
+            buildElement('input', null, wrapIC('newsTitle', 'form-text', [
+                {name:'type', value:'text'},
+                {name:'placeholder', value:'News Title...'},
+            ])),
+            buildElement('textarea', null, wrapIC('newsDescription', 'form-text', [
+                {name:'placeholder', value:'News Description...'},
+                {name:'rows', value:'5'},
+            ])),
+            buildElement('p', 'Valider', wrapIC('newsSubmit', 'form-submit', wrap([
+                {name:'onclick', value:'views.news.submitData()'},
+            ])))
+        ], cls('form-content'))
+    ], wrapIC('NewsForm', 'modal'));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-function getActivityContent() {
-    let textDescription = 'La formation MQL se déroule en deux ans, répartit en quatres semestres,\n' +
-        'dont les trois premiers se déroulent généralement en six de modules reliant entre la théorie et la pratique.\n' +
-        'Le dernier semestre est la dernière étape de cette formation, c\'est un projet de fin d\'études effectué au sein d\'une multinationale parmis nos partenaires,\n' +
-        'ce qui offre aux étudiants un terrain concret de mise en situation pour son évolution vers un savoir-être et un savoir-faire d’ingénieur d\'études et developpement,\n' +
-        'ainsi que valider les acquis sur des problématiques  regroupant les différents centres d’intérêts de la formation.\n' +
-        'La formation implique aussi :';
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+function getEventFormContent() {
     return buildDIV([
+        buildSPAN('&times;', cls('close', [{name:'onclick', value:'closeFORM(\'EventForm\')'}])),
         buildDIV([
-            buildDIV([
-                buildDIV('Déroulement de cours', cls('title')),
-                buildDIV([
-                    buildIMG('resources/pictures/Activity/deroulement-cours2.png', '', cls('el-center')),
-                    buildElement('p', [
-                        textDescription,
-                        buildElement('ul', [
-                            buildElement('li', 'Learning by doing (Apprentissage par la pratique) : Les étudiants sont amenés à réaliser un ensemble de projets ( JAVA , JAVAEE , WEB , Design Patterns ...)'),
-                            buildElement('li', 'Learning by teaching: Les étudiants sont amenés à présenter ( expliquer ) un ensemble de technologies, sujets durant les deux années de formation'),
-                        ])
-                    ])
-                ], cls('details'))
-            ], cls('activities-image')),
-            buildDIV([
-                buildDIV('Semesters', cls('title')),
-                buildDIV([
-                    buildDIV(null, id('zone')),
-                ], cls('details'))
-            ], cls('semesters')),
-            buildDIV([
-                buildDIV('Modèle de Formation', cls('title')),
-                buildDIV([
-                    buildElement('video', [
-                        buildElement('source', null, wrap([{name:'src', value:'resources/videos/formation.mp4'}, {name:'type', value:'video/mp4'}]))
-                    ], cls('formation-video', [{name:'autoplay', value:''}, {name:'muted', value:''}, {name:'loop', value:''}]))
-                ], cls('details'))
-            ], cls('mf'))
-        ], cls('container')),
-        buildBR(),
-    ]);
+            buildIMG('resources/pictures/Event/Event-logo.png', ''),
+            buildElement('p', 'EVENT COMPONENT', cls('form-title')),
+            buildElement('input', null, wrapIC('eventTitle', 'form-text', [
+                {name:'type', value:'text'},
+                {name:'placeholder', value:'Event Title...'},
+            ])),
+            buildElement('textarea', null, wrapIC('eventDescription', 'form-text', [
+                {name:'placeholder', value:'Event Description...'},
+                {name:'rows', value:'5'},
+            ])),
+            buildElement('p', 'Valider', wrapIC('eventSubmit', 'form-submit', wrap([
+                {name:'onclick', value:'views.event.submitData()'},
+            ])))
+        ], cls('form-content'))
+    ], wrapIC('EventForm', 'modal'));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-function getPartnerContent() {
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+function getActivityFormContent() {
+    return buildDIV(null, id('ActivityForm'));
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+function getPartnerFormContent() {
     return buildDIV([
-        buildDIV(null, cls('sub-content')),
+        buildSPAN('&times;', cls('close', [{name:'onclick', value:'closeFORM(\'PartnerForm\')'}])),
         buildDIV([
-            buildDIV([
-                buildIMG('resources/pictures/Partner/menu-bg.jpg', '', cls('menu-img')),
-                buildElement('h2', 'Companies'),
-                buildDIV(null, cls('sep'))
-            ], wrapIC('partnersMenu', 'partners-menu')),
-            buildDIV(null, wrapIC('partnersContainer', 'partners-container'))
-        ], cls('container'))
-    ]);
+            buildIMG('resources/pictures/App/icons/partner-icon.png', ''),
+            buildElement('p', 'PARTNER COMPONENT', cls('form-title')),
+            buildElement('input', null, wrapIC( 'partnerID','form-text', [
+                {name:'type', value:'hidden'},
+            ])),
+            buildElement('input', null, wrapIC('partnerName', 'form-text', [
+                {name:'type', value:'text'},
+                {name:'placeholder', value:'Partner Name...'},
+            ])),
+            buildElement('input', null, wrapIC('partnerColor', 'form-text', [
+                {name:'type', value:'text'},
+                {name:'placeholder', value:'Partner Color...'},
+            ])),
+            buildElement('input', null, wrapIC('partnerCa', 'form-text', [
+                {name:'type', value:'text'},
+                {name:'placeholder', value:'Partner Sales...'},
+            ])),
+            buildElement('textarea', null, wrapIC('partnerDescription', 'form-text', [
+                {name:'placeholder', value:'Partner Description...'},
+                {name:'rows', value:'5'},
+            ])),
+            buildElement('input', null, wrapIC('partnerCo', 'form-text', [
+                {name:'type', value:'text'},
+                {name:'placeholder', value:'MQL Collaborators...'},
+            ])),
+            buildElement('input', null, wrapIC('partnerWebSite', 'form-text', [
+                {name:'type', value:'text'},
+                {name:'placeholder', value:'Partner WebSite...'},
+            ])),
+            buildElement('p', 'Valider', wrapIC('partnerSubmit', 'form-submit', wrap([
+                {name:'onclick', value:'views.partner.submitData()'},
+            ])))
+        ], cls('form-content'))
+    ], wrapIC('PartnerForm', 'modal'));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-function getLaureateContent() {
-    return buildDIV([
-        buildHR(),
-        buildDIV([
-            buildIMG('resources/pictures/App/icons/reload.png', '', cls('top-img', [{name:'onclick', value:'view.random()'}]))
-        ], cls('titles-laureates')),
-        buildDIV(null, wrapIC('list-recommendation', 'list-recommendations')),
-        buildBR(),
-        buildDIV([
-            buildElement('h3', 'Promotions')
-        ], cls('titles-laureates')),
-        buildDIV(null, cls('search')),
-        getContainerContent('promotions-style'),
-    ], cls('container'));
-}
 /*--------------------------------------------------------------------------------------------------------------------*/
-function getAreaContent() {
+/*--------------------------------------------------------------------------------------------------------------------*/
+function getLaureateFormContent() {
     return buildDIV([
         buildDIV([
+            buildSPAN('&times;', cls('close', [{name: 'onclick', value: 'closeFORM(\'promotion\')'}])),
             buildDIV([
-                buildIMG('resources/pictures/Area/profile.gif', ''),
-                buildElement('h1', null, cls('user')),
-                buildElement('button', 'Quitter', cls('logout-button', [{name:'onclick', value:'view.logout()'}]))
-            ], cls('profile'))
-        ], cls('left-menu')),
+                buildIMG('resources/pictures/Laureate/laureate-logo.png', ''),
+                buildElement('p', 'LAUREATE COMPONENT',  cls('form-title')),
+                buildElement('input', null, wrapIC('promotionName', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Promotion Name...'},
+                ])),
+                buildElement('p', 'Valider', wrapIC('promotionSubmit', 'form-submit', wrap([
+                    {name: 'onclick', value: 'views.laureate.submitData()'},
+                ])))
+            ], cls('form-content'))
+        ], wrapIC('promotion', 'modal')),
         buildDIV([
+            buildSPAN('&times;', cls('close', [{name: 'onclick', value: 'closeFORM(\'laureate\')'}])),
             buildDIV([
-                buildIMG('resources/pictures/Area/profile.gif', ''),
-                buildDIV([
-                    buildElement('h2', null, wrapIC('phone-user', 'user-block')),
-                    buildElement('button', 'Quitter', cls('logout-button',  [{name:'onclick', value:'view.logout()'}])),
-                ])
-            ], cls('phone-profile')),
-            buildDIV([
-                buildElement('h1', [
-                    buildIMG('resources/pictures/Area/manage.png', ''),
-                    'Zone de Gestion'
-                ], cls('manage-title')),
-                buildDIV([
-                    buildDIV([
-                        buildIMG('resources/pictures/Area/news.jpg', '', [{name:'onclick', value:'route(\'News\')'}])
-                    ], cls('manage-card')),
-                    buildDIV([
-                        buildIMG('resources/pictures/Area/event.jpg', '', [{name:'onclick', value:'route(\'Event\')'}])
-                    ], cls('manage-card')),
-                ], cls('manage-cards')),
-                buildDIV([
-                    buildDIV([
-                        buildIMG('resources/pictures/Area/laureate.jpg', '', [{name:'onclick', value:'route(\'Laureate\')'}])
-                    ], cls('manage-card')),
-                    buildDIV([
-                        buildIMG('resources/pictures/Area/partner.jpg', '', [{name:'onclick', value:'route(\'Partner\')'}])
-                    ], cls('manage-card')),
-                ], cls('manage-cards')),
-            ], cls('manage-block'))
-        ], cls('sub-content'))
-    ], wrapIC('restricted', 'container'));
+                buildIMG('resources/pictures/Laureate/laureate-logo.png', ''),
+                buildElement('p', 'LAUREATE COMPONENT',  cls('form-title')),
+                buildElement('input', null, wrapIC('laureateName', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Laureate Name...'},
+                ])),
+                buildElement('input', null, wrapIC('laureateGender', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Laureate Gender M for male, F for female...'},
+                ])),
+                buildElement('input', null, wrapIC('laureateEmail', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Laureate Email...'},
+                ])),
+                buildElement('input', null, wrapIC('laureateJob', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Laureate Job...'},
+                ])),
+                buildElement('input', null, wrapIC('laureateCity', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Laureate City...'},
+                ])),
+                buildElement('input', null, wrapIC('laureateStage', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Laureate Practical Experience Enterprise...'},
+                ])),
+                buildElement('input', null, wrapIC('laureateCE', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Laureate Current Work Enterprise...'},
+                ])),
+                buildElement('input', null, wrapIC('laureateExp', 'form-text', [
+                    {name: 'type', value: 'text'},
+                    {name: 'placeholder', value: 'Other Experiences: exp1, exp2, ...'},
+                ])),
+                buildElement('textarea', null, wrapIC('laureateRating', 'form-text', [
+                    {name: 'placeholder', value: 'Say something about MQL ? ....'},
+                    {name: 'rows', value: '5'},
+                ])),
+                buildElement('p', 'Valider', wrapIC('laureateSubmit', 'form-submit', wrap([
+                    {name: 'onclick', value: 'views.laureate.submitData()'},
+                ])))
+            ], cls('form-content'))
+        ], wrapIC('laureate', 'modal')),
+    ], id('LaureateForm'));
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+function getAreaFormContent() {
+    return buildDIV([
+        buildSPAN('X', cls('access-close', [{name:'onclick', value:'views.area.cancel()'}])),
+        buildDIV([
+            buildElement('h1', 'Administration', cls('access-title')),
+            buildSPAN([
+               buildIMG('resources/pictures/Area/error.png', '', cls('error-icon')),
+               buildSPAN('Error', id('errorMess')),
+            ], wrapIC('errorBlock', 'access-error')),
+            buildDIV([
+                buildElement('input', null, wrapIC('username', 'access-username', [
+                    {name:'type', value:'text'},
+                    {name:'placeholder', value:'Username...'},
+                ])),
+                buildElement('input', null, wrapIC('password', 'access-password', [
+                    {name:'type', value:'password'},
+                    {name:'placeholder', value:'Password...'},
+                ])),
+                buildElement('button', 'Valider', cls('access-button', [
+                    {name:'onclick', value:'views.area.authenticate()'}
+                ]))
+            ], cls('access-login'))
+        ], cls('access-content'))
+    ], wrapIC('AreaForm', 'access'));
+}
