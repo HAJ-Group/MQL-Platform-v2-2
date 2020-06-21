@@ -32,6 +32,7 @@ LaureateComponent.prototype.addLaureateRow = function (oneLaureate) {
 /**
  * Create navigation menu dynamically
  */
+/*
 LaureateComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	for(let promotion of this.page_blocks[current_page_number - 1]) {
@@ -42,6 +43,23 @@ LaureateComponent.prototype.fillNavigation = function () {
 		this.block_nav.appendChild(divMenu);
 	}
 };
+*/
+
+LaureateComponent.prototype.fillNavigation = function () {
+	this.block_nav.innerHTML = this.htmlSaver.nav;
+	this.block_nav.appendChild(buildDIV([
+		buildSPAN('All Laureates', wrapCI(['menuitem', 'd-none'],'all-laureate',[
+			{name:'onclick', value:'views.laureate.navigate()'}]))
+	]));
+	for(let promotion of this.page_blocks[current_page_number - 1]) {
+		this.block_nav.appendChild(buildHR());
+		this.block_nav.appendChild(buildDIV([
+			buildSPAN(promotion.id, wrapCI('menuitem','nav-laureate-' + promotion.id ,[
+				{name:'onclick', value:'views.laureate.selectPromotion(\'' + promotion.id + '\');  markAsSelected(\''+ promotion.id +'\', \'laureate\')'}]))
+		]));
+	}
+};
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Printing all service data into the table member
 LaureateComponent.prototype.fillMain = function () {
@@ -216,9 +234,130 @@ LaureateComponent.prototype.navigate = function(page_number=1, top=false) {
 	this.fillMain();
 	this.fillSwitcher();
 	addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
-	detect_subContent_trigger_left_bar();
+	detect_subContent_trigger_left_bar('laureate');
+	$('#all-laureate').style.display = 'none';
 	if(top) window.location.href = '#header';
 };
+
+
+LaureateComponent.prototype.selectPromotion = function(id){
+	for (let i = 0; i < this.service.size(); i++) {
+		if (this.service.get(i).id === id){
+			this.displayPromotion(this.service.get(i));
+		}
+	}
+};
+
+LaureateComponent.prototype.displayPromotion = function (promotion){
+		this.block_main = $('#LaureateMain');
+		let img;
+
+			let details = buildDIV(buildParagraph(promotion.date.getFullYear(),cls('date')),cls(['details', 'laureate-details']));
+			let promo = buildDIV([
+				buildDIV(promotion.name,cls(['title', 'laureate-title'])),
+				details
+			], id('laureate-' + promotion.id));
+			this.block_main.innerHTML = null;
+			this.block_main.appendChild(promo);
+			if(sessionStorage.getItem('ACCESS') !== null) {
+				//details
+				details.appendChild(
+					buildDIV(
+						buildIMG("resources/pictures/App/icons/new-icon.png",'',cls('new-icon',[{name:'onclick',value:'views.laureate.addData("' + promotion.id + ',laureate")'}])),
+						cls(['new-block','new-laureate'])
+					)
+				);
+			}
+			for (let laureate of promotion.content) {
+				if((laureate.photo === '')){
+					img = DEFAULT_PROFILE_IMAGE[laureate.gender];
+				} else img = laureate.photo;
+				// EDIT AND DELETE
+				if(sessionStorage.getItem('ACCESS') !== null) {
+					//    console.log(promo)
+					details.appendChild(
+						buildDIV([
+							buildIMG("resources/pictures/App/icons/edit.png",'',wrapICN('','sh-icon','edit-icon',[{name:'onclick',value:'views.laureate.editData("' + promotion.id + ',' +  laureate.id + '", "laureate")'}])),
+							buildIMG("resources/pictures/App/icons/delete.png",'',wrapICN('','sh-icon','delete-icon',[{name:'onclick',value:'views.laureate.deleteData("' + promotion.id + ',' +  laureate.id + '", "laureate")'}]))
+						],cls('laureate-icons'))
+					);
+				}
+				// LIST ITEM
+				let item = buildDIV([
+					buildDIV([
+						buildDIV(laureate.name +' ('+laureate.job+')', cls('item-element',[{name:'onclick',value:'views.laureate.showInfos("' + promotion.id + '-' + laureate.id +'")'}])),
+						buildSPAN(null,cls('linkedin',[{name:'onclick',value:'window.location.href="'+ laureate.linked_in+'"'}]))
+					],cls('item-description')),
+				],wrapIC('item-'+promotion.id+'-'+laureate.id,'card-laureate'));
+				details.appendChild(item);
+				// INFO BODY
+
+				let promoItem = buildDIV(null,wrapIC( promotion.id +'-'+ laureate.id,'card-laureate',[{name:'style',value:'display: none'}]));
+				if(laureate.photo !== "") {
+					promoItem.appendChild(
+						buildIMG(img,'',id('laureatePhoto-'+promotion.id+'-'+laureate.id,[{name:'onclick',value:'popIMG(this.id)'}]))
+					);
+				} else {
+					promoItem.appendChild(
+						buildIMG(img,'',id('laureatePhoto-'+promotion.id+'-'+laureate.id))
+					);
+				}
+				let infos = buildElement('ul',null);
+				let cardDescription = buildDIV(infos,cls('card-desc'));
+				let description = buildDIV([
+					buildDIV([
+						laureate.name ,
+						buildSPAN(null,cls('linkedin',[{name:'onclick',value:'"window.location.href='+ laureate.linked_in}])),
+					],cls('element',[{name:'onclick',value:'views.laureate.hideInfos("'+promotion.id+'-'+laureate.id+'")'}])),
+					cardDescription
+				],cls('description'));
+				// ENTERPRISE && CITY
+				if(laureate.current_enterprise !== '' && laureate.city !== '') {
+					infos.appendChild(
+						buildElement('li',[
+							'Enterprise :',buildSPAN(laureate.current_enterprise+','+laureate.city,cls('value'))
+						])
+					);
+				}
+				// STAGE
+				if(laureate.stage !== '') {
+					infos.appendChild(
+						buildElement('li',[
+							'Stage : ',buildSPAN(laureate.stage,cls('value'))
+						])
+					);
+				}
+				// EXPERIENCES
+				if(laureate.experience.length!==0) {
+					infos.appendChild(
+						buildElement('li',[
+							'Expériences',buildSPAN(laureate.experience,cls('value'))
+						])
+					);
+				}
+				// Email :
+				if(laureate.email !== '')
+					infos.appendChild(
+						buildElement('li',[
+							'Email : ',buildSPAN(buildLINK('mailto:'+laureate.email,laureate.email),cls('value'))
+						])
+					);
+				infos.appendChild(buildHR());
+				// DESCRIPTION
+				if(laureate.rating !== ''){
+					infos.appendChild(
+						buildDIV(null,'quotes')
+					);
+					infos.appendChild(
+						buildParagraph(laureate.rating,cls('rating'))
+					);
+				}
+				promoItem.appendChild(description);
+				details.appendChild(promoItem);
+			}
+}
+
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Print PROMOTIONS :
 LaureateComponent.prototype.printPromotionsCards = function () {
