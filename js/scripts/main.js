@@ -275,22 +275,22 @@ function hide(id, def_element = 'details', def_display = 'block') {
  * Auto-add detection on left-menu bar for auto hovering on target article
  */
 function detect_subContent_trigger_left_bar(component = '') {
-    let element0 = $('#' + firstLetterUppercase(component) + 'Navigation');
+/*  let element0 = $('#' + firstLetterUppercase(component) + 'Navigation');
     for(let child of element0.childNodes) {
         if(child.innerHTML !== undefined && child instanceof HTMLDivElement) {
             let target = child.firstChild;
             if(target.innerHTML !== undefined) {
-                target.setAttribute('id', 'nav' + target.getAttribute('href').
+                target.setAttribute('id', 'nav' + target.getAttribute('id').
                 substr(target.getAttribute('href').indexOf('#') + 1));
-            }
-        }
-    }
+
+        }}
+    }*/
     let element = $('#' + firstLetterUppercase(component) + 'Main');
     console.log(element);
     for(let child of element.childNodes) {
         if(child.innerHTML !== undefined) {
             child.setAttribute('onmouseover', 'lightNav(this.id)');
-            child.setAttribute('onmouseleave', 'offLight(this.id)')
+            child.setAttribute('onmouseleave', 'offLight(this.id)');
         }
     }
 }
@@ -303,7 +303,8 @@ function detect_subContent_trigger_left_bar(component = '') {
  */
 function lightNav(id) {
     try {
-        $('#nav' + id).classList.add('wrap-red');
+        $('#nav-' + id).classList.add('wrap-red');
+
     } catch (e) {}
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -315,7 +316,7 @@ function lightNav(id) {
  */
 function offLight(id) {
     try {
-        $('#nav' + id).classList.remove('wrap-red');
+        $('#nav-' + id).classList.remove('wrap-red');
     } catch (e) {}
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -782,6 +783,16 @@ function search() {
         views.laureate.filterKey();
     }
 }
+
+function markAsSelected(id, component) {
+    $('#all-' + component).style.display = 'block';
+    let targets = document.getElementsByClassName('wrap-red');
+    for (let t of targets){
+        t.classList.remove('wrap-red');
+    }
+    $('#nav-' + component + '-' + id).classList.add('wrap-red');
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

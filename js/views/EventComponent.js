@@ -70,6 +70,7 @@ EventComponent.prototype.timelineNavigate = function(id) {
 /**
  * Create navigation menu dynamically
  */
+/*
 EventComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	for(let event of this.page_blocks[current_page_number - 1]) {
@@ -79,6 +80,23 @@ EventComponent.prototype.fillNavigation = function () {
 		));
 	}
 };
+*/
+
+EventComponent.prototype.fillNavigation = function () {
+	this.block_nav.innerHTML = this.htmlSaver.nav;
+	this.block_nav.appendChild(buildDIV([
+		buildSPAN('All Events', wrapCI(['menuitem', 'd-none'],'all-event',[
+			{name:'onclick', value:'views.event.navigate()'}]))
+	]));
+	for(let event of this.page_blocks[current_page_number - 1]) {
+		this.block_nav.appendChild(buildHR());
+		this.block_nav.appendChild(buildDIV([
+			buildSPAN(event.title, wrapCI('menuitem','nav-event-' + event.id ,[
+				{name:'onclick', value:'views.event.selectEvent(' + event.id + ');  markAsSelected('+ event.id +', \'event\')'}]))
+		]));
+	}
+};
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * Filling main block
@@ -169,9 +187,78 @@ EventComponent.prototype.navigate = function(page_number=1, top=false) {
 	this.fillMain();
 	this.fillSwitcher();
 	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
-	detect_subContent_trigger_left_bar();
+	detect_subContent_trigger_left_bar('event');
+	$('#all-event').style.display = 'none';
 	if(top) window.location.href = '#main';
 };
+
+EventComponent.prototype.selectEvent = function(id){
+	for (let i = 0; i < this.service.size(); i++) {
+		if (this.service.get(i).id === id){
+			this.displayEvent(this.service.get(i));
+		}
+	}
+};
+
+EventComponent.prototype.displayEvent = function(event) {
+	this.block_main = $('#EventMain');
+	let shows = [];
+	let shows_counter = 0;
+		let eventdiv = buildDIV(buildDIV(event.title, cls(['title', 'event-title'])), id('event-' + event.id));
+		let detaildiv = buildDIV(null, cls(['details', 'event-details']));
+		if(event.date!=='') {
+			detaildiv.appendChild(buildElement('p', event.date, cls('date')));
+		}
+		detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
+		detaildiv.appendChild(buildElement('p', event.description));
+		// Contents
+		if(event.content !== []) {
+			let contentdiv = buildDIV(null, cls('sub-title'));
+			for(let content of event.content) {
+				if(content.type === 'card') {
+					contentdiv.appendChild(buildDIV([
+						buildIMG(content.image),
+						buildDIV([
+							buildDIV(content.title, cls('element')),
+							buildElement('p', content.description)
+						], cls('description'))
+					], cls('card-event')));
+				}
+				if(content.type === 'image-show') {
+					contentdiv.appendChild(buildDIV([
+						buildDIV([
+							buildDIV(content.title, cls('element')),
+							buildDIV(null, wrapIC('book' + shows_counter, 'book-images'))
+						], cls('full-width'))
+					], cls('card-event')));
+					shows.push({
+						book_name: 'book' + shows_counter++,
+						book_pics: content.images,
+					});
+				}
+				if(content.type === 'image-grid') {
+					contentdiv.appendChild(buildElement('p', content.description));
+					let griddiv = buildDIV(null, cls('row'));
+					let gridspan = buildSPAN(null, cls('column'));
+					for(let image of content.images) {
+						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'popIMG(this.id)'}])));
+					}
+					griddiv.appendChild(gridspan);
+					contentdiv.appendChild(griddiv);
+				}
+			}
+			detaildiv.appendChild(contentdiv);
+		}
+		eventdiv.appendChild(detaildiv);
+		this.block_main.innerHTML = null;
+		this.block_main.appendChild(eventdiv);
+
+	for(let show of shows) {
+		createBook(show.book_pics, show.book_name);
+	}
+};
+
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * Filtering function works with search box
