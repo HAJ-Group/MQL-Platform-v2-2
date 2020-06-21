@@ -144,13 +144,13 @@
 	margin: 20px;
 	width: 45%;
 	max-height: 250px;
-	border-left: 3px solid cornflowerblue;
+	border-left: 3px solid rgb(53, 69, 108);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .left-border{
 	height: 300px;
 	width: 4px;
-	background-color: cornflowerblue;
+	background-color: rgb(53, 69, 108);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .image-and-infos{
