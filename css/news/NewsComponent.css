@@ -3,7 +3,7 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* AUTO BOX ----------------------------------------------------------------------------------------------------------*/
 #autoBox {
-    background-image: url("../resources/pictures/News/autoboxBG.jpg");
+    background-image: url("../../resources/pictures/News/autoboxBG.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -86,7 +86,7 @@
     margin-left: auto;
     text-decoration: none;
     padding: 10px;
-    background-color: rgb(53, 69, 108);
+    background-color: cornflowerblue;
     color: white;
     border: 0;
 }

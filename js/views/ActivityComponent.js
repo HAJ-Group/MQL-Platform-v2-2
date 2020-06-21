@@ -55,7 +55,7 @@ ActivityComponent.prototype.printSemesters = function(){
                     cards += '';
                 else
 				cards += '<div class="card">' +
-					'<img class="card-image" src="' + moduleImage + '" alt="">' +
+					'<img class="activity-card-image" src="' + moduleImage + '" alt="">' +
 						'<div class="card-text">' +
 							'<div class="card-subject">' + 'Modules' +'</div>' +
 							'<div class="subject">' + modules + '</div>' +
@@ -67,7 +67,7 @@ ActivityComponent.prototype.printSemesters = function(){
 			}
 			if (j === 3){
 				cards += '<div class="card" id="card">' +
-					'<img class="card-image" src="' + activityImage + '" alt="">' +
+					'<img class="activity-card-image" src="' + activityImage + '" alt="">' +
 						'<div class="card-text">' +
 							'<div class="card-subject">' + 'Objectifs' +' </div>' +
 							'<div class="subject">' + activities + ' </div>' +
