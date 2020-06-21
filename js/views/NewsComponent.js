@@ -1,7 +1,7 @@
 /*Global Variables*/
 const MAX_NEWS_PER_PAGE = 5;
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*Default class*/ 
+/*Default class*/
 function NewsComponent(service) {
 	this.service = service;
 	// this.table = this.get('table-NewsID');
@@ -76,6 +76,21 @@ NewsComponent.prototype.fillNavigation = function () {
 		]));
 	}
 };
+
+NewsComponent.prototype.fillNavigation2 = function () {
+	this.block_nav.innerHTML = this.htmlSaver.nav;
+	this.block_nav.appendChild(buildDIV([
+		buildSPAN('All News', cls('menuitem',[
+			{name:'onclick', value:'views.news.navigate()'}]))
+	]));
+	for(let news of this.page_blocks[current_page_number - 1]) {
+		this.block_nav.appendChild(buildHR());
+		this.block_nav.appendChild(buildDIV([
+			buildSPAN(news.title, cls('menuitem',[
+				{name:'onclick', value:'views.news.selectNews(' + news.id + ')'}]))
+		]));
+	}
+};
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * Create main block dynamically
@@ -131,13 +146,45 @@ NewsComponent.prototype.fillSwitcher = function () {
  */
 NewsComponent.prototype.navigate = function(page_number=1, top=false) {
 	current_page_number = page_number;
-	this.fillNavigation();
+	this.fillNavigation2();
 	this.fillMain();
 	this.fillSwitcher();
-    addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
+	addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
 	detect_subContent_trigger_left_bar();
-    if(top) window.location.href = '#main';
+	if(top) window.location.href = '#main';
 };
+
+NewsComponent.prototype.selectNews = function(id){
+	for (let i = 0; i < this.service.size(); i++) {
+		if (this.service.get(i).id === id){
+			displayNews(this.service.get(i));
+		}
+	}
+};
+
+function displayNews(news){
+	this.block_main = $('#NewsMain');
+	let titleDiv = buildDIV([
+		buildDIV(news.title, cls(['title', 'news-title'])),
+	], id('news-' + news.id));
+	let detailsDiv = buildDIV([
+		buildElement('p', formattedDate(news.date), cls('date')),
+		buildElement('p', news.description),
+	], cls(['details', 'news-details']));
+	let rowDiv = buildDIV(null, cls('row'));
+	let columnSpan = buildSPAN(null, cls('column'));
+	for(let image of news.images) {
+		columnSpan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [
+			{name:'onclick', value:'popIMG(this.id)'}
+		])));
+	}
+	rowDiv.appendChild(columnSpan);
+	detailsDiv.appendChild(rowDiv);
+	titleDiv.appendChild(detailsDiv);
+	this.block_main.innerHTML = null;
+	this.block_main.appendChild(titleDiv);
+}
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.trigger = function () {
 	try {
@@ -235,14 +282,14 @@ NewsComponent.prototype.triggerSubmit = function () {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */ 
+/* Main Function */
 function NewsMain() {
 	let service = new NewsComponentService();
 	service.load(dbNews);
 	views['news'] = new NewsComponent(service);
 	try {
 		views.news.fillAutoBox();
-		views.news.fillNavigation();
+		views.news.fillNavigation2();
 		views.news.fillMain();
 		views.news.fillSwitcher();
 	} catch (e) {
@@ -255,7 +302,7 @@ function NewsMain() {
 	// stays last
 	autoBoxLoader();
 	addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
-	detect_subContent_trigger_left_bar('news');
-	views.news.trigger();
+	/*detect_subContent_trigger_left_bar('news');
+	views.news.trigger();*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
