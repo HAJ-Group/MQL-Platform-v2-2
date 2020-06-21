@@ -60,7 +60,7 @@ function initComponent(component) {
     current_element.setAttribute('onmouseover', '');
     changePicture(current_component);
     scrollToTop();
-    loadComponentStyle();
+    //loadComponentStyle();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
