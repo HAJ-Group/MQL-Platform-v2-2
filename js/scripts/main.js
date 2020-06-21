@@ -290,7 +290,7 @@ function detect_subContent_trigger_left_bar(component = '') {
     for(let child of element.childNodes) {
         if(child.innerHTML !== undefined) {
             child.setAttribute('onmouseover', 'lightNav(this.id)');
-            child.setAttribute('onmouseleave', 'offLight(this.id)')
+            child.setAttribute('onmouseleave', 'offLight(this.id)');
         }
     }
 }
@@ -303,7 +303,8 @@ function detect_subContent_trigger_left_bar(component = '') {
  */
 function lightNav(id) {
     try {
-        $('#new' + id).classList.add('wrap-red');
+        $('#nav-news-' + id).classList.add('wrap-red');
+
     } catch (e) {}
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -315,7 +316,7 @@ function lightNav(id) {
  */
 function offLight(id) {
     try {
-        $('#news-' + id).classList.remove('wrap-red');
+        $('#nav-news-' + id).classList.remove('wrap-red');
     } catch (e) {}
 }
 //----------------------------------------------------------------------------------------------------------------------
