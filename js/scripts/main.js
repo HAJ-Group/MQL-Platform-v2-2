@@ -790,8 +790,7 @@ function markAsSelected(id, component) {
     for (let t of targets){
         t.classList.remove('wrap-red');
     }
-    let targetComponent = $('#nav-' + component + '-' + id)
-    targetComponent.classList.add('wrap-red');
+    $('#nav-' + component + '-' + id).classList.add('wrap-red');
 }
 
 //----------------------------------------------------------------------------------------------------------------------
