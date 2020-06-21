@@ -302,7 +302,7 @@ function NewsMain() {
 	// stays last
 	autoBoxLoader();
 	addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
-	/*detect_subContent_trigger_left_bar('news');
-	views.news.trigger();*/
+	detect_subContent_trigger_left_bar('news');
+	views.news.trigger();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

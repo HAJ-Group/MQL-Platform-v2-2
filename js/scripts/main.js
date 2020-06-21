@@ -275,7 +275,7 @@ function hide(id, def_element = 'details', def_display = 'block') {
  * Auto-add detection on left-menu bar for auto hovering on target article
  */
 function detect_subContent_trigger_left_bar(component = '') {
-    let element0 = $('#' + firstLetterUppercase(component) + 'Navigation');
+/*    let element0 = $('#' + firstLetterUppercase(component) + 'Navigation');
     for(let child of element0.childNodes) {
         if(child.innerHTML !== undefined && child instanceof HTMLDivElement) {
             let target = child.firstChild;
@@ -284,7 +284,7 @@ function detect_subContent_trigger_left_bar(component = '') {
                 substr(target.getAttribute('href').indexOf('#') + 1));
             }
         }
-    }
+    }*/
     let element = $('#' + firstLetterUppercase(component) + 'Main');
     console.log(element);
     for(let child of element.childNodes) {
