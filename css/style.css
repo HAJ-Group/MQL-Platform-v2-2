@@ -1,5 +1,12 @@
 @import "fonts/fonts.css";
 @import "Animations.css";
+@import "HomeComponent.css";
+@import "NewsComponent.css";
+@import "EventComponent.css";
+@import "ActivityComponent.css";
+@import "PartnerComponent.css";
+@import "LaureateComponent.css";
+@import "AreaComponent.css";
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*                                      *   _            ______   _______             *          _______
