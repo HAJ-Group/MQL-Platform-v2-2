@@ -275,15 +275,15 @@ function hide(id, def_element = 'details', def_display = 'block') {
  * Auto-add detection on left-menu bar for auto hovering on target article
  */
 function detect_subContent_trigger_left_bar(component = '') {
-/*    let element0 = $('#' + firstLetterUppercase(component) + 'Navigation');
+/*  let element0 = $('#' + firstLetterUppercase(component) + 'Navigation');
     for(let child of element0.childNodes) {
         if(child.innerHTML !== undefined && child instanceof HTMLDivElement) {
             let target = child.firstChild;
             if(target.innerHTML !== undefined) {
-                target.setAttribute('id', 'nav' + target.getAttribute('href').
+                target.setAttribute('id', 'nav' + target.getAttribute('id').
                 substr(target.getAttribute('href').indexOf('#') + 1));
-            }
-        }
+
+        }}
     }*/
     let element = $('#' + firstLetterUppercase(component) + 'Main');
     console.log(element);
@@ -303,7 +303,7 @@ function detect_subContent_trigger_left_bar(component = '') {
  */
 function lightNav(id) {
     try {
-        $('#nav' + id).classList.add('wrap-red');
+        $('#new' + id).classList.add('wrap-red');
     } catch (e) {}
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -315,7 +315,7 @@ function lightNav(id) {
  */
 function offLight(id) {
     try {
-        $('#nav' + id).classList.remove('wrap-red');
+        $('#news-' + id).classList.remove('wrap-red');
     } catch (e) {}
 }
 //----------------------------------------------------------------------------------------------------------------------
