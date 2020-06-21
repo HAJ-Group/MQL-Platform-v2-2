@@ -67,7 +67,7 @@ NewsComponent.prototype.fillAutoBox = function() {
 /**
  * Create navigation menu dynamically
  */
-NewsComponent.prototype.fillNavigation = function () {
+/*NewsComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	for(let news of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
@@ -75,19 +75,19 @@ NewsComponent.prototype.fillNavigation = function () {
 			buildLINK('#news-' + news.id, news.title, cls('menuitem'))
 		]));
 	}
-};
+};*/
 
-NewsComponent.prototype.fillNavigation2 = function () {
+NewsComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
-		buildSPAN('All News', cls('menuitem',[
+		buildSPAN('All News', wrapCI(['menuitem', 'd-none'],'all-news',[
 			{name:'onclick', value:'views.news.navigate()'}]))
 	]));
 	for(let news of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(news.title, wrapCI('menuitem','nav-news-' + news.id ,[
-				{name:'onclick', value:'views.news.selectNews(' + news.id + ')'}]))
+				{name:'onclick', value:'views.news.selectNews(' + news.id + ');  markAsSelected('+ news.id +', \'news\')'}]))
 		]));
 	}
 };
@@ -146,23 +146,24 @@ NewsComponent.prototype.fillSwitcher = function () {
  */
 NewsComponent.prototype.navigate = function(page_number=1, top=false) {
 	current_page_number = page_number;
-	this.fillNavigation2();
+	this.fillNavigation();
 	this.fillMain();
 	this.fillSwitcher();
 	addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
-	detect_subContent_trigger_left_bar();
+	detect_subContent_trigger_left_bar('news');
+	$('#all-news').style.display = 'none';
 	if(top) window.location.href = '#main';
 };
 
 NewsComponent.prototype.selectNews = function(id){
 	for (let i = 0; i < this.service.size(); i++) {
 		if (this.service.get(i).id === id){
-			displayNews(this.service.get(i));
+			this.displayNews(this.service.get(i));
 		}
 	}
 };
 
-function displayNews(news){
+NewsComponent.prototype.displayNews = function(news){
 	this.block_main = $('#NewsMain');
 	let titleDiv = buildDIV([
 		buildDIV(news.title, cls(['title', 'news-title'])),
@@ -289,7 +290,7 @@ function NewsMain() {
 	views['news'] = new NewsComponent(service);
 	try {
 		views.news.fillAutoBox();
-		views.news.fillNavigation2();
+		views.news.fillNavigation();
 		views.news.fillMain();
 		views.news.fillSwitcher();
 	} catch (e) {

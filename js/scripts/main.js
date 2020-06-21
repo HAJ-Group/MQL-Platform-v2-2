@@ -303,7 +303,7 @@ function detect_subContent_trigger_left_bar(component = '') {
  */
 function lightNav(id) {
     try {
-        $('#nav-news-' + id).classList.add('wrap-red');
+        $('#nav-' + id).classList.add('wrap-red');
 
     } catch (e) {}
 }
@@ -316,7 +316,7 @@ function lightNav(id) {
  */
 function offLight(id) {
     try {
-        $('#nav-news-' + id).classList.remove('wrap-red');
+        $('#nav-' + id).classList.remove('wrap-red');
     } catch (e) {}
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -783,6 +783,17 @@ function search() {
         views.laureate.filterKey();
     }
 }
+
+function markAsSelected(id, component) {
+    $('#all-' + component).style.display = 'block';
+    let targets = document.getElementsByClassName('wrap-red');
+    for (let t of targets){
+        t.classList.remove('wrap-red');
+    }
+    let targetComponent = $('#nav-' + component + '-' + id)
+    targetComponent.classList.add('wrap-red');
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
