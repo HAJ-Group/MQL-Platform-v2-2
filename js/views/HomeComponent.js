@@ -33,7 +33,7 @@ HomeComponent.prototype.show= function (id) {
 	this.currentPanel.style["display"]="none";
 	p.style.display="block";
 	this.currentPanel= p;
-}
+};
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * News Table builder (Related Service with NewsComponent)
