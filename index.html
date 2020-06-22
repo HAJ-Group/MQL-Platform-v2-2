@@ -72,11 +72,41 @@
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea">
 					<!-- Home Upper Area -->
-					<div class="main-box">
-						<div id="slide-show" onclick="window.location.href='#book'" class="slide-show image"></div>
-						<div class="news">
-							<span> ACTUALITES MQL </span>
-							<table class="news-tab" id="table-news"></table>
+					<div id="presenter" class="presenter-container">
+						<div class="presenter-block">
+							<div onmouseover="views.home.present(0)" onmouseleave="views.home.hidePresented(0)" class="presenter-item">
+								<h1>Master Qualité Logiciel</h1>
+								<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
+							</div>
+							<div onmouseover="views.home.present(1)" onmouseleave="views.home.hidePresented(1)" class="presenter-item">
+								<h1>Coordonateur</h1>
+								<span><span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.</span>
+							</div>
+						</div>
+
+						<div class="presenter-center-block">
+							<div class="presenter-links">
+								<span><img src="resources/pictures/Home/img_170003.png" alt=""></span>
+								<span><img src="resources/pictures/Home/unnamed.png" alt=""></span>
+							</div>
+							<div class="presenter-center-logo">
+								<img src="resources/pictures/App/logoMQL2.png" alt="">
+							</div>
+							<div class="presenter-links">
+								<span>item 3</span>
+								<span>item 4</span>
+							</div>
+						</div>
+
+						<div class="presenter-block">
+							<div onmouseover="views.home.present(2)" onmouseleave="views.home.hidePresented(2)"  id="presenter-3" class="presenter-item">
+								<h1>Item 3</h1>
+								<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dignissimos, doloremque ducimus enim error minus nam nihil obcaecati odit quis, quos tempora, voluptas? Adipisci architecto perferendis quas ratione sed similique?</span>
+							</div>
+							<div onmouseover="views.home.present(3)" onmouseleave="views.home.hidePresented(3)"  id="presenter-4" class="presenter-item">
+								<h1>Item 4</h1>
+								<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam beatae consectetur culpa delectus distinctio error harum hic natus nesciunt nostrum, obcaecati, praesentium provident quas qui, sit tenetur unde vel.</span>
+							</div>
 						</div>
 					</div>
 				</div>

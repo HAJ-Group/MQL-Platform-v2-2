@@ -59,14 +59,21 @@ HomeComponent.prototype.setNewsRoutes = function () {
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.present = function (id) {
+	$('.presenter-item')[id].style.opacity = '1';
+};
+HomeComponent.prototype.hidePresented = function (id) {
+	$('.presenter-item')[id].style.opacity = '0';
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
 	service.load(dbHomeProgram);
 	views['home'] = new HomeComponent(service);
 //	views.home.printSemesters();
-	views.home.printNews();
-	views.home.setNewsRoutes();
+	// views.home.printNews();
+	// views.home.setNewsRoutes();
 	// stays last
 	addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
 	detect_subContent_trigger_left_bar('home');
