@@ -5,6 +5,7 @@ function HomeComponent(service) {
 	this.table= $("#table-program");
 	this.table_news= $("#table-news");
 	this.news_idSaver = [];
+	this.currentPanel = $("#mql-presentation");
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -26,6 +27,13 @@ HomeComponent.prototype.printSemesters=function () {
 		this.addColumn(this.service.get(i));
 	}
 };
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.show= function (id) {
+	let p=$('#'+id);
+	this.currentPanel.style["display"]="none";
+	p.style.display="block";
+	this.currentPanel= p;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * News Table builder (Related Service with NewsComponent)
