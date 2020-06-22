@@ -1,0 +1,292 @@
+/*--------------------------------------------------------------------------------------------------------------------*/
+.main-box{
+	display: flex;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.slide-show {
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	/* Animation for slide show */
+	animation: slideShow 5s ease-in-out infinite both;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.slide-show:hover {
+	animation-play-state: paused;
+	cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.news{
+	width: 35%;
+	border: solid 1px lightgray;
+ 	margin-left: 5px;
+	margin-right: 5px;
+	overflow: auto;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.news span {
+	padding-top: 10px;
+	display: block;
+	text-align: center;
+	font-family: "Agency FB", serif;
+	font-size: 25px;
+	background-color: #f5f5f5;
+	height: 10%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.news-tab{
+	width: 98%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	padding: 2px;
+	border-collapse: separate;
+	border-spacing: 15px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.news-tab td {
+	height: auto;
+	margin-top: 10px;
+	text-align: center;
+	padding: 5px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.news-tab td:first-child {
+	background-color: #f5f5f5;
+	width: 35%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.news-tab td:last-child {
+	width: 95%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.table-program{
+	margin-top: 10px;
+	padding: 20px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	border-style: none;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+tbody, tr, td, th {
+	border: 1px lightgray solid;
+	border-radius: 10px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+li {
+ 	list-style: circle;
+	margin-left: 20px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+a {
+	text-decoration: none;
+	color: black;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+a:hover {
+	color: rgb(253, 59, 76);
+	cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.vp{
+	color: rgb(53, 69, 108);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.semester{
+	display: block;
+	text-align: center;
+	padding: 10px;
+	color: rgb(53, 69, 108) ;
+	font-weight: bold;
+	font-size: 20px;
+	font-family: "Times New Roman", serif;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.element .element-title {
+	color: rgb(53, 69, 108);
+	padding: 10px;
+	font-family: "Agency FB", serif;
+	font-size: 25px;
+	font-weight: bold;
+
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.element-title {
+	border: 1px solid lightgray;
+	border-radius: 10px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.element-details {
+	border: 1px solid rgba(216,250,255,0.83);
+	border-radius: 10px;
+	background-color: rgba(216,250,255,0.83);
+	padding: 10px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.Chenfour{
+	display: flex;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.Chenfour .img {
+	width: 40%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.Chenfour div {
+	padding: 20px;
+	width: 60%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.details > img {
+	margin-right: auto;
+	margin-left:auto;
+	width: 100%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.full-width {
+	width: 100%;
+	height: 100%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.mql-video {
+	width: 100%;
+	border: 2px solid rgb(53, 69, 108);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.stats-image:hover{
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.presenter-center-block {
+	position: absolute;
+	width: fit-content;
+	height: fit-content;
+	box-shadow: 0 0 10px lightgray;
+	top: 15%;
+	left: 28%;
+	border-radius: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+	background-color: white;
+	animation: zoom 1s;
+}
+
+.presenter-center-block img {
+	display: block;
+	margin: auto;
+	width: 400px;
+	height: 300px;
+}
+
+.presenter-block {
+	display: flex;
+}
+
+.presenter-item {
+	box-shadow: 0 0 10px lightgray;
+	padding: 20px;
+	width: 45%;
+	height: 400px;
+	margin: auto auto 10px;
+	border-radius: 20px;
+	background-color: white;
+	z-index: 100;
+	opacity: 0;
+}
+
+.presenter-item h1 {
+	color: #e92a1c;
+}
+
+.presenter-links {
+	display: flex;
+	margin-left: -150px;
+	margin-right: -150px;
+}
+
+.presenter-links span {
+	max-width: 80px;
+	max-height: 80px;
+	display: block;
+	margin: auto;
+	color: white;
+	background-color: #e92a1c;
+	padding: 40px;
+	font-weight: bolder;
+	font-size: 20px;
+	border-radius: 100%;
+}
+
+.presenter-links span > img {
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* Animations */
+@keyframes slideShow {
+	0% {
+		font-size: 1px;
+		background-image: url("../resources/pictures/Home/presentationimage.png");
+	}
+	100% {
+		font-size: 2px;
+		background-image: url("../resources/pictures/App/mqlfam.JPG");
+	}
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* Responsive css ----------------------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 700px) {
+
+	.container {
+		background-image: none;
+	}
+
+	.main-box {
+		display: block;
+	}
+
+	.news {
+		width: 97%;
+	}
+
+	.Chenfour{
+		display: block;
+	}
+	.Chenfour .img {
+		width: 50%;
+		border-radius: 100%;
+	}
+	.Chenfour img {
+		margin-left: 25%;
+	}
+
+	.Chenfour div {
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+	}
+
+	li {
+		margin-left: 0;
+		text-align: left;
+	}
+
+	.presenter-container {
+		display: none;
+	}
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
