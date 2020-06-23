@@ -59,6 +59,20 @@ HomeComponent.prototype.setNewsRoutes = function () {
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
+
+HomeComponent.prototype.startPresenter = function() {
+	let counter = 0;
+	function handler() {
+		if(counter === 4) {
+			counter = 0;
+		}
+		if(counter > 0) views.home.hidePresented(counter - 1);
+		else views.home.hidePresented(3);
+		views.home.present(counter++);
+	}
+	setInterval(handler, 1000);
+};
+
 HomeComponent.prototype.present = function (id) {
 	$('.presenter-item')[id].style.opacity = '1';
 };
@@ -71,6 +85,7 @@ function HomeMain() {
 	let service = new HomeComponentService();
 	service.load(dbHomeProgram);
 	views['home'] = new HomeComponent(service);
+	views.home.startPresenter();
 //	views.home.printSemesters();
 	// views.home.printNews();
 	// views.home.setNewsRoutes();
