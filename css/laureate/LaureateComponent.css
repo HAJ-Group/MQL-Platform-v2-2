@@ -4,7 +4,7 @@
 	display: flex;
 	border: 1px solid lightgray;
 	margin-bottom: 10px;
-	background-image: url('../resources/pictures/Laureate/bg-card.jpg');
+	background-image: url('../../resources/pictures/Laureate/bg-card.jpg');
 	background-repeat: no-repeat;
 	opacity: 0.7;
 }
@@ -81,7 +81,7 @@
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .linkedin {
-	background-image: url('../resources/pictures/Laureate/linkedin.png');
+	background-image: url('../../resources/pictures/Laureate/linkedin.png');
 	background-repeat: no-repeat;
 	width: 65px;
 	height: 45px;
@@ -113,7 +113,7 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 .quotes {
 	float: left;
-	background-image: url('../resources/pictures/App/icons/quote.png');
+	background-image: url('../../resources/pictures/App/icons/quote.png');
 	background-repeat: no-repeat;
 	width: 33px;
 	height: 32px;
@@ -144,13 +144,13 @@
 	margin: 20px;
 	width: 45%;
 	max-height: 250px;
-	border-left: 3px solid rgb(53, 69, 108);
+	border-left: 3px solid cornflowerblue;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .left-border{
 	height: 300px;
 	width: 4px;
-	background-color: rgb(53, 69, 108);
+	background-color: cornflowerblue;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .image-and-infos{
@@ -252,7 +252,7 @@ q:after{
 	margin: 10px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
-	background-image: url('../resources/pictures/App/pattern.png');
+	background-image: url('../../resources/pictures/App/pattern.png');
 	background-repeat: repeat-y;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -268,138 +268,4 @@ q:after{
 .titles-laureates{
 	text-align: center;
 }
-/*--------------------------------------------------------------------------------------------------------------------*/
-@media screen and (max-width: 1000px) {
-	.recommendation{
-		width: 90%;
-	}
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-@media screen and (max-width: 310px) {
-	.list-recommendations{
-		margin-left: -70px;
-	}
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-@media screen and (max-width: 700px){
-
-	.card-laureate {
-		display: block;
-		background-repeat: repeat;
-	}
-
-	.card-laureate .description {
-		width: 95%;
-		padding: 10px;
-		animation-name: zoom;
-		animation-duration: 0.6s;
-	}
-
-	.quotes {
-		display: none;
-	}
-
-	.card-laureate img {
-		width: 30%;
-		height: 100px;
-		border-radius: 10px;
-	}
-
-	.card-laureate .element {
-		color: white;
-		display: block;
-		margin-left: 35%;
-		max-width: 60%;
-		font-size: 25px;
-		font-weight: bolder;
-		margin-top: -80px;
-	}
-
-	.value{
-		margin-left: 5px;
-		float: none;
-	}
-	.card-laureate .item-element {
-		max-width: 75%;
-	}
-
-	.linkedin {
-		margin-right: 25px;
-	}
-
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-@media only screen and (max-width: 700px) {
-	.promotions-style{
-		background-image: none;
-	}
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-@media screen and (max-width: 700px){
-
-	.recommendation{
-		display: flex;
-		flex-direction: column;
-		min-height: 450px;
-		min-width: 450px;
-		width: 40%;
-		border: none;
-		margin-right: auto;
-		margin-left: auto;
-	}
-	.image-and-infos {
-		height: 45%;
-		width: 100%;
-	}
-	.image-person{
-		margin: auto;
-		min-height: 130px;
-		max-height: 190px;
-		min-width: 160px;
-		max-width: 160px;
-		width: 20%;
-	}
-	.opinion{
-		margin-right: auto;
-		margin-left: auto;
-		width: 80%;
-		word-wrap: break-word;
-		text-align: justify;
-        max-height: 200px;
-        height: fit-content;
-	}
-	.infos{
-		padding: 3px 0 0 3px;
-		min-width: 190px;
-		width: 100%;
-		text-align: center;
-		margin-bottom: 20px;
-	}
-	.name{
-		width: 100%;
-	}
-
-	.society{
-		width: 100%;
-	}
-	.card-laureate .element {
-		font-size: 20px;
-	}
-
-	.card-desc{
-		width: fit-content;
-	}
-
-	.details >*{
-		text-align: left;
-	}
-}
-
-@media screen and (max-width: 450px) {
-	.recommendation {
-		min-width: 300px;
-	}
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
-
 

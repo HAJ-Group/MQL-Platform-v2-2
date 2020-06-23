@@ -6,12 +6,7 @@ function getHeaderNavs() {
     let navElement = buildDIV();
     // DYNAMIC NAVS
     for(let nav of navs) {
-        navElement.appendChild(buildLINK('#' + nav.name, nav.content, cls('left', [
-            {name:'onclick', value:'route(\'' + nav.name + '\')'},
-            {name:'onmouseover', value:'changePicture(this.name)'},
-            {name:'onmouseleave', value:'changePicture(\'' + current_component + '\')'},
-            {name:'name', value:nav.name},
-        ])));
+        navElement.appendChild(buildLINK('#' + nav.name, nav.content, cls('left', [{name:'name', value:nav.name}])));
     }
     // ABOUT NAV
     navElement.appendChild(buildLINK('#footer', [

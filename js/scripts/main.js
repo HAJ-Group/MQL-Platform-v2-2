@@ -51,16 +51,16 @@ function initComponent(component) {
     for(let c of navs) {
         let element = $('+' + c.name)[0];
         element.classList.remove('active');
-        element.setAttribute('onclick', 'route(\'' + c.name + '\')');
-        element.setAttribute('onmouseover', 'changePicture(\'' + c.name + '\')');
-        element.setAttribute('onmouseleave', 'changePicture(this.name)');
+        element.setAttribute('onclick', 'route(this.name)');
+        element.setAttribute('onmouseover', 'changePicture(this.name)');
+        element.setAttribute('onmouseleave', 'changePicture(\'' + current_component + '\')');
     }
     current_element.classList.add('active');
-    current_element.setAttribute('onclick', '');
-    current_element.setAttribute('onmouseover', '');
+    current_element.removeAttribute('onclick');
+    current_element.removeAttribute('onmouseover');
     changePicture(current_component);
     scrollToTop();
-    loadComponentStyle();
+    //loadComponentStyle();
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
