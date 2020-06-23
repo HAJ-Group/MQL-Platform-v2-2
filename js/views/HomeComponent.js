@@ -110,8 +110,8 @@ function HomeMain() {
 	views['home'] = new HomeComponent(service);
 	views['home'].printStats();
 	views.home.startPresenter();
-	views.home.printNews();
-	views.home.setNewsRoutes();
+	// views.home.printNews();
+	// views.home.setNewsRoutes();
 	// stays last
 	addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
 	detect_subContent_trigger_left_bar('home');
