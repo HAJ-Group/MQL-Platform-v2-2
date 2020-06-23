@@ -68,12 +68,58 @@
 				</div>
 				<div class="topnav"></div>
 			</header>
-			<marquee behavior="scroll" direction="left">test</marquee>
 			<!-- BODY -->
 			<div id="body">
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea">
 					<!-- Home Upper Area -->
+					<div class="main-box">
+						<div id="slide-show" onclick="window.location.href='#book'" class="slide-show image"></div>
+						<div class="news">
+							<span> ACTUALITES MQL </span>
+							<table class="news-tab" id="table-news"></table>
+						</div>
+					</div>
+
+				</div>
+				<div id="NewsUpperArea">
+					<!-- News Upper Area -->
+					<div id="autoBox"></div>
+				</div>
+				<div id="EventUpperArea">
+					<!-- Event Upper Area -->
+					<div class="timeline">
+						<img src="resources/pictures/Event/timeline.png" class="timeline-icon" alt="">
+						<ol class="timeline-list" id="timeline">
+						</ol>
+					</div>
+				</div>
+				<div id="ActivityUpperArea"></div>
+				<div id="PartnerUpperArea"></div>
+				<div id="LaureateUpperArea">
+					<!-- Laureate Upper Area -->
+					<div class="titles-laureates">
+						<img src="resources/pictures/App/icons/reload.png" onclick="views.laureate.random()" class="top-img" alt="">
+					</div>
+					<div id="list-recommendation" class="list-recommendations">
+					</div>
+					<br>
+					<hr>
+					<div class="titles-laureates">
+						<h3>Promotions</h3>
+					</div>
+				</div>
+				<div id="AreaUpperArea"></div>
+				<!-- Search Bar -->
+				<div id="search">
+					<div class="search-block">
+						<img class="search-logo" src="resources/pictures/App/icons/search.png" alt="search Logo">
+						<input id="key" class="search-input" onkeyup="search()" placeholder="Search..." type="text">
+						<span class="error-message"></span></div>
+				</div>
+				<!-- Components Main Areas-->
+				<div id="HomeComponent" >
+					<!-- Home Main Body -->
 					<div class="home-presentation">
 						<div class="home-flex">
 							<div class="home-span title home-span-active" onclick="views.home.show('mql-presentation', this)"><span>Presentation </span></div>
@@ -145,45 +191,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div id="NewsUpperArea">
-					<!-- News Upper Area -->
-					<div id="autoBox"></div>
-				</div>
-				<div id="EventUpperArea">
-					<!-- Event Upper Area -->
-					<div class="timeline">
-						<img src="resources/pictures/Event/timeline.png" class="timeline-icon" alt="">
-						<ol class="timeline-list" id="timeline">
-						</ol>
-					</div>
-				</div>
-				<div id="ActivityUpperArea"></div>
-				<div id="PartnerUpperArea"></div>
-				<div id="LaureateUpperArea">
-					<!-- Laureate Upper Area -->
-					<div class="titles-laureates">
-						<img src="resources/pictures/App/icons/reload.png" onclick="views.laureate.random()" class="top-img" alt="">
-					</div>
-					<div id="list-recommendation" class="list-recommendations">
-					</div>
-					<br>
-					<hr>
-					<div class="titles-laureates">
-						<h3>Promotions</h3>
-					</div>
-				</div>
-				<div id="AreaUpperArea"></div>
-				<!-- Search Bar -->
-				<div id="search">
-					<div class="search-block">
-						<img class="search-logo" src="resources/pictures/App/icons/search.png" alt="search Logo">
-						<input id="key" class="search-input" onkeyup="search()" placeholder="Search..." type="text">
-						<span class="error-message"></span></div>
-				</div>
-				<!-- Components Main Areas-->
-				<div id="HomeComponent" >
-					<!-- Home Main Body -->
 					<div class="container container-bg hidden">
 						<div id="HomeNavigation" class="left-menu">
 							<div class="menuitem wrap-blue">Navigation</div>

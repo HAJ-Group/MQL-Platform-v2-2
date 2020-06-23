@@ -93,7 +93,7 @@ HomeComponent.prototype.startPresenter = function() {
 		else views.home.hidePresented(3);
 		views.home.present(counter++);
 	}
-	setInterval(handler, 1000);
+	setInterval(handler, 2000);
 };
 
 HomeComponent.prototype.present = function (id) {
@@ -110,9 +110,8 @@ function HomeMain() {
 	views['home'] = new HomeComponent(service);
 	views['home'].printStats();
 	views.home.startPresenter();
-//	views.home.printSemesters();
-	// views.home.printNews();
-	// views.home.setNewsRoutes();
+	views.home.printNews();
+	views.home.setNewsRoutes();
 	// stays last
 	addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
 	detect_subContent_trigger_left_bar('home');
