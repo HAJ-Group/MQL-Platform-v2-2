@@ -6,10 +6,7 @@ function route(component = '') {
     initComponent(component);
     switchComponent();
 }
-
 function init() {
     load();
     route();
 }
-
-

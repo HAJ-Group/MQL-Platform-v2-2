@@ -1,4 +1,59 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
+.home-presentation{
+	min-height: 100vh;
+	width: 100%;
+}
+.home-logo > img {
+	display: flex;
+	justify-content: center;
+	margin: 30px auto;
+}
+.home-logo > span{
+	display: flex;
+	justify-content: center;
+	margin: 30px auto;
+}
+.home-flex{
+	display: flex;
+}
+.home-span {
+	margin-top: 10px;
+	padding: 10px;
+	width: 100%;
+	cursor: pointer;
+}
+.home-span span {
+	display: flex;
+	justify-content: center;
+	border-bottom: 3px solid rgb(53, 69, 108);
+	padding-top: 20px;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+}
+.home-span span:hover {
+    color: rgb(53, 69, 108);
+    border-bottom: 1px solid rgb(216, 49, 57);
+}
+
+.home-span-active span {
+	color: white;
+	background-color: rgb(216, 49, 57);
+}
+
+.home-card {
+	font-family: "Open Sans",Consolas, serif;
+	text-align: justify;
+	font-size: 20px;
+    margin: 5px;
+    padding: 20px;
+    border: 1px solid lightgray;
+	min-height: 650px;
+	border-radius: 10px;
+}
+.cards {
+	background-color: #fff;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
 .main-box{
 	display: flex;
 	margin-top: 5px;
@@ -150,7 +205,7 @@ a:hover {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .mql-video {
-	width: 100%;
+	width: 50%;
 	border: 2px solid rgb(53, 69, 108);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -166,13 +221,13 @@ a:hover {
 	width: 100%;
 	height: 100%;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-center-block {
 	position: absolute;
 	width: fit-content;
 	height: fit-content;
 	box-shadow: 0 0 10px lightgray;
-	top: 15%;
+	top: 5%;
 	left: 28%;
 	border-radius: 100%;
 	padding-left: 5%;
@@ -180,61 +235,79 @@ a:hover {
 	background-color: white;
 	animation: zoom 1s;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-center-block img {
 	display: block;
 	margin: auto;
 	width: 400px;
 	height: 300px;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-block {
 	display: flex;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block:first-child {
+	margin-bottom: 270px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block:first-child > .presenter-item:last-child {
+	text-align: right;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block:last-child > .presenter-item:last-child {
+	text-align: right;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block > .presenter-item:first-child {
+	margin-left: 15px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block > .presenter-item:last-child {
+	margin-right: 15px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-item {
 	box-shadow: 0 0 10px lightgray;
 	padding: 20px;
-	width: 45%;
-	height: 400px;
-	margin: auto auto 10px;
+	width: 38%;
+	height: 150px;
+	margin: auto;
 	border-radius: 20px;
 	background-color: white;
-	z-index: 100;
+	z-index: 50;
 	opacity: 0;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-item h1 {
-	color: #e92a1c;
+    font-size: 30px;
+	color: rgb(216, 49, 57);
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-links {
 	display: flex;
 	margin-left: -150px;
 	margin-right: -150px;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-links span {
-	max-width: 80px;
-	max-height: 80px;
+	max-width: 70px;
+	height: fit-content;
 	display: block;
 	margin: auto;
 	color: white;
-	background-color: #e92a1c;
+	background-color: rgb(216, 49, 57);
 	padding: 40px;
 	font-weight: bolder;
 	font-size: 20px;
 	border-radius: 100%;
+	z-index: 100;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-links span > img {
 	width: 100%;
 	height: 100%;
 }
-
-
-
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Animations */
 @keyframes slideShow {

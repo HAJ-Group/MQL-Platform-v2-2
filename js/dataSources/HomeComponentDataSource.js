@@ -1,21 +1,58 @@
 /* Global data source table for HomeComponent */
-let dbHomeProgram = [
+
+let dbHomestats1 = [
     {
-        id : 1,
-        modules : ["Ingénierie de l’Objet et Technologie Java","Technologie XML","Génie Logiciel & Modélisation UML","Bases de données","Audit & Qualité du Logiciel","Communication Professionnelle"]
+        title : 'Insertion Professionnelle entre 2015 et 2019',
+        type : 'bar',
+        labels : ['CAPGEMINI','CGI','CEGEDIM','UMANIS','ATOS','S2M','SGATS','ACCENTURE','SQLi','HPS','LNet Communication','Logic Group','Sopra Steria','BDSI Maroc','FEDASO'],
+        dataSet :
+            [
+                {
+                    label: 'Nombre/Société',
+                    data:[71,44,7,7,6,3,1,1,1,1,1,1,1,1,1],
+                    backgroundColor:'rgb(53, 69, 108)',
+                    borderColor:'rgb(216, 49, 57)',
+                    borderWidth: 1
+                }
+            ]
     },
     {
-        id : 2,
-        modules : ["Design Patterns","Ingénierie du Web","Architecture Java EE","Technologies Mobiles","Portails d’entreprises","Gestion de projets & Méthodes Agiles"]
+        title : 'Insertion définitive par rapport à l\'insertion en stage et le nombre des étudiatns',
+        type : 'bar',
+        labels : ['2009','2011','2012','2013','2014','2015','2016','2017'],
+        dataSet : [
+            {
+                label:'Nombre d\'étudiants',
+                data:[20,39,26,32,40,30,36,34],
+            },
+            {
+                label:'Insertion en stage',
+                data:[5,15,10,15,23,30,33,33],
+                backgroundColor:'rgb(216, 49, 57)',
+                borderColor:'rgb(53, 69, 108)',
+            },
+            {
+                label:'Insertion Définitive',
+                data:[4,13,9,12,22,27,32,31],
+                backgroundColor:'rgb(53, 69, 108)',
+                borderColor:'rgb(216, 49, 57)',
+            }
+        ],
     },
     {
-        id : 3,
-        modules : ["Frameworks Java EE","Plateforme Applicative Microsoft","Outils d’industrialisation & environnement Offshore","Business Intelligence & Big Data","Cloud Computing","Culture d’entreprise"]
+        title:'',
+        type:'pie',
+        labels:['Contrat CDI',''],
+        dataSet :[
+            {
+                label: 'Nombre/Société',
+                data: [147,13],
+                backgroundColor:'rgb(53, 69, 108)',
+                borderColor:'rgb(216, 49, 57)',
+                borderWidth: 1,
+            }
+        ]
     },
-    {
-        id : 4,
-        modules : ["Stage pré embauche dans des multinationales actives en développement offshore"]
-    }
 ];
 
 let dbHomeImages = [

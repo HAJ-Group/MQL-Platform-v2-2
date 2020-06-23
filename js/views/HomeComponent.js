@@ -5,25 +5,49 @@ function HomeComponent(service) {
 	this.table= $("#table-program");
 	this.table_news= $("#table-news");
 	this.news_idSaver = [];
+	this.currentPanel = $("#mql-presentation");
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-/**
- * Program table builder
- * @param program
- */
-HomeComponent.prototype.addColumn=function (program) {
-	let row = this.table.insertRow();
-	let cell = row.insertCell();
-	cell.innerHTML += "<span class='semester'>Semestre"+program.id +"</span>" + "<hr>" + "<ul>";
-	for (let i = 0; i < program.modules.length ; i++) {
-		cell.innerHTML+="<li>"+"M"+(i+1)+":"+program.modules[i]+"</li>";
+HomeComponent.prototype.show= function (id, element = null) {
+	let p=$('#'+id);
+	this.currentPanel.style["display"]="none";
+	p.style.display="block";
+	this.currentPanel= p;
+	// Active management
+	if(element !== null) {
+		for(let e of $('.home-span')) {
+			e.classList.remove('home-span-active');
+		}
+		element.classList.add('home-span-active');
 	}
-	cell.innerHTML += "</ul>" +"<br>";
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-HomeComponent.prototype.printSemesters=function () {
-	for (let i = 0; i < this.service.size(); i++) {
-		this.addColumn(this.service.get(i));
+// printStats
+HomeComponent.prototype.printStats= function () {
+	let i=0;
+	for (let stat of this.service.db){
+		let ctx = $('#myChart'+i).getContext('2d');
+		let myChart = new Chart(ctx, {
+			type: stat.type,
+			data: {
+				labels: stat.labels,
+				datasets: stat.dataSet
+			},
+			options: {
+				title: {
+					display: true,
+					text: stat.title,
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+		i++;
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -59,6 +83,19 @@ HomeComponent.prototype.setNewsRoutes = function () {
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.startPresenter = function() {
+	let counter = 0;
+	function handler() {
+		if(counter === 4) {
+			counter = 0;
+		}
+		if(counter > 0) views.home.hidePresented(counter - 1);
+		else views.home.hidePresented(3);
+		views.home.present(counter++);
+	}
+	setInterval(handler, 2000);
+};
+
 HomeComponent.prototype.present = function (id) {
 	$('.presenter-item')[id].style.opacity = '1';
 };
@@ -69,11 +106,12 @@ HomeComponent.prototype.hidePresented = function (id) {
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
-	service.load(dbHomeProgram);
+	service.load(dbHomestats1);
 	views['home'] = new HomeComponent(service);
-//	views.home.printSemesters();
-	// views.home.printNews();
-	// views.home.setNewsRoutes();
+	views['home'].printStats();
+	views.home.startPresenter();
+	views.home.printNews();
+	views.home.setNewsRoutes();
 	// stays last
 	addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
 	detect_subContent_trigger_left_bar('home');

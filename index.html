@@ -10,6 +10,8 @@
         <script src="js/scripts/main.js"></script>
 		<!-- STYLES -->
 		<link rel="stylesheet" href="css/style.css">
+		<!-- JS charts	-->
+		<script src="resources/jscharts/Chart.min.js"></script>
 		<!-- DATA SOURCE -->
 		<script src="js/dataSources/NewsComponentDataSource.js"></script>
 		<script src="js/dataSources/EventComponentDataSource.js"></script>
@@ -67,48 +69,18 @@
 				<div class="topnav"></div>
 			</header>
 			<!-- BODY -->
-
 			<div id="body">
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea">
 					<!-- Home Upper Area -->
-					<div id="presenter" class="presenter-container">
-						<div class="presenter-block">
-							<div onmouseover="views.home.present(0)" onmouseleave="views.home.hidePresented(0)" class="presenter-item">
-								<h1>Master Qualité Logiciel</h1>
-								<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
-							</div>
-							<div onmouseover="views.home.present(1)" onmouseleave="views.home.hidePresented(1)" class="presenter-item">
-								<h1>Coordonateur</h1>
-								<span><span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.</span>
-							</div>
-						</div>
-
-						<div class="presenter-center-block">
-							<div class="presenter-links">
-								<span><img src="resources/pictures/Home/img_170003.png" alt=""></span>
-								<span><img src="resources/pictures/Home/unnamed.png" alt=""></span>
-							</div>
-							<div class="presenter-center-logo">
-								<img src="resources/pictures/App/logoMQL2.png" alt="">
-							</div>
-							<div class="presenter-links">
-								<span>item 3</span>
-								<span>item 4</span>
-							</div>
-						</div>
-
-						<div class="presenter-block">
-							<div onmouseover="views.home.present(2)" onmouseleave="views.home.hidePresented(2)"  id="presenter-3" class="presenter-item">
-								<h1>Item 3</h1>
-								<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dignissimos, doloremque ducimus enim error minus nam nihil obcaecati odit quis, quos tempora, voluptas? Adipisci architecto perferendis quas ratione sed similique?</span>
-							</div>
-							<div onmouseover="views.home.present(3)" onmouseleave="views.home.hidePresented(3)"  id="presenter-4" class="presenter-item">
-								<h1>Item 4</h1>
-								<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam beatae consectetur culpa delectus distinctio error harum hic natus nesciunt nostrum, obcaecati, praesentium provident quas qui, sit tenetur unde vel.</span>
-							</div>
+					<div class="main-box">
+						<div id="slide-show" onclick="window.location.href='#book'" class="slide-show image"></div>
+						<div class="news">
+							<span> ACTUALITES MQL </span>
+							<table class="news-tab" id="table-news"></table>
 						</div>
 					</div>
+
 				</div>
 				<div id="NewsUpperArea">
 					<!-- News Upper Area -->
@@ -138,7 +110,6 @@
 					</div>
 				</div>
 				<div id="AreaUpperArea"></div>
-
 				<!-- Search Bar -->
 				<div id="search">
 					<div class="search-block">
@@ -146,11 +117,81 @@
 						<input id="key" class="search-input" onkeyup="search()" placeholder="Search..." type="text">
 						<span class="error-message"></span></div>
 				</div>
-
 				<!-- Components Main Areas-->
 				<div id="HomeComponent" >
 					<!-- Home Main Body -->
-					<div class="container container-bg">
+					<div class="home-presentation">
+						<div class="home-flex">
+							<div class="home-span title home-span-active" onclick="views.home.show('mql-presentation', this)"><span>Presentation </span></div>
+							<div class="home-span title" onclick="views.home.show('mql-coordinateur', this)"><span>Coordinateur</span></div>
+							<div class="home-span title" onclick="views.home.show('mql-stats', this)"><span>Statistiques</span></div>
+							<div class="home-span title" onclick="views.home.show('mql-etudiants', this)"><span>Etudiants</span></div>
+						</div>
+						<div class="cards">
+							<div id="mql-presentation" class="home-card">
+								<div id="presenter" class="presenter-container">
+									<div class="presenter-block">
+										<div class="presenter-item">
+											<h1>Master Qualité <br> Logiciel</h1>
+										</div>
+										<div class="presenter-item">
+											<h1>Coordinateur <br> Mr. Chenfour</h1>
+										</div>
+									</div>
+									<div class="presenter-center-block">
+										<div class="presenter-links">
+											<span><img src="resources/pictures/Home/img_170003.png" alt=""></span>
+											<span><img src="resources/pictures/Home/unnamed.png" alt=""></span>
+										</div>
+										<div class="presenter-center-logo">
+											<img src="resources/pictures/App/logoMQL.png" alt="">
+										</div>
+										<div class="presenter-links">
+											<span><img src="resources/pictures/Home/tech.png" alt=""></span>
+											<span><img src="resources/pictures/Home/enter.png" alt=""></span>
+										</div>
+									</div>
+									<div class="presenter-block">
+										<div id="presenter-3" class="presenter-item">
+											<h1>Les bonnes <br> pratiques <br> en technologies</h1>
+										</div>
+										<div id="presenter-4" class="presenter-item">
+											<h1>Meilleure fabrique <br> des meilleurs <br> étudiants</h1>
+										</div>
+									</div>
+								</div><hr>
+								<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
+								<p>Le Master «Qualité du Logiciel», créé en 2007 orienté vers l'insertion professionelle dans les multinationales, permet d’offrir aux étudiants une formation approfondie et des méthodes de travail de très haut niveau dans le domaine de la qualité du logiciel.</p>
+
+								<video class="mql-video" controls >
+									<source src="resources/videos/mql.mp4" type="video/mp4" >
+								</video>
+								<hr>
+								<p>Le Master MQL participe très activement dans le domaine de l’offshore. Le principal « client » MQL se trouve dans tous les parcs d’activité offshore et Outsourcing au Maroc et principalement Casablanca Nearshore Park, Rabat Technopolis et Fès Shore avec un taux d’insertion de 100% des étudiants dans des multinationales, MQL s’intéresse à:</p>
+								<ul>
+									<li>Former et spécialiser des étudiants sur les systèmes informatiques, plus précisément le développement logiciel ;</li>
+									<li>Doter les étudiants de compétences et de savoir faire dans les domaines d’ingénierie d’entreprises, l’intégration des systèmes clients - serveurs ainsi que les systèmes et applications répartis</li>
+								</ul>
+							</div>
+							<div id="mql-coordinateur" class="home-card hidden">
+								<div class="Chenfour">
+									<img class ="img" src="resources/pictures/Home/M.Chenfour.jpg" alt="">
+									<div> <span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.
+									</div>
+								</div>
+							</div>
+							<div id="mql-stats" class="home-card hidden">
+								<div class="chart-container" style=" display:flex; position: relative; height:200px; width:47%">
+									<canvas id="myChart0"></canvas>
+									<canvas id="myChart1" style="margin-left:50px ;"></canvas>
+								</div>
+								<div class="chart-container" style=" display:flex; margin-top:100px; ;position: relative; height:200px; width:47%">
+									<canvas id="myChart2"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container container-bg hidden">
 						<div id="HomeNavigation" class="left-menu">
 							<div class="menuitem wrap-blue">Navigation</div>
 							<hr>
@@ -167,7 +208,7 @@
 							<div><a class="menuitem" href="#mqlfamily">Galerie</a> </div>
 						</div>
 						<div id="HomeMain" class="sub-content">
-							<div id="presentation" class="presentation">
+							<div id="presentation" class="presentation" name="homeItem">
 								<div class="title home-title"> Master Qualité du Logiciel </div>
 								<div class="details home-details">
 									<div>
@@ -187,7 +228,7 @@
 									</ul>
 								</div>
 							</div>
-							<div id="prof" class="prof">
+							<div id="prof" class="prof" name="homeItem">
 								<div class="title home-title">Coordonateur : N.Chenfour</div>
 								<div  class="details home-details">
 									<div class="Chenfour">
@@ -198,7 +239,7 @@
 
 								</div>
 							</div>
-							<div id="mqliste" class="mqliste">
+							<div id="mqliste" class="mqliste" name="homeItem">
 								<div class="title home-title"> Accéder à MQL </div>
 								<div  class="details home-details">
 									<div>
@@ -247,7 +288,7 @@
 									</div>
 								</div>
 							</div>
-							<div id="program" class="program">
+							<div id="program" class="program" name="homeItem">
 								<div class="title home-title"> Programme </div>
 								<div  class="details home-details">
 									<p>Les modules constituent pour les apprenants un pré  requis scientifique important et pertinent pour une intégration réussie dans le monde professionnel, la formation permet aux étudiants d’acquérir une ouverture culturelle et une confiance en eux même (réalisations de mini projets et des projets de fin d’études, stages dans des entreprises, préparations des exposés………).</p>
@@ -257,7 +298,7 @@
 									<table id="table-program" class="table-program" border="2px"></table>
 								</div>
 							</div>
-							<div id="stats">
+							<div id="stats" name="homeItem">
 								<div class="title home-title"> Statistiques  </div>
 								<div  class="details home-details">
 									<p>La formation MQL : </p>
@@ -277,7 +318,7 @@
 									<img id='stat3' class="stats-image" src="resources/pictures/Home/cdi.png" alt="" onclick="popIMG(this.id)">
 								</div>
 							</div>
-							<div id="mqlfamily" class="mqlfamily">
+							<div id="mqlfamily" class="mqlfamily" name="homeItem">
 								<div class="title home-title"> Galerie  </div>
 								<div  class="details home-details">
 									<div class="book-images" id="book"></div>
