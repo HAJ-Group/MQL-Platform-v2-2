@@ -18,8 +18,8 @@ HomeComponentService.prototype.load = function(dbSource) {
     for (let i = 0; i < dbSource.length; i++) {
         this.add(
             new Home(
-                dbSource[i].id,
-                dbSource[i].modules
+                dbSource[i].label,
+                dbSource[i].value
             )
         )
     }

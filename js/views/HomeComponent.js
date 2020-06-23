@@ -8,31 +8,45 @@ function HomeComponent(service) {
 	this.currentPanel = $("#mql-presentation");
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-/**
- * Program table builder
- * @param program
- */
-HomeComponent.prototype.addColumn=function (program) {
-	let row = this.table.insertRow();
-	let cell = row.insertCell();
-	cell.innerHTML += "<span class='semester'>Semestre"+program.id +"</span>" + "<hr>" + "<ul>";
-	for (let i = 0; i < program.modules.length ; i++) {
-		cell.innerHTML+="<li>"+"M"+(i+1)+":"+program.modules[i]+"</li>";
-	}
-	cell.innerHTML += "</ul>" +"<br>";
-};
-/*--------------------------------------------------------------------------------------------------------------------*/
-HomeComponent.prototype.printSemesters=function () {
-	for (let i = 0; i < this.service.size(); i++) {
-		this.addColumn(this.service.get(i));
-	}
-};
-/*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.show= function (id) {
 	let p=$('#'+id);
 	this.currentPanel.style["display"]="none";
 	p.style.display="block";
 	this.currentPanel= p;
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+// printStats
+HomeComponent.prototype.printStats= function () {
+	for (let stat of this.service.db){
+
+	}
+	let ctx = $('#myChart').getContext('2d');
+	let myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: ['Capgemini', 'CGI', 'CEGEDIM', 'UMANIS', 'ATOS', 'S2M'],
+			datasets: [{
+				label: 'Nombre/Société',
+				data: [77, 44, 7, 7, 6, 3],
+				backgroundColor:'rgb(53, 69, 108)',
+				borderColor:'rgb(216, 49, 57)',
+				borderWidth: 1
+			}]
+		},
+		options: {
+			title: {
+				display: true,
+				text: 'Insertion professionnelle des mqlistes entre 2015 et 2019'
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		}
+	});
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -70,9 +84,9 @@ HomeComponent.prototype.setNewsRoutes = function () {
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
-	service.load(dbHomeProgram);
+	service.load(dbHomestats1);
 	views['home'] = new HomeComponent(service);
-//	views.home.printSemesters();
+	views['home'].printStats();
 	views.home.printNews();
 	views.home.setNewsRoutes();
 	// stays last

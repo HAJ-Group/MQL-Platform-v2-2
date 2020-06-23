@@ -10,6 +10,8 @@
         <script src="js/scripts/main.js"></script>
 		<!-- STYLES -->
 		<link rel="stylesheet" href="css/style.css">
+		<!-- JS charts	-->
+		<script src="resources/jscharts/Chart.min.js"></script>
 		<!-- DATA SOURCE -->
 		<script src="js/dataSources/NewsComponentDataSource.js"></script>
 		<script src="js/dataSources/EventComponentDataSource.js"></script>
@@ -80,10 +82,8 @@
 						<div class="home-flex">
 							<div class="home-span red" onclick="views.home.show('mql-presentation')"><span>Presentation </span></div>
 							<div class="home-span red" onclick="views.home.show('mql-coordinateur')"><span>Coordinateur</span></div>
-							<div class="home-span red"><span>Evenements</span></div>
-							<div class="home-span red"><span>Programme</span></div>
-							<div class="home-span red"><span>Statistiques</span></div>
-							<div class="home-span red"><span>Etudiants</span></div>
+							<div class="home-span red" onclick="views.home.show('mql-stats')"><span>Statistiques</span></div>
+							<div class="home-span red" onclick="views.home.show('mql-etudiants')"><span>Etudiants</span></div>
 						</div>
 						<div class="cards">
 							<div id="mql-presentation" class="home-card">
@@ -105,6 +105,12 @@
 									<img class ="img" src="resources/pictures/Home/M.Chenfour.jpg" alt="">
 									<div> <span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.
 									</div>
+								</div>
+							</div>
+							<div id="mql-stats" class="home-card hidden">
+								<div class="chart-container" style="position: relative; height:200px; width:50%; z-index: 100">
+									<canvas id="myChart"></canvas>
+									<canvas id="myChart2"></canvas>
 								</div>
 							</div>
 						</div>
