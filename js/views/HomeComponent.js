@@ -8,11 +8,18 @@ function HomeComponent(service) {
 	this.currentPanel = $("#mql-presentation");
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-HomeComponent.prototype.show= function (id) {
+HomeComponent.prototype.show= function (id, element = null) {
 	let p=$('#'+id);
 	this.currentPanel.style["display"]="none";
 	p.style.display="block";
 	this.currentPanel= p;
+	// Active management
+	if(element !== null) {
+		for(let e of $('.home-span')) {
+			e.classList.remove('home-span-active');
+		}
+		element.classList.add('home-span-active');
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 // printStats
@@ -76,12 +83,33 @@ HomeComponent.prototype.setNewsRoutes = function () {
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.startPresenter = function() {
+	let counter = 0;
+	function handler() {
+		if(counter === 4) {
+			counter = 0;
+		}
+		if(counter > 0) views.home.hidePresented(counter - 1);
+		else views.home.hidePresented(3);
+		views.home.present(counter++);
+	}
+	setInterval(handler, 2000);
+};
+
+HomeComponent.prototype.present = function (id) {
+	$('.presenter-item')[id].style.opacity = '1';
+};
+HomeComponent.prototype.hidePresented = function (id) {
+	$('.presenter-item')[id].style.opacity = '0';
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
 	service.load(dbHomestats1);
 	views['home'] = new HomeComponent(service);
 	views['home'].printStats();
+	views.home.startPresenter();
 	views.home.printNews();
 	views.home.setNewsRoutes();
 	// stays last

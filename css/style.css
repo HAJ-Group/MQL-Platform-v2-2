@@ -788,6 +788,9 @@ a.links:hover{
 .text-center {
     text-align: center;
 }
+.white-bg {
+    background-color: white;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 .el-center {
     width: 95%;
