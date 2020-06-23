@@ -10,6 +10,8 @@
         <script src="js/scripts/main.js"></script>
 		<!-- STYLES -->
 		<link rel="stylesheet" href="css/style.css">
+		<!-- JS charts	-->
+		<script src="resources/jscharts/Chart.min.js"></script>
 		<!-- DATA SOURCE -->
 		<script src="js/dataSources/NewsComponentDataSource.js"></script>
 		<script src="js/dataSources/EventComponentDataSource.js"></script>
@@ -66,10 +68,56 @@
 				</div>
 				<div class="topnav"></div>
 			</header>
+			<marquee behavior="scroll" direction="left">test</marquee>
 			<!-- BODY -->
 			<div id="body">
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea">
+					<!--TEST NEW HOME-->
+					<div class="home-presentation">
+						<div class="home-logo">
+							<img src="resources/pictures/App/mql-png.png" alt="">
+							<span class="blue">La Première passerelle d’Insertion Professionnelle en Informatique au Maroc</span>
+						</div>
+						<div class="home-flex">
+							<div class="home-span red" onclick="views.home.show('mql-presentation')"><span>Presentation </span></div>
+							<div class="home-span red" onclick="views.home.show('mql-coordinateur')"><span>Coordinateur</span></div>
+							<div class="home-span red" onclick="views.home.show('mql-stats')"><span>Statistiques</span></div>
+							<div class="home-span red" onclick="views.home.show('mql-etudiants')"><span>Etudiants</span></div>
+						</div>
+						<div class="cards">
+							<div id="mql-presentation" class="home-card">
+								<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
+								<p>Le Master «Qualité du Logiciel», créé en 2007 orienté vers l'insertion professionelle dans les multinationales, permet d’offrir aux étudiants une formation approfondie et des méthodes de travail de très haut niveau dans le domaine de la qualité du logiciel.</p>
+
+								<video class="mql-video" controls >
+									<source src="resources/videos/mql.mp4" type="video/mp4" >
+								</video>
+								<hr>
+								<p>Le Master MQL participe très activement dans le domaine de l’offshore. Le principal « client » MQL se trouve dans tous les parcs d’activité offshore et Outsourcing au Maroc et principalement Casablanca Nearshore Park, Rabat Technopolis et Fès Shore avec un taux d’insertion de 100% des étudiants dans des multinationales, MQL s’intéresse à:</p>
+								<ul>
+									<li>Former et spécialiser des étudiants sur les systèmes informatiques, plus précisément le développement logiciel ;</li>
+									<li>Doter les étudiants de compétences et de savoir faire dans les domaines d’ingénierie d’entreprises, l’intégration des systèmes clients - serveurs ainsi que les systèmes et applications répartis</li>
+								</ul>
+							</div>
+							<div id="mql-coordinateur" class="home-card hidden">
+								<div class="Chenfour">
+									<img class ="img" src="resources/pictures/Home/M.Chenfour.jpg" alt="">
+									<div> <span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.
+									</div>
+								</div>
+							</div>
+							<div id="mql-stats" class="home-card hidden">
+								<div class="chart-container" style=" display:flex; position: relative; height:200px; width:47%">
+									<canvas id="myChart0"></canvas>
+									<canvas id="myChart1" style="margin-left:50px ;"></canvas>
+								</div>
+								<div class="chart-container" style=" display:flex; margin-top:100px; ;position: relative; height:200px; width:47%">
+									<canvas id="myChart2"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
 					<!-- Home Upper Area -->
 					<div id="presenter" class="presenter-container">
 						<div class="presenter-block">

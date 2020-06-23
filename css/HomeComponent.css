@@ -1,4 +1,44 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
+.home-presentation{
+	min-height: 100vh;
+	width: 100%;
+}
+.home-logo > img {
+	display: flex;
+	justify-content: center;
+	margin: 30px auto;
+}
+.home-logo> span{
+	display: flex;
+	justify-content: center;
+	margin: 30px auto;
+}
+.home-flex{
+	display: flex;
+}
+.home-span {
+	margin-top: 10px;
+	padding: 10px;
+	width: 100%;
+	cursor: pointer;
+}
+.home-span span {
+	display: flex;
+	justify-content: center;
+	border-bottom: 1px solid rgb(53, 69, 108);
+}
+.home-span span:hover {
+    color: rgb(53, 69, 108);
+    border-bottom: 1px solid rgb(216, 49, 57);
+}
+.home-card {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid lightgray;
+	min-height: 650px;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
 .main-box{
 	display: flex;
 	margin-top: 5px;
@@ -150,7 +190,7 @@ a:hover {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .mql-video {
-	width: 100%;
+	width: 50%;
 	border: 2px solid rgb(53, 69, 108);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
