@@ -8,11 +8,18 @@ function HomeComponent(service) {
 	this.currentPanel = $("#mql-presentation");
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-HomeComponent.prototype.show= function (id) {
+HomeComponent.prototype.show= function (id, element = null) {
 	let p=$('#'+id);
 	this.currentPanel.style["display"]="none";
 	p.style.display="block";
 	this.currentPanel= p;
+	// Active management
+	if(element !== null) {
+		for(let e of $('.home-span')) {
+			e.classList.remove('home-span-active');
+		}
+		element.classList.add('home-span-active');
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 // printStats
@@ -102,8 +109,6 @@ function HomeMain() {
 	service.load(dbHomestats1);
 	views['home'] = new HomeComponent(service);
 	views['home'].printStats();
-	views.home.printNews();
-	views.home.setNewsRoutes();
 	views.home.startPresenter();
 //	views.home.printSemesters();
 	// views.home.printNews();

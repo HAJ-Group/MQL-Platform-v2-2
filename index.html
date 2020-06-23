@@ -73,20 +73,47 @@
 			<div id="body">
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea">
-					<!--TEST NEW HOME-->
+					<!-- Home Upper Area -->
 					<div class="home-presentation">
-						<div class="home-logo">
-							<img src="resources/pictures/App/mql-png.png" alt="">
-							<span class="blue">La Première passerelle d’Insertion Professionnelle en Informatique au Maroc</span>
-						</div>
 						<div class="home-flex">
-							<div class="home-span red" onclick="views.home.show('mql-presentation')"><span>Presentation </span></div>
-							<div class="home-span red" onclick="views.home.show('mql-coordinateur')"><span>Coordinateur</span></div>
-							<div class="home-span red" onclick="views.home.show('mql-stats')"><span>Statistiques</span></div>
-							<div class="home-span red" onclick="views.home.show('mql-etudiants')"><span>Etudiants</span></div>
+							<div class="home-span title home-span-active" onclick="views.home.show('mql-presentation', this)"><span>Presentation </span></div>
+							<div class="home-span title" onclick="views.home.show('mql-coordinateur', this)"><span>Coordinateur</span></div>
+							<div class="home-span title" onclick="views.home.show('mql-stats', this)"><span>Statistiques</span></div>
+							<div class="home-span title" onclick="views.home.show('mql-etudiants', this)"><span>Etudiants</span></div>
 						</div>
 						<div class="cards">
 							<div id="mql-presentation" class="home-card">
+								<div id="presenter" class="presenter-container">
+									<div class="presenter-block">
+										<div class="presenter-item">
+											<h1>Master Qualité <br> Logiciel</h1>
+										</div>
+										<div class="presenter-item">
+											<h1>Coordinateur <br> Mr. Chenfour</h1>
+										</div>
+									</div>
+									<div class="presenter-center-block">
+										<div class="presenter-links">
+											<span><img src="resources/pictures/Home/img_170003.png" alt=""></span>
+											<span><img src="resources/pictures/Home/unnamed.png" alt=""></span>
+										</div>
+										<div class="presenter-center-logo">
+											<img src="resources/pictures/App/logoMQL.png" alt="">
+										</div>
+										<div class="presenter-links">
+											<span><img src="resources/pictures/Home/tech.png" alt=""></span>
+											<span><img src="resources/pictures/Home/enter.png" alt=""></span>
+										</div>
+									</div>
+									<div class="presenter-block">
+										<div id="presenter-3" class="presenter-item">
+											<h1>Les bonnes <br> pratiques <br> en technologies</h1>
+										</div>
+										<div id="presenter-4" class="presenter-item">
+											<h1>Meilleure fabrique <br> des meilleurs <br> étudiants</h1>
+										</div>
+									</div>
+								</div><hr>
 								<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
 								<p>Le Master «Qualité du Logiciel», créé en 2007 orienté vers l'insertion professionelle dans les multinationales, permet d’offrir aux étudiants une formation approfondie et des méthodes de travail de très haut niveau dans le domaine de la qualité du logiciel.</p>
 
@@ -115,38 +142,6 @@
 								<div class="chart-container" style=" display:flex; margin-top:100px; ;position: relative; height:200px; width:47%">
 									<canvas id="myChart2"></canvas>
 								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Home Upper Area -->
-					<div id="presenter" class="presenter-container">
-						<div class="presenter-block">
-							<div class="presenter-item">
-								<h1>Master Qualité <br> Logiciel</h1>
-							</div>
-							<div class="presenter-item">
-								<h1>Coordinateur <br> Mr. Chenfour</h1>
-							</div>
-						</div>
-						<div class="presenter-center-block">
-							<div class="presenter-links">
-								<span><img src="resources/pictures/Home/img_170003.png" alt=""></span>
-								<span><img src="resources/pictures/Home/unnamed.png" alt=""></span>
-							</div>
-							<div class="presenter-center-logo">
-								<img src="resources/pictures/App/logoMQL2.png" alt="">
-							</div>
-							<div class="presenter-links">
-								<span><img src="resources/pictures/Home/tech.png" alt=""></span>
-								<span><img src="resources/pictures/Home/enter.png" alt=""></span>
-							</div>
-						</div>
-						<div class="presenter-block">
-							<div id="presenter-3" class="presenter-item">
-								<h1>Les bonnes <br> pratiques <br> en technologies</h1>
-							</div>
-							<div id="presenter-4" class="presenter-item">
-								<h1>Meilleure fabrique <br> des meilleurs <br> étudiants</h1>
 							</div>
 						</div>
 					</div>
@@ -189,7 +184,7 @@
 				<!-- Components Main Areas-->
 				<div id="HomeComponent" >
 					<!-- Home Main Body -->
-					<div class="container container-bg">
+					<div class="container container-bg hidden">
 						<div id="HomeNavigation" class="left-menu">
 							<div class="menuitem wrap-blue">Navigation</div>
 							<hr>

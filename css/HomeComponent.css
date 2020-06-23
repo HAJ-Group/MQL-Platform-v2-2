@@ -8,7 +8,7 @@
 	justify-content: center;
 	margin: 30px auto;
 }
-.home-logo> span{
+.home-logo > span{
 	display: flex;
 	justify-content: center;
 	margin: 30px auto;
@@ -25,19 +25,34 @@
 .home-span span {
 	display: flex;
 	justify-content: center;
-	border-bottom: 1px solid rgb(53, 69, 108);
+	border-bottom: 3px solid rgb(53, 69, 108);
+	padding-top: 20px;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
 }
 .home-span span:hover {
     color: rgb(53, 69, 108);
     border-bottom: 1px solid rgb(216, 49, 57);
 }
-.home-card {
-    margin: 5px;
-    padding: 5px;
-    border: 1px solid lightgray;
-	min-height: 650px;
+
+.home-span-active span {
+	color: white;
+	background-color: rgb(216, 49, 57);
 }
 
+.home-card {
+	font-family: "Open Sans",Consolas, serif;
+	text-align: justify;
+	font-size: 20px;
+    margin: 5px;
+    padding: 20px;
+    border: 1px solid lightgray;
+	min-height: 650px;
+	border-radius: 10px;
+}
+.cards {
+	background-color: #fff;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 .main-box{
 	display: flex;
@@ -265,7 +280,7 @@ a:hover {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-item h1 {
-	color: #e92a1c;
+	color: rgb(216, 49, 57);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-links {
@@ -280,7 +295,7 @@ a:hover {
 	display: block;
 	margin: auto;
 	color: white;
-	background-color: #e92a1c;
+	background-color: rgb(216, 49, 57);
 	padding: 40px;
 	font-weight: bolder;
 	font-size: 20px;
