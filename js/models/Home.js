@@ -1,5 +1,7 @@
 /* Default Model for HomeComponent */ 
-function Home(id,modules) {
-	this.id = id;
-	this.modules=modules;
-} 
+function Home(title,type,labels,dataSet) {
+	this.title = title;
+	this.type = type;
+	this.labels = labels;
+	this.dataSet = dataSet;
+}

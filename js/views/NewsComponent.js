@@ -1,7 +1,7 @@
 /*Global Variables*/
 const MAX_NEWS_PER_PAGE = 5;
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*Default class*/ 
+/*Default class*/
 function NewsComponent(service) {
 	this.service = service;
 	// this.table = this.get('table-NewsID');
@@ -67,12 +67,27 @@ NewsComponent.prototype.fillAutoBox = function() {
 /**
  * Create navigation menu dynamically
  */
-NewsComponent.prototype.fillNavigation = function () {
+/*NewsComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	for(let news of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildLINK('#news-' + news.id, news.title, cls('menuitem'))
+		]));
+	}
+};*/
+
+NewsComponent.prototype.fillNavigation = function () {
+	this.block_nav.innerHTML = this.htmlSaver.nav;
+	this.block_nav.appendChild(buildDIV([
+		buildSPAN('All News', wrapCI(['menuitem', 'd-none'],'all-news',[
+			{name:'onclick', value:'views.news.navigate()'}]))
+	]));
+	for(let news of this.page_blocks[current_page_number - 1]) {
+		this.block_nav.appendChild(buildHR());
+		this.block_nav.appendChild(buildDIV([
+			buildSPAN(news.title, wrapCI('menuitem','nav-news-' + news.id ,[
+				{name:'onclick', value:'views.news.selectNews(' + news.id + ');  markAsSelected('+ news.id +', \'news\')'}]))
 		]));
 	}
 };
@@ -134,10 +149,43 @@ NewsComponent.prototype.navigate = function(page_number=1, top=false) {
 	this.fillNavigation();
 	this.fillMain();
 	this.fillSwitcher();
-    addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
-	detect_subContent_trigger_left_bar();
-    if(top) window.location.href = '#main';
+	addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
+	detect_subContent_trigger_left_bar('news');
+	$('#all-news').style.display = 'none';
+	if(top) window.location.href = '#main';
 };
+
+NewsComponent.prototype.selectNews = function(id){
+	for (let i = 0; i < this.service.size(); i++) {
+		if (this.service.get(i).id === id){
+			this.displayNews(this.service.get(i));
+		}
+	}
+};
+
+NewsComponent.prototype.displayNews = function(news){
+	this.block_main = $('#NewsMain');
+	let titleDiv = buildDIV([
+		buildDIV(news.title, cls(['title', 'news-title'])),
+	], id('news-' + news.id));
+	let detailsDiv = buildDIV([
+		buildElement('p', formattedDate(news.date), cls('date')),
+		buildElement('p', news.description),
+	], cls(['details', 'news-details']));
+	let rowDiv = buildDIV(null, cls('row'));
+	let columnSpan = buildSPAN(null, cls('column'));
+	for(let image of news.images) {
+		columnSpan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [
+			{name:'onclick', value:'popIMG(this.id)'}
+		])));
+	}
+	rowDiv.appendChild(columnSpan);
+	detailsDiv.appendChild(rowDiv);
+	titleDiv.appendChild(detailsDiv);
+	this.block_main.innerHTML = null;
+	this.block_main.appendChild(titleDiv);
+}
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.trigger = function () {
 	try {
@@ -235,7 +283,7 @@ NewsComponent.prototype.triggerSubmit = function () {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */ 
+/* Main Function */
 function NewsMain() {
 	let service = new NewsComponentService();
 	service.load(dbNews);
