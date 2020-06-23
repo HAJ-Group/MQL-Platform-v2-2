@@ -124,9 +124,13 @@ function switchComponent() {
     for(let c of navs) {
         $('#' + c.name + 'UpperArea').style.display = 'none';
         $('#' + c.name + 'Component').style.display = 'none';
+        $('#search').style.display = 'none';
     }
     $('#' + current_component + 'UpperArea').style.display = 'block';
     $('#' + current_component + 'Component').style.display = 'block';
+    if(current_component === 'News' || current_component === 'Event' || current_component === 'Laureate') {
+        $('#search').style.display = 'block';
+    }
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Action Functions */

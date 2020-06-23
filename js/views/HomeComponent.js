@@ -59,7 +59,6 @@ HomeComponent.prototype.setNewsRoutes = function () {
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-
 HomeComponent.prototype.startPresenter = function() {
 	let counter = 0;
 	function handler() {
