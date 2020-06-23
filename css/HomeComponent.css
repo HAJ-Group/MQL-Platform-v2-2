@@ -15,6 +15,9 @@
 }
 .home-flex{
 	display: flex;
+	flex-wrap: wrap;
+/*	justify-content: space-around;*/
+
 }
 .home-span {
 	margin-top: 10px;
@@ -196,6 +199,95 @@ a:hover {
 	opacity: 0.7;
 	cursor: pointer;
 }
+
+.switch-promotions{
+	display: flex;
+	justify-content: center;
+	margin: auto
+}
+
+.first-ball, .second-ball{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.9;
+	background-color: #0e2f4e;
+	color: whitesmoke;
+}
+
+.first-ball{
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+	cursor: pointer;
+
+}
+
+.line-between-balls{
+	width: 140px;
+	height: 5px;
+	margin-top: 32px;
+	background-color: cornflowerblue;
+}
+
+.second-ball{
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+	cursor: pointer;
+
+}
+
+.first-ball:hover, .second-ball:hover{
+	opacity: 1;
+	color: whitesmoke;
+	background-color: #c1350d;
+	color: whitesmoke;
+}
+
+.student-table{
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin: 20px auto 0 auto;
+	font-family: "Open Sans", Consolas, serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+table.student-table{
+	width: 80%;
+}
+
+.student-table > thead > th {
+	padding: 15px;
+	background-color: #0e2f4e;
+	color: white;
+	border: 1px lightgray solid;
+	border-radius: 0;
+}
+
+.student-table > tbody > tr > td {
+	padding: 15px;
+	border-radius: 0;
+}
+
+.student-table > tbody > tr:nth-child(even) {
+	background-color: #eee;
+}
+.student-table > tbody > tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Animations */
 @keyframes slideShow {

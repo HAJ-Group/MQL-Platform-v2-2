@@ -79,10 +79,7 @@
 						<div class="home-flex">
 							<div class="home-span red" onclick="views.home.show('mql-presentation')"><span>Presentation </span></div>
 							<div class="home-span red" onclick="views.home.show('mql-coordinateur')"><span>Coordinateur</span></div>
-							<div class="home-span red"><span>Evenements</span></div>
-							<div class="home-span red"><span>Programme</span></div>
-							<div class="home-span red"><span>Statistiques</span></div>
-							<div class="home-span red"><span>Etudiants</span></div>
+							<div class="home-span red" onclick="views.home.show('mql-students')"><span>Etudiants</span></div>
 						</div>
 						<div class="cards">
 							<div id="mql-presentation" class="home-card">
@@ -105,6 +102,29 @@
 									<div> <span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.
 									</div>
 								</div>
+							</div>
+
+							<div id="mql-students" class="home-card hidden">
+								<div class="switch-promotions">
+									<div class="first-ball" id="first-ball" onclick="views.home.showPromotion('table1')">
+										M1
+									</div>
+									<div class="line-between-balls">
+
+									</div>
+									<div class="second-ball" id="second-ball" onclick="views.home.showPromotion('table2')">
+										M2
+									</div>
+								</div>
+								<div id="table1">
+									<table class="student-table" id = "m1-list-students">
+									</table>
+								</div>
+								<div id="table2" class="hidden">
+									<table class="student-table" id = "m2-list-students">
+									</table>
+								</div>
+
 							</div>
 						</div>
 					</div>

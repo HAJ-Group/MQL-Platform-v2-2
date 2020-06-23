@@ -4,8 +4,11 @@ function HomeComponent(service) {
 	this.service = service;
 	this.table= $("#table-program");
 	this.table_news= $("#table-news");
+	this.firstPromotionStudentsTable = $('#m1-list-students');
+	this.secondPromotionStudentsTable = $('#m2-list-students');
 	this.news_idSaver = [];
 	this.currentPanel = $("#mql-presentation");
+	this.currentPromotionPanel = $("#table1");
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -33,7 +36,57 @@ HomeComponent.prototype.show= function (id) {
 	this.currentPanel.style["display"]="none";
 	p.style.display="block";
 	this.currentPanel= p;
+};
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+HomeComponent.prototype.addStudentToTable = function(student, tableReference){
+	// The content of the table
+	let row = tableReference.insertRow();
+	row.insertCell().innerHTML = student.id;
+	row.insertCell().innerHTML = student.firstName;
+	row.insertCell().innerHTML = student.lastName;
 }
+
+HomeComponent.prototype.printStudents = function () {
+
+	this.tablesHeaders(this.firstPromotionStudentsTable);
+	this.firstPromotionStudentsTable.createTBody();
+	for (let i = 0; i < this.service.sizeFirstCollection(); i++){
+		this.addStudentToTable(this.service.getStudentFromFirstCollection(i), this.firstPromotionStudentsTable)
+	}
+
+	this.tablesHeaders(this.secondPromotionStudentsTable);
+	this.secondPromotionStudentsTable.createTBody();
+	for (let i = 0; i < this.service.sizeSecondCollection(); i++){
+		this.addStudentToTable(this.service.getStudentFromSecondCollection(i), this.secondPromotionStudentsTable)
+	}
+
+};
+
+HomeComponent.prototype.tablesHeaders = function(reference){
+	// The header of the table
+	let header = reference.createTHead();
+	let number = buildElement('th', 'Numéro');
+	let firstName = buildElement('th', 'Nom');
+	let lastName = buildElement('th', 'Prénom');
+	header.appendChild(number);
+	header.appendChild(firstName);
+	header.appendChild(lastName);
+};
+
+HomeComponent.prototype.showPromotion = function (id) {
+	let newPanel = $('#' + id);
+	this.currentPromotionPanel.style["display"] = "none";
+	this.currentPromotionPanel.style.color = '#0e2f4e';
+	newPanel.style.display = "block";
+	newPanel.style.color = '#c1350d';
+	this.currentPromotionPanel = newPanel;
+};
+
+
+
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * News Table builder (Related Service with NewsComponent)
@@ -70,11 +123,12 @@ HomeComponent.prototype.setNewsRoutes = function () {
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
-	service.load(dbHomeProgram);
+	service.loadAllData(dbHomeProgram, dbStudents[0].data, dbStudents[1].data);
 	views['home'] = new HomeComponent(service);
 //	views.home.printSemesters();
 	views.home.printNews();
 	views.home.setNewsRoutes();
+	views.home.printStudents();
 	// stays last
 	addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
 	detect_subContent_trigger_left_bar('home');
