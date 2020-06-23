@@ -17,36 +17,31 @@ HomeComponent.prototype.show= function (id) {
 /*--------------------------------------------------------------------------------------------------------------------*/
 // printStats
 HomeComponent.prototype.printStats= function () {
+	let i=0;
 	for (let stat of this.service.db){
-
-	}
-	let ctx = $('#myChart').getContext('2d');
-	let myChart = new Chart(ctx, {
-		type: 'bar',
-		data: {
-			labels: ['Capgemini', 'CGI', 'CEGEDIM', 'UMANIS', 'ATOS', 'S2M'],
-			datasets: [{
-				label: 'Nombre/Société',
-				data: [77, 44, 7, 7, 6, 3],
-				backgroundColor:'rgb(53, 69, 108)',
-				borderColor:'rgb(216, 49, 57)',
-				borderWidth: 1
-			}]
-		},
-		options: {
-			title: {
-				display: true,
-				text: 'Insertion professionnelle des mqlistes entre 2015 et 2019'
+		let ctx = $('#myChart'+i).getContext('2d');
+		let myChart = new Chart(ctx, {
+			type: stat.type,
+			data: {
+				labels: stat.labels,
+				datasets: stat.dataSet
 			},
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: true
-					}
-				}]
+			options: {
+				title: {
+					display: true,
+					text: stat.title,
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
 			}
-		}
-	});
+		});
+		i++;
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
