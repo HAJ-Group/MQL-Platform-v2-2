@@ -53,8 +53,6 @@ HomeComponent.prototype.printStats= function () {
 		i++;
 	}
 };
-};
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 HomeComponent.prototype.addStudentToTable = function(student, tableReference){

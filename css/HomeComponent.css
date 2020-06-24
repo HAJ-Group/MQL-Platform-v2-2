@@ -1,4 +1,8 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
+.home-container {
+	display: none;
+}
+
 .home-presentation{
 	min-height: 100vh;
 	width: 100%;
@@ -15,7 +19,6 @@
 }
 .home-flex{
 	display: flex;
-	flex-wrap: wrap;
 /*	justify-content: space-around;*/
 
 }
@@ -424,6 +427,14 @@ table.student-table{
 
 	.container {
 		background-image: none;
+	}
+
+	.home-presentation {
+		display: none;
+	}
+
+	.home-container {
+		display: block;
 	}
 
 	.main-box {
