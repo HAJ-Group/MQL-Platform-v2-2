@@ -46,8 +46,8 @@ HomeComponent.prototype.addStudentToTable = function(student, tableReference){
 	row.insertCell().innerHTML = student.id;
 	row.insertCell().innerHTML = student.firstName;
 	row.insertCell().innerHTML = student.lastName;
-}
-
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.printStudents = function () {
 
 	this.tablesHeaders(this.firstPromotionStudentsTable);
@@ -63,9 +63,19 @@ HomeComponent.prototype.printStudents = function () {
 	}
 
 };
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.tablesHeaders = function(reference){
-	// The header of the table
+	// The header of the table and adjusting size of columns
+	let col = buildElement('col');
+	let col2 = buildElement('col');
+	let col3 = buildElement('col');
+	col.setAttribute('style', 'width: 20%');
+	col2.setAttribute('style', 'width: 40%');
+	col3.setAttribute('style', 'width: 40%');
+	reference.appendChild(col);
+	reference.appendChild(col2);
+	reference.appendChild(col3);
+
 	let header = reference.createTHead();
 	let number = buildElement('th', 'Numéro');
 	let firstName = buildElement('th', 'Nom');
@@ -74,19 +84,14 @@ HomeComponent.prototype.tablesHeaders = function(reference){
 	header.appendChild(firstName);
 	header.appendChild(lastName);
 };
-
-HomeComponent.prototype.showPromotion = function (id) {
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.showPromotion = function (id, ballId) {
 	let newPanel = $('#' + id);
 	this.currentPromotionPanel.style["display"] = "none";
-	this.currentPromotionPanel.style.color = '#0e2f4e';
 	newPanel.style.display = "block";
-	newPanel.style.color = '#c1350d';
 	this.currentPromotionPanel = newPanel;
+
 };
-
-
-
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * News Table builder (Related Service with NewsComponent)

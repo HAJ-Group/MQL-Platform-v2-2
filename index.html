@@ -106,13 +106,13 @@
 
 							<div id="mql-students" class="home-card hidden">
 								<div class="switch-promotions">
-									<div class="first-ball" id="first-ball" onclick="views.home.showPromotion('table1')">
+									<div class="first-ball red-ball" id="first-ball" onclick="views.home.showPromotion('table1'); switchColorOfSelectedElement('first-ball', 'second-ball');">
 										M1
 									</div>
 									<div class="line-between-balls">
 
 									</div>
-									<div class="second-ball" id="second-ball" onclick="views.home.showPromotion('table2')">
+									<div class="second-ball" id="second-ball" onclick="views.home.showPromotion('table2'); switchColorOfSelectedElement('second-ball', 'first-ball');">
 										M2
 									</div>
 								</div>
