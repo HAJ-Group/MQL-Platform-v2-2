@@ -744,7 +744,7 @@ function firstLetterUppercase(arg) {
     }
     return ret;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 function search() {
     if(current_component === 'News') {
         views.news.filterKey();
@@ -756,7 +756,7 @@ function search() {
         views.laureate.filterKey();
     }
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 function markAsSelected(id, component) {
     $('#all-' + component).style.display = 'block';
     let targets = document.getElementsByClassName('wrap-red');
@@ -764,6 +764,11 @@ function markAsSelected(id, component) {
         t.classList.remove('wrap-red');
     }
     $('#nav-' + component + '-' + id).classList.add('wrap-red');
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+function switchColorOfSelectedElement(id, id2) {
+    $('#' + id).classList.add('red-ball');
+    $('#' + id2).classList.remove('red-ball');
 }
 
 

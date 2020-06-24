@@ -193,6 +193,28 @@
 									<canvas id="myChart2"></canvas>
 								</div>
 							</div>
+                            <div id="mql-students" class="home-card hidden">
+                                <div class="switch-promotions">
+                                    <div class="first-ball red-ball" id="first-ball" onclick="views.home.showPromotion('table1'); switchColorOfSelectedElement('first-ball', 'second-ball');">
+                                        M1
+                                    </div>
+                                    <div class="line-between-balls">
+
+                                    </div>
+                                    <div class="second-ball" id="second-ball" onclick="views.home.showPromotion('table2'); switchColorOfSelectedElement('second-ball', 'first-ball');">
+                                        M2
+                                    </div>
+                                </div>
+                                <div id="table1">
+                                    <table class="student-table" id = "m1-list-students">
+                                    </table>
+                                </div>
+                                <div id="table2" class="hidden">
+                                    <table class="student-table" id = "m2-list-students">
+                                    </table>
+                                </div>
+
+                            </div>
 						</div>
 					</div>
 					<div class="container container-bg hidden">

@@ -4,8 +4,11 @@ function HomeComponent(service) {
 	this.service = service;
 	this.table= $("#table-program");
 	this.table_news= $("#table-news");
+	this.firstPromotionStudentsTable = $('#m1-list-students');
+	this.secondPromotionStudentsTable = $('#m2-list-students');
 	this.news_idSaver = [];
 	this.currentPanel = $("#mql-presentation");
+	this.currentPromotionPanel = $("#table1");
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.show= function (id, element = null) {
@@ -49,6 +52,62 @@ HomeComponent.prototype.printStats= function () {
 		});
 		i++;
 	}
+};
+};
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+HomeComponent.prototype.addStudentToTable = function(student, tableReference){
+	// The content of the table
+	let row = tableReference.insertRow();
+	row.insertCell().innerHTML = student.id;
+	row.insertCell().innerHTML = student.firstName;
+	row.insertCell().innerHTML = student.lastName;
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.printStudents = function () {
+
+	this.tablesHeaders(this.firstPromotionStudentsTable);
+	this.firstPromotionStudentsTable.createTBody();
+	for (let i = 0; i < this.service.sizeFirstCollection(); i++){
+		this.addStudentToTable(this.service.getStudentFromFirstCollection(i), this.firstPromotionStudentsTable)
+	}
+
+	this.tablesHeaders(this.secondPromotionStudentsTable);
+	this.secondPromotionStudentsTable.createTBody();
+	for (let i = 0; i < this.service.sizeSecondCollection(); i++){
+		this.addStudentToTable(this.service.getStudentFromSecondCollection(i), this.secondPromotionStudentsTable)
+	}
+
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.tablesHeaders = function(reference){
+	// The header of the table and adjusting size of columns
+	let col = buildElement('col');
+	let col2 = buildElement('col');
+	let col3 = buildElement('col');
+	col.setAttribute('style', 'width: 20%');
+	col2.setAttribute('style', 'width: 40%');
+	col3.setAttribute('style', 'width: 40%');
+	reference.appendChild(col);
+	reference.appendChild(col2);
+	reference.appendChild(col3);
+
+	let header = reference.createTHead();
+	let number = buildElement('th', 'Numéro');
+	let firstName = buildElement('th', 'Nom');
+	let lastName = buildElement('th', 'Prénom');
+	header.appendChild(number);
+	header.appendChild(firstName);
+	header.appendChild(lastName);
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.showPromotion = function (id, ballId) {
+	let newPanel = $('#' + id);
+	this.currentPromotionPanel.style["display"] = "none";
+	newPanel.style.display = "block";
+	this.currentPromotionPanel = newPanel;
+
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -106,12 +165,13 @@ HomeComponent.prototype.hidePresented = function (id) {
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
-	service.load(dbHomestats1);
+	service.loadAllData(dbHomestats1, dbStudents[0].data, dbStudents[1].data);
 	views['home'] = new HomeComponent(service);
 	views['home'].printStats();
 	views.home.startPresenter();
 	// views.home.printNews();
 	// views.home.setNewsRoutes();
+    views.home.printStudents();
 	// stays last
 	addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
 	detect_subContent_trigger_left_bar('home');
