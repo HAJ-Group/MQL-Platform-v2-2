@@ -114,8 +114,9 @@ function collapse(){
 }
 /* Tree model --------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-let last_chosen_branch;
+let toggle = false;
 ActivityComponent.prototype.showBranch = function(id) {
+	toggle = !toggle;
 	let titles = document.getElementsByClassName('branch-title');
 	let branches = document.getElementsByClassName('branch-content');
 	for(let t of titles) {
@@ -124,10 +125,9 @@ ActivityComponent.prototype.showBranch = function(id) {
 	for(let b of branches) {
 		b.style.display = 'none';
 	}
-	if(id !== last_chosen_branch) {
+	if(toggle) {
 		titles[id].classList.add('branch-active');
 		branches[id].style.display = 'block';
-		last_chosen_branch = id;
 	}
 };
 /**-------------------------------------------------------------------------------------------------------------------*/
