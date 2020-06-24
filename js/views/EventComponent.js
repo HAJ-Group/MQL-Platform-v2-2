@@ -88,7 +88,7 @@ EventComponent.prototype.fillNavigation = function () {
 		buildSPAN('All Events', wrapCI(['menuitem', 'd-none'],'all-event',[
 			{name:'onclick', value:'views.event.navigate()'}]))
 	]));
-	for(let event of this.page_blocks[current_page_number - 1]) {
+	for(let event of this.service.db) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(event.title, wrapCI('menuitem','nav-event-' + event.id ,[
@@ -256,6 +256,8 @@ EventComponent.prototype.displayEvent = function(event) {
 	for(let show of shows) {
 		createBook(show.book_pics, show.book_name);
 	}
+	this.block_switch.innerHTML = '';
+	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
 };
 
 
