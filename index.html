@@ -5,9 +5,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width" />
         <title>MQL Platform</title>
-		<script src="js/scripts/ElementFactory.js"></script>
+		<script src="js/app/ElementFactory.js"></script>
         <script src="js/app/AppContents.js"></script>
-        <script src="js/scripts/main.js"></script>
+        <script src="js/app/main.js"></script>
 		<!-- STYLES -->
 		<link rel="stylesheet" href="css/style.css">
 		<!-- JS charts	-->
@@ -198,11 +198,12 @@
 									<canvas id="myChart0"></canvas>
 									<canvas id="myChart1" style="margin-left:50px ;"></canvas>
 								</div>
-								<div class="chart-container" style=" display:flex; margin-top:100px; ;position: relative; height:200px; width:47%">
+								<div class="chart-container last-chart" style="display:flex; margin-top:100px; ;position: relative; height:200px; width:47%; margin-bottom: 20px">
 									<canvas id="myChart2"></canvas>
 								</div>
 							</div>
                             <div id="mql-students" class="home-card hidden">
+								<div class="title text-center">Promotion 2020-2021</div>
                                 <div class="switch-promotions">
                                     <div class="first-ball red-ball" id="first-ball" onclick="views.home.showPromotion('table1'); switchColorOfSelectedElement('first-ball', 'second-ball');">
                                         M1

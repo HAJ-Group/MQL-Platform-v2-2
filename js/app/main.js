@@ -635,15 +635,14 @@ function autoBoxLoader() {
     try {
         let items = $('.autoBox-item');
         if(items.length > 0) {
-            let random = Math.floor(Math.random() * items.length);
-            items[random].style.display = 'block';
-            current_autobox_item = random;
+            items[0].style.display = 'block';
+            current_autobox_item = 0;
             item_size = items.length;
         }
         function handler() {
-            showABI(Math.floor(Math.random() * items.length));
+            nextABI();
         }
-        auto_slider = setInterval(handler, 10000);
+        auto_slider = setInterval(handler, 5000);
     } catch (e) {
     }
 }
@@ -683,11 +682,10 @@ function pauseABI() {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function resumeABI() {
-    console.log('resuming');
     function handler() {
-        showABI(Math.floor(Math.random() * item_size));
+        nextABI();
     }
-    auto_slider = setInterval(handler, 10000);
+    auto_slider = setInterval(handler, 5000);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 function showPartner(id) {
