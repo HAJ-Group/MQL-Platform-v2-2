@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41ece889-dc4f-46aa-9b98-bb9089b27d01" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/HomeComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/HomeComponent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/dataSources/HomeComponentDataSource.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/dataSources/HomeComponentDataSource.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/models/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/models/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/services/HomeComponentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/services/HomeComponentService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/views/HomeComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/views/HomeComponent.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
+            <state relative-caret-position="170">
+              <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
               <folding>
                 <element signature="n#header#0;n#div#1;n#body#0;n#html#0;n#!!top" />
               </folding>
@@ -45,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/views/HomeComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="110" selection-start-line="110" selection-end-line="110" />
+            <state relative-caret-position="364">
+              <caret line="109" column="34" selection-start-line="109" selection-start-column="34" selection-end-line="109" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -126,6 +120,7 @@
       <find>news sna</find>
       <find>news sn</find>
       <find>ACTUA</find>
+      <find>printN</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,8 +139,8 @@
         <option value="$PROJECT_DIR$/js/services/HomeComponentService.js" />
         <option value="$PROJECT_DIR$/js/dataSources/HomeComponentDataSource.js" />
         <option value="$PROJECT_DIR$/css/HomeComponent.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/views/HomeComponent.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -244,7 +239,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592953373095</updated>
       <workItem from="1592953376800" duration="6592000" />
-      <workItem from="1592996141715" duration="4132000" />
+      <workItem from="1592996141715" duration="4753000" />
     </task>
     <task id="LOCAL-00001" summary="News are related to events + Merge branch 'hmz' into Alae">
       <created>1592959922367</created>
@@ -253,11 +248,18 @@
       <option name="project" value="LOCAL" />
       <updated>1592959922367</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="static proposition of news">
+      <created>1593002224804</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1593002224804</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10724000" />
+    <option name="totallyTimeSpent" value="11345000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -290,7 +292,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'hmz' into Alae&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="News are related to events + Merge branch 'hmz' into Alae" />
-    <option name="LAST_COMMIT_MESSAGE" value="News are related to events + Merge branch 'hmz' into Alae" />
+    <MESSAGE value="static proposition of news" />
+    <option name="LAST_COMMIT_MESSAGE" value="static proposition of news" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/dataSources/EventComponentDataSource.js">
@@ -397,22 +400,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/dataSources/HomeComponentDataSource.js">
+    <entry file="file://$PROJECT_DIR$/js/views/HomeComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="364">
+          <caret line="109" column="34" selection-start-line="109" selection-start-column="34" selection-end-line="109" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/dataSources/HomeComponentDataSource.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
-            <element signature="n#header#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -424,12 +427,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/views/HomeComponent.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="170">
+          <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#header#0;n#div#1;n#body#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
