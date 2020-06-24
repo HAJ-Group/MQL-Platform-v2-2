@@ -21,7 +21,8 @@
 	text-align: center;
 	color: red;
 }
-.home-news-content span{
+.home-news-content div{
+	padding-top: 1%;
 	font-size: 25px;
 	cursor: pointer;
 }
