@@ -119,7 +119,7 @@ function ActivityMain() {
 	views['activity'] = new ActivityComponent(service);
 	views.activity.printSemesters();
 	collapse();
-	addTitleIcon('resources/pictures/Activity/Activity-logo.png', false, 'activity');
+	views.spa.addTitleIcon('resources/pictures/Activity/Activity-logo.png', false, 'activity');
 	//views.activity.printActivityList(); Uncomment to print data in table member
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

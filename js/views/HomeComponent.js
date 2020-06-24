@@ -62,27 +62,21 @@ HomeComponent.prototype.printStudents = function () {
 	for (let i = 0; i < this.service.sizeFirstCollection(); i++){
 		this.addStudentToTable(this.service.getStudentFromFirstCollection(i), this.firstPromotionStudentsTable)
 	}
-
 	this.tablesHeaders(this.secondPromotionStudentsTable);
 	this.secondPromotionStudentsTable.createTBody();
 	for (let i = 0; i < this.service.sizeSecondCollection(); i++){
 		this.addStudentToTable(this.service.getStudentFromSecondCollection(i), this.secondPromotionStudentsTable)
 	}
-
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.tablesHeaders = function(reference){
 	// The header of the table and adjusting size of columns
-	let col = buildElement('col');
-	let col2 = buildElement('col');
-	let col3 = buildElement('col');
-	col.setAttribute('style', 'width: 20%');
-	col2.setAttribute('style', 'width: 40%');
-	col3.setAttribute('style', 'width: 40%');
+	let col = buildElement('col', cls('width-20'));
+	let col2 = buildElement('col', cls('width-40'));
+	let col3 = buildElement('col', cls('width-40'));
 	reference.appendChild(col);
 	reference.appendChild(col2);
 	reference.appendChild(col3);
-
 	let header = reference.createTHead();
 	let number = buildElement('th', 'Numéro');
 	let firstName = buildElement('th', 'Nom');
@@ -97,7 +91,6 @@ HomeComponent.prototype.showPromotion = function (id, ballId) {
 	this.currentPromotionPanel.style["display"] = "none";
 	newPanel.style.display = "block";
 	this.currentPromotionPanel = newPanel;
-
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -118,6 +111,10 @@ HomeComponent.prototype.printNews=function (max = 5) {
 		this.addNews(service.get(i));
 	}
 };
+HomeComponent.prototype.showRemoteNews = function(id) {
+	views.spa.route('News');
+	$('#nav-news-' + id).click();
+};
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * News link managers
@@ -127,7 +124,7 @@ HomeComponent.prototype.setNewsRoutes = function () {
 	for(let i=0; i<rows.length; i++) {
 		let cells = rows[i].cells;
 		for(let j=1; j<cells.length; j++) {
-			cells[j].innerHTML = '<a onclick="showNews(' + (i+1) + ')">' + cells[j].innerHTML + '</a>';
+			cells[j].innerHTML = '<a onclick="views.home.showRemoteNews(' + (i+1) + ')">' + cells[j].innerHTML + '</a>';
 		}
 	}
 };
@@ -174,7 +171,7 @@ HomeComponent.prototype.fillNews = function(max = 5) {
 	for(let i=0; i<max; i++) {
 		this.newsBlock.appendChild(buildDIV(service.get(i).title, wrap([
 			{name:'name', value:'news-item'},
-			{name:'onclick', value:'showNews(' + (i+1) + ')'},
+			{name:'onclick', value:'views.home.showRemoteNews(' + (i+1) + ')'},
 		])));
 	}
 	max_saver = max;
@@ -197,7 +194,6 @@ HomeComponent.prototype.startNews = function(max, start = 0, timeout = 2000) {
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.showNews = function (id) {
 	$('+news-item')[id].style.display = 'block';
-
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.hideNews = function (id) {
@@ -223,6 +219,11 @@ HomeComponent.prototype.resumeNews = function() {
 	this.startNews(max_saver, last_news_element);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.switchColorOfSelectedElement = function(id, id2) {
+	$('#' + id).classList.add('red-ball');
+	$('#' + id2).classList.remove('red-ball');
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
@@ -235,8 +236,8 @@ function HomeMain() {
 	views.home.printNews();
 	views.home.setNewsRoutes();
 	// stays last
-	addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
-	detect_subContent_trigger_left_bar('home');
+	views.spa.addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
+	views.spa.detect_subContent_trigger_left_bar('home');
 	createBook(dbHomeImages);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

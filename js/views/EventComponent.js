@@ -92,7 +92,7 @@ EventComponent.prototype.fillNavigation = function () {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(event.title, wrapCI('menuitem','nav-event-' + event.id ,[
-				{name:'onclick', value:'views.event.selectEvent(' + event.id + ');  markAsSelected('+ event.id +', \'event\')'}]))
+				{name:'onclick', value:'views.event.selectEvent(' + event.id + ');  views.spa.markAsSelected('+ event.id +', \'event\')'}]))
 		]));
 	}
 };
@@ -143,7 +143,7 @@ EventComponent.prototype.fillMain = function() {
 					let griddiv = buildDIV(null, cls('row'));
 					let gridspan = buildSPAN(null, cls('column'));
 					for(let image of content.images) {
-						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'popIMG(this.id)'}])));
+						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'views.spa.popIMG(this.id)'}])));
 					}
 					griddiv.appendChild(gridspan);
 					contentdiv.appendChild(griddiv);
@@ -186,8 +186,8 @@ EventComponent.prototype.navigate = function(page_number=1, top=false) {
 	this.fillNavigation();
 	this.fillMain();
 	this.fillSwitcher();
-	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
-	detect_subContent_trigger_left_bar('event');
+	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
+	views.spa.detect_subContent_trigger_left_bar('event');
 	$('#all-event').style.display = 'none';
 	if(top) window.location.href = '#main';
 };
@@ -241,7 +241,7 @@ EventComponent.prototype.displayEvent = function(event) {
 					let griddiv = buildDIV(null, cls('row'));
 					let gridspan = buildSPAN(null, cls('column'));
 					for(let image of content.images) {
-						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'popIMG(this.id)'}])));
+						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'views.spa.popIMG(this.id)'}])));
 					}
 					griddiv.appendChild(gridspan);
 					contentdiv.appendChild(griddiv);
@@ -257,7 +257,7 @@ EventComponent.prototype.displayEvent = function(event) {
 		createBook(show.book_pics, show.book_name);
 	}
 	this.block_switch.innerHTML = '';
-	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
+	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
 };
 
 
@@ -278,7 +278,7 @@ EventComponent.prototype.filterKey = function () {
 	if(this.page_blocks.length === 0) {
 		$('.error-message')[0].innerHTML = 'Event not Found !';
 		$('#key').setAttribute('class', 'search-error');
-		showEmptyErrorResult();
+		views.spa.showEmptyErrorResult();
 	}
 	else {
 		$('.error-message')[0].innerHTML = '';
@@ -290,7 +290,7 @@ EventComponent.prototype.filterKey = function () {
 /* FORM SERVICES */
 EventComponent.prototype.addData = function() {
 	$('#eventSubmit').setAttribute('onclick', 'views.event.submitData()');
-	popFORM('EventForm');
+	views.spa.popFORM('EventForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.editData = function(index) {
@@ -302,7 +302,7 @@ EventComponent.prototype.editData = function(index) {
 	el_desc.value = target.description;
 	//...
 	$('#eventSubmit').setAttribute('onclick', 'views.event.submitData(\'edit\', ' + index + ')');
-	popFORM('EventForm');
+	views.spa.popFORM('EventForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.deleteData = function(index) {
@@ -338,7 +338,7 @@ EventComponent.prototype.submitData = function (action = 'add', index = '0') {
 		$('#eventSubmit').setAttribute('onclick', 'views.event.submitData()');
 	}
 	this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
-	closeFORM('EventForm');
+	views.spa.closeFORM('EventForm');
 	this.navigate();
 };
 EventComponent.prototype.triggerSubmit = function () {
@@ -360,11 +360,11 @@ function EventMain() {
 		if(confirm('None Event is found! Add new one ?')) {
 			views.event.addData();
 		} else {
-			route('Home');
+			views.spa.route('Home');
 		}
 	}
 	// Stays last
-	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
-	detect_subContent_trigger_left_bar('event');
+	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
+	views.spa.detect_subContent_trigger_left_bar('event');
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
