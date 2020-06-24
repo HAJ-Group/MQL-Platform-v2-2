@@ -9,13 +9,9 @@
         <script src="js/app/AppContents.js"></script>
         <script src="js/app/main.js"></script>
 		<!-- STYLES -->
-		<link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/style.css">
 		<!-- JS charts	-->
 		<script src="resources/jscharts/Chart.min.js"></script>
-		<!-- Video JS -->
-		<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
-		<script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
 		<!-- DATA SOURCE -->
 		<script src="js/dataSources/NewsComponentDataSource.js"></script>
 		<script src="js/dataSources/EventComponentDataSource.js"></script>
@@ -55,6 +51,7 @@
 		<!-- App Loader -->
 		<div id="loader" class="splash-content">
 			<img src="resources/pictures/App/logoMQL.png" alt="">
+			<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc</span>
 			<div class="loader"><img src="resources/pictures/App/loading.gif" alt="" width="200" height="200"></div>
 		</div>
 		<!-- App Component -->
@@ -176,12 +173,8 @@
 							<div id="mql-presentation" class="home-card">
 								<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
 								<p>Le Master «Qualité du Logiciel», créé en 2007 orienté vers l'insertion professionelle dans les multinationales, permet d’offrir aux étudiants une formation approfondie et des méthodes de travail de très haut niveau dans le domaine de la qualité du logiciel.</p>
-								<video id="my-video" class="video-js" controls preload="auto" poster="resources/pictures/App/mqlfam2.jpg" data-setup="{}">
-									<source src="resources/videos/mql.mp4" type="video/mp4"/>
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-									</p>
+								<video class="mql-video" autoplay muted loop>
+									<source src="resources/videos/mql.mp4" type="video/mp4" >
 								</video>
 								<p>Le Master MQL participe très activement dans le domaine de l’offshore. Le principal « client » MQL se trouve dans tous les parcs d’activité offshore et Outsourcing au Maroc et principalement Casablanca Nearshore Park, Rabat Technopolis et Fès Shore avec un taux d’insertion de 100% des étudiants dans des multinationales, MQL s’intéresse à:</p>
 								<ul>

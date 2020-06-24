@@ -41,8 +41,8 @@ hr {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .splash-content {
-    width: 100%;
-    height: 100vh;
+    width: 97%;
+    height: 103vh;
     display: block;
     position: absolute;
     right: 0;
@@ -53,7 +53,6 @@ hr {
     padding: 30px;
     overflow: hidden;
     margin-top: -5%;
-    z-index: 100;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .splash-content > img {
@@ -68,8 +67,8 @@ hr {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    color: #4B4C54;
-    font-size: 40px;
+    color: rgb(53, 69, 108);
+    font-size: 20px;
     font-family: "Open Sans", serif;
     font-weight: bolder;
 }
