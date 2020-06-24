@@ -36,19 +36,7 @@ HomeComponent.prototype.printStats= function () {
 				labels: stat.labels,
 				datasets: stat.dataSet
 			},
-			options: {
-				title: {
-					display: true,
-					text: stat.title,
-				},
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-					}]
-				}
-			}
+			options: stat.options,
 		});
 		i++;
 	}
@@ -160,6 +148,30 @@ HomeComponent.prototype.hidePresented = function (id) {
 	$('.presenter-item')[id].style.opacity = '0';
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.startNews = function(name) {
+	let names = $('+'+name);
+	let max = names.length;
+	let counter = 0;
+	function handler() {
+		if(counter === max) {
+			counter = 0;
+		}
+		if(counter > 0) views.home.hideNews(counter - 1);
+		else views.home.hideNews(max-1);
+		views.home.showNews(counter++);
+	}
+	setInterval(handler, 2000);
+};
+
+HomeComponent.prototype.showNews = function (id) {
+	$('+news-item')[id].style.display = 'block';
+
+};
+HomeComponent.prototype.hideNews = function (id) {
+	$('+news-item')[id].style.display = 'none';
+};
+
+/*--------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
@@ -167,9 +179,10 @@ function HomeMain() {
 	views['home'] = new HomeComponent(service);
 	views['home'].printStats();
 	views.home.startPresenter();
-	// views.home.printNews();
-	// views.home.setNewsRoutes();
     views.home.printStudents();
+	views.home.startNews('news-item');
+	views.home.printNews();
+	views.home.setNewsRoutes();
 	// stays last
 	addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
 	detect_subContent_trigger_left_bar('home');

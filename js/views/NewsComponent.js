@@ -97,14 +97,20 @@ NewsComponent.prototype.fillNavigation = function () {
  */
 NewsComponent.prototype.fillMain = function () {
 	this.block_main.innerHTML = this.htmlSaver.main;
+	let event = '';
 	for(let news of this.page_blocks[current_page_number - 1]) {
+		if (news.id_event!=='') {
+			 event = 'Vous pouvez voir plus sur l\évenement';
+		}
 		let titleDiv = buildDIV([
 			buildDIV(news.title, cls(['title', 'news-title'])),
 		], id('news-' + news.id));
 		let detailsDiv = buildDIV([
-			buildElement('p', formattedDate(news.date), cls('date')),
-			buildElement('p', news.description),
-		], cls(['details', 'news-details']));
+			buildParagraph( formattedDate(news.date), cls('date')),
+			buildParagraph([
+				news.description,
+				buildParagraph(event,cls('event-link',[{name:'onclick',value:'views.news.selectEvent('+news.id_event+')'}])),
+		])], cls(['details', 'news-details']));
 		let rowDiv = buildDIV(null, cls('row'));
 		let columnSpan = buildSPAN(null, cls('column'));
 		for(let image of news.images) {
@@ -165,13 +171,19 @@ NewsComponent.prototype.selectNews = function(id){
 
 NewsComponent.prototype.displayNews = function(news){
 	this.block_main = $('#NewsMain');
+	let event ='';
+	if (news.id_event!=='') {
+		event = 'Vous pouvez voir plus sur l\évenement';
+	}
 	let titleDiv = buildDIV([
 		buildDIV(news.title, cls(['title', 'news-title'])),
 	], id('news-' + news.id));
 	let detailsDiv = buildDIV([
-		buildElement('p', formattedDate(news.date), cls('date')),
-		buildElement('p', news.description),
-	], cls(['details', 'news-details']));
+		buildParagraph( formattedDate(news.date), cls('date')),
+		buildParagraph([
+			news.description,
+			buildParagraph(event,cls('event-link',[{name:'onclick',value:'views.news.selectEvent('+news.id_event+')'}])),
+		])], cls(['details', 'news-details']));
 	let rowDiv = buildDIV(null, cls('row'));
 	let columnSpan = buildSPAN(null, cls('column'));
 	for(let image of news.images) {
@@ -184,7 +196,7 @@ NewsComponent.prototype.displayNews = function(news){
 	titleDiv.appendChild(detailsDiv);
 	this.block_main.innerHTML = null;
 	this.block_main.appendChild(titleDiv);
-}
+};
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.trigger = function () {
@@ -280,6 +292,11 @@ NewsComponent.prototype.submitData = function (action = 'add', index = '0') {
 NewsComponent.prototype.triggerSubmit = function () {
 	let submit_element = $('#newsSubmit');
 	submit_element.click();
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+NewsComponent.prototype.selectEvent = function (id) {
+	route('Event');
+	views.event.selectEvent(id);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**-------------------------------------------------------------------------------------------------------------------*/

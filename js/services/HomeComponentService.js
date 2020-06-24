@@ -46,10 +46,10 @@ HomeComponentService.prototype.loadAllData = function(dbSource, firstCollectionO
     for (let i = 0; i < dbSource.length; i++) {
         this.add(
             new Home(
-                dbSource[i].title,
                 dbSource[i].type,
                 dbSource[i].labels,
-                dbSource[i].dataSet
+                dbSource[i].dataSet,
+                dbSource[i].options
             )
         )
     }
