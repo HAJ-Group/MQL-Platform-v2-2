@@ -124,16 +124,18 @@ h2 {
 	color: rgb(253, 59, 76);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.new-block {
-	width: 83%;
+.partner-new-block {
+	width: 85%;
 	border-radius: 30px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	margin-left: 19px;
+	margin-left: 22px;
 	margin-bottom: 20px;
+	border: 1px solid lightgray;
+	opacity: 0.4;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.new-block img {
+.partner-new-block img {
 	width: 15%;
 	height: 15%;
 }

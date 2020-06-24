@@ -9,6 +9,10 @@ function HomeComponent(service) {
 	this.news_idSaver = [];
 	this.currentPanel = $("#mql-presentation");
 	this.currentPromotionPanel = $("#table1");
+	this.newsBlock = $('.home-news-content')[0];
+	this.htmlSaver = {
+		news: this.newsBlock.innerHTML,
+	}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.show= function (id, element = null) {
@@ -128,8 +132,10 @@ HomeComponent.prototype.setNewsRoutes = function () {
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-HomeComponent.prototype.startPresenter = function() {
-	let counter = 0;
+let presenterTimer;
+let last_presenter_element;
+HomeComponent.prototype.startPresenter = function(start = 0) {
+	let counter = start;
 	function handler() {
 		if(counter === 4) {
 			counter = 0;
@@ -137,21 +143,46 @@ HomeComponent.prototype.startPresenter = function() {
 		if(counter > 0) views.home.hidePresented(counter - 1);
 		else views.home.hidePresented(3);
 		views.home.present(counter++);
+		last_presenter_element = counter;
 	}
-	setInterval(handler, 2000);
+	presenterTimer = setInterval(handler, 2000);
 };
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.present = function (id) {
 	$('.presenter-item')[id].style.opacity = '1';
 };
+/*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.hidePresented = function (id) {
 	$('.presenter-item')[id].style.opacity = '0';
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-HomeComponent.prototype.startNews = function(name) {
-	let names = $('+'+name);
-	let max = names.length;
-	let counter = 0;
+HomeComponent.prototype.pausePresenter = function() {
+	clearInterval(presenterTimer);
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.resumePresenter = function() {
+	this.startPresenter(last_presenter_element);
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+let max_saver;
+let newsTimer;
+let last_news_element = 1;
+HomeComponent.prototype.fillNews = function(max = 5) {
+	this.newsBlock.innerHTML = this.htmlSaver.news;
+	let service = views.news.service;
+	if(max > service.size()) max = service.size();
+	for(let i=0; i<max; i++) {
+		this.newsBlock.appendChild(buildDIV(service.get(i).title, wrap([
+			{name:'name', value:'news-item'},
+			{name:'onclick', value:'showNews(' + (i+1) + ')'},
+		])));
+	}
+	max_saver = max;
+	this.startNews(max, 0);
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.startNews = function(max, start = 0, timeout = 2000) {
+	let counter = start;
 	function handler() {
 		if(counter === max) {
 			counter = 0;
@@ -159,18 +190,38 @@ HomeComponent.prototype.startNews = function(name) {
 		if(counter > 0) views.home.hideNews(counter - 1);
 		else views.home.hideNews(max-1);
 		views.home.showNews(counter++);
+		last_news_element = counter;
 	}
-	setInterval(handler, 2000);
+	newsTimer = setInterval(handler, timeout);
 };
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.showNews = function (id) {
 	$('+news-item')[id].style.display = 'block';
 
 };
+/*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.hideNews = function (id) {
 	$('+news-item')[id].style.display = 'none';
 };
-
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.switchNews = function() {
+	let counter = last_news_element;
+	if(counter === max_saver) {
+		counter = 0;
+	}
+	if(counter > 0) this.hideNews(counter - 1);
+	else this.hideNews(max_saver - 1);
+	this.showNews(counter++);
+	last_news_element = counter;
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.pauseNews = function() {
+	clearInterval(newsTimer);
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+HomeComponent.prototype.resumeNews = function() {
+	this.startNews(max_saver, last_news_element);
+};
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
 function HomeMain() {
@@ -180,7 +231,7 @@ function HomeMain() {
 	views['home'].printStats();
 	views.home.startPresenter();
     views.home.printStudents();
-	views.home.startNews('news-item');
+    views.home.fillNews();
 	views.home.printNews();
 	views.home.setNewsRoutes();
 	// stays last

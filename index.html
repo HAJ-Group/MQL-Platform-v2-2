@@ -73,15 +73,16 @@
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea" >
 					<div class="home-news">
-						<div class="home-news-title blue-bg"><span>Latest News</span></div>
-						<div class="home-news-content">
-							<div name="news-item" >Plateform MQL</div>
-							<div name="news-item" class="hidden">BLA BLA 2</div>
-							<div name="news-item" class="hidden" >BLA BLA 3</div>
+						<div class="home-news-title red-bg"><span>Latest News</span></div>
+						<div class="news-content-block d-flex">
+							<div onmouseover="views.home.pauseNews()" onmouseleave="views.home.resumeNews()" class="home-news-content el-center"></div>
+							<span onclick="views.home.switchNews()" onmouseover="views.home.pauseNews()" onmouseleave="views.home.resumeNews()" class="news-arrow">
+								<img src="resources/pictures/Home/newswitch.png" alt="">
+							</span>
 						</div>
 					</div>
 					<!-- Home Upper Area -->
-					<div class="main-box hidden">
+					<div class="main-box">
 						<div class="mql-video-div">
 							<video class="mql-video" muted autoplay>
 								<source src="resources/videos/mql.mp4" type="video/mp4" >
@@ -91,14 +92,14 @@
 							<span> ACTUALITES MQL </span>
 							<table class="news-tab" id="table-news"></table>
 						</div>
-					</div>-->
+					</div>
 					<!-- Presenter -->
-					<div id="presenter" class="presenter-container blue-bg">
+					<div id="presenter" class="presenter-container">
 						<div class="presenter-block">
-							<div class="presenter-item">
+							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" class="presenter-item">
 								<h1>Master Qualité <br> Logiciel</h1>
 							</div>
-							<div class="presenter-item">
+							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" class="presenter-item">
 								<h1>Coordinateur <br> Mr. Chenfour</h1>
 							</div>
 						</div>
@@ -116,10 +117,10 @@
 							</div>
 						</div>
 						<div class="presenter-block">
-							<div id="presenter-3" class="presenter-item">
+							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" id="presenter-3" class="presenter-item">
 								<h1>Les bonnes <br> pratiques <br> en technologies</h1>
 							</div>
-							<div id="presenter-4" class="presenter-item">
+							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" id="presenter-4" class="presenter-item">
 								<h1>Meilleure fabrique <br> des meilleurs <br> étudiants</h1>
 							</div>
 						</div>
@@ -163,7 +164,7 @@
 				<!-- Components Main Areas-->
 				<div id="HomeComponent" >
 					<!-- Home Main Body -->
-					<div class="home-presentation blue-bg">
+					<div class="home-presentation">
 						<div class="home-flex">
 							<div class="home-span title home-span-active" onclick="views.home.show('mql-presentation', this)"><span>Presentation </span></div>
 							<div class="home-span title" onclick="views.home.show('mql-coordinateur', this)"><span>Coordinateur</span></div>
