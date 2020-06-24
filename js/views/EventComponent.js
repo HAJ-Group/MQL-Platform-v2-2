@@ -85,8 +85,8 @@ EventComponent.prototype.fillNavigation = function () {
 EventComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
-		buildSPAN('All Events', wrapCI(['menuitem', 'd-none'],'all-event',[
-			{name:'onclick', value:'views.event.navigate()'}]))
+		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-event',[
+			{name:'onclick', value:'views.event.navigate(' + current_page_number + ')'}]))
 	]));
 	for(let event of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
@@ -256,6 +256,8 @@ EventComponent.prototype.displayEvent = function(event) {
 	for(let show of shows) {
 		createBook(show.book_pics, show.book_name);
 	}
+	this.block_switch.innerHTML = '';
+	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
 };
 
 

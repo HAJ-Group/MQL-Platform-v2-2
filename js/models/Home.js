@@ -5,3 +5,9 @@ function Home(type,labels,dataSet,options) {
 	this.dataSet = dataSet;
 	this.options = options;
 }
+
+function HomeStudents(id, firstName, lastName) {
+	this.id = id;
+	this.firstName = firstName;
+	this.lastName = lastName;
+}

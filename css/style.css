@@ -791,6 +791,12 @@ a.links:hover{
 .white-bg {
     background-color: white;
 }
+.d-block {
+    display: block;
+}
+.d-flex {
+    display: flex;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 .el-center {
     width: 95%;

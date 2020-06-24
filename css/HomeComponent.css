@@ -3,7 +3,6 @@
 	width: 100%;
 	height: 50px;
 	border: 1px solid lightgray;
-	margin-bottom: 10px;
 }
 .home-news-title{
 	width: 20%;
@@ -14,21 +13,50 @@
 	display: block;
 	padding-top: 5%;
 	font-size: 25px;
-	font-family: "Agency FB";
+	font-family: "Agency FB", serif;
 }
 .home-news-content {
 	width: 80%;
 	text-align: center;
+	color: rgb(216, 49, 57);
 }
 .home-news-content div{
 	padding-top: 1%;
 	font-size: 25px;
 	cursor: pointer;
 }
+.news-content-block {
+	width: 100%;
+}
+.news-item {
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+.news-arrow {
+	font-family: "Segoe UI", serif;
+	border-radius: 10px;
+	font-size: 20px;
+	text-align: center;
+    padding-top: -5px;
+	padding-left:5px;
+	padding-right:5px;
+	margin: 5px;
+}
+
+.news-arrow:hover {
+    opacity: 0.4;
+	cursor: pointer;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
+.home-container {
+	display: none;
+}
+
 .home-presentation{
 	min-height: 100vh;
 	width: 100%;
+	background-image: url('../resources/pictures/Home/texture.jpg');
 }
 .home-logo > img {
 	display: flex;
@@ -42,6 +70,8 @@
 }
 .home-flex{
 	display: flex;
+/*	justify-content: space-around;*/
+
 }
 .home-span {
 	margin-top: 10px;
@@ -52,19 +82,20 @@
 .home-span span {
 	display: flex;
 	justify-content: center;
-	border-bottom: 3px solid rgb(53, 69, 108);
+	border-bottom: 3px solid rgb(216, 49, 57);
 	padding-top: 20px;
 	border-top-left-radius: 50%;
 	border-top-right-radius: 50%;
 }
 .home-span span:hover {
-    color: rgb(53, 69, 108);
-    border-bottom: 1px solid rgb(216, 49, 57);
+    color: white;
+    border-bottom: 1px solid white;
 }
 
 .home-span-active span {
 	color: white;
 	background-color: rgb(216, 49, 57);
+	border-bottom: 1px solid white;
 }
 
 .home-card {
@@ -73,16 +104,14 @@
 	font-size: 20px;
     margin: 5px;
     padding: 20px;
-    border: 1px solid lightgray;
 	min-height: 650px;
-	border-radius: 10px;
 }
 .cards {
 	background-color: #fff;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .main-box{
-	display: flex;
+	display: none;
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
@@ -256,6 +285,7 @@ a:hover {
 	position: relative;
 	width: 100%;
 	height: 100%;
+	background-image: url('../resources/pictures/Home/presentation.jpg');
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-center-block {
@@ -263,8 +293,8 @@ a:hover {
 	width: fit-content;
 	height: fit-content;
 	box-shadow: 0 0 10px lightgray;
-	top: 5%;
-	left: 28%;
+	top: 8%;
+	left: 30%;
 	border-radius: 100%;
 	padding-left: 5%;
 	padding-right: 5%;
@@ -275,7 +305,7 @@ a:hover {
 .presenter-center-block img {
 	display: block;
 	margin: auto;
-	width: 400px;
+	width: 350px;
 	height: 250px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -305,14 +335,14 @@ a:hover {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-item {
 	box-shadow: 0 0 10px lightgray;
-	padding: 20px;
-	width: 38%;
-	height: 150px;
-	margin: auto;
+	padding: 10px;
+	width: 40%;
+	height: fit-content;
 	border-radius: 20px;
 	background-color: white;
 	z-index: 50;
 	opacity: 0;
+	margin: 20px auto auto;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-item h1 {
@@ -333,7 +363,7 @@ a:hover {
 	margin: auto;
 	color: white;
 	background-color: rgb(216, 49, 57);
-	padding: 40px;
+	padding: 20px;
 	font-weight: bolder;
 	font-size: 20px;
 	border-radius: 100%;
@@ -344,6 +374,94 @@ a:hover {
 	width: 100%;
 	height: 100%;
 }
+/*--------------------------------------------------------------------------------------------------------------------*/
+.switch-promotions{
+	display: flex;
+	justify-content: center;
+	margin: auto
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.first-ball, .second-ball{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.9;
+	background-color: rgb(53, 69, 108);
+	color: whitesmoke;
+	font-family: "Open sans", Consolas, serif;
+	font-size: 22px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.first-ball{
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.line-between-balls{
+	width: 140px;
+	height: 5px;
+	margin-top: 32px;
+	background-color: rgb(53, 69, 108);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.second-ball{
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.first-ball:hover, .second-ball:hover{
+	opacity: 1;
+	color: whitesmoke;
+	background-color: rgb(216, 49, 57);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table{
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin: 20px auto 0 auto;
+	font-family: "Open Sans", Consolas, serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+table.student-table{
+	width: 80%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table > thead > th {
+	padding: 15px;
+	background-color: #0e2f4e;
+	color: white;
+	border: 1px lightgray solid;
+	border-radius: 0;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table > tbody > tr > td {
+	padding: 15px;
+	border-radius: 0;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table > tbody > tr:nth-child(even) {
+	background-color: #eee;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table > tbody > tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+.red-ball{
+	background-color: rgb(216, 49, 57);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.blue-ball{
+	background-color: rgb(53, 69, 108);
+}
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Animations */
 @keyframes slideShow {
@@ -363,6 +481,23 @@ a:hover {
 	.container {
 		background-image: none;
 	}
+
+    .mql-video-div {
+        width: 97%;
+        margin-left: 7px;
+    }
+
+	.home-presentation {
+		display: none;
+	}
+
+	.home-container {
+		display: block;
+	}
+
+    .home-news {
+        display: none;
+    }
 
 	.main-box {
 		display: block;

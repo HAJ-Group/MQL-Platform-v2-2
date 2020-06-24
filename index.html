@@ -73,15 +73,16 @@
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea" >
 					<div class="home-news">
-						<div class="home-news-title blue-bg"><span>Latest News</span></div>
-						<div class="home-news-content red">
-							<div name="news-item" >Plateform MQL</div>
-							<div name="news-item" class="hidden">BLA BLA 2</div>
-							<div name="news-item" class="hidden" >BLA BLA 3</div>
+						<div class="home-news-title red-bg"><span>Latest News</span></div>
+						<div class="news-content-block d-flex">
+							<div onmouseover="views.home.pauseNews()" onmouseleave="views.home.resumeNews()" class="home-news-content el-center"></div>
+							<span onclick="views.home.switchNews()" onmouseover="views.home.pauseNews()" onmouseleave="views.home.resumeNews()" class="news-arrow">
+								<img src="resources/pictures/Home/newswitch.png" alt="">
+							</span>
 						</div>
 					</div>
 					<!-- Home Upper Area -->
-					<div class="main-box hidden">
+					<div class="main-box">
 						<div class="mql-video-div">
 							<video class="mql-video" muted autoplay>
 								<source src="resources/videos/mql.mp4" type="video/mp4" >
@@ -92,7 +93,38 @@
 							<table class="news-tab" id="table-news"></table>
 						</div>
 					</div>
-
+					<!-- Presenter -->
+					<div id="presenter" class="presenter-container">
+						<div class="presenter-block">
+							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" class="presenter-item">
+								<h1>Master Qualité <br> Logiciel</h1>
+							</div>
+							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" class="presenter-item">
+								<h1>Coordinateur <br> Mr. Chenfour</h1>
+							</div>
+						</div>
+						<div class="presenter-center-block">
+							<div class="presenter-links">
+								<span><img src="resources/pictures/Home/img_170003.png" alt=""></span>
+								<span><img src="resources/pictures/Home/unnamed.png" alt=""></span>
+							</div>
+							<div class="presenter-center-logo">
+								<img src="resources/pictures/App/mql-png.png" alt="">
+							</div>
+							<div class="presenter-links">
+								<span><img src="resources/pictures/Home/tech.png" alt=""></span>
+								<span><img src="resources/pictures/Home/enter.png" alt=""></span>
+							</div>
+						</div>
+						<div class="presenter-block">
+							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" id="presenter-3" class="presenter-item">
+								<h1>Les bonnes <br> pratiques <br> en technologies</h1>
+							</div>
+							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" id="presenter-4" class="presenter-item">
+								<h1>Meilleure fabrique <br> des meilleurs <br> étudiants</h1>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div id="NewsUpperArea">
 					<!-- News Upper Area -->
@@ -132,43 +164,12 @@
 				<!-- Components Main Areas-->
 				<div id="HomeComponent" >
 					<!-- Home Main Body -->
-					<div id="presenter" class="presenter-container">
-						<div class="presenter-block">
-							<div class="presenter-item">
-								<h1>Master Qualité <br> Logiciel</h1>
-							</div>
-							<div class="presenter-item">
-								<h1>Coordinateur <br> Mr. Chenfour</h1>
-							</div>
-						</div>
-						<div class="presenter-center-block">
-							<div class="presenter-links">
-								<span><img src="resources/pictures/Home/img_170003.png" alt=""></span>
-								<span><img src="resources/pictures/Home/unnamed.png" alt=""></span>
-							</div>
-							<div class="presenter-center-logo">
-								<img src="resources/pictures/App/mql-png.png" alt="">
-							</div>
-							<div class="presenter-links">
-								<span><img src="resources/pictures/Home/tech.png" alt=""></span>
-								<span><img src="resources/pictures/Home/enter.png" alt=""></span>
-							</div>
-						</div>
-						<div class="presenter-block">
-							<div id="presenter-3" class="presenter-item">
-								<h1>Les bonnes <br> pratiques <br> en technologies</h1>
-							</div>
-							<div id="presenter-4" class="presenter-item">
-								<h1>Meilleure fabrique <br> des meilleurs <br> étudiants</h1>
-							</div>
-						</div>
-					</div><hr>
 					<div class="home-presentation">
 						<div class="home-flex">
 							<div class="home-span title home-span-active" onclick="views.home.show('mql-presentation', this)"><span>Presentation </span></div>
 							<div class="home-span title" onclick="views.home.show('mql-coordinateur', this)"><span>Coordinateur</span></div>
 							<div class="home-span title" onclick="views.home.show('mql-stats', this)"><span>Statistiques</span></div>
-							<div class="home-span title" onclick="views.home.show('mql-etudiants', this)"><span>Etudiants</span></div>
+							<div class="home-span title" onclick="views.home.show('mql-students', this)"><span>Etudiants</span></div>
 						</div>
 						<div class="cards">
 							<div id="mql-presentation" class="home-card">
@@ -201,24 +202,32 @@
 									<canvas id="myChart2"></canvas>
 								</div>
 							</div>
+                            <div id="mql-students" class="home-card hidden">
+                                <div class="switch-promotions">
+                                    <div class="first-ball red-ball" id="first-ball" onclick="views.home.showPromotion('table1'); switchColorOfSelectedElement('first-ball', 'second-ball');">
+                                        M1
+                                    </div>
+                                    <div class="line-between-balls">
+
+                                    </div>
+                                    <div class="second-ball" id="second-ball" onclick="views.home.showPromotion('table2'); switchColorOfSelectedElement('second-ball', 'first-ball');">
+                                        M2
+                                    </div>
+                                </div>
+                                <div id="table1">
+                                    <table class="student-table" id = "m1-list-students">
+                                    </table>
+                                </div>
+                                <div id="table2" class="hidden">
+                                    <table class="student-table" id = "m2-list-students">
+                                    </table>
+                                </div>
+
+                            </div>
 						</div>
 					</div>
-					<div class="container container-bg hidden">
-						<div id="HomeNavigation" class="left-menu">
-							<div class="menuitem wrap-blue">Navigation</div>
-							<hr>
-							<div><a class="menuitem" href="#presentation">Master Qualité du logiciel </a> </div>
-							<hr>
-							<div><a class="menuitem" href="#prof">Monsieur Noureddine Chenfour </a> </div>
-							<hr>
-							<div><a class="menuitem" href="#mqliste">MQListe</a> </div>
-							<hr>
-							<div><a class="menuitem" href="#program">Programme</a> </div>
-							<hr>
-							<div><a class="menuitem" href="#stats">Statistiques</a> </div>
-							<hr>
-							<div><a class="menuitem" href="#mqlfamily">Galerie</a> </div>
-						</div>
+                    <!-- Phone Version -->
+					<div class="container container-bg home-container">
 						<div id="HomeMain" class="sub-content">
 							<div id="presentation" class="presentation" name="homeItem">
 								<div class="title home-title"> Master Qualité du Logiciel </div>

@@ -41,7 +41,7 @@ PartnerComponent.prototype.fillPartnersMenu = function() {
 	if(sessionStorage.getItem('ACCESS') !== null) {
 		let newBlock = buildDIV(
 			buildIMG('resources/pictures/App/icons/new-icon.png','',cls(['new-icon'],[{name:'onclick',value:'views.partner.addData()'}])),
-			cls('new-block')
+			cls('partner-new-block')
 		);
 		htmlContent.appendChild(newBlock);
 	}
@@ -144,13 +144,13 @@ PartnerComponent.prototype.deleteData = function(index) {
 		this.service.remove(index);
 		//....
 		try {
-			this.currentblock = this.service.get(0).id;
+			this.currentblock = 'partner-' + this.service.get(0).id;
 			this.navigate();
 		} catch (e) {
 			if(confirm('None Partner is found! Add new one ?')) {
 				views.partner.addData();
 			} else {
-				route('../Home');
+				route('Home');
 			}
 		}
 	}
@@ -182,7 +182,7 @@ PartnerComponent.prototype.submitData = function (action = 'add', index = '0') {
 		$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
 	}
 	closeFORM('PartnerForm');
-	this.currentblock = id;
+	this.currentblock = 'partner-' + id;
 	this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/

@@ -80,8 +80,8 @@ NewsComponent.prototype.fillAutoBox = function() {
 NewsComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
-		buildSPAN('All News', wrapCI(['menuitem', 'd-none'],'all-news',[
-			{name:'onclick', value:'views.news.navigate()'}]))
+		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-news',[
+			{name:'onclick', value:'views.news.navigate(' + current_page_number + ')'}]))
 	]));
 	for(let news of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
@@ -196,6 +196,8 @@ NewsComponent.prototype.displayNews = function(news){
 	titleDiv.appendChild(detailsDiv);
 	this.block_main.innerHTML = null;
 	this.block_main.appendChild(titleDiv);
+	this.block_switch.innerHTML = '';
+	addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/
