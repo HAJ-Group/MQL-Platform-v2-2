@@ -80,10 +80,10 @@ NewsComponent.prototype.fillAutoBox = function() {
 NewsComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
-		buildSPAN('All News', wrapCI(['menuitem', 'd-none'],'all-news',[
-			{name:'onclick', value:'views.news.navigate()'}]))
+		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-news',[
+			{name:'onclick', value:'views.news.navigate(' + current_page_number + ')'}]))
 	]));
-	for(let news of this.service.db) {
+	for(let news of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(news.title, wrapCI('menuitem','nav-news-' + news.id ,[

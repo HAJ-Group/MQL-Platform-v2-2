@@ -48,10 +48,10 @@ LaureateComponent.prototype.fillNavigation = function () {
 LaureateComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
-		buildSPAN('All Laureates', wrapCI(['menuitem', 'd-none'],'all-laureate',[
-			{name:'onclick', value:'views.laureate.navigate()'}]))
+		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-laureate',[
+			{name:'onclick', value:'views.laureate.navigate(' + current_page_number + ')'}]))
 	]));
-	for(let promotion of this.service.db) {
+	for(let promotion of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(promotion.id, wrapCI('menuitem','nav-laureate-' + promotion.id ,[

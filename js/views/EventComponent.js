@@ -85,10 +85,10 @@ EventComponent.prototype.fillNavigation = function () {
 EventComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
-		buildSPAN('All Events', wrapCI(['menuitem', 'd-none'],'all-event',[
-			{name:'onclick', value:'views.event.navigate()'}]))
+		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-event',[
+			{name:'onclick', value:'views.event.navigate(' + current_page_number + ')'}]))
 	]));
-	for(let event of this.service.db) {
+	for(let event of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(event.title, wrapCI('menuitem','nav-event-' + event.id ,[
