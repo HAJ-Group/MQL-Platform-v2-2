@@ -95,6 +95,7 @@
 .home-span-active span {
 	color: white;
 	background-color: rgb(216, 49, 57);
+	border-bottom: 1px solid white;
 }
 
 .home-card {
