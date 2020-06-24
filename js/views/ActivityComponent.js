@@ -112,6 +112,24 @@ function collapse(){
 		});
 	}
 }
+/* Tree model --------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+let last_chosen_branch;
+ActivityComponent.prototype.showBranch = function(id) {
+	let titles = document.getElementsByClassName('branch-title');
+	let branches = document.getElementsByClassName('branch-content');
+	for(let t of titles) {
+		t.classList.remove('branch-active');
+	}
+	for(let b of branches) {
+		b.style.display = 'none';
+	}
+	if(id !== last_chosen_branch) {
+		titles[id].classList.add('branch-active');
+		branches[id].style.display = 'block';
+		last_chosen_branch = id;
+	}
+};
 /**-------------------------------------------------------------------------------------------------------------------*/
 function ActivityMain() {
 	let service = new ActivityComponentService();
