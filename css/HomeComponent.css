@@ -54,7 +54,7 @@
 }
 
 .home-presentation{
-	min-height: 100vh;
+	height: fit-content;
 	width: 100%;
 	background-image: url('../resources/pictures/Home/texture.jpg');
 }
@@ -104,7 +104,11 @@
 	font-size: 20px;
     margin: 5px;
     padding: 20px;
-	min-height: 650px;
+	height: fit-content;
+}
+.last-chart {
+	padding-bottom: 70px;
+	margin-left: 25%;
 }
 .cards {
 	background-color: #fff;
