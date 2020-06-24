@@ -1,3 +1,9 @@
+.reco-block {
+	padding-top: 30px;
+	background-image: url('../resources/pictures/Laureate/texture.jpg');
+	background-size: 100% 100%;
+	padding-bottom: 150px;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 .card-laureate {
 	width: 100%;
@@ -131,6 +137,7 @@
 	border-radius: 5px;
 	padding: 10px;
 	margin: 10px;
+	background-color: white;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .list-recommendations > hr{
@@ -144,7 +151,7 @@
 	margin: 20px;
 	width: 45%;
 	max-height: 250px;
-	border-left: 3px solid rgb(53, 69, 108);
+	border-left: 3px solid rgb(216, 49, 57);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .left-border{
@@ -165,14 +172,19 @@
 	padding: 15px /*0px 5px 5px 5px*/;
 	margin-left: 2px;
 	width: 60%;
-	background-color: #f7fef0;
+	color: white;
+	background-color: rgb(53, 69, 108);
 	border: 1px solid gray;
-	border-radius: 6px;
 	word-wrap: break-word;
 	font-family: "Sitka Display", serif;
 	font-size: 20px;
 	overflow: auto;
 	height: 200px;
+}
+.laureate-reco-img {
+	width: 10%;
+	display: block;
+	margin: auto;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 q {
@@ -213,7 +225,7 @@ q:after{
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .image-person > img{
- 	border-radius: 100%;
+ 	border-radius: 80%;
 	width: 90%;
 	height: 80%;
 	border: 1px solid darkgrey;
@@ -237,6 +249,7 @@ q:after{
 	height: 40px;
 	display: block;
 	margin-left: auto;
+	margin-right: 20px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .top-img:hover {

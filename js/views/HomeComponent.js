@@ -172,11 +172,11 @@ HomeComponent.prototype.fillNews = function(max = 5) {
 	let service = views.news.service;
 	if(max > service.size()) max = service.size();
 	for(let i=0; i<max; i++) {
-		this.newsBlock.appendChild(buildDIV(service.get(i).title, wrap([
-			{name:'name', value:'news-item'},
+		this.newsBlock.appendChild(buildDIV(service.get(i).title, cls('news-item', [
 			{name:'onclick', value:'showNews(' + (i+1) + ')'},
 		])));
 	}
+	this.showNews(0);
 	max_saver = max;
 	this.startNews(max, 0);
 };
@@ -196,12 +196,12 @@ HomeComponent.prototype.startNews = function(max, start = 0, timeout = 2000) {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.showNews = function (id) {
-	$('+news-item')[id].style.display = 'block';
+	$('.news-item')[id].style.display = 'block';
 
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.hideNews = function (id) {
-	$('+news-item')[id].style.display = 'none';
+	$('.news-item')[id].style.display = 'none';
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.switchNews = function() {

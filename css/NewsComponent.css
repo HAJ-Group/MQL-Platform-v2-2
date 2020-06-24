@@ -35,7 +35,7 @@
     display: flex;
     background-color: white;
     box-shadow: 0 0 5px lightgray;
-    animation: slideInFromRight 1s;
+/*    animation: slideInFromRight 1s;*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-image:hover {
@@ -96,3 +96,5 @@
     opacity: 0.6;
     cursor: pointer;
 }
+/*--------------------------------------------------------------------------------------------------------------------*/
+
