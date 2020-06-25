@@ -112,6 +112,24 @@ function collapse(){
 		});
 	}
 }
+/* Tree model --------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+let toggle = false;
+ActivityComponent.prototype.showBranch = function(id) {
+	toggle = !toggle;
+	let titles = document.getElementsByClassName('branch-title');
+	let branches = document.getElementsByClassName('branch-content');
+	for(let t of titles) {
+		t.classList.remove('branch-active');
+	}
+	for(let b of branches) {
+		b.style.display = 'none';
+	}
+	if(toggle) {
+		titles[id].classList.add('branch-active');
+		branches[id].style.display = 'block';
+	}
+};
 /**-------------------------------------------------------------------------------------------------------------------*/
 function ActivityMain() {
 	let service = new ActivityComponentService();
@@ -119,7 +137,7 @@ function ActivityMain() {
 	views['activity'] = new ActivityComponent(service);
 	views.activity.printSemesters();
 	collapse();
-	addTitleIcon('resources/pictures/Activity/Activity-logo.png', false, 'activity');
+	views.spa.addTitleIcon('resources/pictures/Activity/Activity-logo.png', false, 'activity');
 	//views.activity.printActivityList(); Uncomment to print data in table member
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

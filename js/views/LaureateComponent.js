@@ -48,16 +48,17 @@ LaureateComponent.prototype.fillNavigation = function () {
 LaureateComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
-		buildSPAN('All Laureates', wrapCI(['menuitem', 'd-none'],'all-laureate',[
-			{name:'onclick', value:'views.laureate.navigate()'}]))
+		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-laureate',[
+			{name:'onclick', value:'views.laureate.navigate(' + current_page_number + ', true)'}]))
 	]));
 	for(let promotion of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
-			buildSPAN(promotion.id, wrapCI('menuitem','nav-laureate-' + promotion.id ,[
-				{name:'onclick', value:'views.laureate.selectPromotion(\'' + promotion.id + '\');  markAsSelected(\''+ promotion.id +'\', \'laureate\')'}]))
+			buildSPAN(promotion.name, wrapCI(['menuitem', 'nav-laureate'],'nav-laureate-' + promotion.id ,[
+				{name:'onclick', value:'views.laureate.selectPromotion(\'' + promotion.id + '\');  views.spa.markAsSelected(\''+ promotion.id +'\', \'laureate\')'}]))
 		]));
 	}
+	views.spa.addNavigationPageNavigators(this.block_nav, this.page_blocks.length, 'laureate');
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -108,7 +109,7 @@ LaureateComponent.prototype.fillMain = function () {
 			let promoItem = buildDIV(null,wrapIC( promotion.id +'-'+ laureate.id,'card-laureate',[{name:'style',value:'display: none'}]));
 			if(laureate.photo !== "") {
 				promoItem.appendChild(
-					buildIMG(img,'',id('laureatePhoto-'+promotion.id+'-'+laureate.id,[{name:'onclick',value:'popIMG(this.id)'}]))
+					buildIMG(img,'',id('laureatePhoto-'+promotion.id+'-'+laureate.id,[{name:'onclick',value:'views.spa.popIMG(this.id)'}]))
 				);
 			} else {
 				promoItem.appendChild(
@@ -226,17 +227,24 @@ LaureateComponent.prototype.fillSwitcher = function () {
 /**
  * Navigate between pages
  * @param page_number
+ * @param all
  * @param top
  */
-LaureateComponent.prototype.navigate = function(page_number=1, top=false) {
+LaureateComponent.prototype.navigate = function(page_number=1, all = false, top=false) {
 	current_page_number = page_number;
 	this.fillNavigation();
 	this.fillMain();
 	this.fillSwitcher();
-	addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
-	detect_subContent_trigger_left_bar('laureate');
+	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
+	views.spa.detect_subContent_trigger_left_bar('laureate');
 	$('#all-laureate').style.display = 'none';
-	if(top) window.location.href = '#header';
+	if(top) window.location.href = '#LaureateMain';
+	if(!all) {
+		try {
+			views.laureate.selectPromotion(this.page_blocks[current_page_number - 1][0].id);
+			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'laureate');
+		} catch (e) {}
+	}
 };
 
 
@@ -249,113 +257,114 @@ LaureateComponent.prototype.selectPromotion = function(id){
 };
 
 LaureateComponent.prototype.displayPromotion = function (promotion){
-		this.block_main = $('#LaureateMain');
-		let img;
+	this.block_main = $('#LaureateMain');
+	let img;
+	let details = buildDIV(buildParagraph(promotion.date.getFullYear(),cls('date')),cls(['details', 'laureate-details']));
+	let promo = buildDIV([
+		buildDIV(promotion.name,cls(['title', 'laureate-title'])),
+		details
+	], id('laureate-' + promotion.id));
+	this.block_main.innerHTML = null;
+	this.block_main.appendChild(promo);
+	if(sessionStorage.getItem('ACCESS') !== null) {
+		//details
+		details.appendChild(
+			buildDIV(
+				buildIMG("resources/pictures/App/icons/new-icon.png",'',cls('new-icon',[{name:'onclick',value:'views.laureate.addData("' + promotion.id + ',laureate")'}])),
+				cls(['new-block','new-laureate'])
+			)
+		);
+	}
+	for (let laureate of promotion.content) {
+		if((laureate.photo === '')){
+			img = DEFAULT_PROFILE_IMAGE[laureate.gender];
+		} else img = laureate.photo;
+		// EDIT AND DELETE
+		if(sessionStorage.getItem('ACCESS') !== null) {
+			//    console.log(promo)
+			details.appendChild(
+				buildDIV([
+					buildIMG("resources/pictures/App/icons/edit.png",'',wrapICN('','sh-icon','edit-icon',[{name:'onclick',value:'views.laureate.editData("' + promotion.id + ',' +  laureate.id + '", "laureate")'}])),
+					buildIMG("resources/pictures/App/icons/delete.png",'',wrapICN('','sh-icon','delete-icon',[{name:'onclick',value:'views.laureate.deleteData("' + promotion.id + ',' +  laureate.id + '", "laureate")'}]))
+				],cls('laureate-icons'))
+			);
+		}
+		// LIST ITEM
+		let item = buildDIV([
+			buildDIV([
+				buildDIV(laureate.name +' ('+laureate.job+')', cls('item-element',[{name:'onclick',value:'views.laureate.showInfos("' + promotion.id + '-' + laureate.id +'")'}])),
+				buildSPAN(null,cls('linkedin',[{name:'onclick',value:'window.location.href="'+ laureate.linked_in+'"'}]))
+			],cls('item-description')),
+		],wrapIC('item-'+promotion.id+'-'+laureate.id,'card-laureate'));
+		details.appendChild(item);
+		// INFO BODY
 
-			let details = buildDIV(buildParagraph(promotion.date.getFullYear(),cls('date')),cls(['details', 'laureate-details']));
-			let promo = buildDIV([
-				buildDIV(promotion.name,cls(['title', 'laureate-title'])),
-				details
-			], id('laureate-' + promotion.id));
-			this.block_main.innerHTML = null;
-			this.block_main.appendChild(promo);
-			if(sessionStorage.getItem('ACCESS') !== null) {
-				//details
-				details.appendChild(
-					buildDIV(
-						buildIMG("resources/pictures/App/icons/new-icon.png",'',cls('new-icon',[{name:'onclick',value:'views.laureate.addData("' + promotion.id + ',laureate")'}])),
-						cls(['new-block','new-laureate'])
-					)
-				);
-			}
-			for (let laureate of promotion.content) {
-				if((laureate.photo === '')){
-					img = DEFAULT_PROFILE_IMAGE[laureate.gender];
-				} else img = laureate.photo;
-				// EDIT AND DELETE
-				if(sessionStorage.getItem('ACCESS') !== null) {
-					//    console.log(promo)
-					details.appendChild(
-						buildDIV([
-							buildIMG("resources/pictures/App/icons/edit.png",'',wrapICN('','sh-icon','edit-icon',[{name:'onclick',value:'views.laureate.editData("' + promotion.id + ',' +  laureate.id + '", "laureate")'}])),
-							buildIMG("resources/pictures/App/icons/delete.png",'',wrapICN('','sh-icon','delete-icon',[{name:'onclick',value:'views.laureate.deleteData("' + promotion.id + ',' +  laureate.id + '", "laureate")'}]))
-						],cls('laureate-icons'))
-					);
-				}
-				// LIST ITEM
-				let item = buildDIV([
-					buildDIV([
-						buildDIV(laureate.name +' ('+laureate.job+')', cls('item-element',[{name:'onclick',value:'views.laureate.showInfos("' + promotion.id + '-' + laureate.id +'")'}])),
-						buildSPAN(null,cls('linkedin',[{name:'onclick',value:'window.location.href="'+ laureate.linked_in+'"'}]))
-					],cls('item-description')),
-				],wrapIC('item-'+promotion.id+'-'+laureate.id,'card-laureate'));
-				details.appendChild(item);
-				// INFO BODY
-
-				let promoItem = buildDIV(null,wrapIC( promotion.id +'-'+ laureate.id,'card-laureate',[{name:'style',value:'display: none'}]));
-				if(laureate.photo !== "") {
-					promoItem.appendChild(
-						buildIMG(img,'',id('laureatePhoto-'+promotion.id+'-'+laureate.id,[{name:'onclick',value:'popIMG(this.id)'}]))
-					);
-				} else {
-					promoItem.appendChild(
-						buildIMG(img,'',id('laureatePhoto-'+promotion.id+'-'+laureate.id))
-					);
-				}
-				let infos = buildElement('ul',null);
-				let cardDescription = buildDIV(infos,cls('card-desc'));
-				let description = buildDIV([
-					buildDIV([
-						laureate.name ,
-						buildSPAN(null,cls('linkedin',[{name:'onclick',value:'"window.location.href='+ laureate.linked_in}])),
-					],cls('element',[{name:'onclick',value:'views.laureate.hideInfos("'+promotion.id+'-'+laureate.id+'")'}])),
-					cardDescription
-				],cls('description'));
-				// ENTERPRISE && CITY
-				if(laureate.current_enterprise !== '' && laureate.city !== '') {
-					infos.appendChild(
-						buildElement('li',[
-							'Enterprise :',buildSPAN(laureate.current_enterprise+','+laureate.city,cls('value'))
-						])
-					);
-				}
-				// STAGE
-				if(laureate.stage !== '') {
-					infos.appendChild(
-						buildElement('li',[
-							'Stage : ',buildSPAN(laureate.stage,cls('value'))
-						])
-					);
-				}
-				// EXPERIENCES
-				if(laureate.experience.length!==0) {
-					infos.appendChild(
-						buildElement('li',[
-							'Expériences',buildSPAN(laureate.experience,cls('value'))
-						])
-					);
-				}
-				// Email :
-				if(laureate.email !== '')
-					infos.appendChild(
-						buildElement('li',[
-							'Email : ',buildSPAN(buildLINK('mailto:'+laureate.email,laureate.email),cls('value'))
-						])
-					);
-				infos.appendChild(buildHR());
-				// DESCRIPTION
-				if(laureate.rating !== ''){
-					infos.appendChild(
-						buildDIV(null,'quotes')
-					);
-					infos.appendChild(
-						buildParagraph(laureate.rating,cls('rating'))
-					);
-				}
-				promoItem.appendChild(description);
-				details.appendChild(promoItem);
-			}
-}
+		let promoItem = buildDIV(null,wrapIC( promotion.id +'-'+ laureate.id,'card-laureate',[{name:'style',value:'display: none'}]));
+		if(laureate.photo !== "") {
+			promoItem.appendChild(
+				buildIMG(img,'',id('laureatePhoto-'+promotion.id+'-'+laureate.id,[{name:'onclick',value:'views.spa.popIMG(this.id)'}]))
+			);
+		} else {
+			promoItem.appendChild(
+				buildIMG(img,'',id('laureatePhoto-'+promotion.id+'-'+laureate.id))
+			);
+		}
+		let infos = buildElement('ul',null);
+		let cardDescription = buildDIV(infos,cls('card-desc'));
+		let description = buildDIV([
+			buildDIV([
+				laureate.name ,
+				buildSPAN(null,cls('linkedin',[{name:'onclick',value:'"window.location.href='+ laureate.linked_in}])),
+			],cls('element',[{name:'onclick',value:'views.laureate.hideInfos("'+promotion.id+'-'+laureate.id+'")'}])),
+			cardDescription
+		],cls('description'));
+		// ENTERPRISE && CITY
+		if(laureate.current_enterprise !== '' && laureate.city !== '') {
+			infos.appendChild(
+				buildElement('li',[
+					'Enterprise :',buildSPAN(laureate.current_enterprise+','+laureate.city,cls('value'))
+				])
+			);
+		}
+		// STAGE
+		if(laureate.stage !== '') {
+			infos.appendChild(
+				buildElement('li',[
+					'Stage : ',buildSPAN(laureate.stage,cls('value'))
+				])
+			);
+		}
+		// EXPERIENCES
+		if(laureate.experience.length!==0) {
+			infos.appendChild(
+				buildElement('li',[
+					'Expériences',buildSPAN(laureate.experience,cls('value'))
+				])
+			);
+		}
+		// Email :
+		if(laureate.email !== '')
+			infos.appendChild(
+				buildElement('li',[
+					'Email : ',buildSPAN(buildLINK('mailto:'+laureate.email,laureate.email),cls('value'))
+				])
+			);
+		infos.appendChild(buildHR());
+		// DESCRIPTION
+		if(laureate.rating !== ''){
+			infos.appendChild(
+				buildDIV(null,'quotes')
+			);
+			infos.appendChild(
+				buildParagraph(laureate.rating,cls('rating'))
+			);
+		}
+		promoItem.appendChild(description);
+		details.appendChild(promoItem);
+	}
+	this.block_switch.innerHTML = '';
+	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
+};
 
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -420,12 +429,12 @@ LaureateComponent.prototype.filterKey = function () {
 LaureateComponent.prototype.addData = function(target_el = 'promotion') {
 	if(target_el === 'promotion') {
 		$('#promotionSubmit').setAttribute('onclick', 'views.laureate.submitData()');
-		popFORM(target_el);
+		views.spa.popFORM(target_el);
 	} else {
 		console.log('target added laureate index = ' + target_el);
 		let value = target_el.split(',');
 		$('#' + value[1] + 'Submit').setAttribute('onclick', 'views.laureate.submitData(\'add\', \'' + value[0] + '\', \'' + value[1] + '\')');
-		popFORM(value[1]);
+		views.spa.popFORM(value[1]);
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -463,7 +472,7 @@ LaureateComponent.prototype.editData = function(index, target_el = 'promotion') 
 	}
 	//...
 	$('#' + target_el + 'Submit').setAttribute('onclick', 'views.laureate.submitData(\'edit\', \'' + index + '\', \'' + target_el + '\')');
-	popFORM(target_el);
+	views.spa.popFORM(target_el);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 LaureateComponent.prototype.deleteData = function(index, target_el = 'promotion') {
@@ -487,7 +496,7 @@ LaureateComponent.prototype.deleteData = function(index, target_el = 'promotion'
 		if(confirm('None Promotion is found! Add new one ?')) {
 			this.addData();
 		} else {
-			route('Home');
+			views.spa.route('Home');
 		}
 	}
 };
@@ -551,7 +560,7 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 	}
 	this.service.sort();
 	this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
-	closeFORM(target_el);
+	views.spa.closeFORM(target_el);
 	this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -575,11 +584,15 @@ function LaureateMain() {
 		if(confirm('None Promotion is found! Add new one ?')) {
 			views.laureate.addData();
 		} else {
-			route('Home');
+			views.spa.route('Home');
 		}
 	}
 	// stays last
-	addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
-	detect_subContent_trigger_left_bar('laureate');
+	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
+	views.spa.detect_subContent_trigger_left_bar('laureate');
+	try {
+		views.laureate.selectPromotion(service.get(0).id);
+		views.spa.markAsSelected(service.get(0).id, 'laureate');
+	} catch (e) {}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

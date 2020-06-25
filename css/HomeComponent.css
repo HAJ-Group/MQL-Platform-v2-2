@@ -1,47 +1,131 @@
-/*--------------------------------------------------------------------------------------------------------------------*/
-.home-presentation{
-	min-height: 100vh;
+.home-news{
+	display: flex;
 	width: 100%;
+	height: 50px;
+	border: 1px solid lightgray;
+}
+.home-news-title{
+	width: 20%;
+	text-align: center;
+	color: white;
+}
+.home-news-title span{
+	display: block;
+	padding-top: 5%;
+	font-size: 25px;
+	font-family: "Agency FB", serif;
+}
+.home-news-content {
+	width: 80%;
+	text-align: center;
+	color: rgb(216, 49, 57);
+}
+.home-news-content div{
+	padding-top: 1%;
+	font-size: 25px;
+	cursor: pointer;
+}
+.news-content-block {
+	width: 100%;
+}
+.news-item {
+	display: none;
+	margin: auto;
+	width: 80%;
+}
+.news-arrow {
+	font-family: "Segoe UI", serif;
+	border-radius: 10px;
+	font-size: 20px;
+	text-align: center;
+    padding-top: -5px;
+	padding-left:5px;
+	padding-right:5px;
+	margin: 5px;
+}
+
+.news-arrow:hover {
+    opacity: 0.4;
+	cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.home-container {
+	display: none;
+}
+
+.home-presentation{
+	height: fit-content;
+	width: 100%;
+	background-image: url('../resources/pictures/Home/texture.jpg');
 }
 .home-logo > img {
 	display: flex;
 	justify-content: center;
 	margin: 30px auto;
 }
-.home-logo> span{
+.home-logo > span{
 	display: flex;
 	justify-content: center;
 	margin: 30px auto;
 }
 .home-flex{
 	display: flex;
-	flex-wrap: wrap;
 /*	justify-content: space-around;*/
 
 }
 .home-span {
 	margin-top: 10px;
 	padding: 10px;
-	width: 20%;
+	width: 100%;
+	cursor: pointer;
 }
 .home-span span {
 	display: flex;
 	justify-content: center;
-	border-bottom: 1px solid rgb(53, 69, 108);
-    cursor: pointer;
+	border-bottom: 3px solid rgb(216, 49, 57);
+	padding-top: 20px;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
 }
 .home-span span:hover {
-    color: rgb(53, 69, 108);
-    border-bottom: 1px solid rgb(216, 49, 57);
+    color: white;
+    border-bottom: 1px solid white;
 }
+
+.home-span-active span {
+	color: white;
+	background-color: rgb(216, 49, 57);
+	border-bottom: 1px solid white;
+}
+
 .home-card {
+	font-family: "Open Sans",Consolas, serif;
+	text-align: justify;
+	font-size: 20px;
     margin: 5px;
-    padding: 5px;
-    border: 1px solid lightgray;
+    padding: 20px;
+	height: fit-content;
+}
+.chart-container{
+	display:flex;
+	position: relative;
+	height:200px;
+	width:47%
+}
+.second-chart{
+	margin-left:50px ;
+}
+.last-chart {
+	padding-bottom: 70px;
+	margin-top:100px;
+	margin-bottom: 20px;
+}
+.cards {
+	background-color: #fff;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .main-box{
-	display: flex;
+	display: none;
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
@@ -72,7 +156,8 @@
 	text-align: center;
 	font-family: "Agency FB", serif;
 	font-size: 25px;
-	background-color: #f5f5f5;
+	background-color: rgb(53, 69, 108);
+	color: white;
 	height: 10%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -91,10 +176,12 @@
 	margin-top: 10px;
 	text-align: center;
 	padding: 5px;
+	background-color: white;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .news-tab td:first-child {
-	background-color: #f5f5f5;
+	color: white;
+	background-color: rgb(216, 49, 57);
 	width: 35%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -190,14 +277,117 @@ a:hover {
 	height: 100%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
+.mql-video-div {
+	width: 70%;
+	margin-left: 15%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
 .mql-video {
-	width: 50%;
-	border: 2px solid rgb(53, 69, 108);
+	width: 99%;
+	height: 100%;
+	border: 1px solid lightgray;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .stats-image:hover{
 	opacity: 0.7;
 	cursor: pointer;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-image: url('../resources/pictures/Home/presentation.jpg');
+	background-size: 100% 100%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-center-block {
+	position: absolute;
+	width: fit-content;
+	height: fit-content;
+	box-shadow: 0 0 10px lightgray;
+	top: 8%;
+	left: 30%;
+	border-radius: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+	background-color: white;
+	animation: zoom 1s;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-center-block img {
+	display: block;
+	margin: auto;
+	width: 350px;
+	height: 250px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block {
+	display: flex;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block:first-child {
+	margin-bottom: 200px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block:first-child > .presenter-item:last-child {
+	text-align: right;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block:last-child > .presenter-item:last-child {
+	text-align: right;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block > .presenter-item:first-child {
+	margin-left: 15px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-block > .presenter-item:last-child {
+	margin-right: 15px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-item {
+	box-shadow: 0 0 10px lightgray;
+	padding: 10px;
+	width: 40%;
+	height: fit-content;
+	border-radius: 20px;
+	background-color: white;
+	z-index: 50;
+	opacity: 0;
+	margin: 20px auto auto;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-item h1 {
+    font-size: 30px;
+	color: rgb(53, 69, 108);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-links {
+	display: flex;
+	margin-left: -150px;
+	margin-right: -150px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-links span {
+	max-width: 70px;
+	height: fit-content;
+	display: block;
+	margin: auto;
+	color: white;
+	background-color: rgb(216, 49, 57);
+	padding: 20px;
+	font-weight: bolder;
+	font-size: 20px;
+	border-radius: 100%;
+	z-index: 100;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.presenter-links span > img {
+	width: 100%;
+	height: 100%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .switch-promotions{
@@ -277,7 +467,6 @@ table.student-table{
 .student-table > tbody > tr:nth-child(odd) {
 	background-color: #fff;
 }
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 .red-ball{
 	background-color: rgb(216, 49, 57);
@@ -306,6 +495,23 @@ table.student-table{
 	.container {
 		background-image: none;
 	}
+
+    .mql-video-div {
+        width: 97%;
+        margin-left: 7px;
+    }
+
+	.home-presentation {
+		display: none;
+	}
+
+	.home-container {
+		display: block;
+	}
+
+    .home-news {
+        display: none;
+    }
 
 	.main-box {
 		display: block;
@@ -336,5 +542,14 @@ table.student-table{
 		margin-left: 0;
 		text-align: left;
 	}
+
+	.presenter-container {
+		display: none;
+	}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 1200px) {
+	.presenter-links span{
+		z-index: 0;
+	}
+}

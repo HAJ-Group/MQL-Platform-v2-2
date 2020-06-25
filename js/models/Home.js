@@ -1,7 +1,9 @@
 /* Default Model for HomeComponent */ 
-function Home(id,modules) {
-	this.id = id;
-	this.modules=modules;
+function Home(type,labels,dataSet,options) {
+	this.type = type;
+	this.labels = labels;
+	this.dataSet = dataSet;
+	this.options = options;
 }
 
 function HomeStudents(id, firstName, lastName) {

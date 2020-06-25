@@ -3,9 +3,10 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* AUTO BOX ----------------------------------------------------------------------------------------------------------*/
 #autoBox {
+    position: relative;
     background-image: url("../resources/pictures/News/autoboxBG.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 100% 600px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-item {
@@ -24,6 +25,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
+    padding: 10px;
+    background-color: white;
     animation: fade 1s;
     box-shadow: 0 0 5px lightgray;
 }
@@ -34,7 +37,7 @@
     display: flex;
     background-color: white;
     box-shadow: 0 0 5px lightgray;
-    animation: slideInFromRight 1s;
+/*    animation: slideInFromRight 1s;*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-image:hover {
@@ -43,17 +46,16 @@
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-title {
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
     color: white;
-    background-color: #e92a1c;
     padding: 3%;
-    width: fit-content;
+    width: 30%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-content {
     font-size: 25px;
-    width: 80%;
+    width: 70%;
     text-align: justify;
     padding: 10px;
 }
@@ -63,22 +65,22 @@
     font-family: "Segoe UI", serif;
     font-weight: bolder;
     position: absolute;
-    top: 60%;
+    top: 20%;
     opacity: 0.6;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .previous-auto_item:hover, .next-auto_item:hover {
-    color: #e92a1c;
+    color: rgb(216, 49, 57);
     opacity: 1;
     cursor: pointer;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .previous-auto_item {
-    left: 30%;
+    left: 20%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .next-auto_item {
-    right: 30%;
+    right: 20%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-more {
@@ -94,4 +96,16 @@
 .autoBox-more:hover {
     opacity: 0.6;
     cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.event-link{
+    cursor: pointer;
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 700px) {
+    #autoBox {
+        display: none;
+    }
 }

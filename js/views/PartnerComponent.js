@@ -41,7 +41,7 @@ PartnerComponent.prototype.fillPartnersMenu = function() {
 	if(sessionStorage.getItem('ACCESS') !== null) {
 		let newBlock = buildDIV(
 			buildIMG('resources/pictures/App/icons/new-icon.png','',cls(['new-icon'],[{name:'onclick',value:'views.partner.addData()'}])),
-			cls('new-block')
+			cls('partner-new-block')
 		);
 		htmlContent.appendChild(newBlock);
 	}
@@ -65,7 +65,7 @@ PartnerComponent.prototype.fillPartners = function() {
 			card.appendChild(partnernsIcons);
 		}
 		let bodyCard = buildDIV([
-				buildDIV(partner.name,cls('title',[{name : 'style' , value : 'color:' + partner.color}])),
+				buildDIV(partner.name,cls(['partner-title','title'],[{name : 'style' , value : 'color:' + partner.color}])),
 				buildDIV('Chiffre d\'affaire :'+partner.ca,cls('ca')),
 				buildHR(),
 				buildParagraph(partner.description,cls('description')),
@@ -114,7 +114,7 @@ PartnerComponent.prototype.ajustLinks = function () {
 /* FORM SERVICES */
 PartnerComponent.prototype.addData = function() {
 	$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
-	popFORM('PartnerForm');
+	views.spa.popFORM('PartnerForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.editData = function(index) {
@@ -136,7 +136,7 @@ PartnerComponent.prototype.editData = function(index) {
 	el_website.value = target.website;
 	//...
 	$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData(\'edit\', ' + index + ')');
-	popFORM('PartnerForm');
+	views.spa.popFORM('PartnerForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.deleteData = function(index) {
@@ -144,13 +144,13 @@ PartnerComponent.prototype.deleteData = function(index) {
 		this.service.remove(index);
 		//....
 		try {
-			this.currentblock = this.service.get(0).id;
+			this.currentblock = 'partner-' + this.service.get(0).id;
 			this.navigate();
 		} catch (e) {
 			if(confirm('None Partner is found! Add new one ?')) {
 				views.partner.addData();
 			} else {
-				route('../Home');
+				views.spa.route('Home');
 			}
 		}
 	}
@@ -181,8 +181,8 @@ PartnerComponent.prototype.submitData = function (action = 'add', index = '0') {
 		//...
 		$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
 	}
-	closeFORM('PartnerForm');
-	this.currentblock = id;
+	views.spa.closeFORM('PartnerForm');
+	this.currentblock = 'partner-' + id;
 	this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -210,7 +210,7 @@ function PartnerMain() {
 		if(confirm('None Partner is found! Add new one ?')) {
 			views.partner.addData();
 		} else {
-			route('Home');
+			views.spa.route('Home');
 		}
 	}
 	// Stays Last

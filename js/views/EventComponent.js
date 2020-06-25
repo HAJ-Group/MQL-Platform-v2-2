@@ -33,34 +33,40 @@ EventComponent.prototype.printEventList = function () {
 	} 
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-EventComponent.prototype.fillTimeline = function(max = 3) {
+EventComponent.prototype.fillTimeline = function(max = 5) {
 	this.block_timeline.innerHTML = this.htmlSaver.timeline;
 	let counter = 0;
-	let image = '';
 	for(let event of this.service.db) {
-		for(let content of event.content) {
-			if(content.type.startsWith('image')){
-				image = content.images[Math.floor(Math.random() * content.images.length)];
+		if(event.date !== '' && counter < max) {
+			let image = '';
+			for(let content of event.content) {
+				if(content.type.startsWith('image')){
+					image = content.images[Math.floor(Math.random() * content.images.length)];
+				}
 			}
-		}
-		if(event.date !== '' && counter < 3) {
-			this.block_timeline.appendChild(buildElement('li',
+			let list = buildElement('li',
 				[
 					buildElement('p', event.date, cls('timeline-title')),
 					buildSPAN(null, cls('timeline-span')),
-					buildElement('p', [
-						buildIMG(image, 'img', cls('timeline-item-image')),
-						buildElement('h1', event.title),
-						textShortener(event.description, 100)
-					], cls('timeline-description'))
-				], cls('timeline-item', [{name:'onclick', value:'views.event.timelineNavigate(' + event.id +')'}])));
+				], cls('timeline-item', [{name:'onclick', value:'views.event.timelineNavigate(' + event.id +')'}]));
+			let list_content = buildElement('p', null, cls('timeline-description'));
+			if (image !== '') {
+				list_content.appendChild(buildIMG(image, 'img', cls('timeline-item-image')));
+			}
+			list_content.appendChild(buildDIV([
+					buildElement('h1', event.title),
+					textShortener(event.description, 100)
+				])
+			);
+			console.log(event.description);
+			list.appendChild(list_content);
+			this.block_timeline.appendChild(list);
 			counter++;
 		}
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.timelineNavigate = function(id) {
-	console.log(id);
 	if(current_page_number !== 1) {
 		this.navigate();
 		this.timelineNavigate(id);
@@ -70,37 +76,27 @@ EventComponent.prototype.timelineNavigate = function(id) {
 /**
  * Create navigation menu dynamically
  */
-/*
-EventComponent.prototype.fillNavigation = function () {
-	this.block_nav.innerHTML = this.htmlSaver.nav;
-	for(let event of this.page_blocks[current_page_number - 1]) {
-		this.block_nav.appendChild(buildHR());
-		this.block_nav.appendChild(buildDIV(
-			buildLINK('#event-' + event.id, event.title, cls('menuitem'))
-		));
-	}
-};
-*/
-
 EventComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
-		buildSPAN('All Events', wrapCI(['menuitem', 'd-none'],'all-event',[
-			{name:'onclick', value:'views.event.navigate()'}]))
+		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-event',[
+			{name:'onclick', value:'views.event.navigate(' + current_page_number + ', true)'}]))
 	]));
 	for(let event of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
-			buildSPAN(event.title, wrapCI('menuitem','nav-event-' + event.id ,[
-				{name:'onclick', value:'views.event.selectEvent(' + event.id + ');  markAsSelected('+ event.id +', \'event\')'}]))
+			buildSPAN(event.title, wrapCI(['menuitem', 'nav-event'],'nav-event-' + event.id ,[
+				{name:'onclick', value:'views.event.selectEvent(' + event.id + ');  views.spa.markAsSelected('+ event.id +', \'event\')'}]))
 		]));
 	}
+	views.spa.addNavigationPageNavigators(this.block_nav, this.page_blocks.length, 'event');
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * Filling main block
  */
+
 EventComponent.prototype.fillMain = function() {
 	this.block_main.innerHTML = this.htmlSaver.main;
 	let shows = [];
@@ -111,7 +107,7 @@ EventComponent.prototype.fillMain = function() {
 		if(event.date!=='') {
 			detaildiv.appendChild(buildElement('p', event.date, cls('date')));
 		}
-		detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
+	//	detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
 		detaildiv.appendChild(buildElement('p', event.description));
 		// Contents
 		if(event.content !== []) {
@@ -123,6 +119,21 @@ EventComponent.prototype.fillMain = function() {
 						buildDIV([
 							buildDIV(content.title, cls('element')),
 							buildElement('p', content.description)
+						], cls('description'))
+					], cls('card-event')));
+				}
+				if(content.type === 'card-items') {
+					let description = buildElement('p', content.description);
+					let ul = buildElement('ul',null);
+					for (let item of content.items){
+						ul.appendChild(buildElement('li',item));
+					}
+					description.appendChild(ul);
+					contentdiv.appendChild(buildDIV([
+						buildIMG(content.image),
+						buildDIV([
+							buildDIV(content.title, cls('element')),
+							description
 						], cls('description'))
 					], cls('card-event')));
 				}
@@ -143,10 +154,21 @@ EventComponent.prototype.fillMain = function() {
 					let griddiv = buildDIV(null, cls('row'));
 					let gridspan = buildSPAN(null, cls('column'));
 					for(let image of content.images) {
-						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'popIMG(this.id)'}])));
+						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'views.spa.popIMG(this.id)'}])));
 					}
 					griddiv.appendChild(gridspan);
 					contentdiv.appendChild(griddiv);
+				}
+				if(content.type === 'video') {
+					contentdiv.appendChild(buildElement('p', content.description));
+					for(let video of content.videos) {
+						let videoo = buildElement('video',null,cls('mql-video'));
+						videoo.controls = true;
+						videoo.appendChild(buildElement('source',null,wrap([{name:'src',value:video}])));
+						contentdiv.appendChild(
+							videoo
+						);
+					}
 				}
 			}
 			detaildiv.appendChild(contentdiv);
@@ -179,17 +201,24 @@ EventComponent.prototype.fillSwitcher = function () {
  * Navigate between pages
  * @param page_number
  * @param top
+ * @param all
  */
-EventComponent.prototype.navigate = function(page_number=1, top=false) {
+EventComponent.prototype.navigate = function(page_number=1, all = false, top=false) {
 	current_page_number = page_number;
 	this.fillTimeline();
 	this.fillNavigation();
 	this.fillMain();
 	this.fillSwitcher();
-	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
-	detect_subContent_trigger_left_bar('event');
+	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
+	views.spa.detect_subContent_trigger_left_bar('event');
 	$('#all-event').style.display = 'none';
-	if(top) window.location.href = '#main';
+	if(top) window.location.href = '#NewsMain';
+	if(!all) {
+		try {
+			views.event.selectEvent(this.page_blocks[current_page_number - 1][0].id);
+			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'event');
+		} catch (e) {}
+	}
 };
 
 EventComponent.prototype.selectEvent = function(id){
@@ -209,7 +238,7 @@ EventComponent.prototype.displayEvent = function(event) {
 		if(event.date!=='') {
 			detaildiv.appendChild(buildElement('p', event.date, cls('date')));
 		}
-		detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
+		//detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
 		detaildiv.appendChild(buildElement('p', event.description));
 		// Contents
 		if(event.content !== []) {
@@ -221,6 +250,21 @@ EventComponent.prototype.displayEvent = function(event) {
 						buildDIV([
 							buildDIV(content.title, cls('element')),
 							buildElement('p', content.description)
+						], cls('description'))
+					], cls('card-event')));
+				}
+				if(content.type === 'card-items') {
+					let description = buildElement('p', content.description);
+					let ul = buildElement('ul',null);
+					for (let item of content.items){
+						ul.appendChild(buildElement('li',item));
+					}
+					description.appendChild(ul);
+					contentdiv.appendChild(buildDIV([
+						buildIMG(content.image),
+						buildDIV([
+							buildDIV(content.title, cls('element')),
+							description
 						], cls('description'))
 					], cls('card-event')));
 				}
@@ -241,10 +285,21 @@ EventComponent.prototype.displayEvent = function(event) {
 					let griddiv = buildDIV(null, cls('row'));
 					let gridspan = buildSPAN(null, cls('column'));
 					for(let image of content.images) {
-						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'popIMG(this.id)'}])));
+						gridspan.appendChild(buildIMG(image, 'MQL PLATFORM', id('id_' + image, [{name:'onclick', value:'views.spa.popIMG(this.id)'}])));
 					}
 					griddiv.appendChild(gridspan);
 					contentdiv.appendChild(griddiv);
+				}
+				if(content.type === 'video') {
+					contentdiv.appendChild(buildElement('p', content.description));
+					for(let video of content.videos) {
+						let videoo = buildElement('video',null,cls('mql-video'));
+						videoo.controls = true;
+						videoo.appendChild(buildElement('source',null,wrap([{name:'src',value:video}])));
+						contentdiv.appendChild(
+							videoo
+						);
+					}
 				}
 			}
 			detaildiv.appendChild(contentdiv);
@@ -256,6 +311,8 @@ EventComponent.prototype.displayEvent = function(event) {
 	for(let show of shows) {
 		createBook(show.book_pics, show.book_name);
 	}
+	this.block_switch.innerHTML = '';
+	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
 };
 
 
@@ -276,7 +333,7 @@ EventComponent.prototype.filterKey = function () {
 	if(this.page_blocks.length === 0) {
 		$('.error-message')[0].innerHTML = 'Event not Found !';
 		$('#key').setAttribute('class', 'search-error');
-		showEmptyErrorResult();
+		views.spa.showEmptyErrorResult();
 	}
 	else {
 		$('.error-message')[0].innerHTML = '';
@@ -288,7 +345,7 @@ EventComponent.prototype.filterKey = function () {
 /* FORM SERVICES */
 EventComponent.prototype.addData = function() {
 	$('#eventSubmit').setAttribute('onclick', 'views.event.submitData()');
-	popFORM('EventForm');
+	views.spa.popFORM('EventForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.editData = function(index) {
@@ -300,7 +357,7 @@ EventComponent.prototype.editData = function(index) {
 	el_desc.value = target.description;
 	//...
 	$('#eventSubmit').setAttribute('onclick', 'views.event.submitData(\'edit\', ' + index + ')');
-	popFORM('EventForm');
+	views.spa.popFORM('EventForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.deleteData = function(index) {
@@ -314,7 +371,7 @@ EventComponent.prototype.deleteData = function(index) {
 			if(confirm('None Event is found! Add new one ?')) {
 				views.event.addData();
 			} else {
-				route('Home');
+				views.spa.route('Home');
 			}
 		}
 	}
@@ -336,7 +393,7 @@ EventComponent.prototype.submitData = function (action = 'add', index = '0') {
 		$('#eventSubmit').setAttribute('onclick', 'views.event.submitData()');
 	}
 	this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
-	closeFORM('EventForm');
+	views.spa.closeFORM('EventForm');
 	this.navigate();
 };
 EventComponent.prototype.triggerSubmit = function () {
@@ -349,20 +406,24 @@ function EventMain() {
 	let service = new EventComponentService();
 	service.load(dbEvent);
 	views['event'] = new EventComponent(service);
-	try {
+	//try {
 		views.event.fillTimeline();
 		views.event.fillNavigation();
 		views.event.fillMain();
 		views.event.fillSwitcher();
-	} catch (e) {
-		if(confirm('None Event is found! Add new one ?')) {
-			views.event.addData();
-		} else {
-			route('Home');
-		}
-	}
+	// } catch (e) {
+	// 	if(confirm('None Event is found! Add new one ?')) {
+	// 		views.event.addData();
+	// 	} else {
+	// 		views.spa.route('Home');
+	// 	}
+	// }
 	// Stays last
-	addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
-	detect_subContent_trigger_left_bar('event');
+	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
+	views.spa.detect_subContent_trigger_left_bar('event');
+	try {
+		views.event.selectEvent(service.get(0).id);
+		views.spa.markAsSelected(service.get(0).id, 'event');
+	} catch (e) {}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
