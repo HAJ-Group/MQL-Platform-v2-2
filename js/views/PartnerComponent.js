@@ -114,7 +114,7 @@ PartnerComponent.prototype.ajustLinks = function () {
 /* FORM SERVICES */
 PartnerComponent.prototype.addData = function() {
 	$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
-	popFORM('PartnerForm');
+	views.spa.popFORM('PartnerForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.editData = function(index) {
@@ -136,7 +136,7 @@ PartnerComponent.prototype.editData = function(index) {
 	el_website.value = target.website;
 	//...
 	$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData(\'edit\', ' + index + ')');
-	popFORM('PartnerForm');
+	views.spa.popFORM('PartnerForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.deleteData = function(index) {
@@ -150,7 +150,7 @@ PartnerComponent.prototype.deleteData = function(index) {
 			if(confirm('None Partner is found! Add new one ?')) {
 				views.partner.addData();
 			} else {
-				route('Home');
+				views.spa.route('Home');
 			}
 		}
 	}
@@ -181,7 +181,7 @@ PartnerComponent.prototype.submitData = function (action = 'add', index = '0') {
 		//...
 		$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
 	}
-	closeFORM('PartnerForm');
+	views.spa.closeFORM('PartnerForm');
 	this.currentblock = 'partner-' + id;
 	this.navigate();
 };
@@ -210,7 +210,7 @@ function PartnerMain() {
 		if(confirm('None Partner is found! Add new one ?')) {
 			views.partner.addData();
 		} else {
-			route('Home');
+			views.spa.route('Home');
 		}
 	}
 	// Stays Last

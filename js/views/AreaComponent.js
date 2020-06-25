@@ -43,7 +43,7 @@ AreaComponent.prototype.logout = function() {
 	// DENY ACCESS
 	sessionStorage.removeItem('ACCESS');
 	console.log(sessionStorage.getItem('ACCESS'));
-	route('Home');
+	views.spa.route('Home');
 	this.refresh();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -57,7 +57,7 @@ AreaComponent.prototype.loadData = function() {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 AreaComponent.prototype.cancel = function () {
-	route('Home');
+	views.spa.route('Home');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 AreaComponent.prototype.refresh = function () {

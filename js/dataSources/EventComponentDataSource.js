@@ -31,7 +31,7 @@ let dbEvent = [
 	{
 		id: 1,
 		title:'Concours',
-		date : 'À partir d\'octobre',
+		date : 'Septembre',
 		description:'Un Mqliste, dans sa deuxième année de formation, commence déjà  à passer des entretiens de stage pré-ambauche, en fait nous retrouvons, à la faculté des sciences, des multinationales dans des sessions de recrutement organisées par les étudiants MQL.' +
 			' Ces compagnes de stages se déroulent généralemenet en 3 phases : ',
 		content:[
@@ -63,7 +63,7 @@ let dbEvent = [
 	{
 		id: 2,
 		title:'Compagnes de stages',
-		date : 'À partir d\'octobre',
+		date : 'Octobre',
 		description:'Un Mqliste, dans sa deuxième année de formation, commence déjà  à passer des entretiens de stage pré-ambauche, en fait nous retrouvons, à la faculté des sciences, des multinationales dans des sessions de recrutement organisées par les étudiants MQL.' +
 			' Ces compagnes de stages se déroulent généralemenet en 3 phases : ',
 		content:[
@@ -89,6 +89,11 @@ let dbEvent = [
 				type:'image-show',
 				title:'Galerie',
 				images: dbEventBook1,
+			},
+			{
+				type:'video',
+				description:'',
+				videos: ['resources/videos/recrutement2019.mp4'],
 			},
 		],
 	},
@@ -126,19 +131,24 @@ let dbEvent = [
 					'resources/pictures/Event/CE2-2.jpg',
 				],
 			},
+			{
+				type:'video',
+				description:'',
+				videos: ['resources/videos/cérémonie2018.mp4'],
+			},
 		],
 	},
 	{
 		id:5,
-		title:'Soutenance',
+		title: 'Compétitions',
 		date:'',
-		description:'MQL dépasse les limtes de la formation et l\'éducation; MQL est une équipe, une famille, un style de vie.',
+		description: 'Nos étudiants s\'engagent dans des compétions organisés tout au long de la formation MQL, les mqlistes ne s\'arrêtent pas à la participation, mais cherchent les premiers prix' ,
 		content: [
 			{
-				type:'image-grid',
-				title:'Galerie',
-				description:'',
-				images: ['resources/pictures/App/mqlfam.JPG','resources/pictures/Event/sortie.jpg'],
+				type:'video',
+				title:'',
+				description:'La compétion INJAZ ALMaghrib est une de ces compétitions, l\'equipe REDHOPE avec son projet bla bla a réussi à remporter le premier prix régional et le prix boieng de l\'inovation sur l\'echelle nationale',
+				videos: ['resources/videos/injaz2018.mp4'],
 			},
 		],
 	},
@@ -156,6 +166,21 @@ let dbEvent = [
 			},
 		],
 	},
+	{
+		id:7,
+		title:'Soutenance',
+		date:'Juin-Juillet',
+		description:'La dernière étape de la formation MQL, où les étudiants présentent leurs projets de fin d\'études devant un jury',
+		content: [
+			{
+				type:'video',
+				title:'',
+				description:'',
+				videos: [],
+			},
+		],
+	},
+
 ];
 
 
