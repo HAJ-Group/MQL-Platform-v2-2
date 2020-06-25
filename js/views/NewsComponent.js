@@ -305,7 +305,7 @@ NewsComponent.prototype.autoBoxLoader  = function() {
 			item_size = items.length;
 		}
 		function handler() {
-			this.showABI(Math.floor(Math.random() * items.length));
+			views.news.nextABI();
 		}
 		auto_slider = setInterval(handler, 10000);
 	} catch (e) {
@@ -321,7 +321,7 @@ NewsComponent.prototype.showABI = function(index) {
 		items[index].style.display = 'block';
 		current_autobox_item = index;
 	}
-}
+};
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.nextABI = function() {
 	if(current_autobox_item === (item_size - 1)) {
@@ -347,7 +347,7 @@ NewsComponent.prototype.pauseABI = function() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.resumeABI = function() {
 	function handler() {
-		showABI(Math.floor(Math.random() * item_size));
+		views.news.nextABI();
 	}
 	auto_slider = setInterval(handler, 10000);
 };

@@ -169,7 +169,7 @@ HomeComponent.prototype.fillNews = function(max = 5) {
 	let service = views.news.service;
 	if(max > service.size()) max = service.size();
 	for(let i=0; i<max; i++) {
-		this.newsBlock.appendChild(buildDIV(service.get(i).title, wrap([
+		this.newsBlock.appendChild(buildDIV(service.get(i).title, cls('news-item', [
 			{name:'onclick', value:'views.home.showRemoteNews(' + (i+1) + ')'},
 		])));
 	}
