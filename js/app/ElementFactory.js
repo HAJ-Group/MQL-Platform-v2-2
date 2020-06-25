@@ -158,7 +158,8 @@ function buildLINK(href, content = null, attributes = []) {
  * @returns {any}
  */
 function buildParagraph(content = null, attributes = []) {
-    return buildElement('p', content, attributes);
+    attributes.push('pargraphe')
+    return buildSPAN(content, attributes);
 }
 
 /**

@@ -30,10 +30,9 @@ let dbEventBook2 = [
 let dbEvent = [
 	{
 		id: 1,
-		title:'Concours',
+		title:'Concours d\'accès',
 		date : 'Septembre',
-		description:'Un Mqliste, dans sa deuxième année de formation, commence déjà  à passer des entretiens de stage pré-ambauche, en fait nous retrouvons, à la faculté des sciences, des multinationales dans des sessions de recrutement organisées par les étudiants MQL.' +
-			' Ces compagnes de stages se déroulent généralemenet en 3 phases : ',
+		description:'Pour accéder au master qualité du logiciel, les étudiants sont aménés à passer un concours ',
 		content:[
 			{
 				type:'card',
