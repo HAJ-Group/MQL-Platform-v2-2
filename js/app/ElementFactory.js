@@ -302,6 +302,21 @@ function wrapIC(id, classes, others = []) {
     }
     return attributes;
 }
+/** 5-2
+ * Quick Set of attributes classes and others
+ * @param id
+ * @param classes
+ * @param others
+ * @returns {[]}
+ */
+function wrapCOthers(classes, others = []) {
+    let attributes = [];
+    attributes.push(new Attribute('class', classes));
+    for(let o of others) {
+        attributes.push(new Attribute(o.name, o.value));
+    }
+    return attributes;
+}
 /* ---------------------------------------------------------------------------------------------------------------*/
 /** 5
  * Quick Set of classes and others
