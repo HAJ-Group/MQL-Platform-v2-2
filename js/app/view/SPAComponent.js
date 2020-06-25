@@ -274,6 +274,7 @@ SPAComponent.prototype.offLight = function (id) {
 SPAComponent.prototype.route = function (component = '') {
     this.initComponent(component);
     this.switchComponent();
+
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -400,12 +401,43 @@ SPAComponent.prototype.popFORM = function(target_block = 'form') {
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.markAsSelected = function(id, component) {
     $('#all-' + component).style.display = 'block';
-    let targets = $('.wrap-red');
+    let targets = $('.nav-' + component);
     for (let target of targets){
         target.classList.remove('wrap-red');
     }
     $('#nav-' + component + '-' + id).classList.add('wrap-red');
 };
+/*--------------------------------------------------------------------------------------------------------------------*/
+SPAComponent.prototype.addNavigationPageNavigators = function (block, page_size, component) {
+    block.appendChild(buildHR());
+    let previous = buildElement('Button', 'Précédent', wrapCI(['page-navigator', 'blue-bg', 'disabled-page-navigator'],'prev-page-navigator' ,[
+            {name:'onclick', value:'views.' + component + '.navigate(' + (current_page_number - 1) + ');'},
+            {name:'disabled', value:''},
+        ]));
+    let next = buildElement('Button', 'Suivant', wrapCI(['page-navigator', 'blue-bg', 'disabled-page-navigator'],'next-page-navigator' ,[
+            {name:'onclick', value:'views.' + component + '.navigate(' + (current_page_number + 1) + ');'},
+            {name:'disabled', value:''},
+        ]));
+    // Test if there is more than one page
+    if(page_size > 1) {
+        if(current_page_number === 1) {
+            next.removeAttribute('disabled');
+            next.classList.remove('disabled-page-navigator');
+        }
+        if(current_page_number === page_size) {
+            previous.removeAttribute('disabled');
+            previous.classList.remove('disabled-page-navigator');
+        }
+        if(current_page_number > 1 && current_page_number < page_size) {
+            next.removeAttribute('disabled');
+            next.classList.remove('disabled-page-navigator');
+            previous.removeAttribute('disabled');
+            previous.classList.remove('disabled-page-navigator');
+        }
+    }
+    block.appendChild(buildDIV([previous, next], cls('page-navigator-container')));
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
 function mainSPA() {
     let service = new SPAComponentService();
     service.load(SPAnavs);
@@ -413,3 +445,5 @@ function mainSPA() {
     views.spa.load();
     views.spa.route();
 }
+
+

@@ -49,15 +49,16 @@ LaureateComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
 		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-laureate',[
-			{name:'onclick', value:'views.laureate.navigate(' + current_page_number + ')'}]))
+			{name:'onclick', value:'views.laureate.navigate(' + current_page_number + ', true)'}]))
 	]));
 	for(let promotion of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
-			buildSPAN(promotion.id, wrapCI('menuitem','nav-laureate-' + promotion.id ,[
+			buildSPAN(promotion.name, wrapCI(['menuitem', 'nav-laureate'],'nav-laureate-' + promotion.id ,[
 				{name:'onclick', value:'views.laureate.selectPromotion(\'' + promotion.id + '\');  views.spa.markAsSelected(\''+ promotion.id +'\', \'laureate\')'}]))
 		]));
 	}
+	views.spa.addNavigationPageNavigators(this.block_nav, this.page_blocks.length, 'laureate');
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -226,9 +227,10 @@ LaureateComponent.prototype.fillSwitcher = function () {
 /**
  * Navigate between pages
  * @param page_number
+ * @param all
  * @param top
  */
-LaureateComponent.prototype.navigate = function(page_number=1, top=false) {
+LaureateComponent.prototype.navigate = function(page_number=1, all = false, top=false) {
 	current_page_number = page_number;
 	this.fillNavigation();
 	this.fillMain();
@@ -236,7 +238,13 @@ LaureateComponent.prototype.navigate = function(page_number=1, top=false) {
 	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
 	views.spa.detect_subContent_trigger_left_bar('laureate');
 	$('#all-laureate').style.display = 'none';
-	if(top) window.location.href = '#header';
+	if(top) window.location.href = '#LaureateMain';
+	if(!all) {
+		try {
+			views.laureate.selectPromotion(this.page_blocks[current_page_number - 1][0].id);
+			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'laureate');
+		} catch (e) {}
+	}
 };
 
 
@@ -582,5 +590,9 @@ function LaureateMain() {
 	// stays last
 	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
 	views.spa.detect_subContent_trigger_left_bar('laureate');
+	try {
+		views.laureate.selectPromotion(service.get(0).id);
+		views.spa.markAsSelected(service.get(0).id, 'laureate');
+	} catch (e) {}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
