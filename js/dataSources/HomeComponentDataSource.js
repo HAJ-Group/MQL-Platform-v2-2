@@ -1,5 +1,4 @@
 /* Global data source table for HomeComponent */
-
 let dbHomestats1 = [
     {
         type : 'bar',
