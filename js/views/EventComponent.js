@@ -88,6 +88,7 @@ EventComponent.prototype.fillNavigation = function () {
 /**
  * Filling main block
  */
+
 EventComponent.prototype.fillMain = function() {
 	this.block_main.innerHTML = this.htmlSaver.main;
 	let shows = [];
@@ -317,7 +318,7 @@ EventComponent.prototype.deleteData = function(index) {
 			if(confirm('None Event is found! Add new one ?')) {
 				views.event.addData();
 			} else {
-				route('Home');
+				views.spa.route('Home');
 			}
 		}
 	}
