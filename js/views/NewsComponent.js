@@ -41,7 +41,7 @@ NewsComponent.prototype.fillAutoBox = function() {
 					{name:'onmouseleave', value:'views.news.resumeABI()'},
 				])),
 				buildDIV([
-					buildDIV(news.title, cls('autoBox-title')),
+					buildDIV(news.title, cls(['autoBox-title','red-bg'])),
 					buildDIV([
 						textShortener(news.description, 150),
 						buildElement('button', 'More', cls('autoBox-more', [
