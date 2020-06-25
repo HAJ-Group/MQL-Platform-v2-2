@@ -269,7 +269,7 @@ header {
     text-align: center;
     font-family: "Berlin Sans FB", serif;
     text-decoration: none;
-    color: black;
+    color: rgb(53, 69, 108) ;
     padding: 5px;
     display: block;
     cursor: pointer;
