@@ -797,6 +797,19 @@ function switchColorOfSelectedElement(id, id2) {
     $('#' + id).classList.add('red-ball');
     $('#' + id2).classList.remove('red-ball');
 }
+/*--------------------------------------------------------------------------------------------------------------------*/
+function scrollToDown() {
+    let timeout;
+    if (document.body.scrollTop < window.innerHeight || document.documentElement.scrollTop < window.innerHeight) {
+        /* console.log(document.body.scrollTop);*/
+        /*console.log(document.documentElement.scrollTop);*/
+        /* console.log(window.innerHeight);*/
+        window.scrollBy(0,50);
+        timeout = setTimeout('scrollToDown()', 8);
+    } else {
+        clearTimeout(timeout);
+    }
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
