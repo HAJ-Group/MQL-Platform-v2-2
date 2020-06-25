@@ -137,7 +137,7 @@ ActivityComponent.prototype.printSemesters = function(){
 
 				if(i !==3) {
 					divCard = buildDIV(
-						buildIMG(moduleImage, '', cls('card-image')),
+						buildIMG(moduleImage, '', cls('activity-card-image')),
 						cls('card'));
 
 					divCardText = buildDIV([
@@ -151,7 +151,7 @@ ActivityComponent.prototype.printSemesters = function(){
 					divCardText.appendChild(divModules);
 
 					divCardFooter = buildDIV(
-						buildIMG('../../resources/pictures/logo-mql2.png', '',
+						buildIMG('resources/pictures/Activity/logo-mql2.png', '',
 							cls('logo-mql')),
 						cls('card-footer'));
 
@@ -163,7 +163,7 @@ ActivityComponent.prototype.printSemesters = function(){
 			}
 			if (j === 3){
 				divCard = buildDIV(
-					buildIMG(activityImage, '', cls('card-image')),
+					buildIMG(activityImage, '', cls('activity-card-image')),
 					wrapIC('card', 'card'));
 
 				divCardText = buildDIV([
@@ -178,7 +178,7 @@ ActivityComponent.prototype.printSemesters = function(){
 				divCardText.appendChild(divActivities);
 
 				divCardFooter = buildDIV(
-					buildIMG('../../resources/pictures/logo-mql2.png', '',
+					buildIMG('resources/pictures/Activity/logo-mql2.png', '',
 						cls('logo-mql')),
 					cls('card-footer'));
 
