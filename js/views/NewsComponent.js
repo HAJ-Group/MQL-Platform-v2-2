@@ -87,7 +87,7 @@ NewsComponent.prototype.fillMain = function () {
 	let event = '';
 	for(let news of this.page_blocks[current_page_number - 1]) {
 		if (news.id_event!=='') {
-			 event = 'Vous pouvez voir plus sur l\évenement';
+			 event = 'Vous pouvez voir plus sur l\'évenement';
 		}
 		let titleDiv = buildDIV([
 			buildDIV(news.title, cls(['title', 'news-title'])),
@@ -96,7 +96,7 @@ NewsComponent.prototype.fillMain = function () {
 			buildParagraph( formattedDate(news.date), cls('date')),
 			buildParagraph([
 				news.description,
-				buildParagraph(event,cls('event-link',[{name:'onclick',value:'views.news.selectEvent('+news.id_event+')'}])),
+				buildParagraph(event,cls(['event-link','red'],[{name:'onclick',value:'views.news.selectEvent('+news.id_event+') ; views.spa.markAsSelected('+ news.id_event+', \'news\')'}])),
 		])], cls(['details', 'news-details']));
 		let rowDiv = buildDIV(null, cls('row'));
 		let columnSpan = buildSPAN(null, cls('column'));
@@ -160,7 +160,7 @@ NewsComponent.prototype.displayNews = function(news){
 	this.block_main = $('#NewsMain');
 	let event ='';
 	if (news.id_event!=='') {
-		event = 'Vous pouvez voir plus sur l\évenement';
+		event = 'Vous pouvez voir plus sur l\'évenement';
 	}
 	let titleDiv = buildDIV([
 		buildDIV(news.title, cls(['title', 'news-title'])),
@@ -169,7 +169,7 @@ NewsComponent.prototype.displayNews = function(news){
 		buildParagraph( formattedDate(news.date), cls('date')),
 		buildParagraph([
 			news.description,
-			buildParagraph(event,cls('event-link',[{name:'onclick',value:'views.news.selectEvent('+news.id_event+')'}])),
+			buildParagraph(event,cls(['event-link','red'],[{name:'onclick',value:'views.news.selectEvent('+news.id_event+') ; views.spa.markAsSelected('+ news.id_event+',\'event\')'}])),
 		])], cls(['details', 'news-details']));
 	let rowDiv = buildDIV(null, cls('row'));
 	let columnSpan = buildSPAN(null, cls('column'));
