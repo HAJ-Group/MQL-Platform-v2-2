@@ -539,7 +539,7 @@ table.student-table{
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 @media only screen and (max-width: 1200px) {
-	.presenter-container {
-		display: none;
+	.presenter-links span{
+		z-index: 0;
 	}
 }

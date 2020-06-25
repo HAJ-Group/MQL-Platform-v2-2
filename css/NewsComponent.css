@@ -46,17 +46,16 @@
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-title {
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
     color: white;
-    background-color: rgb(216, 49, 57);
     padding: 3%;
-    width: fit-content;
+    width: 30%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-content {
     font-size: 25px;
-    width: 80%;
+    width: 70%;
     text-align: justify;
     padding: 10px;
 }
@@ -71,7 +70,7 @@
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .previous-auto_item:hover, .next-auto_item:hover {
-    color: #e92a1c;
+    color: rgb(216, 49, 57);
     opacity: 1;
     cursor: pointer;
 }
