@@ -58,6 +58,7 @@ EventComponentService.prototype.load = function(dbSource) {
 			if(content.type === 'card') container.push(this.loadCard(content));
 			if(content.type.startsWith('image-')) container.push(this.loadGallery(content));
 			if(content.type === 'video')  container.push(content);
+			if(content.type === 'card-items')  container.push(content);
 		}
 		this.add(
 			new EventModel(dbSource[i].id,

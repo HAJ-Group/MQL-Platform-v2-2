@@ -68,15 +68,16 @@ NewsComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
 		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-news',[
-			{name:'onclick', value:'views.news.navigate(' + current_page_number + ')'}]))
+			{name:'onclick', value:'views.news.navigate(' + current_page_number + ', true)'}]))
 	]));
 	for(let news of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
-			buildSPAN(news.title, wrapCI('menuitem','nav-news-' + news.id ,[
+			buildSPAN(news.title, wrapCI(['menuitem', 'nav-news'],'nav-news-' + news.id ,[
 				{name:'onclick', value:'views.news.selectNews(' + news.id + ');  views.spa.markAsSelected('+ news.id +', \'news\')'}]))
 		]));
 	}
+	views.spa.addNavigationPageNavigators(this.block_nav, this.page_blocks.length, 'news');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -136,8 +137,9 @@ NewsComponent.prototype.fillSwitcher = function () {
  * Navigate between pages
  * @param page_number
  * @param top
+ * @param all
  */
-NewsComponent.prototype.navigate = function(page_number=1, top=false) {
+NewsComponent.prototype.navigate = function(page_number=1, all = false, top=false) {
 	current_page_number = page_number;
 	this.fillNavigation();
 	this.fillMain();
@@ -145,7 +147,13 @@ NewsComponent.prototype.navigate = function(page_number=1, top=false) {
 	views.spa.addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
 	views.spa.detect_subContent_trigger_left_bar('news');
 	$('#all-news').style.display = 'none';
-	if(top) window.location.href = '#main';
+	if(top) window.location.href = '#NewsMain';
+	if(!all) {
+		try {
+			views.news.selectNews(this.page_blocks[current_page_number - 1][0].id);
+			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'news');
+		} catch (e) {}
+	}
 };
 
 NewsComponent.prototype.selectNews = function(id){
@@ -376,5 +384,9 @@ function NewsMain() {
 	views.spa.addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
 	views.spa.detect_subContent_trigger_left_bar('news');
 	views.news.trigger();
+	try {
+		views.news.selectNews(service.get(0).id);
+		views.spa.markAsSelected(service.get(0).id, 'news');
+	} catch (e) {}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
