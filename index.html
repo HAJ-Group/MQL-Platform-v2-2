@@ -243,12 +243,17 @@
 								</div>
 							</div>
 							<div id="mql-stats" class="home-card hidden">
-								<div class="chart-container" style=" display:flex; position: relative; height:200px; width:47%">
+								<p>MQL en chiffres : </p>
+								<p>-Nous avons passsé de 20% d'insertion en stage pré-embauche en 2009 (5 sur 20) à 100% en 2015 (30 sur 30) , dont +90% ont signé des contrats CDI</p>
+								<p>-Entre 2015 et 2019, CAPGEMINI, de ces deux sièges RABAT et CASABLANCA, est notre premier partenaire en nombre d'étudiants intégrés avec <strong>71</strong> stagiaires, suivie de CGI (Fes, Rabat et Casablanca ) avec <strong>44</strong>  MQListes</p>
+								<p>- Sur un total d'effectif de 160 étudiants, <strong>147</strong> ont réussi à décrocher leurs contrats CDI avec un taux d'insertion de 92% (2015-2019): </p>
+								<div class="chart-container">
 									<canvas id="myChart0"></canvas>
-									<canvas id="myChart1" style="margin-left:50px ;"></canvas>
+									<canvas id="myChart1" class="second-chart"></canvas>
 								</div>
-								<div class="chart-container last-chart" style="display:flex; margin-top:100px; ;position: relative; height:200px; width:47%; margin-bottom: 20px">
+								<div class="chart-container last-chart" >
 									<canvas id="myChart2"></canvas>
+									<canvas id="myChart3" class="second-chart"></canvas>
 								</div>
 							</div>
                             <div id="mql-students" class="home-card hidden">
@@ -364,7 +369,7 @@
 								<div  class="details home-details">
 									<p>Les modules constituent pour les apprenants un pré  requis scientifique important et pertinent pour une intégration réussie dans le monde professionnel, la formation permet aux étudiants d’acquérir une ouverture culturelle et une confiance en eux même (réalisations de mini projets et des projets de fin d’études, stages dans des entreprises, préparations des exposés………).</p>
 									<p>La formation MQL s'intersse principalement aux besoins des entreprises, cette formation est déroulée en 4 semestres, 2 par an, dont chacun avec 6 modules , le 4<sup>ème</sup> semestre est déstiné pour un stage pré-embauche dans des <strong>multinationales</strong> actives en développement offshore.
-										<span class="vp" onclick="route('Activity')">Voir plus...</span>
+										<span class="vp" onclick="views.spa.route('Activity')">Voir plus...</span>
 									</p>
 									<table id="table-program" class="table-program" border="2px"></table>
 								</div>
@@ -500,18 +505,18 @@
 								<h1 class="manage-title"><img src="resources/pictures/Area/manage.png" alt="">Zone de Gestion</h1><hr>
 								<div class="manage-cards">
 									<div class="manage-card">
-										<img onclick="route('News')" src="resources/pictures/Area/news.jpg" alt="">
+										<img onclick="views.spa.route('News')" src="resources/pictures/Area/news.jpg" alt="">
 									</div>
 									<div class="manage-card">
-										<img onclick="route('Event')" src="resources/pictures/Area/event.jpg" alt="">
+										<img onclick="views.spa.route('Event')" src="resources/pictures/Area/event.jpg" alt="">
 									</div>
 								</div>
 								<div class="manage-cards">
 									<div class="manage-card">
-										<img onclick="route('Laureate')" src="resources/pictures/Area/laureate.jpg" alt="">
+										<img onclick="views.spa.route('Laureate')" src="resources/pictures/Area/laureate.jpg" alt="">
 									</div>
 									<div class="manage-card">
-										<img onclick="route('Partner')" src="resources/pictures/Area/partner.jpg" alt="">
+										<img onclick="views.spa.route('Partner')" src="resources/pictures/Area/partner.jpg" alt="">
 									</div>
 								</div>
 							</div>

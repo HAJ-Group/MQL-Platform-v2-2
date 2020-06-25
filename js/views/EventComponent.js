@@ -246,7 +246,15 @@ EventComponent.prototype.displayEvent = function(event) {
 					contentdiv.appendChild(griddiv);
 				}
 				if(content.type === 'video') {
-					console.log("videeeeeeeeeo");
+					contentdiv.appendChild(buildElement('p', content.description));
+					for(let video of content.videos) {
+						let videoo = buildElement('video',null,cls('mql-video'));
+						videoo.controls = true;
+						videoo.appendChild(buildElement('source',null,wrap([{name:'src',value:video}])));
+						contentdiv.appendChild(
+							videoo
+						);
+					}
 				}
 			}
 			detaildiv.appendChild(contentdiv);
