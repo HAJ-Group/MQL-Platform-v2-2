@@ -122,6 +122,21 @@ EventComponent.prototype.fillMain = function() {
 						], cls('description'))
 					], cls('card-event')));
 				}
+				if(content.type === 'card-items') {
+					let description = buildElement('p', content.description);
+					let ul = buildElement('ul',null);
+					for (let item of content.items){
+						ul.appendChild(buildElement('li',item));
+					}
+					description.appendChild(ul);
+					contentdiv.appendChild(buildDIV([
+						buildIMG(content.image),
+						buildDIV([
+							buildDIV(content.title, cls('element')),
+							description
+						], cls('description'))
+					], cls('card-event')));
+				}
 				if(content.type === 'image-show') {
 					contentdiv.appendChild(buildDIV([
 						buildDIV([
@@ -235,6 +250,21 @@ EventComponent.prototype.displayEvent = function(event) {
 						buildDIV([
 							buildDIV(content.title, cls('element')),
 							buildElement('p', content.description)
+						], cls('description'))
+					], cls('card-event')));
+				}
+				if(content.type === 'card-items') {
+					let description = buildElement('p', content.description);
+					let ul = buildElement('ul',null);
+					for (let item of content.items){
+						ul.appendChild(buildElement('li',item));
+					}
+					description.appendChild(ul);
+					contentdiv.appendChild(buildDIV([
+						buildIMG(content.image),
+						buildDIV([
+							buildDIV(content.title, cls('element')),
+							description
 						], cls('description'))
 					], cls('card-event')));
 				}
@@ -376,18 +406,18 @@ function EventMain() {
 	let service = new EventComponentService();
 	service.load(dbEvent);
 	views['event'] = new EventComponent(service);
-	try {
+	//try {
 		views.event.fillTimeline();
 		views.event.fillNavigation();
 		views.event.fillMain();
 		views.event.fillSwitcher();
-	} catch (e) {
-		if(confirm('None Event is found! Add new one ?')) {
-			views.event.addData();
-		} else {
-			views.spa.route('Home');
-		}
-	}
+	// } catch (e) {
+	// 	if(confirm('None Event is found! Add new one ?')) {
+	// 		views.event.addData();
+	// 	} else {
+	// 		views.spa.route('Home');
+	// 	}
+	// }
 	// Stays last
 	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
 	views.spa.detect_subContent_trigger_left_bar('event');
