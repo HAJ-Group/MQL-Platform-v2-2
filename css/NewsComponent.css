@@ -6,7 +6,7 @@
     position: relative;
     background-image: url("../resources/pictures/News/autoboxBG.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 100% 600px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .autoBox-item {
@@ -25,6 +25,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
+    padding: 10px;
+    background-color: white;
     animation: fade 1s;
     box-shadow: 0 0 5px lightgray;
 }

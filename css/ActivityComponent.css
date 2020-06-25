@@ -324,8 +324,9 @@
 	width: 90%;
 	display: block;
 	font-size: 20px;
-	border: 1px solid lightgray;
-	background-color: #ebebeb;
+    color: white;
+	border: 1px solid rgb(216, 49, 57);
+	background-color: rgb(53, 69, 108);
 	padding: 20px;
 	border-radius: 10px;
 	margin-bottom: 10px;

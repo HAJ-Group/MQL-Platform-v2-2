@@ -1200,12 +1200,12 @@ textarea {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .button-contact-2{
-    background-color: #89c926;
+    background-color: rgb(216, 49, 57);
     color: white;
 }
 .button-contact {
-    background-color: #f6f8b2;
-    color: #4B4C54;
+    background-color: rgb(216, 49, 57);
+    color: white;
     font-weight: bold;
 }
 .button-contact:hover,.button-contact:focus, .button-contact-2:hover{
