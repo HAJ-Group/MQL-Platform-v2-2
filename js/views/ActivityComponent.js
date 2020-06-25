@@ -189,7 +189,7 @@ ActivityComponent.prototype.printSemesters = function(){
 			}
 		}
 
-		console.log(cards);
+	/*	console.log(cards);*/
 		let bigContainer = buildDIV(
 			buildDIV(semesterName, wrapIC('collapse-' + (i + 1), 'title-top-cards collapsible')),
 			cls('big-container')

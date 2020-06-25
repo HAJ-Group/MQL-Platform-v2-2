@@ -8,10 +8,18 @@ function getHeaderNavs() {
     for(let nav of navs) {
         navElement.appendChild(buildLINK('#' + nav.name, nav.content, cls(['left','blue'], [{name:'name', value:nav.name}])));
     }
+/*
     // ABOUT NAV
     navElement.appendChild(buildLINK('#footer', [
         buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img'))
     ], cls('right')));
+*/
+
+    // ABOUT NAV
+    navElement.appendChild(buildLINK('javascript:void(0)', [
+        buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img'))
+    ], wrapCOthers('right', [{name: 'onclick', value: 'views.spa.scrollToDown();'}])));
+
     return navElement;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
