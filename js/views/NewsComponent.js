@@ -73,7 +73,7 @@ NewsComponent.prototype.fillNavigation = function () {
 	for(let news of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
-			buildSPAN(news.title, wrapCI(['menuitem', 'nev-news'],'nav-news-' + news.id ,[
+			buildSPAN(news.title, wrapCI(['menuitem', 'nav-news'],'nav-news-' + news.id ,[
 				{name:'onclick', value:'views.news.selectNews(' + news.id + ');  views.spa.markAsSelected('+ news.id +', \'news\')'}]))
 		]));
 	}
