@@ -33,27 +33,34 @@ EventComponent.prototype.printEventList = function () {
 	} 
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-EventComponent.prototype.fillTimeline = function(max = 3) {
+EventComponent.prototype.fillTimeline = function(max = 5) {
 	this.block_timeline.innerHTML = this.htmlSaver.timeline;
 	let counter = 0;
-	let image = '';
 	for(let event of this.service.db) {
-		for(let content of event.content) {
-			if(content.type.startsWith('image')){
-				image = content.images[Math.floor(Math.random() * content.images.length)];
+		if(event.date !== '' && counter < max) {
+			let image = '';
+			for(let content of event.content) {
+				if(content.type.startsWith('image')){
+					image = content.images[Math.floor(Math.random() * content.images.length)];
+				}
 			}
-		}
-		if(event.date !== '' && counter < 3) {
-			this.block_timeline.appendChild(buildElement('li',
+			let list = buildElement('li',
 				[
 					buildElement('p', event.date, cls('timeline-title')),
 					buildSPAN(null, cls('timeline-span')),
-					buildElement('p', [
-						buildIMG(image, 'img', cls('timeline-item-image')),
-						buildElement('h1', event.title),
-						textShortener(event.description, 100)
-					], cls('timeline-description'))
-				], cls('timeline-item', [{name:'onclick', value:'views.event.timelineNavigate(' + event.id +')'}])));
+				], cls('timeline-item', [{name:'onclick', value:'views.event.timelineNavigate(' + event.id +')'}]));
+			let list_content = buildElement('p', null, cls('timeline-description'));
+			if (image !== '') {
+				list_content.appendChild(buildIMG(image, 'img', cls('timeline-item-image')));
+			}
+			list_content.appendChild(buildDIV([
+					buildElement('h1', event.title),
+					textShortener(event.description, 100)
+				])
+			);
+			console.log(event.description);
+			list.appendChild(list_content);
+			this.block_timeline.appendChild(list);
 			counter++;
 		}
 	}
@@ -73,15 +80,16 @@ EventComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
 		buildSPAN('Afficher tout', wrapCI(['menuitem', 'd-none'],'all-event',[
-			{name:'onclick', value:'views.event.navigate(' + current_page_number + ')'}]))
+			{name:'onclick', value:'views.event.navigate(' + current_page_number + ', true)'}]))
 	]));
 	for(let event of this.page_blocks[current_page_number - 1]) {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
-			buildSPAN(event.title, wrapCI('menuitem','nav-event-' + event.id ,[
+			buildSPAN(event.title, wrapCI(['menuitem', 'nav-event'],'nav-event-' + event.id ,[
 				{name:'onclick', value:'views.event.selectEvent(' + event.id + ');  views.spa.markAsSelected('+ event.id +', \'event\')'}]))
 		]));
 	}
+	views.spa.addNavigationPageNavigators(this.block_nav, this.page_blocks.length, 'event');
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -178,8 +186,9 @@ EventComponent.prototype.fillSwitcher = function () {
  * Navigate between pages
  * @param page_number
  * @param top
+ * @param all
  */
-EventComponent.prototype.navigate = function(page_number=1, top=false) {
+EventComponent.prototype.navigate = function(page_number=1, all = false, top=false) {
 	current_page_number = page_number;
 	this.fillTimeline();
 	this.fillNavigation();
@@ -188,7 +197,13 @@ EventComponent.prototype.navigate = function(page_number=1, top=false) {
 	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
 	views.spa.detect_subContent_trigger_left_bar('event');
 	$('#all-event').style.display = 'none';
-	if(top) window.location.href = '#main';
+	if(top) window.location.href = '#NewsMain';
+	if(!all) {
+		try {
+			views.event.selectEvent(this.page_blocks[current_page_number - 1][0].id);
+			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'event');
+		} catch (e) {}
+	}
 };
 
 EventComponent.prototype.selectEvent = function(id){
@@ -376,5 +391,9 @@ function EventMain() {
 	// Stays last
 	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
 	views.spa.detect_subContent_trigger_left_bar('event');
+	try {
+		views.event.selectEvent(service.get(0).id);
+		views.spa.markAsSelected(service.get(0).id, 'event');
+	} catch (e) {}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
