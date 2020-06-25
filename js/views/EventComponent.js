@@ -60,7 +60,6 @@ EventComponent.prototype.fillTimeline = function(max = 3) {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.timelineNavigate = function(id) {
-	console.log(id);
 	if(current_page_number !== 1) {
 		this.navigate();
 		this.timelineNavigate(id);
@@ -70,18 +69,6 @@ EventComponent.prototype.timelineNavigate = function(id) {
 /**
  * Create navigation menu dynamically
  */
-/*
-EventComponent.prototype.fillNavigation = function () {
-	this.block_nav.innerHTML = this.htmlSaver.nav;
-	for(let event of this.page_blocks[current_page_number - 1]) {
-		this.block_nav.appendChild(buildHR());
-		this.block_nav.appendChild(buildDIV(
-			buildLINK('#event-' + event.id, event.title, cls('menuitem'))
-		));
-	}
-};
-*/
-
 EventComponent.prototype.fillNavigation = function () {
 	this.block_nav.innerHTML = this.htmlSaver.nav;
 	this.block_nav.appendChild(buildDIV([
@@ -111,7 +98,7 @@ EventComponent.prototype.fillMain = function() {
 		if(event.date!=='') {
 			detaildiv.appendChild(buildElement('p', event.date, cls('date')));
 		}
-		detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
+	//	detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
 		detaildiv.appendChild(buildElement('p', event.description));
 		// Contents
 		if(event.content !== []) {
@@ -147,6 +134,17 @@ EventComponent.prototype.fillMain = function() {
 					}
 					griddiv.appendChild(gridspan);
 					contentdiv.appendChild(griddiv);
+				}
+				if(content.type === 'video') {
+					contentdiv.appendChild(buildElement('p', content.description));
+					for(let video of content.videos) {
+						let videoo = buildElement('video',null,cls('mql-video'));
+						videoo.controls = true;
+						videoo.appendChild(buildElement('source',null,wrap([{name:'src',value:video}])));
+						contentdiv.appendChild(
+							videoo
+						);
+					}
 				}
 			}
 			detaildiv.appendChild(contentdiv);
@@ -209,7 +207,7 @@ EventComponent.prototype.displayEvent = function(event) {
 		if(event.date!=='') {
 			detaildiv.appendChild(buildElement('p', event.date, cls('date')));
 		}
-		detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
+		//detaildiv.appendChild(buildDIV(null, wrapIC('gallery', 'gallery-view' + event.id)));
 		detaildiv.appendChild(buildElement('p', event.description));
 		// Contents
 		if(event.content !== []) {
@@ -245,6 +243,9 @@ EventComponent.prototype.displayEvent = function(event) {
 					}
 					griddiv.appendChild(gridspan);
 					contentdiv.appendChild(griddiv);
+				}
+				if(content.type === 'video') {
+					console.log("videeeeeeeeeo");
 				}
 			}
 			detaildiv.appendChild(contentdiv);
