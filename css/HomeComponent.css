@@ -106,9 +106,19 @@
     padding: 20px;
 	height: fit-content;
 }
+.chart-container{
+	display:flex;
+	position: relative;
+	height:200px;
+	width:47%
+}
+.chart-container:first-child canvas:last-child{
+	margin-left:50px ;
+}
 .last-chart {
 	padding-bottom: 70px;
-	margin-left: 25%;
+	margin-top:100px;
+	margin-bottom: 20px;
 }
 .cards {
 	background-color: #fff;

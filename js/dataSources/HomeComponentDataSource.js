@@ -3,33 +3,6 @@
 let dbHomestats1 = [
     {
         type : 'bar',
-        labels : ['CAPGEMINI','CGI','CEGEDIM','UMANIS','ATOS','S2M','SGATS','ACCENTURE','SQLi','HPS','LNet Communication','Logic Group','Sopra Steria','BDSI Maroc','FEDASO'],
-        dataSet :
-            [
-                {
-                    label: 'Nombre/Société',
-                    data:[71,44,7,7,6,3,1,1,1,1,1,1,1,1,1],
-                    backgroundColor:'rgb(53, 69, 108)',
-                    borderWidth: 1
-                }
-            ],
-        options :
-            {
-            title: {
-                display: true,
-                text: 'Insertion Professionnelle entre 2015 et 2019',
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    },
-    {
-        type : 'bar',
         labels : ['2009','2011','2012','2013','2014','2015','2016','2017'],
         dataSet : [
             {
@@ -62,11 +35,66 @@ let dbHomestats1 = [
         }
     },
     {
+        type : 'bar',
+        labels : ['2009','2011','2012','2013','2014','2015','2016','2017'],
+        dataSet : [
+            {
+                label:'Pourcentage d\'insertion en stage des étudiants',
+                data:[25,38,38,46,57,100,91,97],
+                backgroundColor:'rgb(216, 49, 57)',
+            },
+            {
+                label:'Pourcentage d\'insertion définitive des étudiants',
+                data:[20,33,34,37,55,90,89,92],
+                backgroundColor:'rgb(53, 69, 108)',
+            }
+        ],
+        options : {
+            title: {
+                display: true,
+                text: 'Insertion définitive par rapport à l\'insertion en stage et le nombre des étudiatns',
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    },
+    {
+        type : 'bar',
+        labels : ['CAPGEMINI','CGI','CEGEDIM','UMANIS','ATOS','S2M','SGATS','ACCENTURE','SQLi','HPS','LNet Communication','Logic Group','Sopra Steria','BDSI Maroc','FEDASO'],
+        dataSet :
+            [
+                {
+                    label: 'Nombre d\'étudiants/Société',
+                    data:[71,44,7,7,6,3,1,1,1,1,1,1,1,1,1],
+                    backgroundColor:'rgb(53, 69, 108)',
+                    borderWidth: 1
+                }
+            ],
+        options :
+            {
+                title: {
+                    display: true,
+                    text: 'Insertion Professionnelle avec nos partenaires entre 2015 et 2019',
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+    },
+    {
         type:'pie',
-        labels:['Contrat CDI',''],
+        labels:['Contrat CDI','-'],
         dataSet :[
             {
-                label: 'Nombre/Société',
                 data: [147,13],
                 backgroundColor:'rgb(53, 69, 108)',
                 borderWidth: 1,
@@ -75,7 +103,7 @@ let dbHomestats1 = [
         options : {
             title: {
                 display: true,
-                text : 'Pourcentage des contrats CDI',
+                text : 'Pourcentage des contrats CDI sur un total de 160 étudiants (2009-2017)',
             },
         }
     },
