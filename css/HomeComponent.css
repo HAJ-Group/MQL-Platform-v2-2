@@ -106,9 +106,19 @@
     padding: 20px;
 	height: fit-content;
 }
+.chart-container{
+	display:flex;
+	position: relative;
+	height:200px;
+	width:47%
+}
+.second-chart{
+	margin-left:50px ;
+}
 .last-chart {
 	padding-bottom: 70px;
-	margin-left: 25%;
+	margin-top:100px;
+	margin-bottom: 20px;
 }
 .cards {
 	background-color: #fff;
@@ -269,7 +279,7 @@ a:hover {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .mql-video-div {
 	width: 70%;
-	margin-left: 10px;
+	margin-left: 15%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .mql-video {
