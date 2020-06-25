@@ -112,7 +112,7 @@
 	height:200px;
 	width:47%
 }
-.chart-container:first-child canvas:last-child{
+.second-chart{
 	margin-left:50px ;
 }
 .last-chart {

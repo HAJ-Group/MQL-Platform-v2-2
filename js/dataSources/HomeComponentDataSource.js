@@ -23,7 +23,7 @@ let dbHomestats1 = [
         options : {
             title: {
                 display: true,
-                text: 'Insertion définitive par rapport à l\'insertion en stage et le nombre des étudiatns',
+                text: 'Insertion en stage et définitive par rapport au nombre des étudiatns',
             },
             scales: {
                 yAxes: [{
@@ -96,7 +96,7 @@ let dbHomestats1 = [
         dataSet :[
             {
                 data: [147,13],
-                backgroundColor:'rgb(53, 69, 108)',
+                backgroundColor:['rgb(53, 69, 108)','rgb(216, 49, 57'],
                 borderWidth: 1,
             }
         ],
