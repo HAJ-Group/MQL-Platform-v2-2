@@ -277,7 +277,7 @@ SPAComponent.prototype.route = function (component = '') {
     this.setTheme();
     this.initComponent(component);
     this.switchComponent();
-    this.downFunction(180);
+    this.downFunction(150);
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -389,7 +389,9 @@ SPAComponent.prototype.scrollToDown = function() {
 SPAComponent.prototype.topFunction =function(pixels=0,y_pixels=-50) {
     let timeout;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        window.scrollBy(pixels,y_pixels);
+        console.log(pixels);
+        console.log(y_pixels);
+        window.scrollTo(pixels,y_pixels);
         timeout = setTimeout('views.spa.topFunction(pixels,y_pixels)', 8);
     } else {
         clearTimeout(timeout);
@@ -408,7 +410,7 @@ SPAComponent.prototype.downFunction =function(pixels) {
     if(pixels === 0){
         pixels = height;
     }
-    window.scrollBy(0,pixels);
+    window.scrollTo(0,pixels);
     timeout = setTimeout('views.spa.downFunction(0,pixels)', 10);
     clearTimeout(timeout);
 };
