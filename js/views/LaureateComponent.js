@@ -364,10 +364,8 @@ LaureateComponent.prototype.displayPromotion = function (promotion){
 		details.appendChild(promoItem);
 	}
 	this.block_switch.innerHTML = '';
-	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
+	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate', promotion.id);
 };
-
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Print PROMOTIONS :
 LaureateComponent.prototype.printPromotionsCards = function () {
@@ -432,7 +430,6 @@ LaureateComponent.prototype.addData = function(target_el = 'promotion') {
 		$('#promotionSubmit').setAttribute('onclick', 'views.laureate.submitData()');
 		views.spa.popFORM(target_el);
 	} else {
-		console.log('target added laureate index = ' + target_el);
 		let value = target_el.split(',');
 		$('#' + value[1] + 'Submit').setAttribute('onclick', 'views.laureate.submitData(\'add\', \'' + value[0] + '\', \'' + value[1] + '\')');
 		views.spa.popFORM(value[1]);
@@ -504,6 +501,7 @@ LaureateComponent.prototype.deleteData = function(index, target_el = 'promotion'
 /*--------------------------------------------------------------------------------------------------------------------*/
 LaureateComponent.prototype.submitData = function (action = 'add', index = '0', target_el = 'promotion') {
 	// PROMOTION
+	let ID = null;
 	if(target_el === 'promotion') {
 		// GETTING DATA MEMBERS
 		let name = $('#promotionName').value;
@@ -512,11 +510,13 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 			if(this.service.isUpToDate('p' + (new Date()).getFullYear())){
 				alert((new Date()).getFullYear() + ' Promotion is already exists can\'t add new promotion before next year !');
 			} else {
-				this.service.add(new Promotion('p' + (new Date()).getFullYear(),name,new Date()));
+				ID = 'p' + (new Date()).getFullYear();
+				this.service.add(new Promotion(ID, name, new Date()));
 			}
 		}
 		if(action === 'edit') {
 			let target = this.service.get(index);
+			ID = target.id;
 			target.name = name;
 			//...
 		}
@@ -543,7 +543,6 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 		}
 		if(action === 'edit') {
 			let keys = index.split(',');
-			console.log(keys);
 			let target = this.service.getLaureate(keys[0], parseInt(keys[1]));
 			target.name = name;
 			target.gender = gender;
@@ -563,6 +562,10 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 	this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
 	views.spa.closeFORM(target_el);
 	this.navigate();
+	if(ID !== null) {
+		this.selectPromotion(ID);
+		views.spa.markAsSelected(ID, 'laureate');
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 LaureateComponent.prototype.triggerSubmit = function () {

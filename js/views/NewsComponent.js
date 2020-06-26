@@ -200,7 +200,7 @@ NewsComponent.prototype.displayNews = function(news){
 	this.block_main.innerHTML = null;
 	this.block_main.appendChild(titleDiv);
 	this.block_switch.innerHTML = '';
-	views.spa.addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
+	views.spa.addTitleIcon('resources/pictures/News/News-logo.png', true, 'news', news.id);
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -274,15 +274,18 @@ NewsComponent.prototype.deleteData = function(index) {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.submitData = function (action = 'add', index = '0') {
+	let ID;
 	// GETTING DATA MEMBERS
 	let title = $('#newsTitle').value;
 	let desc = $('#newsDescription').value;
 	//...
 	if(action === 'add') {
-		this.service.add(new News(this.service.size() + 1, title, new Date(), desc));
+		ID = incrementId(this.service.db);
+		this.service.add(new News(ID, title, new Date(), desc));
 	}
 	if(action === 'edit') {
 		let target = this.service.get(index);
+		ID = target.id;
 		target.title = title;
 		target.description = desc;
 		//...
@@ -292,6 +295,8 @@ NewsComponent.prototype.submitData = function (action = 'add', index = '0') {
 	this.page_blocks = split(this.service.db, MAX_NEWS_PER_PAGE);
 	views.spa.closeFORM('NewsForm');
 	this.navigate();
+	this.selectNews(ID);
+	views.spa.markAsSelected(ID, 'news');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.triggerSubmit = function () {

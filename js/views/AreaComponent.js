@@ -42,7 +42,6 @@ AreaComponent.prototype.authenticate = function() {
 AreaComponent.prototype.logout = function() {
 	// DENY ACCESS
 	sessionStorage.removeItem('ACCESS');
-	console.log(sessionStorage.getItem('ACCESS'));
 	views.spa.route('Home');
 	this.refresh();
 };

@@ -167,7 +167,7 @@ PartnerComponent.prototype.submitData = function (action = 'add', index = '0') {
 	let website=$('#partnerWebSite').value;
 	//...
 	if(action === 'add') {
-		this.service.add(new Partner(this.service.size() + 1, DEFAULT_PARTNER_BG,name,color,ca,desc,co,'',website));
+		this.service.add(new Partner(incrementId(this.service.db), DEFAULT_PARTNER_BG,name,color,ca,desc,co,'',website));
 		id=this.service.size();
 	}
 	if(action === 'edit') {

@@ -222,6 +222,32 @@ function getValueInRowBYId(id, rows) {
         }
     }
 }
+
+function isRowExist(id, rows) {
+    for(let r of rows) {
+        if(r.id === id) return true;
+    }
+    return false;
+}
+
+function incrementId(rows) {
+    let sorter = [];
+    for(let r of rows) {
+        sorter.push(r.id);
+    }
+    sorter = sorter.sort();
+    console.log(sorter);
+    return sorter[sorter.length - 1] + 1;
+}
+
+/**
+ * @return {number}
+ */
+function getRowIndex(id, rows) {
+    for(let i = 0; i<rows.length; i++) {
+        if(rows[i].id === id) return i;
+    }
+}
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

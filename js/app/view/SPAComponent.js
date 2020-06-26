@@ -144,8 +144,9 @@ SPAComponent.prototype.showEmptyErrorResult = function() {
  * @param source
  * @param editable
  * @param component
+ * @param id
  */
-SPAComponent.prototype.addTitleIcon = function(source, editable=false, component) {
+SPAComponent.prototype.addTitleIcon = function(source, editable=false, component, id = null) {
     let titles = $('.' + component + '-title');
     let i=0;
     for (let title of titles) {
@@ -160,12 +161,16 @@ SPAComponent.prototype.addTitleIcon = function(source, editable=false, component
         ])));
         title.appendChild(buildSPAN(null, cls(['sh-sep', component + '-sh-sep'])));
         if(editable && sessionStorage.getItem('ACCESS') !== null) {
+            let index = i;
+            if(id !== null) {
+                index = getRowIndex(id, views[component].service.db);
+            }
             // ADD EDIT AND DELETE ICONS
             title.appendChild(buildIMG('resources/pictures/App/icons/edit.png', '', wrapICN('', 'sh-icon', component + '-edit-icon', [
-                {name:'onclick', value:'views.' + component + '.editData(' + i + ')'}
+                {name:'onclick', value:'views.' + component + '.editData(' + index + ')'}
             ])));
             title.appendChild(buildIMG('resources/pictures/App/icons/delete.png', '', wrapICN('', 'sh-icon', component + '-delete-icon', [
-                {name:'onclick', value:'views.' + component + '.deleteData(' + i + ')'}
+                {name:'onclick', value:'views.' + component + '.deleteData(' + index + ')'}
             ])));
         }
         i++;
