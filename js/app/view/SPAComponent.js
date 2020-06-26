@@ -287,6 +287,7 @@ SPAComponent.prototype.route = function (component = '') {
     this.setTheme();
     this.initComponent(component);
     this.switchComponent();
+    if(window.innerWidth <= 700 && component !== '') this.showMenu();
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
