@@ -245,7 +245,7 @@ function HomeMain() {
 	// stays last
 	views.spa.addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
 	views.spa.detect_subContent_trigger_left_bar('home');
-	createBook(dbHomeImages);
+	//createBook(dbHomeImages);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 
