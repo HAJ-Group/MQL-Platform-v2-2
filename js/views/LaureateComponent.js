@@ -495,7 +495,7 @@ LaureateComponent.prototype.deleteData = function(index, target_el = 'promotion'
 	try {
 		this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
 		this.navigate(page);
-		if(ID !== null) {
+		if(ID !== null && window.innerWidth > 700) {
 			this.selectPromotion(ID);
 			views.spa.markAsSelected(ID, 'laureate');
 		}
