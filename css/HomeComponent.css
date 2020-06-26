@@ -250,15 +250,15 @@ a:hover {
 	padding: 10px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.Chenfour{
+.coordinateur{
 	display: flex;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.Chenfour .img {
+.coordinateur .img {
 	width: 40%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.Chenfour div {
+.coordinateur div {
 	padding: 20px;
 	width: 60%;
 }
@@ -519,18 +519,18 @@ table.student-table{
 		width: 97%;
 	}
 
-	.Chenfour{
+	.coordinateur{
 		display: block;
 	}
-	.Chenfour .img {
+	.coordinateur .img {
 		width: 50%;
 		border-radius: 100%;
 	}
-	.Chenfour img {
+	.coordinateur img {
 		margin-left: 25%;
 	}
 
-	.Chenfour div {
+	.coordinateur div {
 		margin-left: auto;
 		margin-right: auto;
 		width: 90%;

@@ -3,7 +3,7 @@
 function SPAComponent(service) {
     this.service = service;
     this.current_component = 'Home';
-    this.current_theme = themes[1];
+    this.current_theme = themes[0];
 }
 
 SPAComponent.prototype.initComponent = function(component) {
