@@ -2,6 +2,7 @@ function HomeComponentService() {
     this.db = [];
     this.firstCollectionOfStudents = [];
     this.secondCollectionOfStudents = [];
+    this.professors = [];
 }
 
 HomeComponentService.prototype.add = function (home) {
@@ -32,6 +33,18 @@ HomeComponentService.prototype.sizeSecondCollection = function () {
     return this.secondCollectionOfStudents.length;
 };
 
+HomeComponentService.prototype.addProfessor = function(professor){
+    this.professors.push(professor);
+};
+
+HomeComponentService.prototype.getProfessor = function (index) {
+    return this.professors[index];
+};
+
+HomeComponentService.prototype.sizeProfessors = function () {
+    return this.professors.length;
+};
+
 HomeComponentService.prototype.get = function (index) {
     return this.db[index];
 };
@@ -42,7 +55,7 @@ HomeComponentService.prototype.size = function () {
 };
 
 
-HomeComponentService.prototype.loadAllData = function(dbSource, firstCollectionOfStudents, secondCollectionOfStudents) {
+HomeComponentService.prototype.loadAllData = function(dbSource, firstCollectionOfStudents, secondCollectionOfStudents, dbProfessors) {
     for (let i = 0; i < dbSource.length; i++) {
         this.add(
             new Home(
@@ -69,6 +82,16 @@ HomeComponentService.prototype.loadAllData = function(dbSource, firstCollectionO
                 secondCollectionOfStudents[i].firstName,
                 secondCollectionOfStudents[i].lastName,
                 secondCollectionOfStudents[i].internship
+            )
+        )
+    }
+    for ( let i = 0; i < dbProfessors.length; i++){
+        this.addProfessor(
+            new HomeProfessors(
+                dbProfessors[i].id,
+                dbProfessors[i].firstName,
+                dbProfessors[i].lastName,
+                dbProfessors[i].course
             )
         )
     }

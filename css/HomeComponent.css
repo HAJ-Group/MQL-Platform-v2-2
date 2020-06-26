@@ -476,6 +476,84 @@ table.student-table{
 	background-color: rgb(53, 69, 108);
 }
 
+
+.professors-title{
+	margin-top: 30px;
+	text-align: center;
+
+}
+
+.professors-title span {
+	padding: 15px 15px 5px 15px;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	background-color: chocolate;
+	font-size: 22px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.professors-container{
+	border: 1px solid cornflowerblue;
+	padding: 20px;
+	margin-top: 5px;
+}
+
+.professor-container{
+	padding: 15px;
+	border-left: 2px solid rgb(216, 49, 57);
+}
+
+.professor-name{
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: rgb(53, 69, 108);
+}
+
+
+
+.professor-name span{
+	padding: 10px;
+}
+
+.professor-infos{
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 15px 0 10px;
+}
+
+.course-name{
+	align-self: center;
+}
+
+.course-name span{
+	display: inline-block;
+	background-color: rgb(53, 69, 108);
+	width: 14px;
+	height: 14px;
+	border-radius: 7px;
+	box-shadow: 2px 2px 5px grey;
+	margin-left: -20px;
+	margin-right: 5px;
+}
+
+.course-image{
+	height: 130px;
+	width: 130px;
+}
+
+.img-course-image{
+	width: 130px;
+	height: 130px;
+	border: 1px solid  rgb(53, 69, 108);
+}
+
+img{
+	object-fit: contain;
+}
+
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Animations */
 @keyframes slideShow {

@@ -461,3 +461,31 @@ var dbStudents = [
 
     }
 ];
+
+var dbProfessors = [
+
+    {
+        id: 1,
+        firstName: 'Zineddine',
+        lastName: 'chihaja',
+        course: 'Technologie XML'
+    },
+    {
+        id: 2,
+        firstName: 'Omar',
+        lastName: 'Bekkali',
+        course: 'Bases de données ORACLE'
+    },
+    {
+        id: 3,
+        firstName: 'p2',
+        lastName: 'p2 p2',
+        course: 'Gestion du projets'
+    },
+    {
+        id: 4,
+        firstName: 'p3',
+        lastName: 'p3 p3',
+        course: 'Génie logiciel et UML'
+    }
+]

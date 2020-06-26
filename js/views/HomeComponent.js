@@ -6,6 +6,7 @@ function HomeComponent(service) {
 	this.table_news= $("#table-news");
 	this.firstPromotionStudentsTable = $('#m1-list-students');
 	this.secondPromotionStudentsTable = $('#m2-list-students');
+	this.professorsReference = $('#professors');
 	this.news_idSaver = [];
 	this.currentPanel = $("#mql-presentation");
 	this.currentPromotionPanel = $("#table1");
@@ -93,6 +94,7 @@ HomeComponent.prototype.tablesHeadersFirstPromotion = function(reference) {
 	}
 };
 
+/*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.tablesHeadersSecondPromotion = function(reference){
 	// The header of the table and adjusting size of columns
 	cols = [];
@@ -114,6 +116,23 @@ HomeComponent.prototype.tablesHeadersSecondPromotion = function(reference){
 		header.appendChild(colsNames[i])
 	}
 };
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+
+HomeComponent.prototype.addProfessor = function(professor){
+	// The content of the table
+	let row = this.professorsReference.insertRow();
+	row.insertCell().innerHTML = professor.id;
+	row.insertCell().innerHTML = professor.firstName;
+	row.insertCell().innerHTML = professor.lastName;
+	row.insertCell().innerHTML = professor.course;
+};
+
+HomeComponent.prototype.printProfessors = function(){
+	for (let i = 0; i < this.service.sizeProfessors(); i++){
+		this.addProfessor(this.service.getProfessor(i));
+	}
+}
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.showPromotion = function (id, ballId) {
@@ -264,11 +283,12 @@ HomeComponent.prototype.switchColorOfSelectedElement = function(id, id2) {
 /* Main Function */
 function HomeMain() {
 	let service = new HomeComponentService();
-	service.loadAllData(dbHomestats1, dbStudents[0].data, dbStudents[1].data);
+	service.loadAllData(dbHomestats1, dbStudents[0].data, dbStudents[1].data, dbProfessors);
 	views['home'] = new HomeComponent(service);
 	views['home'].printStats();
 	views.home.startPresenter();
     views.home.printStudents();
+    views.home.printProfessors();
     views.home.fillNews();
 	views.home.printNews();
 	views.home.setNewsRoutes();
