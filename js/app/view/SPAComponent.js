@@ -462,13 +462,18 @@ SPAComponent.prototype.setTheme = function () {
     $('.container')[0].classList.add(this.current_theme + '-text');
     $('.container-bg')[0].classList.add(this.current_theme + '-Pattern');
     //Left Menu
-    let leftMenu = $('.left-menu')[0];
-    leftMenu.classList.add(this.current_theme + '-bgC');
-    leftMenu.classList.add(this.current_theme + '-text');
-    leftMenu.classList.add(this.current_theme + '-left-menu-border');
+    let leftMenu = $('.left-menu');
+    for(let l of leftMenu) {
+        l.classList.add(this.current_theme + '-bgC');
+        l.classList.add(this.current_theme + '-text');
+        l.classList.add(this.current_theme + '-left-menu-border');
+    }
     // Sub Content
-    $('.sub-content')[0].classList.add(this.current_theme + '-bgC');
-    $('.sub-content')[0].classList.add(this.current_theme + '-text');
+    let subcontent = $('.sub-content');
+    for(let s of subcontent) {
+        s.classList.add(this.current_theme + '-bgC');
+        s.classList.add(this.current_theme + '-text');
+    }
     // form content
     let formContents = $('.form-content');
     for(let f of formContents) {
@@ -478,9 +483,15 @@ SPAComponent.prototype.setTheme = function () {
     // Footer
     $('.partenaire')[0].classList.add(this.current_theme + '-bgC');
     // AutoBox
-    $('.autoBox-image')[0].classList.add(this.current_theme + '-bgC');
-    $('.autoBox-text')[0].classList.add(this.current_theme + '-bgC');
-    $('.autoBox-text')[0].classList.add(this.current_theme + '-text');
+    let autoboxImg = $('.autoBox-image');
+    for(let a of autoboxImg) {
+        a.classList.add(this.current_theme + '-bgC');
+    }
+    let autoboxTxt = $('.autoBox-text');
+    for(let a of autoboxTxt) {
+        a.classList.add(this.current_theme + '-bgC');
+        a.classList.add(this.current_theme + '-text');
+    }
     // Timeline
     let timelineDesc = $('.timeline-description');
     for(let t of timelineDesc) {
