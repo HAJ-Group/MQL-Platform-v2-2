@@ -49,15 +49,15 @@ SPAComponent.prototype.loadFooterPartners = function() {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.loadForms = function() {
-    for(let c of navs) {
+    for(let c of this.service.db) {
         let element = $('#' + c.name + 'Component');
         element.appendChild(window['get' + c.name + 'FormContent']());
     }
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.loadComponents = function() {
-    for(let i = (navs.length - 1); i >= 0; i--) {
-        window[navs[i].name + 'Main']();
+    for(let i = (this.service.db.length - 1); i >= 0; i--) {
+        window[this.service.db[i].name + 'Main']();
     }
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -282,6 +282,7 @@ SPAComponent.prototype.route = function (component = '') {
     this.setTheme();
     this.initComponent(component);
     this.switchComponent();
+    this.downFunction(150);
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -383,23 +384,41 @@ SPAComponent.prototype.scrollToTop = function(){
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.scrollToDown = function() {
         window.scrollTo(0, document.body.scrollHeight);
-}
+};
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * scrolling to top
  */
-SPAComponent.prototype.topFunction =function() {
+SPAComponent.prototype.topFunction =function(pixels=0,y_pixels=-50) {
     let timeout;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        window.scrollBy(0,-50);
-        timeout = setTimeout('views.spa.topFunction()', 8);
+        console.log(pixels);
+        console.log(y_pixels);
+        window.scrollTo(pixels,y_pixels);
+        timeout = setTimeout('views.spa.topFunction(pixels,y_pixels)', 8);
     } else {
         clearTimeout(timeout);
     }
 };
+/**
+ * scrolling to down
+ */
+SPAComponent.prototype.downFunction =function(pixels) {
+    let timeout;
+    let body = document.body,
+        html = document.documentElement;
 
+    let height = Math.max( body.scrollHeight, body.offsetHeight,
+        html.clientHeight, html.scrollHeight, html.offsetHeight );
+    if(pixels === 0){
+        pixels = height;
+    }
+    window.scrollTo(0,pixels);
+    timeout = setTimeout('views.spa.downFunction(0,pixels)', 10);
+    clearTimeout(timeout);
+};
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

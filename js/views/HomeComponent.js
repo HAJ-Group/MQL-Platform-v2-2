@@ -32,8 +32,15 @@ HomeComponent.prototype.show= function (id, element = null) {
 // printStats
 HomeComponent.prototype.printStats= function () {
 	let i=0;
+	let ctx;
 	for (let stat of this.service.db){
-		let ctx = $('#myChart'+i).getContext('2d');
+		if(screen.width > 700){
+			ctx = $('#myChart'+i).getContext('2d');
+			stat.options.maintainAspectRatio = true;
+		}
+		else{
+			ctx =$('#phone-myChart'+i).getContext('2d');
+		}
 		let myChart = new Chart(ctx, {
 			type: stat.type,
 			data: {
@@ -120,6 +127,7 @@ HomeComponent.prototype.printNews=function (max = 5) {
 HomeComponent.prototype.showRemoteNews = function(id) {
 	views.spa.route('News');
 	$('#nav-news-' + id).click();
+	views.spa.downFunction(600);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**

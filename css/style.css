@@ -981,13 +981,13 @@ a.links:hover{
         animation: 0.5s ease-out 0s 1 slideInFromLeft;
     }
 
-    .topnav a {
+    .topnav span {
         background-color: white;
         border: 1px solid lightgray;
         margin-top: -1px;
     }
 
-    .topnav a:hover {
+    .topnav span:hover {
         color: rgb(216, 49, 57);
         border: 2px solid rgb(216, 49, 57);
         /*background-color: rgb(253, 59, 76);*/
