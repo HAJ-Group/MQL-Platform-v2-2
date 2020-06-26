@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*Default class*/ 
+/*Default class*/
 function HomeComponent(service) {
 	this.service = service;
 	this.table= $("#table-program");
@@ -13,6 +13,7 @@ function HomeComponent(service) {
 	this.htmlSaver = {
 		news: this.newsBlock.innerHTML,
 	}
+	this.promotion = 'm2';
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.show= function (id, element = null) {
@@ -47,44 +48,73 @@ HomeComponent.prototype.printStats= function () {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-HomeComponent.prototype.addStudentToTable = function(student, tableReference){
+HomeComponent.prototype.addStudentToTable = function(student, tableReference, promotion = null){
 	// The content of the table
 	let row = tableReference.insertRow();
 	row.insertCell().innerHTML = student.id;
 	row.insertCell().innerHTML = student.firstName;
 	row.insertCell().innerHTML = student.lastName;
+	if (promotion !== null){
+		row.insertCell().innerHTML = student.internship;
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.printStudents = function () {
-	this.tablesHeaders(this.firstPromotionStudentsTable);
+	this.tablesHeadersFirstPromotion(this.firstPromotionStudentsTable);
 	this.firstPromotionStudentsTable.createTBody();
 	for (let i = 0; i < this.service.sizeFirstCollection(); i++){
 		this.addStudentToTable(this.service.getStudentFromFirstCollection(i), this.firstPromotionStudentsTable)
 	}
-	this.tablesHeaders(this.secondPromotionStudentsTable);
+	this.tablesHeadersSecondPromotion(this.secondPromotionStudentsTable);
 	this.secondPromotionStudentsTable.createTBody();
 	for (let i = 0; i < this.service.sizeSecondCollection(); i++){
-		this.addStudentToTable(this.service.getStudentFromSecondCollection(i), this.secondPromotionStudentsTable)
+		this.addStudentToTable(this.service.getStudentFromSecondCollection(i), this.secondPromotionStudentsTable, 'm2')
 	}
 	$('#mqlStudentsPromotion').textContent = dbStudents[0].promotion;
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-HomeComponent.prototype.tablesHeaders = function(reference){
+HomeComponent.prototype.tablesHeadersFirstPromotion = function(reference) {
 	// The header of the table and adjusting size of columns
-	let col = buildElement('col', cls('width-20'));
-	let col2 = buildElement('col', cls('width-40'));
-	let col3 = buildElement('col', cls('width-40'));
-	reference.appendChild(col);
-	reference.appendChild(col2);
-	reference.appendChild(col3);
+	cols = [];
+	cols.push(buildElement('col', cls('width-20')));
+	cols.push(buildElement('col', cls('width-40')));
+	cols.push(buildElement('col', cls('width-40')));
+	for (let i = 0; i < cols.length; i++) {
+		reference.appendChild(cols[i]);
+	}
+
 	let header = reference.createTHead();
-	let number = buildElement('th', 'Numéro');
-	let firstName = buildElement('th', 'Nom');
-	let lastName = buildElement('th', 'Prénom');
-	header.appendChild(number);
-	header.appendChild(firstName);
-	header.appendChild(lastName);
+	colsNames = [];
+	colsNames.push(buildElement('th', 'Numéro'));
+	colsNames.push(buildElement('th', 'Prénom'));
+	colsNames.push(buildElement('th', 'Nom'));
+	for (let i = 0; i < colsNames.length; i++) {
+		header.appendChild(colsNames[i])
+	}
 };
+
+HomeComponent.prototype.tablesHeadersSecondPromotion = function(reference){
+	// The header of the table and adjusting size of columns
+	cols = [];
+	cols.push(buildElement('col', cls('width-10')));
+	cols.push(buildElement('col', cls('width-30')));
+	cols.push(buildElement('col', cls('width-30')));
+	cols.push(buildElement('col', cls('width-30')));
+	for (let i = 0; i < cols.length; i++){
+		reference.appendChild(cols[i]);
+	}
+
+	let header = reference.createTHead();
+	colsNames = [];
+	colsNames.push(buildElement('th', 'Numéro'));
+	colsNames.push(buildElement('th', 'Prénom'));
+	colsNames.push(buildElement('th', 'Nom'));
+	colsNames.push(buildElement('th', 'Insertion en stage'));
+	for (let i = 0; i < colsNames.length; i++){
+		header.appendChild(colsNames[i])
+	}
+};
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.showPromotion = function (id, ballId) {
 	let newPanel = $('#' + id);

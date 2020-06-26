@@ -776,6 +776,10 @@ a.links:hover{
 .width-40{
     width: 40%;
 }
+
+.width-30{
+    width: 30%;
+}
 .link{
     cursor: pointer;
     text-decoration: underline;

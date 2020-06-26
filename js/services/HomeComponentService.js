@@ -67,7 +67,8 @@ HomeComponentService.prototype.loadAllData = function(dbSource, firstCollectionO
             new HomeStudents(
                 secondCollectionOfStudents[i].id,
                 secondCollectionOfStudents[i].firstName,
-                secondCollectionOfStudents[i].lastName
+                secondCollectionOfStudents[i].lastName,
+                secondCollectionOfStudents[i].internship
             )
         )
     }
