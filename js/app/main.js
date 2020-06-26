@@ -9,25 +9,9 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*Global Variables*/
-let current_component = 'Home';
 let phone_menu_toggled = false;
 let views = {};
 let current_page_number = 1;
-let navs = [
-    /*
-    * name : value of name attribute related with the title picture and the component
-    * content : value of the innerText of the nav
-    * */
-    {name: 'Home', content: buildIMG('resources/pictures/App/Header/home.png', 'home',
-            wrapIC('home-logo', 'home-logo'))},
-    {name: 'News', content:'Actualités'},
-    {name: 'Event', content:'Evénements'},
-    {name: 'Activity', content:'Activités'},
-    {name: 'Partner', content:'Partenaires'},
-    {name: 'Laureate', content:'Lauréats'},
-    {name: 'Area', content:'Administration'},
-];
-
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
