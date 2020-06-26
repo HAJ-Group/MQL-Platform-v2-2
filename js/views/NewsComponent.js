@@ -368,34 +368,4 @@ NewsComponent.prototype.resumeABI = function() {
 	}
 	auto_slider = setInterval(handler, 10000);
 };
-
-/*--------------------------------------------------------------------------------------------------------------------*/
-/**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */
-function NewsMain() {
-	let service = new NewsComponentService();
-	service.load(dbNews);
-	views['news'] = new NewsComponent(service);
-	try {
-		views.news.fillAutoBox();
-		views.news.fillNavigation();
-		views.news.fillMain();
-		views.news.fillSwitcher();
-	} catch (e) {
-		if(confirm('None News is found! Add new one ?')) {
-			views.news.addData();
-		} else {
-			views.spa.route('Home');
-		}
-	}
-	// stays last
-	views.news.autoBoxLoader();
-	views.spa.addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
-	views.spa.detect_subContent_trigger_left_bar('news');
-	views.news.trigger();
-	try {
-		views.news.selectNews(service.get(0).id);
-		views.spa.markAsSelected(service.get(0).id, 'news');
-	} catch (e) {}
-}
 /*--------------------------------------------------------------------------------------------------------------------*/

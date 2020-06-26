@@ -1,4 +1,6 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
+let current_page_number = 1;
+let phone_menu_toggled = false;
 /*Default class*/
 function SPAComponent(service) {
     this.service = service;
@@ -539,13 +541,6 @@ SPAComponent.prototype.setTheme = function () {
         h.classList.add(this.current_theme + '-text');
     }
 };
-/*--------------------------------------------------------------------------------------------------------------------*/
-function mainSPA() {
-    let service = new SPAComponentService();
-    service.load(SPAnavs);
-    views['spa'] = new SPAComponent(service);
-    views.spa.load();
-    views.spa.route();
-}
+
 
 

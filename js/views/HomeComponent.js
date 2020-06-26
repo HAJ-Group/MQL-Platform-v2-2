@@ -239,21 +239,4 @@ HomeComponent.prototype.switchColorOfSelectedElement = function(id, id2) {
 	$('#' + id2).classList.remove('red-ball');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */
-function HomeMain() {
-	let service = new HomeComponentService();
-	service.loadAllData(dbHomestats1, dbStudents[0].data, dbStudents[1].data);
-	views['home'] = new HomeComponent(service);
-	views['home'].printStats();
-	views.home.startPresenter();
-    views.home.printStudents();
-    views.home.fillNews();
-	views.home.printNews();
-	views.home.setNewsRoutes();
-	// stays last
-	views.spa.addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
-	views.spa.detect_subContent_trigger_left_bar('home');
-	//createBook(dbHomeImages);
-}
-/*--------------------------------------------------------------------------------------------------------------------*/
 

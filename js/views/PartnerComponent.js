@@ -197,23 +197,5 @@ PartnerComponent.prototype.navigate = function() {
 	views.partner.hideAll();
 	views.spa.setTheme();
 };
-/**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */
-function PartnerMain() {
-	let service = new PartnerComponentService();
-	service.load(dbPartner);
-	views['partner'] = new PartnerComponent(service);
-	try {
-		views.partner.fillPartnersMenu();
-		views.partner.fillPartners();
-		views.partner.hideAll();
-	} catch (e) {
-		if(confirm('None Partner is found! Add new one ?')) {
-			views.partner.addData();
-		} else {
-			views.spa.route('Home');
-		}
-	}
-	// Stays Last
-}
+
 /*--------------------------------------------------------------------------------------------------------------------*/
