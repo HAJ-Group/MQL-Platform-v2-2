@@ -295,7 +295,8 @@ NewsComponent.prototype.submitData = function (action = 'add', index = '0') {
 	this.service.sort();
 	this.page_blocks = split(this.service.db, MAX_NEWS_PER_PAGE);
 	views.spa.closeFORM('NewsForm');
-	this.navigate();
+	let page = getValueInRowBYId(ID, this.page_blocks);
+	this.navigate(page);
 	this.selectNews(ID);
 	views.spa.markAsSelected(ID, 'news');
 };

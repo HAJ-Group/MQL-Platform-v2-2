@@ -395,7 +395,8 @@ EventComponent.prototype.submitData = function (action = 'add', index = '0') {
 	}
 	this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
 	views.spa.closeFORM('EventForm');
-	this.navigate();
+	let page = getValueInRowBYId(ID, this.page_blocks);
+	this.navigate(page);
 	this.selectEvent(ID);
 	views.spa.markAsSelected(ID, 'event');
 };

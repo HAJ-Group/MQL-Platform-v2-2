@@ -561,11 +561,12 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 	this.service.sort();
 	this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
 	views.spa.closeFORM(target_el);
-	this.navigate();
 	if(ID !== null) {
+		let page = getValueInRowBYId(ID, this.page_blocks);
+		this.navigate(page);
 		this.selectPromotion(ID);
 		views.spa.markAsSelected(ID, 'laureate');
-	}
+	} else this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 LaureateComponent.prototype.triggerSubmit = function () {
