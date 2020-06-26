@@ -120,9 +120,6 @@
 	margin-top:100px;
 	margin-bottom: 20px;
 }
-.cards {
-	background-color: #fff;
-}
 /*--------------------------------------------------------------------------------------------------------------------*/
 .main-box{
 	display: none;
@@ -458,6 +455,7 @@ table.student-table{
 .student-table > tbody > tr > td {
 	padding: 15px;
 	border-radius: 0;
+	color: black;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .student-table > tbody > tr:nth-child(even) {

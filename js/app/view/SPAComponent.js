@@ -2,8 +2,10 @@
 /*Default class*/
 function SPAComponent(service) {
     this.service = service;
-    let current_component = 'Home';
+    this.current_component = 'Home';
+    this.current_theme = themes[1];
 }
+
 SPAComponent.prototype.initComponent = function(component) {
     if(component === '') {
         if(sessionStorage.getItem('component') !== null) {
@@ -25,13 +27,13 @@ SPAComponent.prototype.initComponent = function(component) {
         let element = $('+' + c.name)[0];
         element.classList.remove('active');
         element.setAttribute('onclick', 'views.spa.route(this.name)');
-        element.setAttribute('onmouseover', 'views.spa.changePicture(this.name)');
-        element.setAttribute('onmouseleave', 'views.spa.changePicture(\'' + current_component + '\')');
+        element.setAttribute('onmouseover', 'views.spa.changePicture(' + this.current_theme + c.name + ')');
+        element.setAttribute('onmouseleave', 'views.spa.changePicture(\'' + this.current_theme + current_component + '\')');
     }
     current_element.classList.add('active');
     current_element.removeAttribute('onclick');
     current_element.removeAttribute('onmouseover');
-    this.changePicture(current_component);
+    this.changePicture(this.current_theme + current_component);
     this.scrollToTop();
 };
 SPAComponent.prototype.loadHeaderNavs = function() {
@@ -272,9 +274,9 @@ SPAComponent.prototype.offLight = function (id) {
     } catch (e) {}
 };
 SPAComponent.prototype.route = function (component = '') {
+    this.setTheme();
     this.initComponent(component);
     this.switchComponent();
-
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -436,6 +438,71 @@ SPAComponent.prototype.addNavigationPageNavigators = function (block, page_size,
         }
     }
     block.appendChild(buildDIV([previous, next], cls('page-navigator-container')));
+};
+/* Theme Management --------------------------------------------------------------------------------------------------*/
+SPAComponent.prototype.themeIndexer = function (index) {
+    this.current_theme = index;
+};
+SPAComponent.prototype.setTheme = function () {
+    // Body Image
+    document.body.classList.add(this.current_theme + '-bgIMG');
+    // Content Background
+    $('.content')[0].classList.add(this.current_theme + '-bgC');
+    $('.content')[0].classList.add(this.current_theme + '-text');
+    // Header
+    let navC = $('.topnav')[0];
+    let navs = navC.getElementsByTagName('a');
+    for(let n of navs) {
+        n.classList.add(this.current_theme + '-nav-text');
+    }
+    // Search
+    $('#key').classList.add(this.current_theme + '-Search-Focus');
+    // Container
+    $('.container')[0].classList.add(this.current_theme + '-bgC');
+    $('.container')[0].classList.add(this.current_theme + '-text');
+    $('.container-bg')[0].classList.add(this.current_theme + '-Pattern');
+    //Left Menu
+    let leftMenu = $('.left-menu')[0];
+    leftMenu.classList.add(this.current_theme + '-bgC');
+    leftMenu.classList.add(this.current_theme + '-text');
+    leftMenu.classList.add(this.current_theme + '-left-menu-border');
+    // Sub Content
+    $('.sub-content')[0].classList.add(this.current_theme + '-bgC');
+    $('.sub-content')[0].classList.add(this.current_theme + '-text');
+    // form content
+    $('.form-content')[0].classList.add(this.current_theme + '-bgC');
+    $('.form-content')[0].classList.add(this.current_theme + '-text');
+    // Footer
+    $('.partenaire')[0].classList.add(this.current_theme + '-bgC');
+    // AutoBox
+    $('.autoBox-image')[0].classList.add(this.current_theme + '-bgC');
+    $('.autoBox-text')[0].classList.add(this.current_theme + '-bgC');
+    $('.autoBox-text')[0].classList.add(this.current_theme + '-text');
+    // Timeline
+    let timelineDesc = $('.timeline-description');
+    for(let t of timelineDesc) {
+        t.classList.add(this.current_theme + '-bgC');
+        t.classList.add(this.current_theme + '-text');
+    }
+    let timelineTitle = $('.branch-title');
+    for(let t of timelineTitle) {
+        t.classList.add(this.current_theme + '-text');
+    }
+    // Partners Menu
+    $('.partners-menu')[0].classList.add(this.current_theme + '-text');
+    let partners = $('.partner');
+    for(let p of partners) {
+        p.classList.add(this.current_theme + '-text');
+    }
+    // List recommendations
+    $('.list-recommendations')[0].classList.add(this.current_theme + '-bgC');
+    $('.list-recommendations')[0].classList.add(this.current_theme + '-text');
+    // Home Blocks
+    let homeBlocks = $('.home-card');
+    for(let h of homeBlocks) {
+        h.classList.add(this.current_theme + '-bgC');
+        h.classList.add(this.current_theme + '-text');
+    }
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 function mainSPA() {

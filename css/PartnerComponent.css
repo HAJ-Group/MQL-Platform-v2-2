@@ -56,13 +56,12 @@ h2 {
 	margin-bottom: 10px;
 	margin-left: 20px;
 	margin-right: 20px;
-	color: black;
 	text-transform: uppercase;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .partners-menu .active {
-	color: rgb(53, 69, 108);
-	border: 1px solid rgb(53, 69, 108);
+	color: rgb(253, 59, 76);
+	border: 1px solid rgb(253, 59, 76);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .partner:hover{

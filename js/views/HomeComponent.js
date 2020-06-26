@@ -56,7 +56,6 @@ HomeComponent.prototype.addStudentToTable = function(student, tableReference){
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.printStudents = function () {
-
 	this.tablesHeaders(this.firstPromotionStudentsTable);
 	this.firstPromotionStudentsTable.createTBody();
 	for (let i = 0; i < this.service.sizeFirstCollection(); i++){
@@ -67,6 +66,7 @@ HomeComponent.prototype.printStudents = function () {
 	for (let i = 0; i < this.service.sizeSecondCollection(); i++){
 		this.addStudentToTable(this.service.getStudentFromSecondCollection(i), this.secondPromotionStudentsTable)
 	}
+	$('#mqlStudentsPromotion').textContent = dbStudents[0].promotion;
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.tablesHeaders = function(reference){
@@ -91,6 +91,12 @@ HomeComponent.prototype.showPromotion = function (id, ballId) {
 	this.currentPromotionPanel.style["display"] = "none";
 	newPanel.style.display = "block";
 	this.currentPromotionPanel = newPanel;
+	if(id.includes('1')) {
+		$('#mqlStudentsPromotion').textContent = dbStudents[0].promotion;
+	}
+	else {
+		$('#mqlStudentsPromotion').textContent = dbStudents[1].promotion;
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
