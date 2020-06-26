@@ -36,7 +36,7 @@ NewsComponent.prototype.fillAutoBox = function() {
 			let chosen = Math.floor(Math.random() * news.images.length);
 			this.block_auto.appendChild(buildDIV([
 				buildIMG(news.images[chosen], '', cls('autoBox-image' ,[
-					{name:'onclick', value:'location.href=\'#news-' + news.id + '\''},
+					{name:'onclick', value:'views.news.autoBoxNavigate(' + news.id + ')'},
 					{name:'onmouseover', value:'views.news.pauseABI()'},
 					{name:'onmouseleave', value:'views.news.resumeABI()'},
 				])),
@@ -45,7 +45,7 @@ NewsComponent.prototype.fillAutoBox = function() {
 					buildDIV([
 						textShortener(news.description, 150),
 						buildElement('button', 'More', cls('autoBox-more', [
-							{name:'onclick', value:'location.href=\'#news-' + news.id + '\''}
+							{name:'onclick', value:'views.news.autoBoxNavigate(' + news.id + ')'}
 						])),
 					], cls('autoBox-content'))
 				], cls('autoBox-text')),
@@ -62,6 +62,13 @@ NewsComponent.prototype.fillAutoBox = function() {
 		{name:'onmouseover', value:'views.news.pauseABI()'},
 		{name:'onmouseleave', value:'views.news.resumeABI()'},
 	])));
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+NewsComponent.prototype.autoBoxNavigate = function(id) {
+	let page = getValueInRowBYId(id, this.page_blocks);
+	this.navigate(page);
+	this.selectNews(id);
+	views.spa.markAsSelected(id, 'news');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.fillNavigation = function () {
@@ -154,6 +161,7 @@ NewsComponent.prototype.navigate = function(page_number=1, all = false, top=fals
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'news');
 		} catch (e) {}
 	}
+	views.spa.setTheme();
 };
 
 NewsComponent.prototype.selectNews = function(id){

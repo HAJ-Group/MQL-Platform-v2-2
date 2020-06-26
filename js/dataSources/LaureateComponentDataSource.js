@@ -237,20 +237,6 @@ let dbLaureat17=[
 	},
 	{
 		id:6,
-		name:'Aghrabi Majda',
-		gender: 'F',
-		job:'Consultante Java / JAVA EE',
-		city:'Casablanca',
-		email:'',
-		stage:'Sylob',
-		current_enterprise : 'Sylob',
-		experience:[],
-		photo:'',
-		rating : '',
-		linked_in :'',
-	},
-	{
-		id:7,
 		name:'ELKHARRAT Issam',
 		gender: 'F',
 		job:'Consultant',
@@ -264,7 +250,7 @@ let dbLaureat17=[
 		linked_in :'',
 	},
 	{
-		id:8,
+		id:7,
 		name:'Moumen Saad',
 		gender: 'M',
 		job:'FullStack Software Engineer',
@@ -278,7 +264,7 @@ let dbLaureat17=[
 		linked_in :'https://www.linkedin.com/in/saadmoumen/',
 	},
 	{
-		id:9,
+		id:8,
 		name:'Bouhouss Hamza',
 		gender: 'M',
 		job:'Consultant COBOL Mainframe',
@@ -728,7 +714,7 @@ let dbPromotion= [
 	{
 		id : 'p1315',
 		name:'Promotion 2013-2015',
-		date:'01-06-2014',
+		date:'01-06-2015',
 		content : dbLaureat15,
 	},
 	{

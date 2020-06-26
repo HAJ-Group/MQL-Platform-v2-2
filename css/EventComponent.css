@@ -132,7 +132,7 @@
 	width: 100%;
 	font-size: 25px;
 	position: absolute;
-	color: black;
+	/*color: black;*/
 }
 .timeline-item .timeline-span {
 	top: -10px;
@@ -146,7 +146,7 @@
 }
 .timeline-item .timeline-description {
 	display: none;
-	background-color: white;
+	/*background-color: white;*/
 	padding: 8px;
 	border: 1px solid lightgray;
 	box-shadow: 0 0 5px lightgray;

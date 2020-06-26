@@ -67,10 +67,10 @@ EventComponent.prototype.fillTimeline = function(max = 5) {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.timelineNavigate = function(id) {
-	if(current_page_number !== 1) {
-		this.navigate();
-		this.timelineNavigate(id);
-	} else location.href = '#event-' + id;
+	let page = getValueInRowBYId(id, this.page_blocks);
+	this.navigate(page);
+	this.selectEvent(id);
+	views.spa.markAsSelected(id, 'event');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -219,6 +219,7 @@ EventComponent.prototype.navigate = function(page_number=1, all = false, top=fal
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'event');
 		} catch (e) {}
 	}
+	views.spa.setTheme();
 };
 
 EventComponent.prototype.selectEvent = function(id){
