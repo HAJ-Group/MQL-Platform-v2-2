@@ -5,7 +5,8 @@ let phone_menu_toggled = false;
 function SPAComponent(service) {
     this.service = service;
     this.current_component = 'Home';
-    this.current_theme = themes.dark;
+    this.current_theme = themes[0];
+    if(localStorage.getItem('theme') !== null) this.current_theme = localStorage.getItem('theme');
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.initComponent = function(component) {
@@ -72,6 +73,8 @@ SPAComponent.prototype.load = function() {
     this.loadForms();
     // Loading Components Content
     this.loadComponents();
+    //Loading Theme
+    this.loadThemes();
     // Start
     $('#loader').style.display = 'none';
     $('.content')[0].style.display = 'block';
@@ -468,9 +471,26 @@ SPAComponent.prototype.addNavigationPageNavigators = function (block, page_size,
     block.appendChild(buildDIV([previous, next], cls('page-navigator-container')));
 };
 /* Theme Management --------------------------------------------------------------------------------------------------*/
-SPAComponent.prototype.themeIndexer = function (index) {
-    this.current_theme = index;
+SPAComponent.prototype.loadThemes = function() {
+    let container = $('#themeContainer');
+    for(let theme of themes) {
+        container.appendChild(buildDIV([
+            buildIMG('resources/pictures/App/' + theme + '-theme.jpg', ''),
+            buildSPAN(theme + ' Theme')
+        ], wrapIC(theme, 'theme-item', [
+            {name:'onclick', value:'views.spa.themeIndexer(\'' + theme + '\')'}
+        ])));
+    }
     this.setTheme();
+    let current_element = $('#' + this.current_theme);
+    current_element.style.backgroundColor = 'rgb(216, 49, 57)';
+    current_element.style.color = 'white';
+    current_element.style.opacity = '0.8';
+};
+/* Theme Management --------------------------------------------------------------------------------------------------*/
+SPAComponent.prototype.themeIndexer = function (index) {
+    localStorage.setItem('theme', index);
+    location.reload();
 };
 SPAComponent.prototype.setTheme = function () {
     // Content Background
@@ -570,6 +590,12 @@ SPAComponent.prototype.setTheme = function () {
     let cardsContainer = $('.cards-container');
     for(let c of cardsContainer) {
         c.classList.add(this.current_theme + '-bgC2');
+    }
+    // Theme
+    let themeItems = $('.theme-item');
+    for(let t of themeItems) {
+        t.classList.add(this.current_theme + '-bgC');
+        t.classList.add(this.current_theme + '-nav-text');
     }
 };
 

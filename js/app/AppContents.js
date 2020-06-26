@@ -14,7 +14,10 @@ function getHeaderNavs() {
     navElement.appendChild(buildLINK('javascript:void(0)', [
         buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img'))
     ], wrapCOthers('right', [{name: 'onclick', value: 'views.spa.scrollToDown();'}])));
-
+    // Theme NAV
+    navElement.appendChild(buildLINK('javascript:void(0)', [
+        buildIMG('resources/pictures/App/Header/theme.png', 'about', cls('def-img'))
+    ], wrapCOthers('right', [{name: 'onclick', value: 'views.spa.popFORM(\'ThemeModal\')'}])));
     return navElement;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
