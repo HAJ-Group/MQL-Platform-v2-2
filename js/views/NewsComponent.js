@@ -69,6 +69,7 @@ NewsComponent.prototype.autoBoxNavigate = function(id) {
 	this.navigate(page);
 	this.selectNews(id);
 	views.spa.markAsSelected(id, 'news');
+	views.spa.downFunction(300);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.fillNavigation = function () {

@@ -71,6 +71,7 @@ EventComponent.prototype.timelineNavigate = function(id) {
 	this.navigate(page);
 	this.selectEvent(id);
 	views.spa.markAsSelected(id, 'event');
+	views.spa.downFunction(300);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
