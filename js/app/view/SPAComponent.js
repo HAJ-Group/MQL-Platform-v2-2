@@ -3,9 +3,9 @@
 function SPAComponent(service) {
     this.service = service;
     this.current_component = 'Home';
-    this.current_theme = themes[0];
+    this.current_theme = themes[1];
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.initComponent = function(component) {
     if(component === '') {
         if(sessionStorage.getItem('component') !== null) {
@@ -442,10 +442,9 @@ SPAComponent.prototype.addNavigationPageNavigators = function (block, page_size,
 /* Theme Management --------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.themeIndexer = function (index) {
     this.current_theme = index;
+    this.setTheme();
 };
 SPAComponent.prototype.setTheme = function () {
-    // Body Image
-    document.body.classList.add(this.current_theme + '-bgIMG');
     // Content Background
     $('.content')[0].classList.add(this.current_theme + '-bgC');
     $('.content')[0].classList.add(this.current_theme + '-text');
