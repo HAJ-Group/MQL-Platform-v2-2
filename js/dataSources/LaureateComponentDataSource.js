@@ -329,8 +329,8 @@ let dbLaureat17=[
 		stage:'Capgemini',
 		current_enterprise : 'Aubay',
 		experience:['Capgemini'],
-		photo:'',
-		rating : path+'samiha-el-bouchikhi.jpg',
+		photo:path+'samiha-el-bouchikhi.jpg',
+		rating :'',
 		linked_in :'https://www.linkedin.com/in/samiha-el-bouchikhi-207737118/',
 	},
 	{
