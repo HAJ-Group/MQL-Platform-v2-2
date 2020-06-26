@@ -38,6 +38,9 @@ SPAComponent.prototype.initComponent = function(component) {
     current_element.removeAttribute('onmouseover');
     this.changePicture(this.current_theme + current_component);
     this.scrollToTop();
+    if(window.innerWidth <= 700 && component !== '') this.showMenu();
+    let searchInput = $('#key');
+    searchInput.value = '';
 };
 SPAComponent.prototype.loadHeaderNavs = function() {
     let headerElement = $('.topnav')[0];
@@ -287,7 +290,7 @@ SPAComponent.prototype.route = function (component = '') {
     this.setTheme();
     this.initComponent(component);
     this.switchComponent();
-    if(window.innerWidth <= 700 && component !== '') this.showMenu();
+
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/

@@ -408,20 +408,20 @@ LaureateComponent.prototype.filterKey = function () {
 	if(key === '') {
 		// LOAD ALL DATA
 		this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
+		this.navigate();
 	} else {
 		// LOAD BY KEY
 		this.page_blocks = split(this.service.searchByKey(key), MAX_PROMOTION_PER_PAGE);
+		this.navigate(1, true);
 	}
 	if(this.page_blocks.length === 0) {
 		$('.error-message')[0].innerHTML = 'Laureate not Found !';
 		$('#key').setAttribute('class', 'search-error');
-		showEmptyErrorResult();
 	}
 	else {
 		$('.error-message')[0].innerHTML = '';
 		$('#key').setAttribute('class', 'search-input');
 	}
-	this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* FORM SERVICES */
