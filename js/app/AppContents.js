@@ -5,13 +5,13 @@ function getHeaderNavs() {
     /* HEADER --------------------------------------------------------------------------------------------------------*/
     let navElement = buildDIV();
     // DYNAMIC NAVS
-    for(let nav of navs) {
-        navElement.appendChild(buildLINK('#' + nav.name, nav.content, cls(['left'], [{name:'name', value:nav.name}])));
+    for(let nav of SPAnavs) {
+        navElement.appendChild(
+            buildLINK('#' + nav.name, nav.content, cls(['left'], [{name:'name', value:nav.name}]))
+        );
     }
     // ABOUT NAV
-    navElement.appendChild(buildLINK('#footer', [
-        buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img'))
-    ], cls('right')));
+    navElement.appendChild(buildSPAN(buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img')),cls('right',[{name:'onclick',value:'views.spa.downFunction(0)'}])));
     return navElement;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

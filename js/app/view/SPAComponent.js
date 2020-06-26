@@ -49,15 +49,15 @@ SPAComponent.prototype.loadFooterPartners = function() {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.loadForms = function() {
-    for(let c of navs) {
+    for(let c of this.service.db) {
         let element = $('#' + c.name + 'Component');
         element.appendChild(window['get' + c.name + 'FormContent']());
     }
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.loadComponents = function() {
-    for(let i = (navs.length - 1); i >= 0; i--) {
-        window[navs[i].name + 'Main']();
+    for(let i = (this.service.db.length - 1); i >= 0; i--) {
+        window[this.service.db[i].name + 'Main']();
     }
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -374,22 +374,39 @@ SPAComponent.prototype.scrollToTop = function(){
         }
     }
 };
+
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * scrolling to top
  */
-SPAComponent.prototype.topFunction =function() {
+SPAComponent.prototype.topFunction =function(pixels=0) {
     let timeout;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        window.scrollBy(0,-50);
+        window.scrollBy(pixels,-50);
         timeout = setTimeout('views.spa.topFunction()', 8);
     } else {
         clearTimeout(timeout);
     }
 };
+/**
+ * scrolling to down
+ */
+SPAComponent.prototype.downFunction =function(pixels) {
+    let timeout;
+    let body = document.body,
+        html = document.documentElement;
 
+    let height = Math.max( body.scrollHeight, body.offsetHeight,
+        html.clientHeight, html.scrollHeight, html.offsetHeight );
+    if(pixels === 0){
+        pixels = height;
+    }
+    window.scrollBy(0,pixels);
+    timeout = setTimeout('views.spa.downFunction()', 10);
+    clearTimeout(timeout);
+};
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

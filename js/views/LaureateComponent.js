@@ -1,5 +1,5 @@
 /*Global Variables*/
-const MAX_PROMOTION_PER_PAGE = 13;
+const MAX_PROMOTION_PER_PAGE = 4;
 const DEFAULT_TOP_PROFILE_IMAGE = {M:'resources/pictures/Laureate/top-profile.jpg', F:'resources/pictures/Laureate/top-profile-female.jpg'};
 const DEFAULT_PROFILE_IMAGE = {M:'resources/pictures/Laureate/profile.png', F:'resources/pictures/Laureate/profile-female.png'};
 let k;
