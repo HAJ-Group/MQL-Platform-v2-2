@@ -29,7 +29,7 @@ let dbNews = [
         title:'Session de recturement- UMANIS',
         date:'13-03-2020',
         description:'Dans le cadre de partenariat entre le master qualité du logiciel et UMANIS, cette dernière organisera une session de recrutement pour les étudiants de la deuxième année',
-        images:['resources/pictures/App/Footer/umanis.png'],
+        images:['resources/pictures/Partner/Umanis-bg.jpg'],
         id_event : 2
     },
 

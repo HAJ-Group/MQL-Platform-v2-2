@@ -156,7 +156,7 @@ NewsComponent.prototype.navigate = function(page_number=1, all = false, top=fals
 	views.spa.detect_subContent_trigger_left_bar('news');
 	$('#all-news').style.display = 'none';
 	if(top) window.location.href = '#NewsMain';
-	if(!all) {
+	if(!all && window.innerWidth > 700) {
 		try {
 			views.news.selectNews(this.page_blocks[current_page_number - 1][0].id);
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'news');
@@ -259,11 +259,13 @@ NewsComponent.prototype.editData = function(index) {
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.deleteData = function(index) {
 	if(confirm('Are you sure you want to delete this News ?')) {
+		let ID = this.service.db[index].id;
+		let page = getValueInRowBYId(ID, this.page_blocks);
 		this.service.remove(index);
 		//....
 		try {
 			this.page_blocks = split(this.service.db, MAX_NEWS_PER_PAGE);
-			this.navigate();
+			this.navigate(page);
 		} catch (e) {
 			if(confirm('None News is found! Add new one ?')) {
 				views.news.addData();
@@ -297,8 +299,10 @@ NewsComponent.prototype.submitData = function (action = 'add', index = '0') {
 	views.spa.closeFORM('NewsForm');
 	let page = getValueInRowBYId(ID, this.page_blocks);
 	this.navigate(page);
-	this.selectNews(ID);
-	views.spa.markAsSelected(ID, 'news');
+	if(window.innerWidth > 700) {
+		this.selectNews(ID);
+		views.spa.markAsSelected(ID, 'news');
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.triggerSubmit = function () {

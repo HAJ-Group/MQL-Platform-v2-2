@@ -239,7 +239,7 @@ LaureateComponent.prototype.navigate = function(page_number=1, all = false, top=
 	views.spa.detect_subContent_trigger_left_bar('laureate');
 	$('#all-laureate').style.display = 'none';
 	if(top) window.location.href = '#LaureateMain';
-	if(!all) {
+	if(!all && window.innerWidth > 700) {
 		try {
 			views.laureate.selectPromotion(this.page_blocks[current_page_number - 1][0].id);
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'laureate');
@@ -474,22 +474,31 @@ LaureateComponent.prototype.editData = function(index, target_el = 'promotion') 
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 LaureateComponent.prototype.deleteData = function(index, target_el = 'promotion') {
+	let ID;
+	let page;
 	if(target_el === 'promotion') {
 		if(confirm('Are you sure you want to delete this Promotion ?')) {
+			ID = this.service.db[index].id;
+			page = getValueInRowBYId(ID, this.page_blocks);
 			this.service.remove(index);
-			//....
+			ID = null;
 		}
 	} else {
 		// LAUREATES
 		if(confirm('Are you sure you want to delete this Laureate ?')) {
+			ID = index.split(',')[0];
+			page = getValueInRowBYId(ID, this.page_blocks);
 			let keys = index.split(',');
 			this.service.removeLaureate(keys[0], parseInt(keys[1]));
-			//....
 		}
 	}
 	try {
 		this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
-		this.navigate();
+		this.navigate(page);
+		if(ID !== null) {
+			this.selectPromotion(ID);
+			views.spa.markAsSelected(ID, 'laureate');
+		}
 	} catch (e) {
 		if(confirm('None Promotion is found! Add new one ?')) {
 			this.addData();
@@ -557,6 +566,7 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 			target.rating = rating;
 			//..
 		}
+		ID = this.service.get(getRowIndex(index.split(',')[0], this.service.db)).id;
 	}
 	this.service.sort();
 	this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
@@ -564,8 +574,10 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 	if(ID !== null) {
 		let page = getValueInRowBYId(ID, this.page_blocks);
 		this.navigate(page);
-		this.selectPromotion(ID);
-		views.spa.markAsSelected(ID, 'laureate');
+		if(window.innerWidth > 700) {
+			this.selectPromotion(ID);
+			views.spa.markAsSelected(ID, 'laureate');
+		}
 	} else this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/

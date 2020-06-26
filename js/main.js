@@ -54,10 +54,12 @@ function NewsMain() {
     views.spa.addTitleIcon('resources/pictures/News/News-logo.png', true, 'news');
     views.spa.detect_subContent_trigger_left_bar('news');
     views.news.trigger();
-    try {
-        views.news.selectNews(service.get(0).id);
-        views.spa.markAsSelected(service.get(0).id, 'news');
-    } catch (e) {}
+    if(window.innerWidth > 700) {
+        try {
+            views.news.selectNews(service.get(0).id);
+            views.spa.markAsSelected(service.get(0).id, 'news');
+        } catch (e) {}
+    }
 }
 /**-------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
@@ -80,10 +82,12 @@ function EventMain() {
     // Stays last
     views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
     views.spa.detect_subContent_trigger_left_bar('event');
-    try {
-        views.event.selectEvent(service.get(0).id);
-        views.spa.markAsSelected(service.get(0).id, 'event');
-    } catch (e) {}
+    if(window.innerWidth > 700) {
+        try {
+            views.event.selectEvent(service.get(0).id);
+            views.spa.markAsSelected(service.get(0).id, 'event');
+        } catch (e) {}
+    }
 }
 /**-------------------------------------------------------------------------------------------------------------------*/
 function ActivityMain() {
@@ -135,10 +139,12 @@ function LaureateMain() {
     // stays last
     views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
     views.spa.detect_subContent_trigger_left_bar('laureate');
-    try {
-        views.laureate.selectPromotion(service.get(0).id);
-        views.spa.markAsSelected(service.get(0).id, 'laureate');
-    } catch (e) {}
+    if(window.innerWidth > 700) {
+        try {
+            views.laureate.selectPromotion(service.get(0).id);
+            views.spa.markAsSelected(service.get(0).id, 'laureate');
+        } catch (e) {}
+    }
 }
 /**-------------------------------------------------------------------------------------------------------------------*/
 function AreaMain() {

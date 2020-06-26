@@ -28,6 +28,9 @@ body {
     -moz-box-shadow: 0 -20px 20px 0 rgba(0,0,0,0.4);
     box-shadow: 0 -20px 20px 0 rgba(0,0,0,0.4);
 }
+img {
+    object-fit: contain;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 hr {
     border: 0;
@@ -370,12 +373,12 @@ hr {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 5%; /* Location of the box */
+    z-index: 200; /* Sit on top */
+    /*padding-top: 5%; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
-    height: 95%; /* Full height */
+    height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     /*background-color: rgb(0,0,0);  Fallback color */
     background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
@@ -396,10 +399,10 @@ hr {
 /* Modal Content (image) */
 .modal-content {
     width: 100%;
-    max-width: 700px;
-    max-height: 700px;
+    max-width: 1000px;
+    max-height: 1000px;
     display: block;
-    margin: 0 auto;
+    margin: auto;
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -408,11 +411,9 @@ hr {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* FORM MODAL --------------------------------------------------------------------------------------------------------*/
 .form-content {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -50px;
+    width: 100%;
     display: block;
-    width: 70%;
+    margin: auto;
     max-width: 1000px;
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
@@ -439,7 +440,6 @@ hr {
     margin-left: auto;
     margin-right: auto;
     border: 1px solid lightgray;
-    border-radius: 20px;
     padding: 10px;
     font-size: 15px;
     font-weight: bolder;
@@ -480,12 +480,28 @@ hr {
     border: 2px solid rgb(53, 69, 108);
 
 }
+@media only screen and (max-width: 1200px){
+    .form-content {
+        width: 60%;
+    }
+    .form-title {
+        font-size: 30px;
+    }
+    .form-text {
+        width: 50%;
+        font-size: 10px;
+    }
+    .modal-content {
+        max-width: 800px;
+        max-height: 800px;
+    }
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* The Close Button */
 .close {
-    position: absolute;
-    top: 2%;
-    right: 23.2%;
+    width: fit-content;
+    display: block;
+    margin: auto;
     background-color: rgb(216, 49, 57); /* red*/
     color: white;
     font-size: 60px;
@@ -1127,6 +1143,7 @@ a.links:hover{
     border: 1px solid lightgray;
     border-radius: 10px;
     opacity: 0.4;
+    margin: auto;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .new-laureate {
@@ -1206,7 +1223,7 @@ a.links:hover{
         font-size: 20px;
     }
     .new-block {
-        width: 95%;
+        width: 50%;
     }
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -1470,6 +1487,18 @@ textarea {
     color: white;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
+.pos-fixed {
+    position: fixed;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.pos-absolute {
+    position: absolute;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.pos-relative {
+    position: relative;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
 @media screen and (max-width: 700px) {
     .news-modal-content{
         margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
@@ -1513,6 +1542,9 @@ textarea {
 .Light-bgC {
     background-color: white;
 }
+.Light-bgC2 {
+    background-color: lightgray;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 .Light-Search-Focus:focus {
     border: 2px solid rgb(53, 69, 108);
@@ -1532,6 +1564,44 @@ textarea {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+.theme-icon {
+    float: left;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.theme-title {
+    font-family: "Agency FB",serif;
+    font-size: 45px;
+    text-align: center;
+    color: rgb(216, 49, 57);
+    margin-bottom: 20px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.theme-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.theme-item {
+    padding: 5px;
+    box-shadow: 0 0 5px lightgray;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.theme-item span {
+    display: block;
+    margin: auto;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
+    padding: 20px;
+}
+.theme-item:hover {
+    color: white;
+    background-color: rgb(216, 49, 57);
+    cursor: pointer;
+}
 /** Dark -------------------------------------------------------------------------------------------------------------*/
 .Dark-nav-text {
     color: white;
@@ -1547,6 +1617,9 @@ textarea {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .Dark-bgC {
     background-color: #4b4c54;
+}
+.Dark-bgC2 {
+    background-color: #343434;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .Dark-Search-Focus:focus {

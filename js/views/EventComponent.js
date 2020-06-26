@@ -213,7 +213,7 @@ EventComponent.prototype.navigate = function(page_number=1, all = false, top=fal
 	views.spa.detect_subContent_trigger_left_bar('event');
 	$('#all-event').style.display = 'none';
 	if(top) window.location.href = '#NewsMain';
-	if(!all) {
+	if(!all && window.innerWidth > 700) {
 		try {
 			views.event.selectEvent(this.page_blocks[current_page_number - 1][0].id);
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'event');
@@ -360,11 +360,13 @@ EventComponent.prototype.editData = function(index) {
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.deleteData = function(index) {
 	if(confirm('Are you sure you want to delete this Event ?')) {
+		let ID = this.service.db[index].id;
+		let page = getValueInRowBYId(ID, this.page_blocks);
 		this.service.remove(index);
 		//....
 		try {
 			this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
-			this.navigate();
+			this.navigate(page);
 		} catch (e) {
 			if(confirm('None Event is found! Add new one ?')) {
 				views.event.addData();
@@ -397,8 +399,10 @@ EventComponent.prototype.submitData = function (action = 'add', index = '0') {
 	views.spa.closeFORM('EventForm');
 	let page = getValueInRowBYId(ID, this.page_blocks);
 	this.navigate(page);
-	this.selectEvent(ID);
-	views.spa.markAsSelected(ID, 'event');
+	if(window.innerWidth > 700) {
+		this.selectEvent(ID);
+		views.spa.markAsSelected(ID, 'event');
+	}
 };
 EventComponent.prototype.triggerSubmit = function () {
 	let submit_element = $('#eventSubmit');

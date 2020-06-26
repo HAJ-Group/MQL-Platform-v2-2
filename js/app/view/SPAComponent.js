@@ -6,6 +6,7 @@ function SPAComponent(service) {
     this.service = service;
     this.current_component = 'Home';
     this.current_theme = themes[0];
+    if(localStorage.getItem('theme') !== null) this.current_theme = localStorage.getItem('theme');
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.initComponent = function(component) {
@@ -72,6 +73,8 @@ SPAComponent.prototype.load = function() {
     this.loadForms();
     // Loading Components Content
     this.loadComponents();
+    //Loading Theme
+    this.loadThemes();
     // Start
     $('#loader').style.display = 'none';
     $('.content')[0].style.display = 'block';
@@ -284,6 +287,7 @@ SPAComponent.prototype.route = function (component = '') {
     this.setTheme();
     this.initComponent(component);
     this.switchComponent();
+    if(window.innerWidth <= 700 && component !== '') this.showMenu();
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -468,9 +472,26 @@ SPAComponent.prototype.addNavigationPageNavigators = function (block, page_size,
     block.appendChild(buildDIV([previous, next], cls('page-navigator-container')));
 };
 /* Theme Management --------------------------------------------------------------------------------------------------*/
-SPAComponent.prototype.themeIndexer = function (index) {
-    this.current_theme = index;
+SPAComponent.prototype.loadThemes = function() {
+    let container = $('#themeContainer');
+    for(let theme of themes) {
+        container.appendChild(buildDIV([
+            buildIMG('resources/pictures/App/' + theme + '-theme.jpg', ''),
+            buildSPAN(theme + ' Theme')
+        ], wrapIC(theme, 'theme-item', [
+            {name:'onclick', value:'views.spa.themeIndexer(\'' + theme + '\')'}
+        ])));
+    }
     this.setTheme();
+    let current_element = $('#' + this.current_theme);
+    current_element.style.backgroundColor = 'rgb(216, 49, 57)';
+    current_element.style.color = 'white';
+    current_element.style.opacity = '0.8';
+};
+/* Theme Management --------------------------------------------------------------------------------------------------*/
+SPAComponent.prototype.themeIndexer = function (index) {
+    localStorage.setItem('theme', index);
+    location.reload();
 };
 SPAComponent.prototype.setTheme = function () {
     // Content Background
@@ -530,10 +551,11 @@ SPAComponent.prototype.setTheme = function () {
         t.classList.add(this.current_theme + '-text');
     }
     // Partners Menu
-    $('.partners-menu')[0].classList.add(this.current_theme + '-text');
+    $('.partner-menu-title')[0].classList.add(this.current_theme + '-nav-text');
     let partners = $('.partner');
     for(let p of partners) {
-        p.classList.add(this.current_theme + '-text');
+        p.classList.add(this.current_theme + '-bgC');
+        p.classList.add(this.current_theme + '-nav-text');
     }
     // List recommendations
     $('.list-recommendations')[0].classList.add(this.current_theme + '-bgC');
@@ -543,6 +565,38 @@ SPAComponent.prototype.setTheme = function () {
     for(let h of homeBlocks) {
         h.classList.add(this.current_theme + '-bgC');
         h.classList.add(this.current_theme + '-text');
+    }
+    // Tree Model
+    let activeBranch = $('.branch-active');
+    for(let b of activeBranch) {
+        b.classList.add(this.current_theme + '-bgC');
+        b.classList.add(this.current_theme + '-text');
+    }
+    let contentBranch = $('.branch-content');
+    for(let b of contentBranch) {
+        b.classList.add(this.current_theme + '-bgC');
+        b.classList.add(this.current_theme + '-text');
+    }
+    // Activity
+    let semesterDesc = $('.semester-description');
+    for(let s of semesterDesc) {
+        s.classList.add(this.current_theme + '-bgC');
+        s.classList.add(this.current_theme + '-text');
+    }
+    let semesterCards = $('.card');
+    for(let c of semesterCards) {
+        c.classList.add(this.current_theme + '-bgC');
+        c.classList.add(this.current_theme + '-text');
+    }
+    let cardsContainer = $('.cards-container');
+    for(let c of cardsContainer) {
+        c.classList.add(this.current_theme + '-bgC2');
+    }
+    // Theme
+    let themeItems = $('.theme-item');
+    for(let t of themeItems) {
+        t.classList.add(this.current_theme + '-bgC');
+        t.classList.add(this.current_theme + '-nav-text');
     }
 };
 
