@@ -245,6 +245,7 @@ LaureateComponent.prototype.navigate = function(page_number=1, all = false, top=
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'laureate');
 		} catch (e) {}
 	}
+	views.spa.setTheme();
 };
 
 

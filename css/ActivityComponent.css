@@ -298,20 +298,20 @@
 	font-size: 50px;
 	font-weight: bolder;
 	padding: 20px;
-	background-color: red;
+	background-color: rgb(216, 49, 57);
 	border-radius: 100%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .branch-title:hover, .branch-active  {
-	color: red;
+	color: rgb(216, 49, 57);
 	background-color: white;
 	cursor: pointer;
-	border: 1px solid red;
+	border: 1px solid rgb(216, 49, 57);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .branch-content {
 	display: none;
-	border: 2px solid red;
+	border: 2px solid rgb(216, 49, 57);
 	background-color: white;
 	box-shadow: 0 0 10px lightgray;
 	padding: 30px;

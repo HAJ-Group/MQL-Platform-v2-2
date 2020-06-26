@@ -45,7 +45,7 @@ PartnerComponent.prototype.fillPartnersMenu = function() {
 		);
 		htmlContent.appendChild(newBlock);
 	}
-	let endImg = buildIMG("resources/pictures/Partner/menu-bottom2.jpg",'',cls('end-img'));
+	let endImg = buildIMG("resources/pictures/Partner/menu-bottom2.png",'',cls('end-img'));
 	htmlContent.appendChild(endImg);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -195,6 +195,7 @@ PartnerComponent.prototype.navigate = function() {
 	views.partner.fillPartnersMenu();
 	views.partner.fillPartners();
 	views.partner.hideAll();
+	views.spa.setTheme();
 };
 /**-------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
