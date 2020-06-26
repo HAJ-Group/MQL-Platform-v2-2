@@ -389,8 +389,6 @@ SPAComponent.prototype.scrollToDown = function() {
 SPAComponent.prototype.topFunction =function(pixels=0,y_pixels=-50) {
     let timeout;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        console.log(pixels);
-        console.log(y_pixels);
         window.scrollTo(pixels,y_pixels);
         timeout = setTimeout('views.spa.topFunction(pixels,y_pixels)', 8);
     } else {

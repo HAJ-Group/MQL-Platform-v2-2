@@ -127,7 +127,7 @@ HomeComponent.prototype.printNews=function (max = 5) {
 HomeComponent.prototype.showRemoteNews = function(id) {
 	views.spa.route('News');
 	$('#nav-news-' + id).click();
-	views.spa.downFunction(600);
+	views.spa.downFunction(1000);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**

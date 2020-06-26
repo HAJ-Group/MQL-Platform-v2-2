@@ -91,7 +91,7 @@ PartnerComponent.prototype.showPartner = function (id, top = false) {
 	hide_block.style['display'] = 'none';
 	show_block.style['display'] = 'block';
 	$('#menu-' + id).classList.add('active');
-	if(top) views.spa.topFunction(50,-600);
+	if(top) views.spa.topFunction(0,500);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.hideAll = function () {
