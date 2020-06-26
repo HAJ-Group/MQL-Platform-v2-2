@@ -491,6 +491,7 @@ SPAComponent.prototype.loadThemes = function() {
     current_element.style.backgroundColor = 'rgb(216, 49, 57)';
     current_element.style.color = 'white';
     current_element.style.opacity = '0.8';
+    current_element.removeAttribute('onclick');
 };
 /* Theme Management --------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.themeIndexer = function (index) {
@@ -505,6 +506,7 @@ SPAComponent.prototype.setTheme = function () {
     let navC = $('.topnav')[0];
     let navs = navC.getElementsByTagName('a');
     for(let n of navs) {
+        n.classList.add(this.current_theme + '-bgC');
         n.classList.add(this.current_theme + '-nav-text');
     }
     // Search
@@ -602,6 +604,18 @@ SPAComponent.prototype.setTheme = function () {
         t.classList.add(this.current_theme + '-bgC');
         t.classList.add(this.current_theme + '-nav-text');
     }
+    // Professors
+    $('.professors-container')[0].classList.add(this.current_theme + '-bgC2');
+    let professorContainer = $('.professor-container');
+    for(let c of professorContainer) {
+        c.classList.add(this.current_theme + '-bgC');
+        c.classList.add(this.current_theme + '-text');
+    }
+    let professorName = $('.professor-name');
+    for(let p of professorName) {
+        p.classList.add(this.current_theme + '-nav-text')
+    }
+    $('.charts-block')[0].classList.add(this.current_theme + '-bgC2');
 };
 
 
