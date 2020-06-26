@@ -468,24 +468,28 @@ var dbProfessors = [
         id: 1,
         firstName: 'Zineddine',
         lastName: 'chihaja',
-        course: 'Technologie XML'
+        course: 'Technologie XML',
+        courseImage: 'resources/pictures/Home/xml.jpg'
     },
     {
         id: 2,
         firstName: 'Omar',
-        lastName: 'Bekkali',
-        course: 'Bases de données ORACLE'
+        lastName: 'BEKKALI',
+        course: 'Bases de données ORACLE',
+        courseImage: 'resources/pictures/Home/oracle.jpg'
     },
     {
         id: 3,
-        firstName: 'p2',
-        lastName: 'p2 p2',
-        course: 'Gestion du projets'
+        firstName: 'Mohamed',
+        lastName: 'LAMRINI',
+        course: 'Gestion du projets',
+        courseImage: 'resources/pictures/Home/gestion-projet.jpg'
     },
     {
         id: 4,
-        firstName: 'p3',
-        lastName: 'p3 p3',
-        course: 'Génie logiciel et UML'
+        firstName: 'Ahmed',
+        lastName: 'AZOUGH',
+        course: 'Génie logiciel et UML',
+        courseImage: 'resources/pictures/Home/uml.png'
     }
 ]

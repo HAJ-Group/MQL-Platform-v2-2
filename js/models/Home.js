@@ -14,9 +14,10 @@ function HomeStudents(id, firstName, lastName, internship) {
 }
 
 
-function HomeProfessors(id, firstName, lastName, course) {
+function HomeProfessors(id, firstName, lastName, course, courseImage) {
 	this.id = id;
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.course = course;
+	this.courseImage = courseImage;
 }

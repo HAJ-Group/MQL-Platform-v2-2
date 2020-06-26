@@ -91,7 +91,8 @@ HomeComponentService.prototype.loadAllData = function(dbSource, firstCollectionO
                 dbProfessors[i].id,
                 dbProfessors[i].firstName,
                 dbProfessors[i].lastName,
-                dbProfessors[i].course
+                dbProfessors[i].course,
+                dbProfessors[i].courseImage
             )
         )
     }

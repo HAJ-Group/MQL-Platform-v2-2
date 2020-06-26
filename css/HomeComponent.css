@@ -487,21 +487,29 @@ table.student-table{
 	padding: 15px 15px 5px 15px;
 	border-top-left-radius: 50%;
 	border-top-right-radius: 50%;
-	background-color: chocolate;
+	background-color: rgb(216, 49, 57);
 	font-size: 22px;
 	font-weight: bold;
 	text-transform: uppercase;
+	color: white;
 }
 
 .professors-container{
-	border: 1px solid cornflowerblue;
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
 	padding: 20px;
 	margin-top: 5px;
+	border: 1px solid rgb(53, 69, 108);
 }
 
 .professor-container{
 	padding: 15px;
-	border-left: 2px solid rgb(216, 49, 57);
+	border-left: 3px solid rgb(216, 49, 57);
+	border-top: 1px solid rgb(216, 49, 57);
+	border-right: 1px solid rgb(216, 49, 57);
+	border-bottom: 1px solid rgb(216, 49, 57);
+	background-color: #f8f8f8;
 }
 
 .professor-name{
