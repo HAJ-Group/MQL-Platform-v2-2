@@ -158,7 +158,9 @@ function buildLINK(href, content = null, attributes = []) {
  * @returns {any}
  */
 function buildParagraph(content = null, attributes = []) {
-    return buildElement('p', content, attributes);
+    return  buildElement('p',content,attributes);
+    // attributes.push('paragraphe');
+    // return buildSPAN(content, attributes);
 }
 
 /**
@@ -294,6 +296,36 @@ function wrapCI(classes, id, others = []) {
 function wrapIC(id, classes, others = []) {
     let attributes = [];
     attributes.push(new Attribute('id', id));
+    attributes.push(new Attribute('class', classes));
+    for(let o of others) {
+        attributes.push(new Attribute(o.name, o.value));
+    }
+    return attributes;
+}
+/** 5-2
+ * Quick Set of attributes classes and others
+ * @param id
+ * @param classes
+ * @param others
+ * @returns {[]}
+ */
+function wrapCOthers(classes, others = []) {
+    let attributes = [];
+    attributes.push(new Attribute('class', classes));
+    for(let o of others) {
+        attributes.push(new Attribute(o.name, o.value));
+    }
+    return attributes;
+}
+/* ---------------------------------------------------------------------------------------------------------------*/
+/** 5
+ * Quick Set of classes and others
+ * @param classes
+ * @param others
+ * @returns {[]}
+ */
+function wrapCOthers(classes, others = []) {
+    let attributes = [];
     attributes.push(new Attribute('class', classes));
     for(let o of others) {
         attributes.push(new Attribute(o.name, o.value));
