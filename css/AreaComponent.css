@@ -111,7 +111,7 @@
 .access-button {
 	border: none;
 	padding: 20px;
-	background-color: rgba(93,233,77,0.92);
+	background-color:rgb(53, 69, 108);
 	font-size: 25px;
 	font-weight: bolder;
 	color: white;
@@ -127,7 +127,7 @@
 .logout-button {
 	border: none;
 	padding: 20px;
-	background-color: rgba(233,42,25,0.92);
+	background-color: rgb(216, 49, 57);
 	font-size: 20px;
 	font-weight: bold;
 	color: white;
