@@ -567,7 +567,10 @@ SPAComponent.prototype.setTheme = function () {
         c.classList.add(this.current_theme + '-bgC');
         c.classList.add(this.current_theme + '-text');
     }
-    $('.cards-container')[0].classList.add(this.current_theme + '-bgC2');
+    let cardsContainer = $('.cards-container');
+    for(let c of cardsContainer) {
+        c.classList.add(this.current_theme + '-bgC2');
+    }
 };
 
 
