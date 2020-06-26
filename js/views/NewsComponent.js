@@ -82,7 +82,7 @@ NewsComponent.prototype.fillNavigation = function () {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(news.title, wrapCI(['menuitem', 'nav-news'],'nav-news-' + news.id ,[
-				{name:'onclick', value:'views.news.selectNews(' + news.id + ');  views.spa.markAsSelected('+ news.id +', \'news\')'}]))
+				{name:'onclick', value:'views.news.selectNews(' + news.id + ');  views.spa.markAsSelected('+ news.id +', \'news\');views.spa.topFunction(0,1100)'}]))
 		]));
 	}
 	views.spa.addNavigationPageNavigators(this.block_nav, this.page_blocks.length, 'news');

@@ -86,7 +86,7 @@ EventComponent.prototype.fillNavigation = function () {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(event.title, wrapCI(['menuitem', 'nav-event'],'nav-event-' + event.id ,[
-				{name:'onclick', value:'views.event.selectEvent(' + event.id + ');  views.spa.markAsSelected('+ event.id +', \'event\')'}]))
+				{name:'onclick', value:'views.event.selectEvent(' + event.id + '); views.spa.markAsSelected('+ event.id +', \'event\'); views.spa.topFunction(0,1200)'}]))
 		]));
 	}
 	views.spa.addNavigationPageNavigators(this.block_nav, this.page_blocks.length, 'event');

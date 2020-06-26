@@ -483,7 +483,7 @@ hr {
     border: 2px solid rgb(53, 69, 108);
 
 }
-@media only screen and (max-width: 1200px){
+@media only screen and (max-width: 1400px){
     .form-content {
         width: 60%;
     }
@@ -495,8 +495,8 @@ hr {
         font-size: 10px;
     }
     .modal-content {
-        max-width: 800px;
-        max-height: 800px;
+        max-width: 500px;
+        max-height: 500px;
     }
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
