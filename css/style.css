@@ -288,7 +288,7 @@ header {
 .title {
     font-family: "Agency FB", serif;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
     /* the red color in mql logo */
     color: rgb(216, 49, 57);
     padding: 15px 10px;
@@ -319,7 +319,7 @@ header {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .details{
     font-family: "Open Sans",Consolas, serif;
-    font-size: 18px;
+    font-size: 17px;
     text-align: justify;
     border: 1px solid lightgray;
     border-radius: 10px;
@@ -434,7 +434,7 @@ header {
 .form-title {
     font-family: "Agency FB", serif;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
     color: rgb(216, 49, 57);/* red */
     padding: 15px 10px;
     text-transform: uppercase;
@@ -621,7 +621,7 @@ footer{
 /*--------------------------------------------------------------------------------------------------------------------*/
 .flex-container > div > ul > li{
     font-size: 12px;
-    color: darkgray;
+    color: white;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .flex-container > div > ul > li{
@@ -1230,7 +1230,6 @@ a.links:hover{
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .zone-text-contact-news:focus{
-
     background-color: #ddd;
     outline: 2px solid #68b0ee;
 }
@@ -1241,10 +1240,8 @@ textarea {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .button-contact-2, .button-contact {
     padding: 10px;
-    margin: 8px 0 0 10px;
     border: none;
     cursor: pointer;
-    /*    width: 100%;*/
     opacity: 0.8;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

@@ -39,12 +39,12 @@ let dbEvent = [
 				title:'Etude de dossier',
 				description: 'Le dossier de candidature comprte les documents suivants : ',
 				items :['Photocopies des Attestations de réussite','Photocopies des Relevés des notes des années universitaires','Photocopie de la carte d’identité nationale','Une photo'],
-				image:'resources/pictures/Event/Psytest.jpg',
+				image:'resources/pictures/Event/dossier.png',
 			},
 			{
 				type:'card',
 				title:'Concours Ecrit',
-				description: 'le concours écrit vise à selectionner des candidats ayant les bons acquis de la Programmation Orientée Objet (C++/ JAVA JAVAEE).',
+				description: 'Le concours écrit vise à selectionner les candidats ayant les bons acquis de la Programmation Orientée Objet (C++/ JAVA JAVAEE).',
 				image:'resources/pictures/Event/Psytest.jpg',
 			},
 			{
@@ -81,11 +81,6 @@ let dbEvent = [
 				image:'resources/pictures/Event/HRInter.jpg',
 			},
 			{
-				type:'image-show',
-				title:'Galerie',
-				images: dbEventBook1,
-			},
-			{
 				type:'video',
 				description:'',
 				videos: ['resources/videos/recrutement2019.mp4'],
@@ -108,7 +103,7 @@ let dbEvent = [
 	{
 		id:4,
 		title: 'Cérémonie de remise de diplomes',
-		date:'Mars-Avril',
+		date:'Mars',
 		description: 'La cérémonie de remise de diplômes est une cérémonie organisée afin de célébrer nos jeunes diplomés, que la majorité ont déjâ signés contrats CDI avec des multinationales notamment Capgemini,CGI,ATOS .... ',
 		content: [
 			{
@@ -164,8 +159,8 @@ let dbEvent = [
 	{
 		id:7,
 		title:'Soutenance',
-		date:'Juin-Juillet',
-		description:'La dernière étape de la formation MQL, où les étudiants présentent leurs projets de fin d\'études devant un jury',
+		date:'Juillet',
+		description:'Les étudiants du master qualité logiciel après avoir acquis une bonne conaissance métier et des bonnes compétences ainsi que des connaissances sur le monde de l\'entreprise, effectuent un stage pré-embauche dans une multinationale, ce projet est soutenu devant un jury composé généralement du corps professoral du master ',
 		content: [
 			{
 				type:'image-show',
