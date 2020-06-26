@@ -27,7 +27,7 @@
 	flex-wrap: wrap;
 	justify-content: space-around; /* center horizontally */
 	align-items: center; /* center vertically*/
-	background-color: #f4f4f4;
+	/*background-color: #f4f4f4;*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .card {
@@ -38,7 +38,7 @@
 	border-radius: 5px;
 	box-shadow: 0 0 0 rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
 	overflow: hidden; /* otherwise header image won't respect rounded corners */
-	background-color: ghostwhite;
+	/*background-color: ghostwhite;*/
 	margin: 10px;
 	transition: all .4s ease; /* back to normal */
 }
@@ -49,7 +49,7 @@
 	margin-right: auto;
 	margin-top: 15px;
 	padding: 10px;
-	background-color: ghostwhite;
+	/*background-color: ghostwhite;*/
 	border: 1px solid #c4c4c4;
 	border-radius: 5px;
 
@@ -303,16 +303,17 @@
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .branch-title:hover, .branch-active  {
-	color: rgb(216, 49, 57);
-	background-color: white;
+	/*color: rgb(216, 49, 57);
+	background-color: white;*/
 	cursor: pointer;
-	border: 1px solid rgb(216, 49, 57);
+	border: 3px solid rgb(216, 49, 57);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .branch-content {
+	max-width: 400px;
 	display: none;
 	border: 2px solid rgb(216, 49, 57);
-	background-color: white;
+	/*background-color: white;*/
 	box-shadow: 0 0 10px lightgray;
 	padding: 30px;
 	font-size: 15px;
@@ -323,7 +324,7 @@
 .branch-content-list span {
 	width: 90%;
 	display: block;
-	font-size: 20px;
+	font-size: 15px;
     color: white;
 	border: 1px solid rgb(216, 49, 57);
 	background-color: rgb(53, 69, 108);

@@ -1,6 +1,6 @@
-let themes = [
-    'Light', 'Dark'
-];
+let themes = {
+    light:'Light', dark:'Dark'
+};
 let SPAnavs = [
     {
         name: 'Home',

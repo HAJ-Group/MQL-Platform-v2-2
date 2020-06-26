@@ -360,11 +360,13 @@ EventComponent.prototype.editData = function(index) {
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.deleteData = function(index) {
 	if(confirm('Are you sure you want to delete this Event ?')) {
+		let ID = this.service.db[index].id;
+		let page = getValueInRowBYId(ID, this.page_blocks);
 		this.service.remove(index);
 		//....
 		try {
 			this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
-			this.navigate();
+			this.navigate(page);
 		} catch (e) {
 			if(confirm('None Event is found! Add new one ?')) {
 				views.event.addData();

@@ -5,7 +5,7 @@ let phone_menu_toggled = false;
 function SPAComponent(service) {
     this.service = service;
     this.current_component = 'Home';
-    this.current_theme = themes[0];
+    this.current_theme = themes.dark;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.initComponent = function(component) {
@@ -530,10 +530,11 @@ SPAComponent.prototype.setTheme = function () {
         t.classList.add(this.current_theme + '-text');
     }
     // Partners Menu
-    $('.partners-menu')[0].classList.add(this.current_theme + '-text');
+    $('.partner-menu-title')[0].classList.add(this.current_theme + '-nav-text');
     let partners = $('.partner');
     for(let p of partners) {
-        p.classList.add(this.current_theme + '-text');
+        p.classList.add(this.current_theme + '-bgC');
+        p.classList.add(this.current_theme + '-nav-text');
     }
     // List recommendations
     $('.list-recommendations')[0].classList.add(this.current_theme + '-bgC');
@@ -544,6 +545,29 @@ SPAComponent.prototype.setTheme = function () {
         h.classList.add(this.current_theme + '-bgC');
         h.classList.add(this.current_theme + '-text');
     }
+    // Tree Model
+    let activeBranch = $('.branch-active');
+    for(let b of activeBranch) {
+        b.classList.add(this.current_theme + '-bgC');
+        b.classList.add(this.current_theme + '-text');
+    }
+    let contentBranch = $('.branch-content');
+    for(let b of contentBranch) {
+        b.classList.add(this.current_theme + '-bgC');
+        b.classList.add(this.current_theme + '-text');
+    }
+    // Activity
+    let semesterDesc = $('.semester-description');
+    for(let s of semesterDesc) {
+        s.classList.add(this.current_theme + '-bgC');
+        s.classList.add(this.current_theme + '-text');
+    }
+    let semesterCards = $('.card');
+    for(let c of semesterCards) {
+        c.classList.add(this.current_theme + '-bgC');
+        c.classList.add(this.current_theme + '-text');
+    }
+    $('.cards-container')[0].classList.add(this.current_theme + '-bgC2');
 };
 
 
