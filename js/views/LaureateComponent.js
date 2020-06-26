@@ -239,7 +239,7 @@ LaureateComponent.prototype.navigate = function(page_number=1, all = false, top=
 	views.spa.detect_subContent_trigger_left_bar('laureate');
 	$('#all-laureate').style.display = 'none';
 	if(top) window.location.href = '#LaureateMain';
-	if(!all) {
+	if(!all && window.innerWidth > 700) {
 		try {
 			views.laureate.selectPromotion(this.page_blocks[current_page_number - 1][0].id);
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'laureate');
@@ -574,8 +574,10 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 	if(ID !== null) {
 		let page = getValueInRowBYId(ID, this.page_blocks);
 		this.navigate(page);
-		this.selectPromotion(ID);
-		views.spa.markAsSelected(ID, 'laureate');
+		if(window.innerWidth > 700) {
+			this.selectPromotion(ID);
+			views.spa.markAsSelected(ID, 'laureate');
+		}
 	} else this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
