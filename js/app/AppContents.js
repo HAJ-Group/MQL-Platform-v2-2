@@ -7,7 +7,7 @@ function getHeaderNavs() {
     // DYNAMIC NAVS
     for(let nav of SPAnavs) {
         navElement.appendChild(
-            buildLINK('#' + nav.name, nav.content, cls(['left'], [{name:'name', value:nav.name}]))
+            buildLINK('javascript:void(0)', nav.content, cls(['left'], [{name:'name', value:nav.name}]))
         );
     }
     // ABOUT NAV

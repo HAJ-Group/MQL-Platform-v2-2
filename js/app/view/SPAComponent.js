@@ -277,6 +277,7 @@ SPAComponent.prototype.route = function (component = '') {
     this.setTheme();
     this.initComponent(component);
     this.switchComponent();
+    this.downFunction(180);
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -385,11 +386,11 @@ SPAComponent.prototype.scrollToDown = function() {
 /**
  * scrolling to top
  */
-SPAComponent.prototype.topFunction =function(pixels=0) {
+SPAComponent.prototype.topFunction =function(pixels=0,y_pixels=-50) {
     let timeout;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        window.scrollBy(pixels,-50);
-        timeout = setTimeout('views.spa.topFunction()', 8);
+        window.scrollBy(pixels,y_pixels);
+        timeout = setTimeout('views.spa.topFunction(pixels,y_pixels)', 8);
     } else {
         clearTimeout(timeout);
     }
@@ -408,7 +409,7 @@ SPAComponent.prototype.downFunction =function(pixels) {
         pixels = height;
     }
     window.scrollBy(0,pixels);
-    timeout = setTimeout('views.spa.downFunction()', 10);
+    timeout = setTimeout('views.spa.downFunction(0,pixels)', 10);
     clearTimeout(timeout);
 };
 //----------------------------------------------------------------------------------------------------------------------
