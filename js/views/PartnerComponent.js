@@ -195,6 +195,7 @@ PartnerComponent.prototype.navigate = function() {
 	views.partner.fillPartnersMenu();
 	views.partner.fillPartners();
 	views.partner.hideAll();
+	views.spa.setTheme();
 };
 /**-------------------------------------------------------------------------------------------------------------------*/
 /* Main Function */
