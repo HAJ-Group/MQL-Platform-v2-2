@@ -70,7 +70,7 @@ EventComponent.prototype.timelineNavigate = function(id) {
 	this.navigate(page);
 	this.selectEvent(id);
 	views.spa.markAsSelected(id, 'event');
-	views.spa.downFunction(300);
+	views.spa.downFunction(900);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -404,30 +404,4 @@ EventComponent.prototype.triggerSubmit = function () {
 	let submit_element = $('#eventSubmit');
 	submit_element.click();
 };
-/**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */ 
-function EventMain() {
-	let service = new EventComponentService();
-	service.load(dbEvent);
-	views['event'] = new EventComponent(service);
-	//try {
-		views.event.fillTimeline();
-		views.event.fillNavigation();
-		views.event.fillMain();
-		views.event.fillSwitcher();
-	// } catch (e) {
-	// 	if(confirm('None Event is found! Add new one ?')) {
-	// 		views.event.addData();
-	// 	} else {
-	// 		views.spa.route('Home');
-	// 	}
-	// }
-	// Stays last
-	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
-	views.spa.detect_subContent_trigger_left_bar('event');
-	try {
-		views.event.selectEvent(service.get(0).id);
-		views.spa.markAsSelected(service.get(0).id, 'event');
-	} catch (e) {}
-}
 /*--------------------------------------------------------------------------------------------------------------------*/

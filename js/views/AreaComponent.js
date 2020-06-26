@@ -65,14 +65,3 @@ AreaComponent.prototype.refresh = function () {
 	views.laureate.navigate();
 	views.partner.navigate();
 };
-/**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */ 
-function AreaMain() {
-	let service = new AreaComponentService();
-	service.load(dbArea);
-	views['area'] = new AreaComponent(service);
-	//views.area.printAreaList(); Uncomment to print data in table member
-	if(sessionStorage.getItem('ACCESS') !== null){
-		views.area.loadData();
-	} else views.area.promptLogin();
-}

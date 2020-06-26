@@ -248,14 +248,4 @@ ActivityComponent.prototype.showBranch = function(id) {
 		branches[id].style.display = 'block';
 	}
 };
-/**-------------------------------------------------------------------------------------------------------------------*/
-function ActivityMain() {
-	let service = new ActivityComponentService();
-	service.load(dbActivity);
-	views['activity'] = new ActivityComponent(service);
-	views.activity.printSemesters();
-	collapse();
-	views.spa.addTitleIcon('resources/pictures/Activity/Activity-logo.png', false, 'activity');
-	//views.activity.printActivityList(); Uncomment to print data in table member
-}
 /*--------------------------------------------------------------------------------------------------------------------*/

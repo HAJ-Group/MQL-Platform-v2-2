@@ -573,31 +573,4 @@ LaureateComponent.prototype.triggerSubmit = function () {
 	let submit_element = $('#promotionSubmit');
 	submit_element.click();
 };
-/**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */
-function LaureateMain() {
-	let service = new LaureateComponentService();
-	service.loadPromotion(dbPromotion);
-	service.loadspecial(dbPromotion);
-	views['laureate'] = new LaureateComponent(service);
-	try {
-		views.laureate.fillNavigation();
-		views.laureate.fillMain();
-		views.laureate.random();
-		views.laureate.fillSwitcher();
-	} catch (e) {
-		if(confirm('None Promotion is found! Add new one ?')) {
-			views.laureate.addData();
-		} else {
-			views.spa.route('Home');
-		}
-	}
-	// stays last
-	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
-	views.spa.detect_subContent_trigger_left_bar('laureate');
-	try {
-		views.laureate.selectPromotion(service.get(0).id);
-		views.spa.markAsSelected(service.get(0).id, 'laureate');
-	} catch (e) {}
-}
 /*--------------------------------------------------------------------------------------------------------------------*/

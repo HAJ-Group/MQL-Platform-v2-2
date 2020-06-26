@@ -1,4 +1,6 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
+let current_page_number = 1;
+let phone_menu_toggled = false;
 /*Default class*/
 function SPAComponent(service) {
     this.service = service;
@@ -26,7 +28,7 @@ SPAComponent.prototype.initComponent = function(component) {
     for(let c of this.service.db) {
         let element = $('+' + c.name)[0];
         element.classList.remove('active');
-        element.setAttribute('onclick', 'views.spa.route(this.name)');
+        element.setAttribute('onclick', 'views.spa.route(this.name); views.spa.downFunction(350);');
         element.setAttribute('onmouseover', 'views.spa.changePicture(\'' + this.current_theme + c.name + '\')');
         element.setAttribute('onmouseleave', 'views.spa.changePicture(\'' + this.current_theme + current_component + '\')');
     }
@@ -282,7 +284,6 @@ SPAComponent.prototype.route = function (component = '') {
     this.setTheme();
     this.initComponent(component);
     this.switchComponent();
-    this.downFunction(150);
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -394,8 +395,6 @@ SPAComponent.prototype.scrollToDown = function() {
 SPAComponent.prototype.topFunction =function(pixels=0,y_pixels=-50) {
     let timeout;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        console.log(pixels);
-        console.log(y_pixels);
         window.scrollTo(pixels,y_pixels);
         timeout = setTimeout('views.spa.topFunction(pixels,y_pixels)', 8);
     } else {
@@ -546,13 +545,6 @@ SPAComponent.prototype.setTheme = function () {
         h.classList.add(this.current_theme + '-text');
     }
 };
-/*--------------------------------------------------------------------------------------------------------------------*/
-function mainSPA() {
-    let service = new SPAComponentService();
-    service.load(SPAnavs);
-    views['spa'] = new SPAComponent(service);
-    views.spa.load();
-    views.spa.route();
-}
+
 
 
