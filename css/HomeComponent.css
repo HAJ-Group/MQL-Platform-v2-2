@@ -112,6 +112,12 @@
 	height:200px;
 	width:47%
 }
+
+.phone-chart-container{
+	position: relative;
+	min-height:300px!important;
+	width:90%!important;
+}
 .second-chart{
 	margin-left:50px ;
 }
@@ -250,15 +256,15 @@ a:hover {
 	padding: 10px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.coordinateur{
+.coordonateur{
 	display: flex;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.coordinateur .img {
+.coordonateur .img {
 	width: 40%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.coordinateur div {
+.coordonateur div {
 	padding: 20px;
 	width: 60%;
 }
@@ -519,18 +525,18 @@ table.student-table{
 		width: 97%;
 	}
 
-	.coordinateur{
+	.coordonateur{
 		display: block;
 	}
-	.coordinateur .img {
+	.coordonateur .img {
 		width: 50%;
 		border-radius: 100%;
 	}
-	.coordinateur img {
+	.coordonateur img {
 		margin-left: 25%;
 	}
 
-	.coordinateur div {
+	.coordonateur div {
 		margin-left: auto;
 		margin-right: auto;
 		width: 90%;

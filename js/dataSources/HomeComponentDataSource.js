@@ -30,7 +30,8 @@ let dbHomestats1 = [
                         beginAtZero: true
                     }
                 }]
-            }
+            },
+            maintainAspectRatio: false,
         }
     },
     {
@@ -59,7 +60,8 @@ let dbHomestats1 = [
                         beginAtZero: true
                     }
                 }]
-            }
+            },
+            maintainAspectRatio: false,
         }
     },
     {
@@ -86,7 +88,8 @@ let dbHomestats1 = [
                             beginAtZero: true
                         }
                     }]
-                }
+                },
+                maintainAspectRatio: false,
             }
     },
     {
@@ -104,6 +107,7 @@ let dbHomestats1 = [
                 display: true,
                 text : 'Pourcentage des contrats CDI sur un total de 160 étudiants (2009-2017)',
             },
+            maintainAspectRatio: false,
         }
     },
 ];
