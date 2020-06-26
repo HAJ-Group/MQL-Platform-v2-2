@@ -27,7 +27,7 @@ SPAComponent.prototype.initComponent = function(component) {
         let element = $('+' + c.name)[0];
         element.classList.remove('active');
         element.setAttribute('onclick', 'views.spa.route(this.name)');
-        element.setAttribute('onmouseover', 'views.spa.changePicture(' + this.current_theme + c.name + ')');
+        element.setAttribute('onmouseover', 'views.spa.changePicture(\'' + this.current_theme + c.name + '\')');
         element.setAttribute('onmouseleave', 'views.spa.changePicture(\'' + this.current_theme + current_component + '\')');
     }
     current_element.classList.add('active');
@@ -470,8 +470,11 @@ SPAComponent.prototype.setTheme = function () {
     $('.sub-content')[0].classList.add(this.current_theme + '-bgC');
     $('.sub-content')[0].classList.add(this.current_theme + '-text');
     // form content
-    $('.form-content')[0].classList.add(this.current_theme + '-bgC');
-    $('.form-content')[0].classList.add(this.current_theme + '-text');
+    let formContents = $('.form-content');
+    for(let f of formContents) {
+        f.classList.add(this.current_theme + '-bgC');
+        f.classList.add(this.current_theme + '-text');
+    }
     // Footer
     $('.partenaire')[0].classList.add(this.current_theme + '-bgC');
     // AutoBox
