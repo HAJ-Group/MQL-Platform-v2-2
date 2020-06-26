@@ -448,6 +448,7 @@ table.student-table{
 .student-table > thead > th {
 	padding: 15px;
 	background-color: #0e2f4e;
+    text-align: center;
 	color: white;
 	border: 1px lightgray solid;
 	border-radius: 0;
