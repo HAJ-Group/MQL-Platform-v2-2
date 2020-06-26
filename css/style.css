@@ -17,6 +17,10 @@
 */
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+img {
+    object-fit: contain!important;
+    object-position: center!important;
+}
 body {
     background-image: url('../resources/pictures/App/background2.jpg');
     max-width: 1200px;
@@ -348,8 +352,7 @@ hr {
 .column img {
     margin-top: 8px;
     vertical-align: middle;
-    width: 45%;
-    height: 45%;
+    width: 95%;
     padding-right: 10px;
 }
 

@@ -120,7 +120,7 @@ let dbHomeImages = [
 var dbStudents = [
     {
         name:'M1',
-        promotion: 'Promotion 2020-2021',
+        promotion: 'Promotion 2019-2021',
         data: [
                 {
                     id: 1,
@@ -280,7 +280,7 @@ var dbStudents = [
     },
     {
         name: 'M2',
-        promotion: 'Promotion 2019-2020',
+        promotion: 'Promotion 2018-2020',
         data: [
                 {
                     id: 1,
