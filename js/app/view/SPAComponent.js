@@ -29,7 +29,8 @@ SPAComponent.prototype.initComponent = function(component) {
     for(let c of this.service.db) {
         let element = $('+' + c.name)[0];
         element.classList.remove('active');
-        element.setAttribute('onclick', 'views.spa.route(this.name); views.spa.downFunction(350);');
+        if(screen.width>700)        element.setAttribute('onclick', 'views.spa.route(this.name); views.spa.downFunction(350);');
+        else         element.setAttribute('onclick', 'views.spa.route(this.name)');
         element.setAttribute('onmouseover', 'views.spa.changePicture(\'' + this.current_theme + c.name + '\')');
         element.setAttribute('onmouseleave', 'views.spa.changePicture(\'' + this.current_theme + current_component + '\')');
     }
