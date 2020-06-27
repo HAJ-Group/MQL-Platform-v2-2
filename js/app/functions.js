@@ -246,3 +246,15 @@ function getRowIndex(id, rows) {
         if(rows[i].id === id) return i;
     }
 }
+
+let viewUpdater = true;
+function updateView() {
+    if(window.innerWidth <= 700 && viewUpdater) {
+        window.location.reload();
+        viewUpdater = false;
+    }
+    if(window.innerWidth > 700 && !viewUpdater) {
+        window.location.reload();
+        viewUpdater = true;
+    }
+}

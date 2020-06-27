@@ -340,7 +340,7 @@ NewsComponent.prototype.autoBoxLoader  = function() {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 NewsComponent.prototype.showABI = function(index) {
-	if(current_component === 'News') {
+	if(views.spa.current_component === 'News') {
 		let items = $('.autoBox-item');
 		if(item_size > 0) {
 			for(let item of items) item.style.display = 'none';

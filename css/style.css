@@ -1585,11 +1585,6 @@ textarea {
 .Light-Pattern {
     background-image: url('../resources/pictures/App/pattern.png');
 }
-@media screen and (min-width: 700px) {
-    .Light-Pattern {
-        background-image: none;
-    }
-}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 .theme-icon {
@@ -1661,6 +1656,21 @@ textarea {
      background-image: url('../resources/pictures/App/pattern2.png');
  }
 /*--------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width: 700px) {
+    .theme-item {
+        margin-left: 5px;
+        margin-right: 5px;
+        max-width: 60%;
+    }
+    .theme-item img {
+        width: 80%;
+        display: block;
+        margin: auto;
+    }
+    .Light-Pattern {
+        background-image: none;
+    }
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*                                      *   _            ______   _______             *          _______
                     |\    /|     /\     |  |  \   |     |            |      \     /   |          |
