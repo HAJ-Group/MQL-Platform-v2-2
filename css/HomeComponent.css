@@ -611,11 +611,11 @@ table.student-table{
 		display: block;
 	}
 	.coordonateur .img {
-		width: 50%;
+		max-width: 70%;
 		border-radius: 100%;
 	}
 	.coordonateur img {
-		margin-left: 25%;
+		margin-left: 15%;
 	}
 
 	.coordonateur div {

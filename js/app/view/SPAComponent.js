@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 let current_page_number = 1;
 let phone_menu_toggled = false;
+let current_component = 'Home';
 /*Default class*/
 function SPAComponent(service) {
     this.service = service;
