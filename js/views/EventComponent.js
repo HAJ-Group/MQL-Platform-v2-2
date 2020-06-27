@@ -341,7 +341,6 @@ EventComponent.prototype.filterKey = function () {
 	if(this.page_blocks.length === 0) {
 		$('.error-message')[0].innerHTML = 'Event not Found !';
 		$('#key').setAttribute('class', 'search-error');
-		views.spa.showEmptyErrorResult();
 	}
 	else {
 		$('.error-message')[0].innerHTML = '';
