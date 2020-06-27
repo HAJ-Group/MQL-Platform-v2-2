@@ -494,7 +494,7 @@ SPAComponent.prototype.loadThemes = function() {
     let container = $('#themeContainer');
     for(let theme of themes) {
         container.appendChild(buildDIV([
-            buildIMG('resources/pictures/App/' + theme + '-theme.jpg', ''),
+            buildIMG('resources/pictures/App/' + theme + '-theme.png', ''),
             buildSPAN(theme + ' Theme')
         ], wrapIC(theme, 'theme-item', [
             {name:'onclick', value:'views.spa.themeIndexer(\'' + theme + '\')'}
@@ -629,7 +629,6 @@ SPAComponent.prototype.setTheme = function () {
     for(let p of professorName) {
         p.classList.add(this.current_theme + '-nav-text')
     }
-    $('.charts-block')[0].classList.add(this.current_theme + '-bgC2');
     let recos = $('.reconizer');
     for(let r of recos) {
         r.classList.add(this.current_theme + '-nav-text');

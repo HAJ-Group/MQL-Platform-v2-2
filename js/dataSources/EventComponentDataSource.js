@@ -4,20 +4,6 @@
  * @type {*[]}
  */
 
-let dbEventBook1 = [
-	'resources/pictures/Event/CAP.JPG',
-	'resources/pictures/Event/cap1.JPG',
-	'resources/pictures/Event/cap2.JPG',
-	'resources/pictures/Event/CGI.JPG',
-	'resources/pictures/Event/CGI2.JPG',
-	'resources/pictures/Event/CGI1.JPG',
-	'resources/pictures/Event/CGI3.JPG',
-	'resources/pictures/Event/UMANIS2.JPG',
-	'resources/pictures/Event/UMANIS4.JPG',
-	'resources/pictures/Event/CGI.JPG',
-	'resources/pictures/Event/CGI3.JPG',
-];
-
 let dbEventBook2 = [
 	'resources/pictures/Event/JE1.JPG',
 	'resources/pictures/Event/JE2.JPG',
@@ -107,25 +93,30 @@ let dbEvent = [
 		description: 'La cérémonie de remise de diplômes est une cérémonie organisée afin de célébrer nos jeunes diplomés, que la majorité ont déjâ signés contrats CDI avec des multinationales notamment Capgemini,CGI,ATOS .... ',
 		content: [
 			{
+				type:'video',
+				description:'',
+				videos: ['resources/videos/cérémonie2018.mp4'],
+			},
+			{
 				type:'image-grid',
 				title:'Galerie',
-				description:'',
-				images: ['resources/pictures/Event/economiste.jpg','resources/pictures/Event/CE1.jpg'],
+				description:'La cérémonie se passe par la présence des médias :',
+				images: [
+					'resources/pictures/Event/economiste.jpg',
+					'resources/pictures/Event/fesNews.png',
+				],
 			},
 			{
 				type:'image-grid',
 				title:'Galerie',
 				description:'Les lauréats MQL ne s\'arretent pas à l\'insertion professionnelle mais excellent dans leurs parcours professionnels et deviennent des éléments clé pour le développement de leures entreprises. ils aident également les nouvelles générations( formations, informations ...) dans une solidarité familiale.',
 				images: [
+					'resources/pictures/Event/CE1.jpg',
 					'resources/pictures/Event/CE2-1.jpg',
 					'resources/pictures/Event/CE2-2.jpg',
 				],
 			},
-			{
-				type:'video',
-				description:'',
-				videos: ['resources/videos/cérémonie2018.mp4'],
-			},
+
 		],
 	},
 	{
