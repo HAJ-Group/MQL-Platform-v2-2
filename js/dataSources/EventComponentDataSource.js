@@ -50,7 +50,7 @@ let dbEvent = [
 			{
 				type:'card',
 				title:'Entretien Oral',
-				description: 'La deuxième étape du concours consiste à choisir des étudiants motivés, confiants avec une capacité d\'écoute et un bon niveau de communication et , l\'étudiant présente son parcours universitaire et professionnel et répond aux questions du jury.',
+				description: 'La deuxième étape du concours consiste à choisir des étudiants motivés, confiants avec une capacité d\'écoute et un bon niveau de communication, l\'étudiant présente son parcours universitaire et professionnel et répond aux questions du jury.',
 				image:'resources/pictures/App/logoMQL2.png',
 			},
 
@@ -60,9 +60,13 @@ let dbEvent = [
 		id: 2,
 		title:'Compagnes de stages',
 		date : 'Octobre',
-		description:'Un Mqliste, dans sa deuxième année de formation, commence déjà  à passer des entretiens de stage pré-ambauche, en fait nous retrouvons, à la faculté des sciences, des multinationales dans des sessions de recrutement organisées par les étudiants MQL.' +
-			' Ces compagnes de stages se déroulent généralemenet en 3 phases : ',
+		description:'Les campagnes de stages sont des événements organisés par les étudiants du master qualité du logiciel à partir du mois octobre, en fait nous retrouvons nos partenaires à la faculté des sciences, sous le thème des sessions de recrutement ... ',
 		content:[
+			{
+				type:'top-video',
+				description:'Ces sessions de recrutement sont déstinés aux étudiants de la deuxième année, généralement une session se déroule en trois étapes : ',
+				videos: ['resources/videos/recrutement2019.mp4'],
+			},
 			{
 				type:'card',
 				title:'Test PsychoTechnique',
@@ -80,11 +84,6 @@ let dbEvent = [
 				title:'Entretien RH',
 				description: 'Le candidat doit mettre en avant son expérience, ses compétences et sa personnalité à travers la description de son parcours professionnel.',
 				image:'resources/pictures/Event/HRInter.jpg',
-			},
-			{
-				type:'video',
-				description:'',
-				videos: ['resources/videos/recrutement2019.mp4'],
 			},
 		],
 	},
@@ -116,7 +115,7 @@ let dbEvent = [
 			{
 				type:'image-grid',
 				title:'Galerie',
-				description:'Les lauréats MQL ne s\'arretent pas à l\'insertion professionnelle mais excellent dans leurs parcours professionnels et deviennent des éléments clé pour le developpement de ses entreprises. ils aident également les nouvelles générations( formations, informations ...) dans une solidarité familiale.',
+				description:'Les lauréats MQL ne s\'arretent pas à l\'insertion professionnelle mais excellent dans leurs parcours professionnels et deviennent des éléments clé pour le développement de leures entreprises. ils aident également les nouvelles générations( formations, informations ...) dans une solidarité familiale.',
 				images: [
 					'resources/pictures/Event/CE2-1.jpg',
 					'resources/pictures/Event/CE2-2.jpg',
@@ -147,12 +146,12 @@ let dbEvent = [
 		id:6,
 		title:'Evenements para-scolaire',
 		date:'',
-		description:'MQL dépasse les limtes de la formation et l\'éducation; MQL est une équipe, une famille, un style de vie.',
+		description:'Une fois vous integrez le master qualité logiciel, vous êtes désormais un membre d\'une équipe soudée avec un objectif clair et net. Nous dépassons les limites de la formation et éducation, nous organisons plein d\'événements parascolaire tout au long de l\'année ... ' ,
 		content: [
 			{
 				type:'image-grid',
-				title:'Galerie',
-				description:'',
+				title:'',
+				description:'MQL est une famille, MQL est un style de vie !',
 				images: ['resources/pictures/App/mqlfam.JPG','resources/pictures/Event/sortie.jpg'],
 			},
 		],
