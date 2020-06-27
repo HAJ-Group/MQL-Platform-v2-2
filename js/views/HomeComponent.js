@@ -14,7 +14,6 @@ function HomeComponent(service) {
 	this.htmlSaver = {
 		news: this.newsBlock.innerHTML,
 	}
-	this.promotion = 'm2';
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 HomeComponent.prototype.show= function (id, element = null) {
@@ -34,8 +33,15 @@ HomeComponent.prototype.show= function (id, element = null) {
 // printStats
 HomeComponent.prototype.printStats= function () {
 	let i=0;
+	let ctx;
 	for (let stat of this.service.db){
-		let ctx = $('#myChart'+i).getContext('2d');
+		if(screen.width > 700){
+			ctx = $('#myChart'+i).getContext('2d');
+			stat.options.maintainAspectRatio = true;
+		}
+		else{
+			ctx =$('#phone-myChart'+i).getContext('2d');
+		}
 		let myChart = new Chart(ctx, {
 			type: stat.type,
 			data: {
@@ -117,8 +123,6 @@ HomeComponent.prototype.tablesHeadersSecondPromotion = function(reference){
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-
-
 HomeComponent.prototype.addProfessor = function(professor){
 	// The content of the table
 	let row = this.professorsReference.insertRow();
@@ -128,7 +132,7 @@ HomeComponent.prototype.addProfessor = function(professor){
 	row.insertCell().innerHTML = professor.course;
 };
 
-HomeComponent.prototype.printProfessors = function(){
+/*HomeComponent.prototype.printProfessors = function(){
 	let professors = this.professorsReference;
 	for (let i = 0; i < this.service.sizeProfessors(); i++){
 		let courseImagePath = this.service.getProfessor(i).courseImage;
@@ -156,6 +160,43 @@ HomeComponent.prototype.printProfessors = function(){
 		professors.appendChild(divProfessor);
 		professors.appendChild(buildHR());
 	}
+};*/
+
+HomeComponent.prototype.printProfessors = function(){
+    let professors = this.professorsReference;
+    for (let i = 0; i < this.service.sizeProfessors(); i++) {
+        let professor = this.service.getProfessor(i);
+
+        let courseImagePath = professor.courseImage;
+        let profPhotoPath = professor.photo;
+
+        if (courseImagePath === ''){
+            courseImagePath = 'resources/pictures/Home/default-image-course.png';
+        }
+        if (profPhotoPath === ''){
+            profPhotoPath = 'resources/pictures/Home/default-professor-photo.png';
+        }
+
+        let divProfessor = buildDIV([
+                                buildDIV(
+                                    buildIMG('' + profPhotoPath, ''),
+                                    cls('professor-image')),
+
+                                buildDIV([
+                                    buildSPAN('Pr. ' + professor.firstName + ' ' + professor.lastName),
+                                    buildBR(),
+                                    buildSPAN('(' + professor.course + ')')
+                                    ],
+                                    cls('professor-name')),
+
+                                buildDIV(
+                                    buildIMG('' + courseImagePath, ''),
+                                    cls('course-image'))
+                                ],
+
+                           cls('professor-container'));
+        professors.appendChild(divProfessor);
+    }
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -193,6 +234,8 @@ HomeComponent.prototype.printNews=function (max = 5) {
 HomeComponent.prototype.showRemoteNews = function(id) {
 	views.spa.route('News');
 	$('#nav-news-' + id).click();
+	if(screen.width > 700 )
+	views.spa.downFunction(1000);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -303,23 +346,5 @@ HomeComponent.prototype.switchColorOfSelectedElement = function(id, id2) {
 	$('#' + id).classList.add('red-ball');
 	$('#' + id2).classList.remove('red-ball');
 };
-/*--------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */
-function HomeMain() {
-	let service = new HomeComponentService();
-	service.loadAllData(dbHomestats1, dbStudents[0].data, dbStudents[1].data, dbProfessors);
-	views['home'] = new HomeComponent(service);
-	views['home'].printStats();
-	views.home.startPresenter();
-    views.home.printStudents();
-    views.home.printProfessors();
-    views.home.fillNews();
-	views.home.printNews();
-	views.home.setNewsRoutes();
-	// stays last
-	views.spa.addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
-	views.spa.detect_subContent_trigger_left_bar('home');
-	//createBook(dbHomeImages);
-}
 /*--------------------------------------------------------------------------------------------------------------------*/
 

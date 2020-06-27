@@ -4,8 +4,7 @@ let themes = [
 let SPAnavs = [
     {
         name: 'Home',
-        content: buildIMG('resources/pictures/App/Header/home.png', 'home',
-            wrapIC('home-logo', 'home-logo'))
+        content: 'Home',
     },
     {
         name: 'News',

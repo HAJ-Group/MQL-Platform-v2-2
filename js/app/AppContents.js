@@ -5,21 +5,23 @@ function getHeaderNavs() {
     /* HEADER --------------------------------------------------------------------------------------------------------*/
     let navElement = buildDIV();
     // DYNAMIC NAVS
-    for(let nav of navs) {
-        navElement.appendChild(buildLINK('#' + nav.name, nav.content, cls(['left'], [{name:'name', value:nav.name}])));
+    for(let nav of SPAnavs) {
+        if (nav.name === 'Home'){
+            nav.content = buildIMG('resources/pictures/App/Header/home.png', 'home',
+                wrapIC('home-logo', 'home-logo'));
+        }
+        navElement.appendChild(
+            buildLINK('javascript:void(0)', nav.content, cls(['left'], [{name:'name', value:nav.name}]))
+        );
     }
-/*
-    // ABOUT NAV
-    navElement.appendChild(buildLINK('#footer', [
-        buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img'))
-    ], cls('right')));
-*/
-
     // ABOUT NAV
     navElement.appendChild(buildLINK('javascript:void(0)', [
         buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img'))
     ], wrapCOthers('right', [{name: 'onclick', value: 'views.spa.scrollToDown();'}])));
-
+    // Theme NAV
+    navElement.appendChild(buildLINK('javascript:void(0)', [
+        buildIMG('resources/pictures/App/Header/theme.png', 'about', cls('def-img'))
+    ], wrapCOthers('right', [{name: 'onclick', value: 'views.spa.popFORM(\'ThemeModal\')'}])));
     return navElement;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/

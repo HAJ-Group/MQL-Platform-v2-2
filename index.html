@@ -7,7 +7,7 @@
         <title>MQL Platform</title>
 		<script src="js/app/ElementFactory.js"></script>
         <script src="js/app/AppContents.js"></script>
-        <script src="js/app/main.js"></script>
+        <script src="js/app/functions.js"></script>
 		<!-- STYLES -->
 		<link rel="stylesheet" href="css/style.css">
 		<!-- JS charts	-->
@@ -48,8 +48,10 @@
 		<script src="js/views/AreaComponent.js"></script>
 		<script src="js/views/HomeComponent.js"></script>
 		<script src="js/app/view/SPAComponent.js"></script>
+		<!--	MAIN	-->
+		<script src="js/main.js"></script>
 	</head>
-	<body onload="mainSPA()">
+	<body onload="mainSPA()" onresize="updateView()">
 		<!-- App Loader -->
 		<div id="loader" class="splash-content">
 			<img src="resources/pictures/App/logoMQL.png" alt="">
@@ -76,7 +78,7 @@
 				<!-- Components Upper Areas-->
 				<div id="HomeUpperArea" >
 					<div class="home-news">
-						<div class="home-news-title red-bg"><span>Latest News</span></div>
+						<div class="home-news-title red-bg"><span>Dernières actualités :</span></div>
 						<div class="news-content-block d-flex">
 							<div onmouseover="views.home.pauseNews()" onmouseleave="views.home.resumeNews()" class="home-news-content el-center"></div>
 							<span onclick="views.home.switchNews()" onmouseover="views.home.pauseNews()" onmouseleave="views.home.resumeNews()" class="news-arrow">
@@ -86,11 +88,6 @@
 					</div>
 					<!-- Home Upper Area -->
 					<div class="main-box">
-						<div class="mql-video-div">
-							<video class="mql-video" muted autoplay>
-								<source src="resources/videos/mql.mp4" type="video/mp4" >
-							</video>
-						</div>
 						<div class="news">
 							<span> ACTUALITES MQL </span>
 							<table class="news-tab" id="table-news"></table>
@@ -100,10 +97,10 @@
 					<div id="presenter" class="presenter-container">
 						<div class="presenter-block">
 							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" class="presenter-item">
-								<h1>Master Qualité <br> Logiciel</h1>
+								<h1>MQL : <br>Un engagement <br> de réussite</h1>
 							</div>
 							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" class="presenter-item">
-								<h1>Coordinateur <br> Mr. Chenfour</h1>
+								<br><h1>Coordonateur <br> Mr. Chenfour</h1>
 							</div>
 						</div>
 						<div class="presenter-center-block">
@@ -121,7 +118,7 @@
 						</div>
 						<div class="presenter-block">
 							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" id="presenter-3" class="presenter-item">
-								<h1>Les bonnes <br> pratiques <br> en technologies</h1>
+								<h1>Les bonnes <br> pratiques <br> de développement</h1>
 							</div>
 							<div onmouseover="views.home.pausePresenter()" onmouseleave="views.home.resumePresenter()" id="presenter-4" class="presenter-item">
 								<h1>Meilleure fabrique <br> des meilleurs <br> étudiants</h1>
@@ -218,62 +215,75 @@
 					<div class="home-presentation">
 						<div class="home-flex">
 							<div class="home-span title home-span-active" onclick="views.home.show('mql-presentation', this)"><span>Presentation </span></div>
-							<div class="home-span title" onclick="views.home.show('mql-coordinateur', this)"><span>Coordinateur</span></div>
+							<div class="home-span title" onclick="views.home.show('mql-coordonateur', this)"><span>Corps Professoral</span></div>
 							<div class="home-span title" onclick="views.home.show('mql-stats', this)"><span>Statistiques</span></div>
 							<div class="home-span title" onclick="views.home.show('mql-students', this)"><span>Etudiants</span></div>
 						</div>
 						<div class="cards">
 							<div id="mql-presentation" class="home-card">
-								<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
-								<span class="paragraphe">Le Master «Qualité du Logiciel», créé en 2007 orienté vers l'insertion professionelle dans les multinationales, permet d’offrir aux étudiants une formation approfondie et des méthodes de travail de très haut niveau dans le domaine de la qualité du logiciel.</span>
-								<video class="mql-video" autoplay muted loop>
-									<source src="resources/videos/mql.mp4" type="video/mp4" >
-								</video>
+								<span><span class="blue bold">MQL,</span> La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
+								<span class="paragraphe">Le Master Qualité du Logiciel, créé en 2007 orienté vers l'insertion professionelle dans les multinationales, permet d’offrir aux étudiants une formation approfondie et des méthodes de travail de très haut niveau dans le domaine de la qualité du logiciel.</span>
 								<span class="paragraphe">Le Master MQL participe très activement dans le domaine de l’offshore. Le principal « client » MQL se trouve dans tous les parcs d’activité offshore et Outsourcing au Maroc et principalement Casablanca Nearshore Park, Rabat Technopolis et Fès Shore avec un taux d’insertion de 100% des étudiants dans des multinationales, MQL s’intéresse à:</span>
 								<ul>
 									<li>Former et spécialiser des étudiants sur les systèmes informatiques, plus précisément le développement logiciel ;</li>
 									<li>Doter les étudiants de compétences et de savoir faire dans les domaines d’ingénierie d’entreprises, l’intégration des systèmes clients - serveurs ainsi que les systèmes et applications répartis</li>
 								</ul>
+								<video class="mql-video" autoplay muted loop>
+									<source src="resources/videos/mql.mp4" type="video/mp4" >
+								</video>
 							</div>
-							<div id="mql-coordinateur" class="home-card hidden">
-								<div class="coordinateur">
+							<div id="mql-coordonateur" class="home-card hidden">
+								<div>Le <span class="bold mql-title">Master Qualité du Logiciel </span> se distingue avec ses professeurs hautement qualifiés dans les différents domaines de l'informatique sous la direcrtion du coordonateur Monsieur Noureddine Chenfour : </div>
+								<br>
+								<div class="coordonateur">
 									<img class ="img" src="resources/pictures/Home/M.Chenfour.jpg" alt="">
-									<div> <span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.
+									<div>
+										<div>
+											<span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.
+										</div>
+										<div>
+											Liste des modules enseignés par Mr chenfour en MQL :
+											<ul>
+												<li><span class="prof-module">Ingénieurie de l'Objet et Technologie JAVA :</span> Basics, Threads, Swing, XML, Introspection, Enumerations, Generics, Sockets, JDBC ...</li>
+												<li><span class="prof-module">Design Pattern : </span> GOF ... </li>
+												<li><span class="prof-module">Architecture JAVA EE et frameworks : </span> Struts, JSF, Spring Hibernate ...</li>
+												<li><span class="prof-module">Ingénieurie du WEB: </span> HTML, CSS , JS (AJAX, JQuery, Angular ...)</li>
+												<li><span class="prof-module">Présentations : </span> Business Intelligence,Outils d’industrialisation et Solutions de Testing, AJAX et nouvelles technologies du , EJB, Serveurs d’application et Remoting, Plateforme & Frameworks .NET  ...  </li>
+												<li><span class="prof-module">... </span></li>
+											</ul>
+										</div>
 									</div>
 								</div>
-								<hr>
 
-								
+								<hr class="hr-spacing">
+
 								<div class="professors-title">
 									<span>Professeurs</span>
 								</div>
 								<div class="professors-container" id="professors">
-
 								</div>
-						
-							<!--	<div class="other-professors">
-									<div class="home-span title home-span-active"><span>Professeures</span></div>
-									<table id="professors">
-									</table>
-								</div>-->
+
 							</div>
 							<div id="mql-stats" class="home-card hidden">
-									<div>
-										<span class="paragraphe">Présentons le master MQL en chiffres:</span>
-										<video  class="mql-video-div" controls>
-											<source src="resources/videos/mql.mp4" type="video/mp4" >
-										</video>
-										<span class="paragraphe">-Nous avons passsé de 20% d'insertion en stage pré-embauche en 2009 (5 sur 20) à 100% en 2015 (30 sur 30) , dont +90% ont signé des contrats CDI;</span>
-										<span class="paragraphe">-Entre 2015 et 2019, <span class="link red bold" onclick="views.spa.showPartner('partner-1')">CAPGEMINI</span>, de ces deux sièges RABAT et CASABLANCA, est notre premier partenaire en nombre d'étudiants intégrés avec <span class="bold blue">71</span> stagiaires, suivie de  <span class="link red bold" onclick="views.spa.showPartner('partner-2')">CGI</span> (Fes, Rabat et Casablanca ) avec <span class="bold blue">44</span>  MQListes;</span>
-										<span class="paragraphe">- Sur un total d'effectif de 160 étudiants, <span class="bold blue">147</span> ont réussi à décrocher leurs contrats CDI avec un taux d'insertion de 92% (2015-2019): </span>
-									</div>
-								<div class="chart-container">
-									<canvas id="myChart0"></canvas>
-									<canvas id="myChart1" class="second-chart"></canvas>
+								<div>
+									<span class="paragraphe blue bold">Présentons le master MQL en chiffres:</span>
+									<video  class="mql-video-div" autoplay muted loop>
+										<source src="resources/videos/mql.mp4" type="video/mp4" >
+									</video>
+									<span class="paragraphe">-Nous avons passsé de 20% d'insertion en stage pré-embauche en 2009 (5 sur 20) à 100% en 2015 (30 sur 30) , dont +90% ont signé des contrats CDI;</span>
+									<span class="paragraphe">-En 2015, CAPGEMINI recrute 25 sur 30 étudiants pour un stage pré-embauche;</span>
+									<span class="paragraphe">-Entre 2015 et 2019, <span class="link red bold" onclick="views.spa.showPartner('partner-1')">CAPGEMINI</span>, de ces deux sièges RABAT et CASABLANCA, est notre premier partenaire en nombre d'étudiants intégrés avec <span class="bold blue">71</span> stagiaires, suivie de  <span class="link red bold" onclick="views.spa.showPartner('partner-2')">CGI</span> (Fes, Rabat et Casablanca ) avec <span class="bold blue">44</span>  MQListes;</span>
+									<span class="paragraphe">- Sur un total d'effectif de 160 étudiants, <span class="bold blue">147</span> ont réussi à décrocher leurs contrats CDI avec un taux d'insertion de 92% (2015-2019): </span>
 								</div>
-								<div class="chart-container last-chart" >
-									<canvas id="myChart2"></canvas>
-									<canvas id="myChart3" class="second-chart"></canvas>
+								<div class="charts-block">
+									<div class="chart-container">
+										<canvas id="myChart0" ></canvas>
+										<canvas id="myChart1" class="second-chart" ></canvas>
+									</div>
+									<div class="chart-container last-chart" >
+										<canvas id="myChart2"></canvas>
+										<canvas id="myChart3" class="second-chart"></canvas>
+									</div>
 								</div>
 							</div>
                             <div id="mql-students" class="home-card hidden">
@@ -311,26 +321,62 @@
 										<img class="mini-logo" src="resources/pictures/App/logoMQL2.png">
 									</div>
 									<span>MQL, La Première passerelle d’Insertion Professionnelle en Informatique au Maroc, est une véritable plateforme de formation et de production de la ressource humaine très hautement qualifiée en ingénierie du logiciel. Le Master permet à l’étudiant d’une part d’acquérir une compétence de pointe en haute technologie informatique et d’autre part une très bonne maitrise de l’entreprise et de son écosystème avec une insertion facile, naturelle et implicite dans les plus grandes SS2I du monde.</span>
-									<span class="paragraphe">Le Master «Qualité du Logiciel», créé en 2007 orienté vers l'insertion professionelle dans les multinationales, permet d’offrir aux étudiants une formation approfondie et des méthodes de travail de très haut niveau dans le domaine de la qualité du logiciel.</span>
-
-									<video class="mql-video" autoplay muted loop>
-										<source src="resources/videos/mql.mp4" type="video/mp4" >
-									</video>
-									<hr>
+									<span class="paragraphe">Le Master Qualité du Logiciel, créé en 2007 orienté vers l'insertion professionelle dans les multinationales, permet d’offrir aux étudiants une formation approfondie et des méthodes de travail de très haut niveau dans le domaine de la qualité du logiciel.</span>
 									<span class="paragraphe">Le Master MQL participe très activement dans le domaine de l’offshore. Le principal « client » MQL se trouve dans tous les parcs d’activité offshore et Outsourcing au Maroc et principalement Casablanca Nearshore Park, Rabat Technopolis et Fès Shore avec un taux d’insertion de 100% des étudiants dans des multinationales, MQL s’intéresse à:</span>
 									<ul>
 										<li>Former et spécialiser des étudiants sur les systèmes informatiques, plus précisément le développement logiciel ;</li>
 										<li>Doter les étudiants de compétences et de savoir faire dans les domaines d’ingénierie d’entreprises, l’intégration des systèmes clients - serveurs ainsi que les systèmes et applications répartis</li>
 									</ul>
+									<hr>
+									<video class="mql-video" autoplay muted loop>
+										<source src="resources/videos/mql.mp4" type="video/mp4" >
+									</video>
 								</div>
 							</div>
 							<div id="prof" class="prof" name="homeItem">
 								<div class="title home-title">Coordonateur : N.Chenfour</div>
 								<div  class="details home-details">
-									<div class="coordinateur">
+									<div class="coordonateur">
 										<img class ="img" src="resources/pictures/Home/M.Chenfour.jpg" alt="">
 										<div> <span class="uppercase bold startext">Mr Noureddine Chenfour,</span> coordonateur et créateur du master qualité du logiciel depuis 2007, est un PROFESSEUR Universitaire en Informatique à la Faculté des Sciences, Responsable de l’Équipe de Recherche ACT (Applied research and advanced Computing Technologies), Affilié au réseau méditerranéen NEMLAR ((Network for Euro-Mediterranean Language Resources). Président Fondateur et Responsable Formation.
 										</div>
+										<div>
+											Liste des modules enseignés par Mr chenfour en MQL :
+											<ul>
+												<li><span class="blue">Ingénieurie de l'Objet et Technologie JAVA :</span> Basics, Threads, Swing, XML, Introspection, Enumerations, Generics, Sockets, JDBC ...</li>
+												<li><span class="blue">Design Pattern : </span> GOF</li>
+												<li><span class="blue">Architecture JAVA EE et frameworks : </span> Struts, JSF, Spring, Hibernate ... </li>
+												<li><span class="blue">Ingénieurie du WEB: </span> HTML, CSS , JS (AJAX, JQuery, Angular ...)</li>
+												<li><span class="blue">Présentations : </span> Business Intelligence,Outils d’industrialisation et Solutions de Testing, AJAX et nouvelles technologies du , EJB, Serveurs d’application et Remoting, Plateforme & Frameworks .NET  ...  </li>
+												<li><span class="blue">... </span> </li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="stats" class="stats" name="homeItem">
+								<div class="title home-title">Statistiques</div>
+								<div  class="details home-details">
+									<div>
+										<span class="paragraphe blue bold">Présentons le master MQL en chiffres:</span>
+										<video  class="mql-video-div" autoplay muted loop>
+											<source src="resources/videos/mql.mp4" type="video/mp4" >
+										</video>
+										<span class="paragraphe">-Nous avons passsé de 20% d'insertion en stage pré-embauche en 2009 (5 sur 20) à 100% en 2015 (30 sur 30) , dont +90% ont signé des contrats CDI;</span>
+										<span class="paragraphe">-Entre 2015 et 2019, <span class="link red bold" onclick="views.spa.showPartner('partner-1')">CAPGEMINI</span>, de ces deux sièges RABAT et CASABLANCA, est notre premier partenaire en nombre d'étudiants intégrés avec <span class="bold blue">71</span> stagiaires, suivie de  <span class="link red bold" onclick="views.spa.showPartner('partner-2')">CGI</span> (Fes, Rabat et Casablanca ) avec <span class="bold blue">44</span>  MQListes;</span>
+										<span class="paragraphe">- Sur un total d'effectif de 160 étudiants, <span class="bold blue">147</span> ont réussi à décrocher leurs contrats CDI avec un taux d'insertion de 92% (2015-2019): </span>
+									</div>
+									<div class="phone-chart-container">
+										<canvas id="phone-myChart0" style="min-height: 250px"></canvas>
+									</div>
+									<div class="phone-chart-container">
+										<canvas id="phone-myChart1" style="min-height: 250px"></canvas>
+									</div>
+									<div class="phone-chart-container" >
+										<canvas id="phone-myChart2" style="min-height: 250px"></canvas>
+									</div>
+									<div class="phone-chart-container">
+										<canvas id="phone-myChart3" style="min-height: 250px"></canvas>
 									</div>
 
 								</div>
@@ -389,8 +435,8 @@
 						<div class="mf">
 							<div class="title activity-title">Modèle de Formation</div>
 							<div class="details activity-details">
-								<video class="formation-video" autoplay muted loop>
-									<source src="resources/videos/formation.mp4" type="video/mp4" >
+								<video class="formation-video" controls autoplay muted loop>
+									<source src="resources/videos/formation2.mp4" type="video/mp4" >
 								</video>
 							</div>
 						</div>
@@ -403,7 +449,7 @@
 					<div class="partnersBlock">
 						<div id="partnersMenu" class="partners-menu">
 							<img src="resources/pictures/Partner/menu-bg.jpg" alt="" class="menu-img">
-							<h2>Partenaires</h2>
+							<h2 class="partner-menu-title">Partenaires</h2>
 							<div class="sep"></div>
 						</div>
 						<div id="partnersContainer" class="partners-container"></div>
@@ -446,8 +492,6 @@
 									<div class="manage-card">
 										<img onclick="views.spa.route('Event')" src="resources/pictures/Area/event.jpg" alt="">
 									</div>
-								</div>
-								<div class="manage-cards">
 									<div class="manage-card">
 										<img onclick="views.spa.route('Laureate')" src="resources/pictures/Area/laureate.jpg" alt="">
 									</div>
@@ -455,6 +499,7 @@
 										<img onclick="views.spa.route('Partner')" src="resources/pictures/Area/partner.jpg" alt="">
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -553,7 +598,15 @@
 				<img class="modal-content" id="modal_img" alt="" src="">
 				<div id="caption"></div>
 			</div>
-
+            <!-- THEME MODAL -->
+            <div id="ThemeModal" class="modal">
+                <span onclick="views.spa.closeFORM('ThemeModal')" class="close">&times;</span>
+                <div class="form-content ">
+                    <img class="theme-icon" src="resources/pictures/App/Header/theme.png">
+                    <h1 class="theme-title">THEME MANAGER</h1>
+                    <div id="themeContainer" class="theme-container"></div>
+                </div>
+            </div>
 		</div>
 	</body>
 </html>

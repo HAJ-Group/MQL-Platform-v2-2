@@ -38,7 +38,7 @@ EventComponent.prototype.fillTimeline = function(max = 5) {
 	let counter = 0;
 	for(let event of this.service.db) {
 		if(event.date !== '' && counter < max) {
-			let image = '';
+			let image = 'resources/pictures/Event/event-def.png';
 			for(let content of event.content) {
 				if(content.type.startsWith('image')){
 					image = content.images[Math.floor(Math.random() * content.images.length)];
@@ -58,7 +58,6 @@ EventComponent.prototype.fillTimeline = function(max = 5) {
 					textShortener(event.description, 100)
 				])
 			);
-			console.log(event.description);
 			list.appendChild(list_content);
 			this.block_timeline.appendChild(list);
 			counter++;
@@ -71,6 +70,7 @@ EventComponent.prototype.timelineNavigate = function(id) {
 	this.navigate(page);
 	this.selectEvent(id);
 	views.spa.markAsSelected(id, 'event');
+	views.spa.downFunction(900);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
@@ -86,7 +86,7 @@ EventComponent.prototype.fillNavigation = function () {
 		this.block_nav.appendChild(buildHR());
 		this.block_nav.appendChild(buildDIV([
 			buildSPAN(event.title, wrapCI(['menuitem', 'nav-event'],'nav-event-' + event.id ,[
-				{name:'onclick', value:'views.event.selectEvent(' + event.id + ');  views.spa.markAsSelected('+ event.id +', \'event\')'}]))
+				{name:'onclick', value:'views.event.selectEvent(' + event.id + '); views.spa.markAsSelected('+ event.id +', \'event\'); views.spa.topFunction(0,1200)'}]))
 		]));
 	}
 	views.spa.addNavigationPageNavigators(this.block_nav, this.page_blocks.length, 'event');
@@ -213,7 +213,7 @@ EventComponent.prototype.navigate = function(page_number=1, all = false, top=fal
 	views.spa.detect_subContent_trigger_left_bar('event');
 	$('#all-event').style.display = 'none';
 	if(top) window.location.href = '#NewsMain';
-	if(!all) {
+	if(!all && window.innerWidth > 700) {
 		try {
 			views.event.selectEvent(this.page_blocks[current_page_number - 1][0].id);
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'event');
@@ -313,10 +313,8 @@ EventComponent.prototype.displayEvent = function(event) {
 		createBook(show.book_pics, show.book_name);
 	}
 	this.block_switch.innerHTML = '';
-	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
+	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event', event.id);
 };
-
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * Filtering function works with search box
@@ -329,7 +327,6 @@ EventComponent.prototype.filterKey = function () {
 	} else {
 		// LOAD BY KEY
 		this.page_blocks = split(this.service.searchByKey(key), MAX_EVENT_PER_PAGE);
-		console.log(this.service.searchByKey(key));
 	}
 	if(this.page_blocks.length === 0) {
 		$('.error-message')[0].innerHTML = 'Event not Found !';
@@ -363,11 +360,13 @@ EventComponent.prototype.editData = function(index) {
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.deleteData = function(index) {
 	if(confirm('Are you sure you want to delete this Event ?')) {
+		let ID = this.service.db[index].id;
+		let page = getValueInRowBYId(ID, this.page_blocks);
 		this.service.remove(index);
 		//....
 		try {
 			this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
-			this.navigate();
+			this.navigate(page);
 		} catch (e) {
 			if(confirm('None Event is found! Add new one ?')) {
 				views.event.addData();
@@ -379,15 +378,18 @@ EventComponent.prototype.deleteData = function(index) {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 EventComponent.prototype.submitData = function (action = 'add', index = '0') {
+	let ID;
 	// GETTING DATA MEMBERS
 	let title = $('#eventTitle').value;
 	let desc = $('#eventDescription').value;
 	//...
 	if(action === 'add') {
-		this.service.add(new EventModel(this.service.size() + 1, title,'', desc));
+		ID = incrementId(this.service.db);
+		this.service.add(new EventModel(ID, title,'', desc));
 	}
 	if(action === 'edit') {
 		let target = this.service.get(index);
+		ID = target.id;
 		target.title = title;
 		target.description = desc;
 		//...
@@ -395,36 +397,15 @@ EventComponent.prototype.submitData = function (action = 'add', index = '0') {
 	}
 	this.page_blocks = split(this.service.db, MAX_EVENT_PER_PAGE);
 	views.spa.closeFORM('EventForm');
-	this.navigate();
+	let page = getValueInRowBYId(ID, this.page_blocks);
+	this.navigate(page);
+	if(window.innerWidth > 700) {
+		this.selectEvent(ID);
+		views.spa.markAsSelected(ID, 'event');
+	}
 };
 EventComponent.prototype.triggerSubmit = function () {
 	let submit_element = $('#eventSubmit');
 	submit_element.click();
 };
-/**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */ 
-function EventMain() {
-	let service = new EventComponentService();
-	service.load(dbEvent);
-	views['event'] = new EventComponent(service);
-	//try {
-		views.event.fillTimeline();
-		views.event.fillNavigation();
-		views.event.fillMain();
-		views.event.fillSwitcher();
-	// } catch (e) {
-	// 	if(confirm('None Event is found! Add new one ?')) {
-	// 		views.event.addData();
-	// 	} else {
-	// 		views.spa.route('Home');
-	// 	}
-	// }
-	// Stays last
-	views.spa.addTitleIcon('resources/pictures/Event/Event-logo.png', true, 'event');
-	views.spa.detect_subContent_trigger_left_bar('event');
-	try {
-		views.event.selectEvent(service.get(0).id);
-		views.spa.markAsSelected(service.get(0).id, 'event');
-	} catch (e) {}
-}
 /*--------------------------------------------------------------------------------------------------------------------*/

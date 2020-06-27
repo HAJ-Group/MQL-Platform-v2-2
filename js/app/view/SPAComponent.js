@@ -1,13 +1,19 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
+let current_page_number = 1;
+let phone_menu_toggled = false;
+let current_component = 'Home';
 /*Default class*/
 function SPAComponent(service) {
     this.service = service;
     this.current_component = 'Home';
     this.current_theme = themes[0];
+    if(localStorage.getItem('theme') !== null) this.current_theme = localStorage.getItem('theme');
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.initComponent = function(component) {
+    let firstRoute = false;
     if(component === '') {
+        firstRoute = true;
         if(sessionStorage.getItem('component') !== null) {
             component = sessionStorage.getItem('component');
         } else {
@@ -16,25 +22,29 @@ SPAComponent.prototype.initComponent = function(component) {
     } else {
         sessionStorage.setItem('component', component);
     }
-    current_component = component;
+    this.current_component = component;
     // Primary initialization
-    let current_element = $('+' + current_component)[0];
-    if(current_component === 'Home') $('#home-logo').
+    let current_element = $('+' + this.current_component)[0];
+    if(this.current_component === 'Home') $('#home-logo').
     setAttribute('src', 'resources/pictures/App/Header/homeactive.png');
     else $('#home-logo').
     setAttribute('src', 'resources/pictures/App/Header/home.png');
     for(let c of this.service.db) {
         let element = $('+' + c.name)[0];
         element.classList.remove('active');
-        element.setAttribute('onclick', 'views.spa.route(this.name)');
+        if(screen.width>700)        element.setAttribute('onclick', 'views.spa.route(this.name); views.spa.downFunction(350);');
+        else         element.setAttribute('onclick', 'views.spa.route(this.name)');
         element.setAttribute('onmouseover', 'views.spa.changePicture(\'' + this.current_theme + c.name + '\')');
-        element.setAttribute('onmouseleave', 'views.spa.changePicture(\'' + this.current_theme + current_component + '\')');
+        element.setAttribute('onmouseleave', 'views.spa.changePicture(\'' + this.current_theme + this.current_component + '\')');
     }
     current_element.classList.add('active');
     current_element.removeAttribute('onclick');
     current_element.removeAttribute('onmouseover');
-    this.changePicture(this.current_theme + current_component);
+    this.changePicture(this.current_theme + this.current_component);
     this.scrollToTop();
+    if(window.innerWidth <= 700 && !firstRoute) this.showMenu();
+    let searchInput = $('#key');
+    searchInput.value = '';
 };
 SPAComponent.prototype.loadHeaderNavs = function() {
     let headerElement = $('.topnav')[0];
@@ -49,15 +59,15 @@ SPAComponent.prototype.loadFooterPartners = function() {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.loadForms = function() {
-    for(let c of navs) {
+    for(let c of this.service.db) {
         let element = $('#' + c.name + 'Component');
         element.appendChild(window['get' + c.name + 'FormContent']());
     }
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.loadComponents = function() {
-    for(let i = (navs.length - 1); i >= 0; i--) {
-        window[navs[i].name + 'Main']();
+    for(let i = (this.service.db.length - 1); i >= 0; i--) {
+        window[this.service.db[i].name + 'Main']();
     }
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -70,6 +80,8 @@ SPAComponent.prototype.load = function() {
     this.loadForms();
     // Loading Components Content
     this.loadComponents();
+    //Loading Theme
+    this.loadThemes();
     // Start
     $('#loader').style.display = 'none';
     $('.content')[0].style.display = 'block';
@@ -87,9 +99,9 @@ SPAComponent.prototype.switchComponent = function() {
         $('#' + c.name + 'Component').style.display = 'none';
         $('#search').style.display = 'none';
     }
-    $('#' + current_component + 'UpperArea').style.display = 'block';
-    $('#' + current_component + 'Component').style.display = 'block';
-    if(current_component === 'News' || current_component === 'Event' || current_component === 'Laureate') {
+    $('#' + this.current_component + 'UpperArea').style.display = 'block';
+    $('#' + this.current_component + 'Component').style.display = 'block';
+    if(this.current_component === 'News' || this.current_component === 'Event' || this.current_component === 'Laureate') {
         $('#search').style.display = 'block';
     }
 };
@@ -130,11 +142,11 @@ SPAComponent.prototype.showMenu = function() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.showEmptyErrorResult = function() {
-    $('#' + current_component + 'Main').innerHTML = '<div>' +
+    $('#' + this.current_component + 'Main').innerHTML = '<div>' +
         '<img alt="" class="mini-logo" src="resources/pictures/Area/error.png">' +
         '</div>';
-    $('#' + current_component + 'Navigation').innerHTML = null;
-    $('#' + current_component + 'switcher').innerHTML = null;
+    $('#' + this.current_component + 'Navigation').innerHTML = null;
+    $('#' + this.current_component + 'switcher').innerHTML = null;
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -144,8 +156,9 @@ SPAComponent.prototype.showEmptyErrorResult = function() {
  * @param source
  * @param editable
  * @param component
+ * @param id
  */
-SPAComponent.prototype.addTitleIcon = function(source, editable=false, component) {
+SPAComponent.prototype.addTitleIcon = function(source, editable=false, component, id = null) {
     let titles = $('.' + component + '-title');
     let i=0;
     for (let title of titles) {
@@ -160,12 +173,16 @@ SPAComponent.prototype.addTitleIcon = function(source, editable=false, component
         ])));
         title.appendChild(buildSPAN(null, cls(['sh-sep', component + '-sh-sep'])));
         if(editable && sessionStorage.getItem('ACCESS') !== null) {
+            let index = i;
+            if(id !== null) {
+                index = getRowIndex(id, views[component].service.db);
+            }
             // ADD EDIT AND DELETE ICONS
             title.appendChild(buildIMG('resources/pictures/App/icons/edit.png', '', wrapICN('', 'sh-icon', component + '-edit-icon', [
-                {name:'onclick', value:'views.' + component + '.editData(' + i + ')'}
+                {name:'onclick', value:'views.' + component + '.editData(' + index + ')'}
             ])));
             title.appendChild(buildIMG('resources/pictures/App/icons/delete.png', '', wrapICN('', 'sh-icon', component + '-delete-icon', [
-                {name:'onclick', value:'views.' + component + '.deleteData(' + i + ')'}
+                {name:'onclick', value:'views.' + component + '.deleteData(' + index + ')'}
             ])));
         }
         i++;
@@ -277,6 +294,7 @@ SPAComponent.prototype.route = function (component = '') {
     this.setTheme();
     this.initComponent(component);
     this.switchComponent();
+
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -334,20 +352,20 @@ SPAComponent.prototype.closeFORM =  function(target_block = 'form') {
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.showPartner = function(id) {
-    if(current_component !== 'Partner') {
+    if(this.current_component !== 'Partner') {
         this.route('Partner');
     }
     views.partner.showPartner(id, true);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.search = function() {
-    if(current_component === 'News') {
+    if(this.current_component === 'News') {
         views.news.filterKey();
     }
-    if(current_component === 'Event') {
+    if(this.current_component === 'Event') {
         views.event.filterKey();
     }
-    if(current_component === 'Laureate') {
+    if(this.current_component === 'Laureate') {
         views.laureate.filterKey();
     }
 };
@@ -377,24 +395,40 @@ SPAComponent.prototype.scrollToTop = function(){
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.scrollToDown = function() {
-        window.scrollTo(0, document.body.scrollHeight);
-}
+    window.scrollTo(0, document.body.scrollHeight);
+};
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * scrolling to top
  */
-SPAComponent.prototype.topFunction =function() {
+SPAComponent.prototype.topFunction =function(pixels=0,y_pixels=-50) {
     let timeout;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        window.scrollBy(0,-50);
-        timeout = setTimeout('views.spa.topFunction()', 8);
+        window.scrollTo(pixels,y_pixels);
+        timeout = setTimeout('views.spa.topFunction(pixels,y_pixels)', 8);
     } else {
         clearTimeout(timeout);
     }
 };
+/**
+ * scrolling to down
+ */
+SPAComponent.prototype.downFunction =function(pixels) {
+    let timeout;
+    let body = document.body,
+        html = document.documentElement;
 
+    let height = Math.max( body.scrollHeight, body.offsetHeight,
+        html.clientHeight, html.scrollHeight, html.offsetHeight );
+    if(pixels === 0){
+        pixels = height;
+    }
+    window.scrollTo(0,pixels);
+    timeout = setTimeout('views.spa.downFunction(0,pixels)', 10);
+    clearTimeout(timeout);
+};
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -445,12 +479,29 @@ SPAComponent.prototype.addNavigationPageNavigators = function (block, page_size,
     block.appendChild(buildDIV([previous, next], cls('page-navigator-container')));
 };
 /* Theme Management --------------------------------------------------------------------------------------------------*/
+SPAComponent.prototype.loadThemes = function() {
+    let container = $('#themeContainer');
+    for(let theme of themes) {
+        container.appendChild(buildDIV([
+            buildIMG('resources/pictures/App/' + theme + '-theme.jpg', ''),
+            buildSPAN(theme + ' Theme')
+        ], wrapIC(theme, 'theme-item', [
+            {name:'onclick', value:'views.spa.themeIndexer(\'' + theme + '\')'}
+        ])));
+    }
+    this.setTheme();
+    let current_element = $('#' + this.current_theme);
+    current_element.style.backgroundColor = 'rgb(216, 49, 57)';
+    current_element.style.color = 'white';
+    current_element.style.opacity = '0.8';
+    current_element.removeAttribute('onclick');
+};
+/* Theme Management --------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.themeIndexer = function (index) {
-    this.current_theme = index;
+    localStorage.setItem('theme', index);
+    location.reload();
 };
 SPAComponent.prototype.setTheme = function () {
-    // Body Image
-    document.body.classList.add(this.current_theme + '-bgIMG');
     // Content Background
     $('.content')[0].classList.add(this.current_theme + '-bgC');
     $('.content')[0].classList.add(this.current_theme + '-text');
@@ -458,6 +509,7 @@ SPAComponent.prototype.setTheme = function () {
     let navC = $('.topnav')[0];
     let navs = navC.getElementsByTagName('a');
     for(let n of navs) {
+        n.classList.add(this.current_theme + '-bgC');
         n.classList.add(this.current_theme + '-nav-text');
     }
     // Search
@@ -508,10 +560,11 @@ SPAComponent.prototype.setTheme = function () {
         t.classList.add(this.current_theme + '-text');
     }
     // Partners Menu
-    $('.partners-menu')[0].classList.add(this.current_theme + '-text');
+    $('.partner-menu-title')[0].classList.add(this.current_theme + '-nav-text');
     let partners = $('.partner');
     for(let p of partners) {
-        p.classList.add(this.current_theme + '-text');
+        p.classList.add(this.current_theme + '-bgC');
+        p.classList.add(this.current_theme + '-nav-text');
     }
     // List recommendations
     $('.list-recommendations')[0].classList.add(this.current_theme + '-bgC');
@@ -522,14 +575,51 @@ SPAComponent.prototype.setTheme = function () {
         h.classList.add(this.current_theme + '-bgC');
         h.classList.add(this.current_theme + '-text');
     }
+    // Tree Model
+    let activeBranch = $('.branch-active');
+    for(let b of activeBranch) {
+        b.classList.add(this.current_theme + '-bgC');
+        b.classList.add(this.current_theme + '-text');
+    }
+    let contentBranch = $('.branch-content');
+    for(let b of contentBranch) {
+        b.classList.add(this.current_theme + '-bgC');
+        b.classList.add(this.current_theme + '-text');
+    }
+    // Activity
+    let semesterDesc = $('.semester-description');
+    for(let s of semesterDesc) {
+        s.classList.add(this.current_theme + '-bgC');
+        s.classList.add(this.current_theme + '-text');
+    }
+    let semesterCards = $('.card');
+    for(let c of semesterCards) {
+        c.classList.add(this.current_theme + '-bgC');
+        c.classList.add(this.current_theme + '-text');
+    }
+    let cardsContainer = $('.cards-container');
+    for(let c of cardsContainer) {
+        c.classList.add(this.current_theme + '-bgC2');
+    }
+    // Theme
+    let themeItems = $('.theme-item');
+    for(let t of themeItems) {
+        t.classList.add(this.current_theme + '-bgC');
+        t.classList.add(this.current_theme + '-nav-text');
+    }
+    // Professors
+    $('.professors-container')[0].classList.add(this.current_theme + '-bgC2');
+    let professorContainer = $('.professor-container');
+    for(let c of professorContainer) {
+        c.classList.add(this.current_theme + '-bgC');
+        c.classList.add(this.current_theme + '-text');
+    }
+    let professorName = $('.professor-name');
+    for(let p of professorName) {
+        p.classList.add(this.current_theme + '-nav-text')
+    }
+    $('.charts-block')[0].classList.add(this.current_theme + '-bgC2');
 };
-/*--------------------------------------------------------------------------------------------------------------------*/
-function mainSPA() {
-    let service = new SPAComponentService();
-    service.load(SPAnavs);
-    views['spa'] = new SPAComponent(service);
-    views.spa.load();
-    views.spa.route();
-}
+
 
 

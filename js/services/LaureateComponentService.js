@@ -127,7 +127,6 @@ LaureateComponentService.prototype.searchByKey = function(title_key) {
 			ret.push(new Promotion(promo.id, promo.name, promo.date, tmp));
 		}
 	}
-	console.log(ret);
 	return ret;
 };
 

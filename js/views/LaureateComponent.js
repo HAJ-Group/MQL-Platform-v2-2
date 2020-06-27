@@ -1,5 +1,5 @@
 /*Global Variables*/
-const MAX_PROMOTION_PER_PAGE = 13;
+const MAX_PROMOTION_PER_PAGE = 4;
 const DEFAULT_TOP_PROFILE_IMAGE = {M:'resources/pictures/Laureate/top-profile.jpg', F:'resources/pictures/Laureate/top-profile-female.jpg'};
 const DEFAULT_PROFILE_IMAGE = {M:'resources/pictures/Laureate/profile.png', F:'resources/pictures/Laureate/profile-female.png'};
 let k;
@@ -239,7 +239,7 @@ LaureateComponent.prototype.navigate = function(page_number=1, all = false, top=
 	views.spa.detect_subContent_trigger_left_bar('laureate');
 	$('#all-laureate').style.display = 'none';
 	if(top) window.location.href = '#LaureateMain';
-	if(!all) {
+	if(!all && window.innerWidth > 700) {
 		try {
 			views.laureate.selectPromotion(this.page_blocks[current_page_number - 1][0].id);
 			views.spa.markAsSelected(this.page_blocks[current_page_number - 1][0].id, 'laureate');
@@ -364,10 +364,8 @@ LaureateComponent.prototype.displayPromotion = function (promotion){
 		details.appendChild(promoItem);
 	}
 	this.block_switch.innerHTML = '';
-	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
+	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate', promotion.id);
 };
-
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Print PROMOTIONS :
 LaureateComponent.prototype.printPromotionsCards = function () {
@@ -410,20 +408,20 @@ LaureateComponent.prototype.filterKey = function () {
 	if(key === '') {
 		// LOAD ALL DATA
 		this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
+		this.navigate();
 	} else {
 		// LOAD BY KEY
 		this.page_blocks = split(this.service.searchByKey(key), MAX_PROMOTION_PER_PAGE);
+		this.navigate(1, true);
 	}
 	if(this.page_blocks.length === 0) {
 		$('.error-message')[0].innerHTML = 'Laureate not Found !';
 		$('#key').setAttribute('class', 'search-error');
-		showEmptyErrorResult();
 	}
 	else {
 		$('.error-message')[0].innerHTML = '';
 		$('#key').setAttribute('class', 'search-input');
 	}
-	this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* FORM SERVICES */
@@ -432,7 +430,6 @@ LaureateComponent.prototype.addData = function(target_el = 'promotion') {
 		$('#promotionSubmit').setAttribute('onclick', 'views.laureate.submitData()');
 		views.spa.popFORM(target_el);
 	} else {
-		console.log('target added laureate index = ' + target_el);
 		let value = target_el.split(',');
 		$('#' + value[1] + 'Submit').setAttribute('onclick', 'views.laureate.submitData(\'add\', \'' + value[0] + '\', \'' + value[1] + '\')');
 		views.spa.popFORM(value[1]);
@@ -477,22 +474,31 @@ LaureateComponent.prototype.editData = function(index, target_el = 'promotion') 
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 LaureateComponent.prototype.deleteData = function(index, target_el = 'promotion') {
+	let ID;
+	let page;
 	if(target_el === 'promotion') {
 		if(confirm('Are you sure you want to delete this Promotion ?')) {
+			ID = this.service.db[index].id;
+			page = getValueInRowBYId(ID, this.page_blocks);
 			this.service.remove(index);
-			//....
+			ID = null;
 		}
 	} else {
 		// LAUREATES
 		if(confirm('Are you sure you want to delete this Laureate ?')) {
+			ID = index.split(',')[0];
+			page = getValueInRowBYId(ID, this.page_blocks);
 			let keys = index.split(',');
 			this.service.removeLaureate(keys[0], parseInt(keys[1]));
-			//....
 		}
 	}
 	try {
 		this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
-		this.navigate();
+		this.navigate(page);
+		if(ID !== null && window.innerWidth > 700) {
+			this.selectPromotion(ID);
+			views.spa.markAsSelected(ID, 'laureate');
+		}
 	} catch (e) {
 		if(confirm('None Promotion is found! Add new one ?')) {
 			this.addData();
@@ -504,6 +510,7 @@ LaureateComponent.prototype.deleteData = function(index, target_el = 'promotion'
 /*--------------------------------------------------------------------------------------------------------------------*/
 LaureateComponent.prototype.submitData = function (action = 'add', index = '0', target_el = 'promotion') {
 	// PROMOTION
+	let ID = null;
 	if(target_el === 'promotion') {
 		// GETTING DATA MEMBERS
 		let name = $('#promotionName').value;
@@ -512,11 +519,13 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 			if(this.service.isUpToDate('p' + (new Date()).getFullYear())){
 				alert((new Date()).getFullYear() + ' Promotion is already exists can\'t add new promotion before next year !');
 			} else {
-				this.service.add(new Promotion('p' + (new Date()).getFullYear(),name,new Date()));
+				ID = 'p' + (new Date()).getFullYear();
+				this.service.add(new Promotion(ID, name, new Date()));
 			}
 		}
 		if(action === 'edit') {
 			let target = this.service.get(index);
+			ID = target.id;
 			target.name = name;
 			//...
 		}
@@ -543,7 +552,6 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 		}
 		if(action === 'edit') {
 			let keys = index.split(',');
-			console.log(keys);
 			let target = this.service.getLaureate(keys[0], parseInt(keys[1]));
 			target.name = name;
 			target.gender = gender;
@@ -558,42 +566,23 @@ LaureateComponent.prototype.submitData = function (action = 'add', index = '0', 
 			target.rating = rating;
 			//..
 		}
+		ID = this.service.get(getRowIndex(index.split(',')[0], this.service.db)).id;
 	}
 	this.service.sort();
 	this.page_blocks = split(this.service.db, MAX_PROMOTION_PER_PAGE);
 	views.spa.closeFORM(target_el);
-	this.navigate();
+	if(ID !== null) {
+		let page = getValueInRowBYId(ID, this.page_blocks);
+		this.navigate(page);
+		if(window.innerWidth > 700) {
+			this.selectPromotion(ID);
+			views.spa.markAsSelected(ID, 'laureate');
+		}
+	} else this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 LaureateComponent.prototype.triggerSubmit = function () {
 	let submit_element = $('#promotionSubmit');
 	submit_element.click();
 };
-/**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */
-function LaureateMain() {
-	let service = new LaureateComponentService();
-	service.loadPromotion(dbPromotion);
-	service.loadspecial(dbPromotion);
-	views['laureate'] = new LaureateComponent(service);
-	try {
-		views.laureate.fillNavigation();
-		views.laureate.fillMain();
-		views.laureate.random();
-		views.laureate.fillSwitcher();
-	} catch (e) {
-		if(confirm('None Promotion is found! Add new one ?')) {
-			views.laureate.addData();
-		} else {
-			views.spa.route('Home');
-		}
-	}
-	// stays last
-	views.spa.addTitleIcon('resources/pictures/Laureate/Laureate-logo.png', true, 'laureate');
-	views.spa.detect_subContent_trigger_left_bar('laureate');
-	try {
-		views.laureate.selectPromotion(service.get(0).id);
-		views.spa.markAsSelected(service.get(0).id, 'laureate');
-	} catch (e) {}
-}
 /*--------------------------------------------------------------------------------------------------------------------*/
