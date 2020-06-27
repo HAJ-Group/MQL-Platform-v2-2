@@ -19,75 +19,6 @@ ActivityComponent.prototype.printActivityList = function () {
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*
-ActivityComponent.prototype.printSemesters = function(){
-	let subjectZone = $('#zone');
-	for (let i = 0; i < this.service.size(); i++) {
-		let semesterI = this.service.get(i);
-		let semesterName = '';
-		switch (i + 1) {
-			case 1: semesterName = 'Le premier semestre'; break;
-			case 2: semesterName = 'Le deuxième semestre'; break;
-			case 3: semesterName = 'Le troisième semestre'; break;
-			case 4: semesterName = 'Le quatrième semestre (Stage pré-embauche)'; break;
-		}
-		let modules = '<ul>';
-		let moduleImage = '';
-		for (let j = 0; j < semesterI.modules.length; j++) {
-			moduleImage = semesterI.modules[0];
-			if (j === 0) continue;
-			modules += '<li>' + 'M' + (j) + '(' + semesterI.modules[j] + ')</li>';
-		}
-		modules += '</ul>';
-		let activities = '';
-		let activityImage = '';
-		for (let j = 0; j < semesterI.activity.length; j++) {
-			activityImage = semesterI.activity[0];
-			if(j === 0) continue;
-			activities += '<p><span></span>' + semesterI.activity[j] + '</p>';
-		}
-		let cards = '';
-		for (let j = 1; j <= 3; j++) {
-			if (j === 1){
-				cards += '<div class="semester-description"><p>' + semesterI.description[1] + '</p></div>';
-			}
-			if (j === 2){
-                if (i === 3)
-                    cards += '';
-                else
-				cards += '<div class="card">' +
-					'<img class="activity-card-image" src="' + moduleImage + '" alt="">' +
-						'<div class="card-text">' +
-							'<div class="card-subject">' + 'Modules' +'</div>' +
-							'<div class="subject">' + modules + '</div>' +
-						'</div>' +
-						'<div class="card-footer">' +
-								'<img class="logo-mql" src="resources/pictures/App/logo-mql2.png" alt="">' +
-						'</div>' +
-					'</div>';
-			}
-			if (j === 3){
-				cards += '<div class="card" id="card">' +
-					'<img class="activity-card-image" src="' + activityImage + '" alt="">' +
-						'<div class="card-text">' +
-							'<div class="card-subject">' + 'Objectifs' +' </div>' +
-							'<div class="subject">' + activities + ' </div>' +
-						'</div>' +
-						'<div class="card-footer">' +
-								'<img class="logo-mql" src="resources/pictures/App/logo-mql2.png" alt="">' +
-						'</div>' +
-					'</div>';
-			}
-		}
-		subjectZone.innerHTML +=
-			'<div class="big-container">' +
-				'<div id="collapse-' + (i + 1) + '" class="title-top-cards collapsible">' + semesterName +
-					'' +
-				'</div>' +
-				'<div class="cards-container content-card">' + cards + '</div>' +
-			'</div>';
-	}
-}; */
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 ActivityComponent.prototype.printSemesters = function(){
@@ -191,7 +122,7 @@ ActivityComponent.prototype.printSemesters = function(){
 
 	/*	console.log(cards);*/
 		let bigContainer = buildDIV(
-			buildDIV(semesterName, wrapIC('collapse-' + (i + 1), 'title-top-cards collapsible')),
+			buildDIV(semesterName, wrapIC('collapse-' + (i + 1), 'title-top-cards collapsible '+'collapse-' + (i + 1))),
 			cls('big-container')
 		);
 

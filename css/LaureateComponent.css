@@ -148,7 +148,6 @@
 .recommendation{
 	display: flex;
 	flex-direction: row;
-	/*    background-color: chocolate;*/
 	margin: 20px;
 	width: 45%;
 	max-height: 250px;
