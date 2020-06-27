@@ -744,7 +744,7 @@ a.links:hover{
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .text-news-letter{
-    background-color: #3ba7d1;
+    background-color: rgb(53, 69, 108);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -758,7 +758,7 @@ a.links:hover{
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .text-news-letter:hover{
-    background-color: rgb(53, 69, 108);
+    background-color: rgb(216, 49, 57);
     cursor: pointer;
 }
 .news-letter {
