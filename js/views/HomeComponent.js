@@ -123,8 +123,6 @@ HomeComponent.prototype.tablesHeadersSecondPromotion = function(reference){
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
-
-
 HomeComponent.prototype.addProfessor = function(professor){
 	// The content of the table
 	let row = this.professorsReference.insertRow();
@@ -134,7 +132,7 @@ HomeComponent.prototype.addProfessor = function(professor){
 	row.insertCell().innerHTML = professor.course;
 };
 
-HomeComponent.prototype.printProfessors = function(){
+/*HomeComponent.prototype.printProfessors = function(){
 	let professors = this.professorsReference;
 	for (let i = 0; i < this.service.sizeProfessors(); i++){
 		let courseImagePath = this.service.getProfessor(i).courseImage;
@@ -162,6 +160,43 @@ HomeComponent.prototype.printProfessors = function(){
 		professors.appendChild(divProfessor);
 		professors.appendChild(buildHR());
 	}
+};*/
+
+HomeComponent.prototype.printProfessors = function(){
+    let professors = this.professorsReference;
+    for (let i = 0; i < this.service.sizeProfessors(); i++) {
+        let professor = this.service.getProfessor(i);
+
+        let courseImagePath = professor.courseImage;
+        let profPhotoPath = professor.photo;
+
+        if (courseImagePath === ''){
+            courseImagePath = 'resources/pictures/Home/default-image-course.png';
+        }
+        if (profPhotoPath === ''){
+            profPhotoPath = 'resources/pictures/Home/default-professor-photo.png';
+        }
+
+        let divProfessor = buildDIV([
+                                buildDIV(
+                                    buildIMG('' + profPhotoPath, ''),
+                                    cls('professor-image')),
+
+                                buildDIV([
+                                    buildSPAN('Pr. ' + professor.firstName + ' ' + professor.lastName),
+                                    buildBR(),
+                                    buildSPAN('(' + professor.course + ')')
+                                    ],
+                                    cls('professor-name')),
+
+                                buildDIV(
+                                    buildIMG('' + courseImagePath, ''),
+                                    cls('course-image'))
+                                ],
+
+                           cls('professor-container'));
+        professors.appendChild(divProfessor);
+    }
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/

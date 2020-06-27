@@ -17,11 +17,12 @@ let views = {};
 /* Main Function */
 function HomeMain() {
     let service = new HomeComponentService();
-    service.loadAllData(dbHomestats1, dbStudents[0].data, dbStudents[1].data);
+    service.loadAllData(dbHomestats1, dbStudents[0].data, dbStudents[1].data, dbProfessors);
     views['home'] = new HomeComponent(service);
     views['home'].printStats();
     views.home.startPresenter();
     views.home.printStudents();
+    views.home.printProfessors();
     views.home.fillNews();
     views.home.printNews();
     views.home.setNewsRoutes();

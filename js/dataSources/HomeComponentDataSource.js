@@ -472,6 +472,7 @@ var dbProfessors = [
         id: 1,
         firstName: 'Zineddine',
         lastName: 'chihaja',
+        photo: '',
         course: 'Technologie XML',
         courseImage: 'resources/pictures/Home/xml.jpg'
     },
@@ -479,6 +480,7 @@ var dbProfessors = [
         id: 2,
         firstName: 'Omar',
         lastName: 'BEKKALI',
+        photo: '',
         course: 'Bases de données ORACLE',
         courseImage: 'resources/pictures/Home/oracle.jpg'
     },
@@ -486,6 +488,7 @@ var dbProfessors = [
         id: 3,
         firstName: 'Mohamed',
         lastName: 'LAMRINI',
+        photo: '',
         course: 'Gestion du projets',
         courseImage: 'resources/pictures/Home/gestion-projet.jpg'
     },
@@ -493,6 +496,7 @@ var dbProfessors = [
         id: 4,
         firstName: 'Ahmed',
         lastName: 'AZOUGH',
+        photo: '',
         course: 'Génie logiciel et UML',
         courseImage: 'resources/pictures/Home/uml.png'
     }
