@@ -107,8 +107,8 @@ let dbEvent = [
 				],
 			},
 			{
-				type:'image-grid',
-				title:'Galerie',
+				type:'image-show',
+				title:'',
 				description:'Les lauréats MQL ne s\'arretent pas à l\'insertion professionnelle mais excellent dans leurs parcours professionnels et deviennent des éléments clé pour le développement de leures entreprises. ils aident également les nouvelles générations( formations, informations ...) dans une solidarité familiale.',
 				images: [
 					'resources/pictures/Event/CE1.jpg',

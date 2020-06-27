@@ -138,6 +138,7 @@ EventComponent.prototype.fillMain = function() {
 					], cls('card-event')));
 				}
 				if(content.type === 'image-show') {
+					contentdiv.appendChild(buildDIV(content.description,cls('image-show-description')));
 					contentdiv.appendChild(buildDIV([
 						buildDIV([
 							buildDIV(content.title, cls('element')),
@@ -280,6 +281,7 @@ EventComponent.prototype.displayEvent = function(event) {
 					], cls('card-event')));
 				}
 				if(content.type === 'image-show') {
+					contentdiv.appendChild(buildDIV(content.description,cls('image-show-description')));
 					contentdiv.appendChild(buildDIV([
 						buildDIV([
 							buildDIV(content.title, cls('element')),
