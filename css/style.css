@@ -49,6 +49,7 @@ hr {
     position: absolute;
     left: 10%;
     top: 5%;
+    bottom: 5%;
     background-color: white;
     overflow: hidden;
 }
@@ -63,7 +64,7 @@ hr {
 @media only screen and (max-width: 1400px){
     .splash-content > img {
         margin-top: 5%;
-        width: 80%;
+        height: 300px;
     }
 }
 @media only screen and (max-width: 1200px){
@@ -209,34 +210,6 @@ hr {
     opacity: 1;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*.search-input:focus {
-    border: 2px solid rgb(53, 69, 108);
-}*/
-/*--------------------------------------------------------------------------------------------------------------------*/
-/* Text Boxes --------------------------------------------------------------------------------------------------------*/
-/*.box-content {
-    display: flex;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 52%;
-    border-radius: 10px;
-    animation-name: zoom;
-    animation-duration: 0.6s;
-}
-!*--------------------------------------------------------------------------------------------------------------------*!
-.box-icon {
-    width: 80px;
-    height: 80px;
-    margin-right: 20px;
-}
-!*--------------------------------------------------------------------------------------------------------------------*!
-.box-text {
-    text-align: justify;
-    font-size: 20px;
-}*/
-/*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Main content block ------------------------------------------------------------------------------------------------*/
@@ -361,7 +334,7 @@ hr {
 .column img {
     margin-top: 8px;
     vertical-align: middle;
-    width: 95%;
+    max-width: 95%;
     padding-right: 10px;
 }
 
@@ -392,7 +365,6 @@ hr {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    /*background-color: rgb(0,0,0);  Fallback color */
     background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -494,26 +466,24 @@ hr {
 }
 @media only screen and (max-width: 1400px){
     .form-content {
-        width: 60%;
+        width: 70%;
+        padding: 20px 20px 50px;
     }
     .form-title {
-        font-size: 30px;
+        font-size: 25px;
     }
     .form-text {
-        width: 50%;
-        font-size: 10px;
+        width: 60%;
+        font-size: 15px;
     }
     .modal-content {
-        max-width: 500px;
-        max-height: 500px;
+        max-width: 90%;
+        max-height: 80%;
     }
 }
 @media only screen and (max-width: 700px){
-    .form-content {
-        width: 70%;
-    }
     .form-text {
-        width: 100%;
+        width: 95%;
         font-size: 10px;
     }
     .form-submit {
@@ -525,8 +495,7 @@ hr {
 .close {
     width: fit-content;
     display: block;
-    margin: auto;
-    background-color: rgb(216, 49, 57); /* red*/
+    margin-left: auto ;
     color: white;
     font-size: 60px;
     font-weight: bold;
@@ -538,7 +507,6 @@ hr {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .close:hover, .close:focus {
-    background-color: white;
     color: rgb(216, 49, 57); /* red */
     text-decoration: none;
     cursor: pointer;
@@ -748,8 +716,8 @@ a.links:hover{
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Style of images for 'partenaires' */
 .img-partenaire {
-    width: 200px;
-    height: 90px;
+    max-width: 200px;
+    max-height: 90px;
     cursor: pointer;
 }
 .img-partenaire:hover {
@@ -922,14 +890,13 @@ a.links:hover{
 /*--------------------------------------------------------------------------------------------------------------------*/
 .mini-logo {
     margin-left: 25%;
-    width: 50%;
-    height: 50%;
+    max-width: 50%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .micro-logo {
     margin-left: 35%;
-    width: 25%;
-    height: 25%;
+    max-width: 25%;
+    max-height: 25%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .uppercase{

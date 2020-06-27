@@ -50,9 +50,10 @@ let dbEvent = [
 			{
 				type:'card',
 				title:'Entretien Oral',
-				description: 'La deuxième étape du concours consiste à choisir des étudiants motivés,confiants avec une capacité d\'écoute et un bon niveau de communication et , l\'étudiant présente son parcours universitaire et professionnel et répond aux questions du jury.',
+				description: 'La deuxième étape du concours consiste à choisir des étudiants motivés, confiants avec une capacité d\'écoute et un bon niveau de communication et , l\'étudiant présente son parcours universitaire et professionnel et répond aux questions du jury.',
 				image:'resources/pictures/Event/TechTest.jpg',
 			},
+
 		],
 	},
 	{
@@ -137,7 +138,7 @@ let dbEvent = [
 			{
 				type:'video',
 				title:'',
-				description:'La compétion INJAZ ALMaghrib est une de ces compétitions, l\'équipe MQL, avec son projet RedHope est une plateforme pour but  d\'encourager le don du sang, a réussi à remporter le premier prix régional et le prix d\'inovation offert par BOEING sur l\'echelle nationale',
+				description:'La compétion INJAZ ALMaghrib est une de ces compétitions, l\'équipe MQL, avec son projet RedHope (une plateforme pour but  d\'encourager le don du sang), a réussi à remporter le premier prix régional et le prix d\'innovation offert par BOEING sur l\'echelle nationale',
 				videos: ['resources/videos/injaz2018.mp4'],
 			},
 		],
