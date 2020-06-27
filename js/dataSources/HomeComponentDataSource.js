@@ -441,7 +441,7 @@ let dbStudents = [
                 },
                 {
                     id: 28,
-                    firstName: '',
+                    firstName: 'mohammed',
                     lastName: 'Soussi',
                     internship: 'intelcia'
                 },
