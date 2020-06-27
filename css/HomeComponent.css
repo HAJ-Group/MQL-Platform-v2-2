@@ -504,6 +504,7 @@ table.student-table{
 	padding: 20px;
 	margin-top: 5px;
 	border: 1px solid lightgray;
+	background: rgba(53, 69, 108,0.7);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .professor-container{
