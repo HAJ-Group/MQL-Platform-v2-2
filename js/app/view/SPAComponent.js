@@ -629,6 +629,10 @@ SPAComponent.prototype.setTheme = function () {
         p.classList.add(this.current_theme + '-nav-text')
     }
     $('.charts-block')[0].classList.add(this.current_theme + '-bgC2');
+    let recos = $('.reconizer');
+    for(let r of recos) {
+        r.classList.add(this.current_theme + '-nav-text');
+    }
 };
 
 
