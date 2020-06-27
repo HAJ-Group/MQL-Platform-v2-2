@@ -23,6 +23,7 @@ function HomeMain() {
     views.home.startPresenter();
     views.home.printProfessors();
     views.home.printStudents();
+    views.home.printProfessors();
     views.home.fillNews();
     views.home.printNews();
     views.home.setNewsRoutes();

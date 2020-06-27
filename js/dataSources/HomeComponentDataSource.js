@@ -147,134 +147,134 @@ let dbStudents = [
                     firstName: 'Oumaima',
                     lastName: 'BENCHENNOUF',
                 },
-            {
-                id: 6,
-                firstName: 'Ismail',
-                lastName: 'BENHALLAM',
-            },
-            {
-                id: 7,
-                firstName: 'Yahya',
-                lastName: 'BERBECHE',
-            },
-            {
-                id: 8,
-                firstName: 'Ibtissam',
-                lastName: 'BOURKHA',
-            },{
-                id: 9,
-                firstName: 'Noha',
-                lastName: 'BOUSSOUF',
-            },
-            {
-                id: 10,
-                firstName: 'Mohammed',
-                lastName: 'CHAHBOUN',
-            },
-            {
-                id: 11,
-                firstName: 'Moustafa',
-                lastName: 'CHARIF',
-            },{
-                id: 12,
-                firstName: 'Hafsa',
-                lastName: 'CHINI',
-            },
-            {
-                id: 13,
-                firstName: 'Ilham',
-                lastName: 'CHOUKRI',
-            },
-            {
-                id: 14,
-                firstName: 'Douae',
-                lastName: 'CHTIOUI',
-            },{
-                id: 15,
-                firstName: 'Oumaima',
-                lastName: 'EL FEZAZI',
-            },
-            {
-                id: 16,
-                firstName: 'Houssam',
-                lastName: 'EL HAMZI',
-            },
-            {
-                id: 17,
-                firstName: 'Ahmed',
-                lastName: 'EL MOUTAOUAKKEL',
-            },{
-                id: 18,
-                firstName: 'Hamza',
-                lastName: 'ISMAILI ALAOUI',
-            },
-            {
-                id: 19,
-                firstName: 'Alaeddine',
-                lastName: 'ENNOUINOU',
-            },
-            {
-                id: 20,
-                firstName: 'Rhita',
-                lastName: 'ES-SAFI',
-            },{
-                id: 21,
-                firstName: 'Hamid',
-                lastName: 'FADILI',
-            },
-            {
-                id: 22,
-                firstName: 'Mohamed',
-                lastName: 'FAZAZI',
-            },
-            {
-                id: 23,
-                firstName: 'Chaimae',
-                lastName: 'HACHDI',
-            },{
-                id: 24,
-                firstName: 'Maroua',
-                lastName: 'JALIL',
-            },
-            {
-                id: 25,
-                firstName: 'Mohamed Reda',
-                lastName: 'LAAMIME',
-            },
-            {
-                id: 26,
-                firstName: 'Soufiane',
-                lastName: 'MAKHLOUF',
-            },{
-                id: 27,
-                firstName: 'Said',
-                lastName: 'MARHRANI',
-            },
-            {
-                id: 28,
-                firstName: 'Hamza',
-                lastName: 'MEKAOUI',
-            },
-            {
-                id: 29,
-                firstName: 'Youssra',
-                lastName: 'MEKKAOUI',
-            },
-            {
-                id: 30,
-                firstName: 'Khadija',
-                lastName: 'OUCHRIH',
-            },
-            {
-                id: 31,
-                firstName: 'Abdessamade',
-                lastName: 'OUKIRCHE',
-            },
-            {
-                id: 32,
-                firstName: 'Imane',
-                lastName: 'SLASSI',
-            },
+                {
+                    id: 6,
+                    firstName: 'Ismail',
+                    lastName: 'BENHALLAM',
+                },
+                {
+                    id: 7,
+                    firstName: 'Yahya',
+                    lastName: 'BERBECHE',
+                },
+                {
+                    id: 8,
+                    firstName: 'Ibtissam',
+                    lastName: 'BOURKHA',
+                },{
+                    id: 9,
+                    firstName: 'Noha',
+                    lastName: 'BOUSSOUF',
+                },
+                {
+                    id: 10,
+                    firstName: 'Mohammed',
+                    lastName: 'CHAHBOUN',
+                },
+                {
+                    id: 11,
+                    firstName: 'Moustafa',
+                    lastName: 'CHARIF',
+                },{
+                    id: 12,
+                    firstName: 'Hafsa',
+                    lastName: 'CHINI',
+                },
+                {
+                    id: 13,
+                    firstName: 'Ilham',
+                    lastName: 'CHOUKRI',
+                },
+                {
+                    id: 14,
+                    firstName: 'Douae',
+                    lastName: 'CHTIOUI',
+                },{
+                    id: 15,
+                    firstName: 'Oumaima',
+                    lastName: 'EL FEZAZI',
+                },
+                {
+                    id: 16,
+                    firstName: 'Houssam',
+                    lastName: 'EL HAMZI',
+                },
+                {
+                    id: 17,
+                    firstName: 'Ahmed',
+                    lastName: 'EL MOUTAOUAKKEL',
+                },{
+                    id: 18,
+                    firstName: 'Hamza',
+                    lastName: 'ISMAILI ALAOUI',
+                },
+                {
+                    id: 19,
+                    firstName: 'Alaeddine',
+                    lastName: 'ENNOUINOU',
+                },
+                {
+                    id: 20,
+                    firstName: 'Rhita',
+                    lastName: 'ES-SAFI',
+                },{
+                    id: 21,
+                    firstName: 'Hamid',
+                    lastName: 'FADILI',
+                },
+                {
+                    id: 22,
+                    firstName: 'Mohamed',
+                    lastName: 'FAZAZI',
+                },
+                {
+                    id: 23,
+                    firstName: 'Chaimae',
+                    lastName: 'HACHDI',
+                },{
+                    id: 24,
+                    firstName: 'Maroua',
+                    lastName: 'JALIL',
+                },
+                {
+                    id: 25,
+                    firstName: 'Mohamed Reda',
+                    lastName: 'LAAMIME',
+                },
+                {
+                    id: 26,
+                    firstName: 'Soufiane',
+                    lastName: 'MAKHLOUF',
+                },{
+                    id: 27,
+                    firstName: 'Said',
+                    lastName: 'MARHRANI',
+                },
+                {
+                    id: 28,
+                    firstName: 'Hamza',
+                    lastName: 'MEKAOUI',
+                },
+                {
+                    id: 29,
+                    firstName: 'Youssra',
+                    lastName: 'MEKKAOUI',
+                },
+                {
+                    id: 30,
+                    firstName: 'Khadija',
+                    lastName: 'OUCHRIH',
+                },
+                {
+                    id: 31,
+                    firstName: 'Abdessamade',
+                    lastName: 'OUKIRCHE',
+                },
+                {
+                    id: 32,
+                    firstName: 'Imane',
+                    lastName: 'SLASSI',
+                },
         ]
 
     },
@@ -284,158 +284,160 @@ let dbStudents = [
         data: [
                 {
                     id: 1,
-                    firstName: 'Mouad',
-                    lastName: 'YOUSSER',
-                    internship: 'SQLi (Rabat)'
-                },
-                {
-                    id: 2,
-                    firstName: 'Mohamed',
-                    lastName: 'DOUHI',
-                    internship: 'SQLi (Oujda)'
-                },
-                {
-                    id: 3,
-                    firstName: 'Mohamed amine',
-                    lastName: 'Azarou',
-                    internship: 'SQLi (Rabat)'
-                },
-                {
-                    id: 4,
-                    firstName: 'Ayyoube',
-                    lastName: 'CHABIH',
-                    internship: 'SQLi (Rabat)'
-                },
-                {
-                    id: 5,
                     firstName: 'Marouane',
                     lastName: 'MISDAK',
                     internship: 'Capgemeni casa'
                 },
                 {
-                    id: 6,
-                    firstName: 'Fatima',
-                    lastName: 'ZERKOUN',
-                    internship: 'CGI Fès'
-                },{
-                    id: 7,
-                    firstName: 'Nesrin',
-                    lastName: 'LAKHAL',
-                    internship: 'Capgemeni Rabat'
-                },{
-                    id: 8,
-                    firstName: 'Ismail',
-                    lastName: 'AIT ALI',
-                    internship: 'Capgemeni Rabat'
-                },{
-                    id: 9,
-                    firstName: 'Wafae',
-                    lastName: 'NABET',
-                    internship: 'CEGEDIM'
-                },{
-                    id: 10,
+                    id: 2,
                     firstName: 'Hatim',
                     lastName: 'ESSADEQ',
                     internship: 'Capgemeni Casa'
-                },{
-                    id: 11,
-                    firstName: 'Daoud',
-                    lastName: 'WIRZGANE',
-                    internship: 'intelcia'
-                },{
-                    id: 12,
+                },
+                {
+                    id: 3,
+                    firstName: 'Nesrin',
+                    lastName: 'LAKHAL',
+                    internship: 'Capgemeni Rabat'
+                },
+                {
+                    id: 4,
+                    firstName: 'Ismail',
+                    lastName: 'AIT ALI',
+                    internship: 'Capgemeni Rabat'
+                },
+                {
+                    id: 6,
                     firstName: 'Omar',
                     lastName: 'ISMAILI ALAOUI',
                     internship: 'Capgemeni'
-                },{
-                    id: 13,
-                    firstName: 'Salma',
-                    lastName: 'BOUARAIS',
-                    internship: 'SQLi (Rabat)'
                 },
                 {
-                    id: 14,
-                    firstName: 'Soufiane',
-                    lastName: 'DARBOUZ',
-                    internship: 'SQLi (Rabat)'
+                    id: 7,
+                    firstName: 'Mohamed',
+                    lastName: 'EL YAZIDI',
+                    internship: 'Capgemeni'
                 },
                 {
-                    id: 15,
-                    firstName: 'Khalid',
-                    lastName: 'CHAHBOUNE',
-                    internship: 'CGI Fès'
-                },
-                {
-                    id: 16,
+                    id: 8,
                     firstName: 'Omar',
                     lastName: 'MOUSSAMIH',
                     internship: 'Umanis'
                 },
                 {
-                    id: 17,
-                    firstName: 'Hicham',
-                    lastName: 'HAIDAR',
-                    internship: 'CGI Fès'
-                },
-                {
-                    id: 18,
+                    id: 9,
                     firstName: 'Hafsae',
                     lastName: 'KHADDAM ALLAH',
                     internship: 'Umanis'
                 },
                 {
-                    id: 19,
-                    firstName: 'Hind',
-                    lastName: 'AALLOUCH',
-                    internship: 'Smile'
-                },
-                {
-                    id: 20,
-                    firstName: 'Nour-imae',
-                    lastName: 'ZIANI',
-                    internship: 'CEGEDIM'
-                },
-                {
-                    id: 21,
+                    id: 10,
                     firstName: 'Meryem',
                     lastName: 'RAHMOUNI',
                     internship: 'ATOS'
                 },
                 {
-                    id: 22,
+                    id: 11,
                     firstName: 'Chaimae',
                     lastName: 'ZARHOUNI',
                     internship: 'ATOS'
                 },
                 {
-                    id: 23,
+                    id: 12,
                     firstName: 'Mouna',
                     lastName: 'BAKHOR',
                     internship: 'ATOS'
                 },
                 {
-                    id: 24,
+                    id: 13,
+                    firstName: 'Khalid',
+                    lastName: 'CHAHBOUNE',
+                    internship: 'CGI Fès'
+                },
+                {
+                    id: 14,
+                    firstName: 'Hicham',
+                    lastName: 'HAIDAR',
+                    internship: 'CGI Fès'
+                },
+                {
+                    id: 15,
+                    firstName: 'Fatima',
+                    lastName: 'ZERKOUN',
+                    internship: 'CGI Fès'
+                },
+                {
+                    id: 16,
+                    firstName: 'Salma',
+                    lastName: 'BOUARAIS',
+                    internship: 'SQLi (Rabat)'
+                },
+                {
+                    id: 17,
+                    firstName: 'Soufiane',
+                    lastName: 'DARBOUZ',
+                    internship: 'SQLi (Rabat)'
+                },
+                {
+                    id: 18,
                     firstName: 'Redoune',
                     lastName: 'BAGHDAD',
                     internship: 'SQLi (Rabat)'
                 },
                 {
-                    id: 25,
-                    firstName: 'Fatim zahra',
-                    lastName: 'DRIOUICH',
-                    internship: 'DXC'
+                    id: 19,
+                    firstName: 'Mouad',
+                    lastName: 'YOUSSER',
+                    internship: 'SQLi (Rabat)'
                 },
                 {
-                    id: 26,
+                    id: 20,
+                    firstName: 'Mohamed',
+                    lastName: 'DOUHI',
+                    internship: 'SQLi (Oujda)'
+                },
+                {
+                    id: 21,
+                    firstName: 'Mohamed amine',
+                    lastName: 'Azarou',
+                    internship: 'SQLi (Rabat)'
+                },
+                {
+                    id: 22,
+                    firstName: 'Ayyoube',
+                    lastName: 'CHABIH',
+                    internship: 'SQLi (Rabat)'
+                },
+                {
+                    id: 23,
                     firstName: 'Hala',
                     lastName: 'MESTADI',
                     internship: 'SQLi'
                 },
                 {
+                    id: 24,
+                    firstName: 'Hajar',
+                    lastName: 'ZEGHBA',
+                    internship: 'CEGEDIM'
+                },
+                {
+                    id: 25,
+                    firstName: 'Nour-imae',
+                    lastName: 'ZIANI',
+                    internship: 'CEGEDIM'
+                },
+
+                {
+                    id: 26,
+                    firstName: 'Wafae',
+                    lastName: 'NABET',
+                    internship: 'CEGEDIM'
+                },
+                {
                     id: 27,
-                    firstName: 'Abdrahim',
-                    lastName: 'MJIDA',
-                    internship: 'Colas digital solutions'
+                    firstName: 'Daoud',
+                    lastName: 'WIRZGANE',
+                    internship: 'intelcia'
                 },
                 {
                     id: 28,
@@ -445,24 +447,29 @@ let dbStudents = [
                 },
                 {
                     id: 29,
-                    firstName: 'Mohamed',
-                    lastName: 'EL YAZIDI',
-                    internship: 'Capgemeni'
-                },
-                {
-                    id: 30,
-                    firstName: 'Hajar',
-                    lastName: 'ZEGHBA',
-                    internship: 'CEGEDIM'
-                },
-                {
-                    id: 31,
                     firstName: 'Hicham',
                     lastName: 'JAMAI',
                     internship: 'intelcia'
+                },
+                {
+                    id: 30,
+                    firstName: 'Hind',
+                    lastName: 'AALLOUCH',
+                    internship: 'Smile'
+                },
+                {
+                    id: 31,
+                    firstName: 'Fatim zahra',
+                    lastName: 'DRIOUICH',
+                    internship: 'DXC'
+                },
+                {
+                    id: 32,
+                    firstName: 'Abdrahim',
+                    lastName: 'MJIDA',
+                    internship: 'Colas digital solutions'
                 }
         ]
-
     }
 ];
 
@@ -471,6 +478,7 @@ let dbProfessors = [
         id: 1,
         firstName: 'Zineddine',
         lastName: 'chihaja',
+        photo: '',
         course: 'Technologie XML',
         courseImage: 'resources/pictures/Home/xml.jpg'
     },
@@ -478,6 +486,7 @@ let dbProfessors = [
         id: 2,
         firstName: 'Omar',
         lastName: 'BEKKALI',
+        photo: '',
         course: 'Bases de données ORACLE',
         courseImage: 'resources/pictures/Home/oracle.jpg'
     },
@@ -485,6 +494,7 @@ let dbProfessors = [
         id: 3,
         firstName: 'Mohamed',
         lastName: 'LAMRINI',
+        photo: '',
         course: 'Gestion du projets',
         courseImage: 'resources/pictures/Home/gestion-projet.jpg'
     },
@@ -492,6 +502,7 @@ let dbProfessors = [
         id: 4,
         firstName: 'Ahmed',
         lastName: 'AZOUGH',
+        photo: '',
         course: 'Génie logiciel et UML',
         courseImage: 'resources/pictures/Home/uml.png'
     }
