@@ -1,4 +1,3 @@
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Container of the card and its title */
 .big-container{
@@ -27,7 +26,7 @@
 	flex-wrap: wrap;
 	justify-content: space-around; /* center horizontally */
 	align-items: center; /* center vertically*/
-	background-color: #f4f4f4;
+	/*background-color: #f4f4f4;*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .card {
@@ -38,7 +37,7 @@
 	border-radius: 5px;
 	box-shadow: 0 0 0 rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
 	overflow: hidden; /* otherwise header image won't respect rounded corners */
-	background-color: #f7fbdf;
+	/*background-color: ghostwhite;*/
 	margin: 10px;
 	transition: all .4s ease; /* back to normal */
 }
@@ -49,7 +48,7 @@
 	margin-right: auto;
 	margin-top: 15px;
 	padding: 10px;
-	background-color: #f7fbdf;
+	/*background-color: ghostwhite;*/
 	border: 1px solid #c4c4c4;
 	border-radius: 5px;
 
@@ -139,8 +138,6 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Style for the zone 'collapsible' */
 .collapsible {
-	/*background-color: #2975bf;*/
-/*	background-image: url("../../../resources/pictures/Activities/semesters-back.png");*/
 	background-color: #1a54b4;
 	color: white;
 	cursor: pointer;
@@ -154,25 +151,23 @@
 	font-size: 15px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-#collapse-1{
-	background-color: rgb(196, 201, 036);
+.collapse-1{
+	background-color: rgb(71, 93, 144);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-#collapse-2{
-	background-color: rgb(067, 174, 183);
+.collapse-2{
+	background-color: rgb(71, 93, 144);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-#collapse-3{
-	background-color: rgb(204, 027, 074);
+.collapse-3{
+	background-color: rgb(71, 93, 144);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-#collapse-4{
-	background-color: rgb(253, 180, 022);
+.collapse-4{
+	background-color: rgb(71, 93, 144);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .active-element, .collapsible:hover {
-	/*background-color: #184c8c;*/
-	/*background-image: url("../../../resources/pictures/img.jpg");*/
 	opacity: 0.8;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -232,7 +227,7 @@
 	list-style-type: none;
 	padding: 5px;
 	margin: 4px;
-	border-bottom: 1px solid rgb(253, 59, 76);
+	border-bottom: 1px solid rgb(216, 49, 57,0.9);
     text-align: left;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -242,7 +237,7 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 .subject > p > span{
     display: inline-block;
-    background-color: #ff8057;
+    background-color: rgb(216, 49, 57);
     width: 14px;
     height: 14px;
     border-radius: 7px;
@@ -279,8 +274,91 @@
 	border: 2px solid rgb(53, 69, 108);
 	margin-top: 15px;
 }
+/* Tree Model --------------------------------------------------------------------------------------------------------*/
+.tree-content {
+	position: relative;
+}
+.tree-content > img {
+	display: block;
+	margin: 50px auto auto;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.tree-branch {
+	position: absolute;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-title {
+	font-family: "Agency FB", serif;
+	color: white;
+	font-size: 50px;
+	font-weight: bolder;
+	padding: 20px;
+	background-color: rgb(216, 49, 57);
+	border-radius: 100%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-title:hover, .branch-active  {
+	/*color: rgb(216, 49, 57);
+	background-color: white;*/
+	cursor: pointer;
+	border: 3px solid rgb(216, 49, 57);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-content {
+	max-width: 400px;
+	display: none;
+	border: 2px solid rgb(216, 49, 57);
+	/*background-color: white;*/
+	box-shadow: 0 0 10px lightgray;
+	padding: 30px;
+	font-size: 15px;
+	border-radius: 20px;
+	font-weight: bolder;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-content-list span {
+	width: 90%;
+	display: block;
+	font-size: 15px;
+    color: white;
+	border: 1px solid rgb(216, 49, 57);
+	background-color: rgb(53, 69, 108);
+	padding: 20px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-content-list img {
+	width: 20%;
+	height: 20%;
+	margin-right: 5px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-1 {
+	top: 35%;
+	left: 35%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-2 {
+	top: 25%;
+	left: 48%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-3 {
+	top: 15%;
+	left: 60%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.branch-4 {
+	top: 0;
+	left: 43%;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 @media screen and (max-width: 700px){
+	.tree-content {
+		display: none;
+	}
+
 	.card {
 		height: fit-content;
 		width: 100%;

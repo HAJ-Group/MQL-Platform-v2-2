@@ -100,12 +100,12 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* ---- Timeline ---- */
 .timeline {
-	padding: 20px;
+	padding: 10px;
 }
 
 .timeline-icon {
 	display: block;
-	width: 80%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -123,15 +123,16 @@
 	position: relative;
 	display: inline-block;
 	float: left;
-	width: 20%;
+	width: 8%;
 	margin-left: 10%;
 	font: bold 14px arial;
 	height: 50px;
 }
 .timeline-item .timeline-title {
-	font-size: 30px;
+	width: 100%;
+	font-size: 25px;
 	position: absolute;
-	color: #000000;
+	/*color: black;*/
 }
 .timeline-item .timeline-span {
 	top: -10px;
@@ -145,7 +146,7 @@
 }
 .timeline-item .timeline-description {
 	display: none;
-	background-color: white;
+	/*background-color: white;*/
 	padding: 8px;
 	border: 1px solid lightgray;
 	box-shadow: 0 0 5px lightgray;
@@ -183,8 +184,13 @@
 	display: block;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------------------------------------------------*/
 /* Phone */
+@media only screen and (max-width: 1200px) {
+	.timeline-title {
+		font-size: 17px;
+	}
+}
+
 @media only screen and (max-width: 700px) {
 	.card-event {
 		display: block;

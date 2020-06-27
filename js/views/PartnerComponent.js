@@ -41,11 +41,11 @@ PartnerComponent.prototype.fillPartnersMenu = function() {
 	if(sessionStorage.getItem('ACCESS') !== null) {
 		let newBlock = buildDIV(
 			buildIMG('resources/pictures/App/icons/new-icon.png','',cls(['new-icon'],[{name:'onclick',value:'views.partner.addData()'}])),
-			cls('new-block')
+			cls('partner-new-block')
 		);
 		htmlContent.appendChild(newBlock);
 	}
-	let endImg = buildIMG("resources/pictures/Partner/menu-bottom2.jpg",'',cls('end-img'));
+	let endImg = buildIMG("resources/pictures/Partner/menu-bottom2.png",'',cls('end-img'));
 	htmlContent.appendChild(endImg);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -91,7 +91,7 @@ PartnerComponent.prototype.showPartner = function (id, top = false) {
 	hide_block.style['display'] = 'none';
 	show_block.style['display'] = 'block';
 	$('#menu-' + id).classList.add('active');
-	if(top) location.href = '#' + id;
+	if(top) views.spa.topFunction(0,500);
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.hideAll = function () {
@@ -114,7 +114,7 @@ PartnerComponent.prototype.ajustLinks = function () {
 /* FORM SERVICES */
 PartnerComponent.prototype.addData = function() {
 	$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
-	popFORM('PartnerForm');
+	views.spa.popFORM('PartnerForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.editData = function(index) {
@@ -136,7 +136,7 @@ PartnerComponent.prototype.editData = function(index) {
 	el_website.value = target.website;
 	//...
 	$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData(\'edit\', ' + index + ')');
-	popFORM('PartnerForm');
+	views.spa.popFORM('PartnerForm');
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 PartnerComponent.prototype.deleteData = function(index) {
@@ -144,13 +144,13 @@ PartnerComponent.prototype.deleteData = function(index) {
 		this.service.remove(index);
 		//....
 		try {
-			this.currentblock = this.service.get(0).id;
+			this.currentblock = 'partner-' + this.service.get(0).id;
 			this.navigate();
 		} catch (e) {
 			if(confirm('None Partner is found! Add new one ?')) {
 				views.partner.addData();
 			} else {
-				route('../Home');
+				views.spa.route('Home');
 			}
 		}
 	}
@@ -167,7 +167,7 @@ PartnerComponent.prototype.submitData = function (action = 'add', index = '0') {
 	let website=$('#partnerWebSite').value;
 	//...
 	if(action === 'add') {
-		this.service.add(new Partner(this.service.size() + 1, DEFAULT_PARTNER_BG,name,color,ca,desc,co,'',website));
+		this.service.add(new Partner(incrementId(this.service.db), DEFAULT_PARTNER_BG,name,color,ca,desc,co,'',website));
 		id=this.service.size();
 	}
 	if(action === 'edit') {
@@ -181,8 +181,8 @@ PartnerComponent.prototype.submitData = function (action = 'add', index = '0') {
 		//...
 		$('#partnerSubmit').setAttribute('onclick', 'views.partner.submitData()');
 	}
-	closeFORM('PartnerForm');
-	this.currentblock = id;
+	views.spa.closeFORM('PartnerForm');
+	this.currentblock = 'partner-' + id;
 	this.navigate();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -195,24 +195,7 @@ PartnerComponent.prototype.navigate = function() {
 	views.partner.fillPartnersMenu();
 	views.partner.fillPartners();
 	views.partner.hideAll();
+	views.spa.setTheme();
 };
-/**-------------------------------------------------------------------------------------------------------------------*/
-/* Main Function */
-function PartnerMain() {
-	let service = new PartnerComponentService();
-	service.load(dbPartner);
-	views['partner'] = new PartnerComponent(service);
-	try {
-		views.partner.fillPartnersMenu();
-		views.partner.fillPartners();
-		views.partner.hideAll();
-	} catch (e) {
-		if(confirm('None Partner is found! Add new one ?')) {
-			views.partner.addData();
-		} else {
-			route('Home');
-		}
-	}
-	// Stays Last
-}
+
 /*--------------------------------------------------------------------------------------------------------------------*/

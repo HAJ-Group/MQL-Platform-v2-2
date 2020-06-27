@@ -111,7 +111,7 @@
 .access-button {
 	border: none;
 	padding: 20px;
-	background-color: rgba(93,233,77,0.92);
+	background-color:rgb(53, 69, 108);
 	font-size: 25px;
 	font-weight: bolder;
 	color: white;
@@ -127,7 +127,7 @@
 .logout-button {
 	border: none;
 	padding: 20px;
-	background-color: rgba(233,42,25,0.92);
+	background-color: rgb(216, 49, 57);
 	font-size: 20px;
 	font-weight: bold;
 	color: white;
@@ -170,14 +170,16 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 .manage-block {
 	width: 100%;
+	min-height: 400px;
 	border: 1px solid lightgray;
 	border-radius: 10px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .manage-cards {
-	width: 100%;
+	width: 90%;
 	display: flex;
-	margin-left: 3%;
+	margin-left: 5%;
+	margin-top: 5%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .manage-card {
@@ -235,12 +237,6 @@
 		font-size: 20px;
 		width: 60%;
 		height: 30px;
-	}
-
-	.manage-cards {
-		width: 100%;
-		display: flex;
-		margin-left: 2%;
 	}
 
 }
@@ -324,7 +320,6 @@
 
 	.manage-cards {
 		width: 100%;
-		display: flex;
 		margin-left: 0;
 	}
 

@@ -1,9 +1,8 @@
-.home-news{
+.home-news {
 	display: flex;
 	width: 100%;
 	height: 50px;
-	border: 1px solid lightgray;
-	margin-bottom: 10px;
+	border-top: 1px solid lightgray;
 }
 .home-news-title{
 	width: 20%;
@@ -14,21 +13,50 @@
 	display: block;
 	padding-top: 5%;
 	font-size: 25px;
-	font-family: "Agency FB";
+	font-family: "Agency FB", serif;
 }
 .home-news-content {
 	width: 80%;
 	text-align: center;
-	color: red;
+	color: rgb(216, 49, 57);
 }
-.home-news-content span{
+.home-news-content div{
+	padding-top: 1%;
 	font-size: 25px;
 	cursor: pointer;
 }
-/*--------------------------------------------------------------------------------------------------------------------*/
-.home-presentation{
-	min-height: 100vh;
+.news-content-block {
 	width: 100%;
+}
+.news-item {
+	display: none;
+	margin: auto;
+	width: 80%;
+}
+.news-arrow {
+	font-family: "Segoe UI", serif;
+	border-radius: 10px;
+	font-size: 20px;
+	text-align: center;
+    padding-top: -5px;
+	padding-left:5px;
+	padding-right:5px;
+	margin: 5px;
+}
+
+.news-arrow:hover {
+    opacity: 0.4;
+	cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.home-container {
+	display: none;
+}
+
+.home-presentation{
+	height: fit-content;
+	width: 100%;
+	background-image: url('../resources/pictures/Home/texture.jpg');
 }
 .home-logo > img {
 	display: flex;
@@ -42,6 +70,8 @@
 }
 .home-flex{
 	display: flex;
+/*	justify-content: space-around;*/
+
 }
 .home-span {
 	margin-top: 10px;
@@ -52,37 +82,53 @@
 .home-span span {
 	display: flex;
 	justify-content: center;
-	border-bottom: 3px solid rgb(53, 69, 108);
+	border-bottom: 3px solid rgb(216, 49, 57);
 	padding-top: 20px;
 	border-top-left-radius: 50%;
 	border-top-right-radius: 50%;
 }
 .home-span span:hover {
-    color: rgb(53, 69, 108);
-    border-bottom: 1px solid rgb(216, 49, 57);
+    color: white;
+    border-bottom: 1px solid white;
 }
 
 .home-span-active span {
 	color: white;
 	background-color: rgb(216, 49, 57);
+	border-bottom: 1px solid white;
 }
 
 .home-card {
 	font-family: "Open Sans",Consolas, serif;
 	text-align: justify;
-	font-size: 20px;
+	font-size: 17px;
     margin: 5px;
     padding: 20px;
-    border: 1px solid lightgray;
-	min-height: 650px;
-	border-radius: 10px;
+	height: fit-content;
 }
-.cards {
-	background-color: #fff;
+.chart-container{
+	display:flex;
+	position: relative;
+	height:200px;
+	width:47%
+}
+
+.phone-chart-container{
+	position: relative;
+	min-height:300px!important;
+	width:90%!important;
+}
+.second-chart{
+	margin-left:50px ;
+}
+.last-chart {
+	padding-bottom: 70px;
+	margin-top:100px;
+	margin-bottom: 20px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .main-box{
-	display: flex;
+	display: none;
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
@@ -210,23 +256,22 @@ a:hover {
 	padding: 10px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.Chenfour{
+.coordonateur{
 	display: flex;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.Chenfour .img {
-	width: 40%;
+.coordonateur .img {
+	max-width: 40%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
-.Chenfour div {
+.coordonateur div {
 	padding: 20px;
-	width: 60%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .details > img {
 	margin-right: auto;
 	margin-left:auto;
-	width: 100%;
+	max-width: 100%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .full-width {
@@ -236,7 +281,7 @@ a:hover {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .mql-video-div {
 	width: 70%;
-	margin-left: 10px;
+	margin-left: 15%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .mql-video {
@@ -249,13 +294,14 @@ a:hover {
 	opacity: 0.7;
 	cursor: pointer;
 }
-
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-container {
 	position: relative;
 	width: 100%;
 	height: 100%;
+	background-image: url('../resources/pictures/Home/presentation.jpg');
+	background-size: 100% 100%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-center-block {
@@ -263,8 +309,8 @@ a:hover {
 	width: fit-content;
 	height: fit-content;
 	box-shadow: 0 0 10px lightgray;
-	top: 5%;
-	left: 28%;
+	top: 8%;
+	left: 30%;
 	border-radius: 100%;
 	padding-left: 5%;
 	padding-right: 5%;
@@ -275,7 +321,7 @@ a:hover {
 .presenter-center-block img {
 	display: block;
 	margin: auto;
-	width: 400px;
+	width: 350px;
 	height: 250px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -305,18 +351,18 @@ a:hover {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-item {
 	box-shadow: 0 0 10px lightgray;
-	padding: 20px;
-	width: 38%;
-	height: 150px;
-	margin: auto;
+	padding: 10px;
+	width: 40%;
+	height: fit-content;
 	border-radius: 20px;
 	background-color: white;
 	z-index: 50;
 	opacity: 0;
+	margin: 20px auto auto;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .presenter-item h1 {
-    font-size: 30px;
+    font-size: 25px;
 	color: rgb(53, 69, 108);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -333,7 +379,7 @@ a:hover {
 	margin: auto;
 	color: white;
 	background-color: rgb(216, 49, 57);
-	padding: 40px;
+	padding: 20px;
 	font-weight: bolder;
 	font-size: 20px;
 	border-radius: 100%;
@@ -343,6 +389,176 @@ a:hover {
 .presenter-links span > img {
 	width: 100%;
 	height: 100%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.switch-promotions{
+	display: flex;
+	justify-content: center;
+	margin: auto
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.first-ball, .second-ball{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.9;
+	background-color: rgb(53, 69, 108);
+	color: whitesmoke;
+	font-family: "Open sans", Consolas, serif;
+	font-size: 22px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.first-ball{
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.line-between-balls{
+	width: 140px;
+	height: 5px;
+	margin-top: 32px;
+	background-color: rgb(53, 69, 108);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.second-ball{
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.first-ball:hover, .second-ball:hover{
+	opacity: 1;
+	color: whitesmoke;
+	background-color: rgb(216, 49, 57);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table{
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin: 20px auto 0 auto;
+	font-family: "Open Sans", Consolas, serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+table.student-table{
+	width: 80%;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table > thead > th {
+	padding: 15px;
+	background-color:rgb(53, 69, 108);
+    text-align: center;
+	color: white;
+	border: 1px lightgray solid;
+	border-radius: 0;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table > tbody > tr > td {
+	padding: 15px;
+	border-radius: 0;
+	color: black;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table > tbody > tr:nth-child(even) {
+	background-color: #eee;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.student-table > tbody > tr:nth-child(odd) {
+	background-color: #fff;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.red-ball{
+	background-color: rgb(216, 49, 57);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.blue-ball{
+	background-color: rgb(53, 69, 108);
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+.professors-title{
+	margin-top: 30px;
+	text-align: center;
+
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.professors-title span {
+	padding: 15px 15px 5px 15px;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	background-color: rgb(216, 49, 57);
+	font-size: 22px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.professors-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 20px;
+	margin-top: 5px;
+	border: 1px solid lightgray;
+	background: rgba(53, 69, 108,0.7);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.professor-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 48%;
+	margin: 10px 0 10px 0;
+	background-color: rgb(235, 235, 235);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.professor-name{
+	width: 38%;
+	padding: 6px;
+	font-size: 16px;
+	text-align: center;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.professor-name > span:first-child{
+	font-family: "Open sans", serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: rgb(53, 69, 108);
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.professor-image{
+	max-width: 130px;
+	max-height: 130px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.course-image{
+	width: 130px;
+	height: 130px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+.border-between-professors{
+	width: 2px;
+	background-color: crimson;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+hr.hr-spacing{
+	margin-top: 20px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+.charts-block {
+	padding: 20px;
+	border: 1px solid lightgray;
+}
+
+.phone-chart {
+	min-height: 250px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Animations */
@@ -364,6 +580,23 @@ a:hover {
 		background-image: none;
 	}
 
+    .mql-video-div {
+        width: 97%;
+        margin-left: 7px;
+    }
+
+	.home-presentation {
+		display: none;
+	}
+
+	.home-container {
+		display: block;
+	}
+
+    .home-news {
+        display: none;
+    }
+
 	.main-box {
 		display: block;
 	}
@@ -372,21 +605,20 @@ a:hover {
 		width: 97%;
 	}
 
-	.Chenfour{
+	.coordonateur{
 		display: block;
 	}
-	.Chenfour .img {
-		width: 50%;
+	.coordonateur .img {
+		max-width: 70%;
 		border-radius: 100%;
 	}
-	.Chenfour img {
-		margin-left: 25%;
+	.coordonateur img {
+		margin-left: 15%;
 	}
 
-	.Chenfour div {
+	.coordonateur div {
 		margin-left: auto;
 		margin-right: auto;
-		width: 90%;
 	}
 
 	li {
@@ -397,5 +629,17 @@ a:hover {
 	.presenter-container {
 		display: none;
 	}
+	.professors-container {
+		display: block;
+	}
+	.professor-container{
+		display: block;
+		width: 95%;
+	}
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 1200px) {
+	.presenter-links span{
+		z-index: 0;
+	}
+}

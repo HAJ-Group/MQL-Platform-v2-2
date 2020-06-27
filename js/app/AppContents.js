@@ -5,13 +5,23 @@ function getHeaderNavs() {
     /* HEADER --------------------------------------------------------------------------------------------------------*/
     let navElement = buildDIV();
     // DYNAMIC NAVS
-    for(let nav of navs) {
-        navElement.appendChild(buildLINK('#' + nav.name, nav.content, cls('left', [{name:'name', value:nav.name}])));
+    for(let nav of SPAnavs) {
+        if (nav.name === 'Home'){
+            nav.content = buildIMG('resources/pictures/App/Header/home.png', 'home',
+                wrapIC('home-logo', 'home-logo'));
+        }
+        navElement.appendChild(
+            buildLINK('javascript:void(0)', nav.content, cls(['left'], [{name:'name', value:nav.name}]))
+        );
     }
     // ABOUT NAV
-    navElement.appendChild(buildLINK('#footer', [
+    navElement.appendChild(buildLINK('javascript:void(0)', [
         buildIMG('resources/pictures/App/Header/about.png', 'about', cls('def-img'))
-    ], cls('right')));
+    ], wrapCOthers('right', [{name: 'onclick', value: 'views.spa.scrollToDown();'}])));
+    // Theme NAV
+    navElement.appendChild(buildLINK('javascript:void(0)', [
+        buildIMG('resources/pictures/App/Header/theme.png', 'about', cls('def-img'))
+    ], wrapCOthers('right', [{name: 'onclick', value: 'views.spa.popFORM(\'ThemeModal\')'}])));
     return navElement;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -27,7 +37,7 @@ function getFooterPartners(max = 4) {
         if(counter++ < max) {
             partnersDiv.appendChild(buildSPAN([
                 buildIMG(partner.image, '', wrapIC('partner-' + partner.id, 'img-partenaire', [
-                    {name:'onclick', value:'showPartner(\'partner-' + partner.id + '\')'},
+                    {name:'onclick', value:'views.spa.showPartner(\'partner-' + partner.id + '\')'},
                 ]))
             ]));
         }
@@ -124,7 +134,7 @@ function getHomeFormContent() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getNewsFormContent() {
     return buildDIV([
-        buildSPAN('&times;', cls('close', [{name:'onclick', value:'closeFORM(\'NewsForm\')'}])),
+        buildSPAN('&times;', cls('close', [{name:'onclick', value:'views.spa.closeFORM(\'NewsForm\')'}])),
         buildDIV([
             buildIMG('resources/pictures/News/News-logo.png', ''),
             buildElement('p', 'NEWS COMPONENT',  cls('form-title')),
@@ -147,7 +157,7 @@ function getNewsFormContent() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getEventFormContent() {
     return buildDIV([
-        buildSPAN('&times;', cls('close', [{name:'onclick', value:'closeFORM(\'EventForm\')'}])),
+        buildSPAN('&times;', cls('close', [{name:'onclick', value:'views.spa.closeFORM(\'EventForm\')'}])),
         buildDIV([
             buildIMG('resources/pictures/Event/Event-logo.png', ''),
             buildElement('p', 'EVENT COMPONENT', cls('form-title')),
@@ -176,7 +186,7 @@ function getActivityFormContent() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 function getPartnerFormContent() {
     return buildDIV([
-        buildSPAN('&times;', cls('close', [{name:'onclick', value:'closeFORM(\'PartnerForm\')'}])),
+        buildSPAN('&times;', cls('close', [{name:'onclick', value:'views.spa.closeFORM(\'PartnerForm\')'}])),
         buildDIV([
             buildIMG('resources/pictures/App/icons/partner-icon.png', ''),
             buildElement('p', 'PARTNER COMPONENT', cls('form-title')),
@@ -219,7 +229,7 @@ function getPartnerFormContent() {
 function getLaureateFormContent() {
     return buildDIV([
         buildDIV([
-            buildSPAN('&times;', cls('close', [{name: 'onclick', value: 'closeFORM(\'promotion\')'}])),
+            buildSPAN('&times;', cls('close', [{name: 'onclick', value: 'views.spa.closeFORM(\'promotion\')'}])),
             buildDIV([
                 buildIMG('resources/pictures/Laureate/laureate-logo.png', ''),
                 buildElement('p', 'LAUREATE COMPONENT',  cls('form-title')),
@@ -233,7 +243,7 @@ function getLaureateFormContent() {
             ], cls('form-content'))
         ], wrapIC('promotion', 'modal')),
         buildDIV([
-            buildSPAN('&times;', cls('close', [{name: 'onclick', value: 'closeFORM(\'laureate\')'}])),
+            buildSPAN('&times;', cls('close', [{name: 'onclick', value: 'views.spa.closeFORM(\'laureate\')'}])),
             buildDIV([
                 buildIMG('resources/pictures/Laureate/laureate-logo.png', ''),
                 buildElement('p', 'LAUREATE COMPONENT',  cls('form-title')),

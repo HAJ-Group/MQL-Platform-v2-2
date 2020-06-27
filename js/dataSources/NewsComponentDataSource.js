@@ -8,7 +8,7 @@ let dbNews = [
             'sciences, la plateforme offre des informations détaillées sur le master concernant les actualités, les ' +
             'événements, les activitées, les partenaires, les promotions et les lauréats... afin de donner la ' +
             'possibilité aux candidats à découvrir le maximum d\'informations à propos de cette formation d\'étude supérieure.',
-        images:['resources/pictures/App/logoMQL.png', 'resources/pictures/News/platform.jpg'],
+        images:['resources/pictures/News/platform.jpg'],
     },
     {
         id :2,
@@ -28,8 +28,8 @@ let dbNews = [
         id :4,
         title:'Session de recturement- UMANIS',
         date:'13-03-2020',
-        description:'Dans un communiqué diffusé en fin journée le vendredi 13 mars 2020, le ministère de l\'Education nationale annonce la suspension de tous les cours, des jardins d\'enfants jusqu\'à l\'enseignement supérieur à compter du lundi 16 mars 2020. ',
-        images:['resources/pictures/News/corona.jpeg'],
+        description:'Dans le cadre de partenariat entre le master qualité du logiciel et UMANIS, cette dernière organisera une session de recrutement pour les étudiants de la deuxième année',
+        images:['resources/pictures/Partner/Umanis-bg.jpg'],
         id_event : 2
     },
 
