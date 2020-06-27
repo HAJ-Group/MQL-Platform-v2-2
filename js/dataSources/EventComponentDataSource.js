@@ -50,7 +50,7 @@ let dbEvent = [
 			{
 				type:'card',
 				title:'Entretien Oral',
-				description: 'La deuxième étape du concours consiste à choisir des étudiants motivés,confiants avec une capacité d\'écoute et un bon niveau de communication et , l\'étudiant présente son parcours universitaire et professionnel et répond aux questions du jury.',
+				description: 'La deuxième étape du concours consiste à choisir des étudiants motivés, confiants avec une capacité d\'écoute et un bon niveau de communication et , l\'étudiant présente son parcours universitaire et professionnel et répond aux questions du jury.',
 				image:'resources/pictures/Event/TechTest.jpg',
 			},
 		],

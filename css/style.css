@@ -494,17 +494,18 @@ hr {
 }
 @media only screen and (max-width: 1400px){
     .form-content {
-        width: 60%;
+        width: 70%;
+        padding: 20px 20px 50px;
     }
     .form-title {
-        font-size: 30px;
+        font-size: 25px;
     }
     .form-text {
-        width: 50%;
-        font-size: 10px;
+        width: 60%;
+        font-size: 15px;
     }
     .modal-content {
-        max-width: 500px;
+        max-width: 1000px;
         max-height: 500px;
     }
 }
@@ -525,8 +526,7 @@ hr {
 .close {
     width: fit-content;
     display: block;
-    margin: auto;
-    background-color: rgb(216, 49, 57); /* red*/
+    margin-left: auto ;
     color: white;
     font-size: 60px;
     font-weight: bold;
@@ -538,7 +538,6 @@ hr {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .close:hover, .close:focus {
-    background-color: white;
     color: rgb(216, 49, 57); /* red */
     text-decoration: none;
     cursor: pointer;
