@@ -207,8 +207,13 @@
 					<div class="search-block">
 						<img class="search-logo" src="resources/pictures/App/icons/search.png" alt="search Logo">
 						<input id="key" class="search-input" onkeyup="views.spa.search()" placeholder="Search..." type="text">
-						<span class="error-message"></span></div>
+						<span class="error-message"></span>
+					</div>
+					<div id="show-all" onclick="views.spa.showAll()" class="hidden">
+						<h2 class="blue-bg red text-center ">Afficher tout</h2>
+					</div>
 				</div>
+
 				<!-- Components Main Areas-->
 				<div id="HomeComponent" >
 					<!-- Home Main Body -->
@@ -367,16 +372,16 @@
 										<span class="paragraphe">- Sur un total d'effectif de 160 étudiants, <span class="bold blue">147</span> ont réussi à décrocher leurs contrats CDI avec un taux d'insertion de 92% (2015-2019): </span>
 									</div>
 									<div class="phone-chart-container">
-										<canvas id="phone-myChart0" style="min-height: 250px"></canvas>
+										<canvas id="phone-myChart0" class="phone-chart"></canvas>
 									</div>
 									<div class="phone-chart-container">
-										<canvas id="phone-myChart1" style="min-height: 250px"></canvas>
+										<canvas id="phone-myChart1" class="phone-chart"></canvas>
 									</div>
 									<div class="phone-chart-container" >
-										<canvas id="phone-myChart2" style="min-height: 250px"></canvas>
+										<canvas id="phone-myChart2" class="phone-chart"></canvas>
 									</div>
 									<div class="phone-chart-container">
-										<canvas id="phone-myChart3" style="min-height: 250px"></canvas>
+										<canvas id="phone-myChart3" class="phone-chart"></canvas>
 									</div>
 
 								</div>
