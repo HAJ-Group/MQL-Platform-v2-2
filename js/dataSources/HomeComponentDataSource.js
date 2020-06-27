@@ -117,7 +117,7 @@ let dbHomeImages = [
     'resources/pictures/App/mqlfam.jpg',
 ];
 
-var dbStudents = [
+let dbStudents = [
     {
         name:'M1',
         promotion: 'Promotion 2019-2021',
@@ -473,8 +473,7 @@ var dbStudents = [
     }
 ];
 
-var dbProfessors = [
-
+let dbProfessors = [
     {
         id: 1,
         firstName: 'Zineddine',

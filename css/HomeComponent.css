@@ -101,7 +101,7 @@
 .home-card {
 	font-family: "Open Sans",Consolas, serif;
 	text-align: justify;
-	font-size: 20px;
+	font-size: 17px;
     margin: 5px;
     padding: 20px;
 	height: fit-content;
@@ -506,7 +506,7 @@ table.student-table{
 	justify-content: space-between;
 	padding: 20px;
 	margin-top: 5px;
-	border: 1px solid rgb(53, 69, 108);
+	border: 1px solid lightgray;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .professor-container{
@@ -619,6 +619,12 @@ img{
 }
 */
 /*--------------------------------------------------------------------------------------------------------------------*/
+
+.charts-block {
+	padding: 20px;
+	border: 1px solid lightgray;
+}
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Animations */
 @keyframes slideShow {
