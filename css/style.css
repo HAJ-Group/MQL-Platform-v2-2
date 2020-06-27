@@ -44,25 +44,33 @@ hr {
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .splash-content {
-    width: 97%;
-    height: 103vh;
+    width: 80%;
     display: block;
     position: absolute;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    left: 10%;
+    top: 5%;
     background-color: white;
-    padding: 30px;
     overflow: hidden;
-    margin-top: -5%;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .splash-content > img {
+    width: fit-content;
     display: block;
-    margin-top: 5%;
+    margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
+}
+@media only screen and (max-width: 1400px){
+    .splash-content > img {
+        margin-top: 5%;
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 1200px){
+    .splash-content > img {
+        margin-top: 3%;
+        width: 60%;
+    }
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .splash-content span {
@@ -80,6 +88,7 @@ hr {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 80px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .wait-loader {
@@ -499,6 +508,18 @@ hr {
         max-height: 500px;
     }
 }
+@media only screen and (max-width: 700px){
+    .form-content {
+        width: 70%;
+    }
+    .form-text {
+        width: 100%;
+        font-size: 10px;
+    }
+    .form-submit {
+        width: 40%;
+    }
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* The Close Button */
 .close {
@@ -769,7 +790,7 @@ a.links:hover{
 /*--------------------------------------------------------------------------------------------------------------------*/
 .text-partenaire > span{
     font-family: Oswald, serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -787,6 +808,10 @@ a.links:hover{
 }
 .width-40{
     width: 40%;
+}
+
+.width-30{
+    width: 30%;
 }
 .link{
     cursor: pointer;

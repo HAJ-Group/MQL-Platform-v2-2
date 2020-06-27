@@ -101,7 +101,7 @@
 .home-card {
 	font-family: "Open Sans",Consolas, serif;
 	text-align: justify;
-	font-size: 20px;
+	font-size: 17px;
     margin: 5px;
     padding: 20px;
 	height: fit-content;
@@ -262,6 +262,7 @@ a:hover {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .coordonateur .img {
 	width: 40%;
+	border: 2px solid rgb(53, 69, 108);
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .coordonateur div {
@@ -453,6 +454,7 @@ table.student-table{
 .student-table > thead > th {
 	padding: 15px;
 	background-color: #0e2f4e;
+    text-align: center;
 	color: white;
 	border: 1px lightgray solid;
 	border-radius: 0;
@@ -478,6 +480,89 @@ table.student-table{
 /*--------------------------------------------------------------------------------------------------------------------*/
 .blue-ball{
 	background-color: rgb(53, 69, 108);
+}
+
+
+.professors-title{
+	margin-top: 30px;
+	text-align: center;
+
+}
+
+.professors-title span {
+	padding: 15px 15px 5px 15px;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	background-color: rgb(216, 49, 57);
+	font-size: 22px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+}
+
+.professors-container{
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 20px;
+	margin-top: 5px;
+	border: 1px solid lightgray;
+}
+
+.professor-container{
+	padding: 15px;
+	border-left: 3px solid rgb(216, 49, 57);
+	border-top: 1px solid rgb(216, 49, 57);
+	border-right: 1px solid rgb(216, 49, 57);
+	border-bottom: 1px solid rgb(216, 49, 57);
+	/*background-color: #f8f8f8;*/
+}
+
+.professor-name{
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.professor-name span{
+	padding: 10px;
+}
+
+.professor-infos{
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 15px 0 10px;
+}
+
+.course-name{
+	align-self: center;
+}
+
+.course-name span{
+	display: inline-block;
+	background-color: rgb(53, 69, 108);
+	width: 14px;
+	height: 14px;
+	border-radius: 7px;
+	box-shadow: 2px 2px 5px grey;
+	margin-left: -20px;
+	margin-right: 5px;
+}
+
+.course-image{
+	height: 130px;
+	width: 130px;
+}
+
+.img-course-image{
+	width: 130px;
+	height: 130px;
+	border: 1px solid  rgb(53, 69, 108);
+}
+
+.charts-block {
+	padding: 20px;
+	border: 1px solid lightgray;
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
