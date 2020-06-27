@@ -313,6 +313,7 @@ NewsComponent.prototype.triggerSubmit = function () {
 NewsComponent.prototype.selectEvent = function (id) {
 	views.spa.route('Event');
 	views.event.selectEvent(id);
+	if(screen.width < 700 ) $('#show-all').style.display = 'block';
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/

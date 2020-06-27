@@ -1,7 +1,6 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 let current_page_number = 1;
 let phone_menu_toggled = false;
-let current_component = 'Home';
 /*Default class*/
 function SPAComponent(service) {
     this.service = service;
@@ -356,6 +355,16 @@ SPAComponent.prototype.showPartner = function(id) {
         this.route('Partner');
     }
     views.partner.showPartner(id, true);
+};
+/*--------------------------------------------------------------------------------------------------------------------*/
+SPAComponent.prototype.showAll = function(id) {
+    if(this.current_component == 'News') {
+        views.news.navigate(1,true);
+    }
+    else if(this.current_component == 'Event') {
+        views.event.navigate(1,true);
+    }
+    $('#show-all').style.display = 'none';
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.search = function() {
