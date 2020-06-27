@@ -355,6 +355,7 @@ SPAComponent.prototype.showPartner = function(id) {
         this.route('Partner');
     }
     views.partner.showPartner(id, true);
+    $('#menu-button').click();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.showAll = function(id) {
