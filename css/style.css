@@ -17,10 +17,7 @@
 */
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-img {
-    object-fit: contain!important;
-    object-position: center!important;
-}
+
 body {
     background-image: url('../resources/pictures/App/background2.jpg');
     max-width: 1200px;
@@ -33,7 +30,8 @@ body {
     box-shadow: 0 -20px 20px 0 rgba(0,0,0,0.4);
 }
 img {
-    object-fit: contain;
+    object-fit: contain!important;
+    object-position: center!important;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 hr {

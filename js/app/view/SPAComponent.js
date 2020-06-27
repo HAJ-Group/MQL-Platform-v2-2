@@ -448,6 +448,7 @@ SPAComponent.prototype.popFORM = function(target_block = 'form') {
     let modal = $('#' + target_block);
     modal.style.display = 'block';
 };
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.markAsSelected = function(id, component) {
     $('#all-' + component).style.display = 'block';
