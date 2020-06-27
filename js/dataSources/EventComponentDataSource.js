@@ -138,7 +138,7 @@ let dbEvent = [
 			{
 				type:'video',
 				title:'',
-				description:'La compétion INJAZ ALMaghrib est une de ces compétitions, l\'équipe MQL, avec son projet RedHope est une plateforme pour but  d\'encourager le don du sang, a réussi à remporter le premier prix régional et le prix d\'inovation offert par BOEING sur l\'echelle nationale',
+				description:'La compétion INJAZ ALMaghrib est une de ces compétitions, l\'équipe MQL, avec son projet RedHope (une plateforme pour but  d\'encourager le don du sang), a réussi à remporter le premier prix régional et le prix d\'innovation offert par BOEING sur l\'echelle nationale',
 				videos: ['resources/videos/injaz2018.mp4'],
 			},
 		],
