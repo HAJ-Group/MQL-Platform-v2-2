@@ -170,6 +170,17 @@ EventComponent.prototype.fillMain = function() {
 						);
 					}
 				}
+				if(content.type === 'top-video') {
+					for(let video of content.videos) {
+						let videoo = buildElement('video',null,cls('mql-video'));
+						videoo.controls = true;
+						videoo.appendChild(buildElement('source',null,wrap([{name:'src',value:video}])));
+						contentdiv.appendChild(
+							videoo
+						);
+					}
+					contentdiv.appendChild(buildElement('p', content.description));
+				}
 			}
 			detaildiv.appendChild(contentdiv);
 		}
