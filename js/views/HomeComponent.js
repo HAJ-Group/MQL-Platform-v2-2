@@ -131,42 +131,13 @@ HomeComponent.prototype.addProfessor = function(professor){
 	row.insertCell().innerHTML = professor.lastName;
 	row.insertCell().innerHTML = professor.course;
 };
-
-/*HomeComponent.prototype.printProfessors = function(){
-	let professors = this.professorsReference;
-	for (let i = 0; i < this.service.sizeProfessors(); i++){
-		let courseImagePath = this.service.getProfessor(i).courseImage;
-
-		if (courseImagePath === ''){
-			courseImagePath = 'resources/pictures/Home/d.png';
-		}
-		let divProfessor = buildDIV([
-			buildDIV(
-				buildSPAN('Pr. ' + this.service.getProfessor(i).firstName + ' ' + this.service.getProfessor(i).lastName)
-				, cls('professor-name')),
-
-			buildDIV([
-					buildDIV([buildSPAN(),  this.service.getProfessor(i).course]
-						, cls('course-name')),
-
-					buildDIV(
-						buildIMG('' + courseImagePath,'', cls('img-course-image'))
-						, cls('course-image'))
-							],
-				cls('professor-infos'))
-			],
-
-			cls('professor-container'));
-		professors.appendChild(divProfessor);
-		professors.appendChild(buildHR());
-	}
-};*/
-
 HomeComponent.prototype.printProfessors = function(){
-    let professors = this.professorsReference;
+	let professors = this.professorsReference;
+	if( screen.width <700) {
+		 professors = $('#professors-phone');
+	}
     for (let i = 0; i < this.service.sizeProfessors(); i++) {
         let professor = this.service.getProfessor(i);
-
         let courseImagePath = professor.courseImage;
         let profPhotoPath = professor.photo;
 
