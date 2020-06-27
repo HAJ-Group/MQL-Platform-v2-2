@@ -512,12 +512,12 @@ table.student-table{
 .professor-container{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	width: 48%;
 	margin: 10px 0 10px 0;
-	padding: 5px 0 5px 0;
+	/*padding: 5px 0 5px 0;*/
 	background-color: rgb(235, 235, 235);
-	border: 1px solid rgb(53, 69, 108);
+	/*border: 1px solid rgb(53, 69, 108);*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .professor-name{
@@ -537,13 +537,13 @@ table.student-table{
 .professor-image{
 	width: 130px;
 	height: 130px;
-	border: 1px solid rgb(53, 69, 108);
+	/*border: 1px solid rgb(53, 69, 108);*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .course-image{
 	width: 130px;
 	height: 130px;
-	border: 1px solid rgb(53, 69, 108);
+	/*border: 1px solid rgb(53, 69, 108);*/
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .border-between-professors{

@@ -21,7 +21,6 @@ function HomeMain() {
     views['home'] = new HomeComponent(service);
     views['home'].printStats();
     views.home.startPresenter();
-    views.home.printProfessors();
     views.home.printStudents();
     views.home.printProfessors();
     views.home.fillNews();

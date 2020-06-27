@@ -480,7 +480,7 @@ let dbProfessors = [
         lastName: 'chihaja',
         photo: '',
         course: 'Technologie XML',
-        courseImage: 'resources/pictures/Home/xml.jpg'
+        courseImage: 'resources/pictures/Home/xml.png'
     },
     {
         id: 2,
@@ -488,7 +488,7 @@ let dbProfessors = [
         lastName: 'BEKKALI',
         photo: '',
         course: 'Bases de données ORACLE',
-        courseImage: 'resources/pictures/Home/oracle.jpg'
+        courseImage: 'resources/pictures/Home/oracle.png'
     },
     {
         id: 3,
@@ -496,7 +496,7 @@ let dbProfessors = [
         lastName: 'LAMRINI',
         photo: '',
         course: 'Gestion du projets',
-        courseImage: 'resources/pictures/Home/gestion-projet.jpg'
+        courseImage: 'resources/pictures/Home/gestion-projet.png'
     },
     {
         id: 4,
