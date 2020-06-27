@@ -476,8 +476,8 @@ let dbStudents = [
 let dbProfessors = [
     {
         id: 1,
-        firstName: 'Zineddine',
-        lastName: 'chihaja',
+        firstName: 'Ahmed',
+        lastName: 'ZINEDINE',
         photo: '',
         course: 'Technologie XML',
         courseImage: 'resources/pictures/Home/xml.png'

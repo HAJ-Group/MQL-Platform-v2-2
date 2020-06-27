@@ -200,7 +200,7 @@ function closeModal() {
     window.onclick = function(event) {
         if (event.target === newsModal) {
             newsModal.style.display = "none";
-            if(window.innerWidth > 1300){
+            if(window.innerWidth > 700){
                 btn.style.display = 'flex';
             }
         }

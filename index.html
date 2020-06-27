@@ -563,21 +563,21 @@
 					</div>
 					<div class="copy-right"><span>Master Qualité du Logiciel,<a href="#">Faculté des sciences</a></span><span>© 2020 All rights reserved</span></div>
 					<div id="form-contact">
-						<div id="form-contact-id" class="modal-style">
+						<div id="form-contact-id" class="modal">
 							<span class="close-modal-contact" onclick="$('#form-contact-id').style.display='none'" title="Close Modal">×</span>
-							<form class="modal-contact-content">
+							<form class="form-content">
 								<div class="contact-container">
-									<h3 style="text-align: center">Contactez-nous directement</h3>
+									<h3 class="form-title">Contactez-nous directement</h3>
 									<hr>
 									<label><b for="first-name">Prénom</b></label>
 									<input id="first-name" class="zone-text-contact-news" name="first-name" placeholder="Prénom..." type="text">
 									<label><b for="last-name">Nom</b></label>
 									<input id="last-name" class="zone-text-contact-news" name="last-name" placeholder="Nom..." type="text"><label><b for="email">Email</b></label>
 									<input id="contact-email" class="zone-text-contact-news" name="email" placeholder="Email..." type="email"><label><b for="subject">Sujet</b></label>
-									<textarea id="subject" class="zone-text-contact-news" name="subject" placeholder="Ecrire ici..." type="email" style="height:200px"></textarea>
+									<textarea id="subject" class="zone-text-contact-news" name="subject" placeholder="Ecrire ici..." type="email" style="height:200px;"></textarea>
 									<div class="form-footer">
-										<button class="button-contact-2 cancel-button">Annuler</button>
-										<button class="button-contact-2 submit-button">Envoyer</button>
+										<button class="button-contact-2 cancel-button" onclick="$('#form-contact-id').style.display='none'">Annuler</button>
+										<button class="button-contact-2 submit-button" type="submit">Envoyer</button>
 									</div>
 								</div>
 							</form>
