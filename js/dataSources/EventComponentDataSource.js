@@ -39,19 +39,19 @@ let dbEvent = [
 				title:'Etude de dossier',
 				description: 'Le dossier de candidature comprte les documents suivants : ',
 				items :['Photocopies des Attestations de réussite','Photocopies des Relevés des notes des années universitaires','Photocopie de la carte d’identité nationale','Une photo'],
-				image:'resources/pictures/Event/dossier.png',
+				image:'resources/pictures/App/logoMQL2.png',
 			},
 			{
 				type:'card',
 				title:'Concours Ecrit',
 				description: 'Le concours écrit vise à selectionner les candidats ayant les bons acquis de la Programmation Orientée Objet (C++/ JAVA JAVAEE).',
-				image:'resources/pictures/Event/Psytest.jpg',
+				image:'resources/pictures/App/logoMQL2.png',
 			},
 			{
 				type:'card',
 				title:'Entretien Oral',
 				description: 'La deuxième étape du concours consiste à choisir des étudiants motivés, confiants avec une capacité d\'écoute et un bon niveau de communication et , l\'étudiant présente son parcours universitaire et professionnel et répond aux questions du jury.',
-				image:'resources/pictures/Event/TechTest.jpg',
+				image:'resources/pictures/App/logoMQL2.png',
 			},
 
 		],
