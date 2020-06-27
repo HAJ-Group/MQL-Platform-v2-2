@@ -494,7 +494,7 @@ SPAComponent.prototype.loadThemes = function() {
     let container = $('#themeContainer');
     for(let theme of themes) {
         container.appendChild(buildDIV([
-            buildIMG('resources/pictures/App/' + theme + '-theme.png', ''),
+            buildIMG('resources/pictures/App/' + theme + '-theme.jpg', ''),
             buildSPAN(theme + ' Theme')
         ], wrapIC(theme, 'theme-item', [
             {name:'onclick', value:'views.spa.themeIndexer(\'' + theme + '\')'}
