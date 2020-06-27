@@ -26,6 +26,7 @@ function HomeMain() {
     views.home.fillNews();
     views.home.printNews();
     views.home.setNewsRoutes();
+    closeModal();
     // stays last
     views.spa.addTitleIcon('resources/pictures/Home/title-logo.png', false, 'home');
     views.spa.detect_subContent_trigger_left_bar('home');
