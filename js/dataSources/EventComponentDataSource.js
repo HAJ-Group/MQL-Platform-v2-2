@@ -146,12 +146,12 @@ let dbEvent = [
 		id:6,
 		title:'Evenements para-scolaire',
 		date:'',
-		description:'MQL dépasse les limtes de la formation et l\'éducation; MQL est une équipe, une famille, un style de vie.',
+		description:'Une fois vous integrez le master qualité logiciel, vous êtes désormais un membre d\'une équipe soudée avec un objectif clair et net. Nous dépassons les limites de la formation et éducation, nous organisons plein d\'événements parascolaire tout au long de l\'année ... ' ,
 		content: [
 			{
 				type:'image-grid',
-				title:'Galerie',
-				description:'',
+				title:'',
+				description:'MQL est une famille, MQL est un style de vie !',
 				images: ['resources/pictures/App/mqlfam.JPG','resources/pictures/Event/sortie.jpg'],
 			},
 		],
