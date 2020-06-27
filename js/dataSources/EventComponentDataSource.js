@@ -100,7 +100,7 @@ let dbEvent = [
 			{
 				type:'image-grid',
 				title:'Galerie',
-				description:'La cérémonie se passe par la présence des médias :',
+				description:'La cérémonie se passe par la présence de la  médias:',
 				images: [
 					'resources/pictures/Event/economiste.jpg',
 					'resources/pictures/Event/fesNews.png',
