@@ -310,7 +310,7 @@ let dbStudents = [
                     id: 6,
                     firstName: 'Omar',
                     lastName: 'ISMAILI ALAOUI',
-                    internship: 'Capgemeni'
+                    internship: 'Capgemeni Rabat'
                 },
                 {
                     id: 7,

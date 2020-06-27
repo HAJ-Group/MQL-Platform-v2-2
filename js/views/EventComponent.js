@@ -38,7 +38,7 @@ EventComponent.prototype.fillTimeline = function(max = 5) {
 	let counter = 0;
 	for(let event of this.service.db) {
 		if(event.date !== '' && counter < max) {
-			let image = 'resources/pictures/App/logoMQL2.png';
+			let image = 'resources/pictures/Event/event-def.png';
 			for(let content of event.content) {
 				if(content.type.startsWith('image')){
 					image = content.images[Math.floor(Math.random() * content.images.length)];
