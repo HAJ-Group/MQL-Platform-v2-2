@@ -6,6 +6,10 @@ function getHeaderNavs() {
     let navElement = buildDIV();
     // DYNAMIC NAVS
     for(let nav of SPAnavs) {
+        if (nav.name === 'Home'){
+            nav.content = buildIMG('resources/pictures/App/Header/home.png', 'home',
+                wrapIC('home-logo', 'home-logo'));
+        }
         navElement.appendChild(
             buildLINK('javascript:void(0)', nav.content, cls(['left'], [{name:'name', value:nav.name}]))
         );

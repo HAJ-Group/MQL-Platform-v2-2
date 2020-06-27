@@ -362,7 +362,7 @@ hr {
 .column img {
     margin-top: 8px;
     vertical-align: middle;
-    width: 95%;
+    max-width: 95%;
     padding-right: 10px;
 }
 
@@ -506,8 +506,8 @@ hr {
         font-size: 15px;
     }
     .modal-content {
-        max-width: 1000px;
-        max-height: 500px;
+        max-width: 90%;
+        max-height: 80%;
     }
 }
 @media only screen and (max-width: 700px){
