@@ -164,6 +164,7 @@ function collapse(){
 /* Tree model --------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 let toggle = false;
+let last_branch_toggled;
 ActivityComponent.prototype.showBranch = function(id) {
 	toggle = !toggle;
 	let titles = document.getElementsByClassName('branch-title');
@@ -171,12 +172,10 @@ ActivityComponent.prototype.showBranch = function(id) {
 	for(let t of titles) {
 		t.classList.remove('branch-active');
 	}
-	for(let b of branches) {
-		b.style.display = 'none';
-	}
 	if(toggle) {
 		titles[id].classList.add('branch-active');
 		branches[id].style.display = 'block';
+		last_branch_toggled = id;
 	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
