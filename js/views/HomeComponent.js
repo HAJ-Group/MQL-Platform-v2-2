@@ -207,8 +207,11 @@ HomeComponent.prototype.showRemoteNews = function(id) {
 	$('#nav-news-' + id).click();
 	if(screen.width > 700 )
 		views.spa.downFunction(1000);
-	else
-		$('#show-all').style.display = 'block';
+	else{
+		$('#show-all').style.display = 'flex';
+		$('#menu-button').click();
+		views.spa.topFunction();
+	}
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**

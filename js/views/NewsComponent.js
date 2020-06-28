@@ -231,7 +231,6 @@ NewsComponent.prototype.filterKey = function () {
 	if(this.page_blocks.length === 0) {
 		$('.error-message')[0].innerHTML = 'News not Found !';
 		$('#key').setAttribute('class', 'search-error');
-		views.spa.showEmptyErrorResult();
 	} else {
 		$('.error-message')[0].innerHTML = '';
 		$('#key').setAttribute('class', 'search-input');
@@ -313,7 +312,11 @@ NewsComponent.prototype.triggerSubmit = function () {
 NewsComponent.prototype.selectEvent = function (id) {
 	views.spa.route('Event');
 	views.event.selectEvent(id);
-	if(screen.width < 700 ) $('#show-all').style.display = 'block';
+	if(screen.width < 700 ){
+		$('#show-all').style.display = 'flex';
+		$('#menu-button').click();
+		views.spa.topFunction();
+	}
 };
 //----------------------------------------------------------------------------------------------------------------------
 /*--------------------------------------------------------------------------------------------------------------------*/

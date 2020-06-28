@@ -355,6 +355,7 @@ SPAComponent.prototype.showPartner = function(id) {
         this.route('Partner');
     }
     views.partner.showPartner(id, true);
+    $('#menu-button').click();
 };
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.showAll = function(id) {
@@ -448,6 +449,7 @@ SPAComponent.prototype.popFORM = function(target_block = 'form') {
     let modal = $('#' + target_block);
     modal.style.display = 'block';
 };
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 SPAComponent.prototype.markAsSelected = function(id, component) {
     $('#all-' + component).style.display = 'block';
@@ -627,7 +629,10 @@ SPAComponent.prototype.setTheme = function () {
     for(let p of professorName) {
         p.classList.add(this.current_theme + '-nav-text')
     }
-    $('.charts-block')[0].classList.add(this.current_theme + '-bgC2');
+    let recos = $('.reconizer');
+    for(let r of recos) {
+        r.classList.add(this.current_theme + '-nav-text');
+    }
 };
 
 

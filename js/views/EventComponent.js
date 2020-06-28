@@ -138,6 +138,7 @@ EventComponent.prototype.fillMain = function() {
 					], cls('card-event')));
 				}
 				if(content.type === 'image-show') {
+					contentdiv.appendChild(buildDIV(content.description,cls('image-show-description')));
 					contentdiv.appendChild(buildDIV([
 						buildDIV([
 							buildDIV(content.title, cls('element')),
@@ -169,6 +170,17 @@ EventComponent.prototype.fillMain = function() {
 							videoo
 						);
 					}
+				}
+				if(content.type === 'top-video') {
+					for(let video of content.videos) {
+						let videoo = buildElement('video',null,cls('mql-video'));
+						videoo.controls = true;
+						videoo.appendChild(buildElement('source',null,wrap([{name:'src',value:video}])));
+						contentdiv.appendChild(
+							videoo
+						);
+					}
+					contentdiv.appendChild(buildElement('p', content.description));
 				}
 			}
 			detaildiv.appendChild(contentdiv);
@@ -229,7 +241,6 @@ EventComponent.prototype.selectEvent = function(id){
 		}
 	}
 };
-
 EventComponent.prototype.displayEvent = function(event) {
 	this.block_main = $('#EventMain');
 	let shows = [];
@@ -270,6 +281,7 @@ EventComponent.prototype.displayEvent = function(event) {
 					], cls('card-event')));
 				}
 				if(content.type === 'image-show') {
+					contentdiv.appendChild(buildDIV(content.description,cls('image-show-description')));
 					contentdiv.appendChild(buildDIV([
 						buildDIV([
 							buildDIV(content.title, cls('element')),
@@ -302,6 +314,17 @@ EventComponent.prototype.displayEvent = function(event) {
 						);
 					}
 				}
+				if(content.type === 'top-video') {
+					for(let video of content.videos) {
+						let videoo = buildElement('video',null,cls('mql-video'));
+						videoo.controls = true;
+						videoo.appendChild(buildElement('source',null,wrap([{name:'src',value:video}])));
+						contentdiv.appendChild(
+							videoo
+						);
+					}
+					contentdiv.appendChild(buildElement('p', content.description));
+				}
 			}
 			detaildiv.appendChild(contentdiv);
 		}
@@ -331,7 +354,6 @@ EventComponent.prototype.filterKey = function () {
 	if(this.page_blocks.length === 0) {
 		$('.error-message')[0].innerHTML = 'Event not Found !';
 		$('#key').setAttribute('class', 'search-error');
-		views.spa.showEmptyErrorResult();
 	}
 	else {
 		$('.error-message')[0].innerHTML = '';

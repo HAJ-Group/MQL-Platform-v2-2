@@ -8,7 +8,7 @@ let dbNews = [
             'sciences, la plateforme offre des informations détaillées sur le master concernant les actualités, les ' +
             'événements, les activitées, les partenaires, les promotions et les lauréats... afin de donner la ' +
             'possibilité aux candidats à découvrir le maximum d\'informations à propos de cette formation d\'étude supérieure.',
-        images:['resources/pictures/News/platform.jpg'],
+        images:['resources/pictures/News/mql-light.png'],
     },
     {
         id :2,
